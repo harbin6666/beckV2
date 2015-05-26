@@ -11,6 +11,7 @@
 @interface RegisterVC ()
 @property(nonatomic,weak)IBOutlet UITextField *numberTF;
 @property (nonatomic, strong) NSNumber *smsCode;
+@property(nonatomic,weak)IBOutlet UITextField *couponTF;
 
 @end
 
@@ -29,6 +30,7 @@
     VerifyVC *vc=segue.destinationViewController;
     vc.verifyPhone=self.numberTF.text;
     vc.smsCode=[NSString stringWithFormat:@"%@",self.smsCode];
+    vc.couponCode=self.couponTF.text;
 }
 
 - (IBAction)onPressedBtn:(id)sender {

@@ -42,7 +42,9 @@
         if (self.findpw) {
             param[@"token"] = @"RetrievePassWord";
         }else{
-            param[@"verificationCode"]=@"";//优惠码
+            if (self.couponCode&&self.couponCode.length) {
+                param[@"verificationCode"]=self.couponCode;//优惠码
+            }            
         }
         WEAK_SELF;
         [self getValueWithBeckUrl:@"/front/userAct.htm" params:param CompleteBlock:^(id aResponseObject, NSError *anError) {

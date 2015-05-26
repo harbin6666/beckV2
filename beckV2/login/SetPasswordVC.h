@@ -11,4 +11,5 @@
 @interface SetPasswordVC : BaseViewController
 @property(nonatomic,strong)NSString *phoneNum;
 @property(nonatomic,assign)BOOL findpw;
+@property(nonatomic,strong)NSString *couponCode;
 @end

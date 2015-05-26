@@ -376,6 +376,7 @@
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ihk-0Y-qs1" userLabel="password">
                                         <rect key="frame" x="60" y="44" width="208" height="44"/>
+                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="4vH-qv-NAh"/>
                                         </constraints>
@@ -398,6 +399,7 @@
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kF7-MN-EBK" userLabel="username">
                                         <rect key="frame" x="60" y="0.0" width="208" height="44"/>
+                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -474,7 +476,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="euz-ue-xcZ" kind="custom" identifier="dismisssegue" customClass="DismissSegue" id="HwN-su-UNT"/>
+                                    <action selector="loginPress:" destination="oSE-ah-dXk" eventType="touchUpInside" id="PIS-fb-lLo"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAt-Kc-o3V">
@@ -648,7 +650,10 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <segue destination="j4b-K1-tpg" kind="show" identifier="tofindPass" id="Mbl-gZ-3B9"/>
+                        <outlet property="passw" destination="ihk-0Y-qs1" id="rFx-e2-rxg"/>
+                        <outlet property="usrName" destination="kF7-MN-EBK" id="Cz6-Fz-XGe"/>
+                        <segue destination="j4b-K1-tpg" kind="show" identifier="tofindpass" id="Mbl-gZ-3B9"/>
+                        <segue destination="euz-ue-xcZ" kind="custom" identifier="tohome" customClass="DismissSegue" id="vAU-pr-r13"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wc0-ep-Yq6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -669,6 +674,7 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手机" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rE6-jO-uNm">
                                 <rect key="frame" x="26" y="84" width="268" height="40"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="X5g-bY-oWD"/>
                                 </constraints>
@@ -731,7 +737,7 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X2e-UC-KVX">
                                 <rect key="frame" x="26" y="84" width="268" height="44"/>
-                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="cjy-NV-hPA"/>
                                 </constraints>
@@ -740,6 +746,7 @@
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邀请码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nvz-fI-s2L">
                                 <rect key="frame" x="26" y="138" width="268" height="44"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="RSm-Qh-SMX"/>
                                 </constraints>
@@ -826,6 +833,7 @@
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zs3-wP-U3a">
                                 <rect key="frame" x="26" y="138" width="129" height="44"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="IhB-g3-qVv"/>
                                 </constraints>
@@ -911,6 +919,7 @@
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cML-6D-3Ga" userLabel="username">
                                         <rect key="frame" x="80" y="0.0" width="220" height="44"/>
+                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -925,6 +934,7 @@
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tfJ-Lo-0m5" userLabel="password">
                                         <rect key="frame" x="80" y="44" width="220" height="44"/>
+                                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="Be2-Wq-tWv"/>
                                         </constraints>
@@ -1087,8 +1097,8 @@
         <image name="xunzhang3_red" width="70" height="90"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="U3g-eM-tF2"/>
-        <segue reference="y3c-H2-zHy"/>
+        <segue reference="vAU-pr-r13"/>
+        <segue reference="npZ-RJ-fqi"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

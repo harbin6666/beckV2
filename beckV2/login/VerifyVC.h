@@ -12,5 +12,6 @@
 @property(nonatomic,strong)NSString *verifyPhone;
 @property(nonatomic,strong)NSString *smsCode;
 @property(nonatomic,assign)BOOL findpw;
+@property(nonatomic,strong)NSString *couponCode;
 
 @end

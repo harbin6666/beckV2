@@ -10,7 +10,8 @@
 #import "FindPassVC.h"
 
 @interface LoginVC ()
-
+@property(nonatomic,weak)IBOutlet UITextField* usrName;
+@property(nonatomic,weak)IBOutlet UITextField* passw;
 @end
 
 @implementation LoginVC
@@ -34,6 +35,14 @@
 
 -(IBAction)forgetPassPress:(id)sender{
     [self performSegueWithIdentifier:@"tofindpass" sender:self];
+}
+
+-(IBAction)loginPress:(id)sender{
+    
+    NSMutableDictionary*param=@{@"token":@"twoLogin",@"loginName":@"",@"passWord":@""}.mutableCopy;
+    [self getValueWithBeckUrl:@"/front/userAct.htm" params:param CompleteBlock:^(id aResponseObject, NSError *anError) {
+        
+    }];
 }
 /*
 #pragma mark - Navigation

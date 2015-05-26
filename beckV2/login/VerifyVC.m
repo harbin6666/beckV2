@@ -29,6 +29,8 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     SetPasswordVC*vc=segue.destinationViewController;
     vc.phoneNum=self.verifyPhone;
+    vc.findpw=self.findpw;
+    vc.couponCode=self.couponCode;
 }
 
 -(IBAction)freshPress:(id)sender{
