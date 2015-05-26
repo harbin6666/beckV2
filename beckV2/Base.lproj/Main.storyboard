@@ -24,7 +24,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irl-6O-grU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="682" y="350"/>
+            <point key="canvasLocation" x="958" y="330"/>
         </scene>
         <!--note-->
         <scene sceneID="8fo-35-8nv">
@@ -488,7 +488,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="j4b-K1-tpg" kind="show" id="gAK-LW-9Af"/>
+                                    <action selector="forgetPassPress:" destination="oSE-ah-dXk" eventType="touchUpInside" id="K54-c4-aRC"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IPQ-lc-Z4t" userLabel="unionloginView">
@@ -647,6 +647,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="j4b-K1-tpg" kind="show" identifier="tofindPass" id="Mbl-gZ-3B9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wc0-ep-Yq6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -655,7 +658,7 @@
         <!--找回密码-->
         <scene sceneID="kkR-Mx-pgp">
             <objects>
-                <viewController title="找回密码" id="j4b-K1-tpg" sceneMemberID="viewController">
+                <viewController title="找回密码" id="j4b-K1-tpg" customClass="FindPassVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IwW-KP-hdP"/>
                         <viewControllerLayoutGuide type="bottom" id="VCF-l5-9lj"/>
@@ -680,7 +683,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Boi-3P-5dg" kind="show" identifier="toverify" id="Tgk-eE-JqV"/>
+                                    <action selector="findPassPress:" destination="j4b-K1-tpg" eventType="touchUpInside" id="R0L-IV-uaV"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -705,6 +708,10 @@
                         </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="phoneNum" destination="rE6-jO-uNm" id="V73-2E-Z6k"/>
+                        <segue destination="Boi-3P-5dg" kind="show" identifier="toverify" id="y3c-H2-zHy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W8E-zE-1ZL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -799,7 +806,7 @@
         <!--手机验证-->
         <scene sceneID="D1d-7Z-R1l">
             <objects>
-                <viewController storyboardIdentifier="verify" title="手机验证" id="Boi-3P-5dg" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="verify" title="手机验证" id="Boi-3P-5dg" customClass="VerifyVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wlz-zb-Ikh"/>
                         <viewControllerLayoutGuide type="bottom" id="pHM-DQ-1vF"/>
@@ -833,6 +840,9 @@
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="freshPress:" destination="Boi-3P-5dg" eventType="touchUpInside" id="TvB-q9-0uF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ely-ec-LSl">
                                 <rect key="frame" x="26" y="192" width="268" height="44"/>
@@ -846,7 +856,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="lZj-km-Gcv" kind="show" id="XGc-Zv-vcQ"/>
+                                    <action selector="btnPress:" destination="Boi-3P-5dg" eventType="touchUpInside" id="vNw-Mm-QhR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -870,6 +880,11 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="textLab" destination="OXP-8J-etT" id="xx3-uP-3z8"/>
+                        <outlet property="verifyTf" destination="zs3-wP-U3a" id="1dU-9P-iLN"/>
+                        <segue destination="lZj-km-Gcv" kind="show" identifier="tosetpass" id="kSP-ok-hVF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nsk-lu-DK9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -878,7 +893,7 @@
         <!--设置密码-->
         <scene sceneID="7sJ-Dt-Jee">
             <objects>
-                <viewController title="设置密码" id="lZj-km-Gcv" sceneMemberID="viewController">
+                <viewController title="设置密码" id="lZj-km-Gcv" customClass="SetPasswordVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2tM-4p-6Ox"/>
                         <viewControllerLayoutGuide type="bottom" id="hq5-0S-ydX"/>
@@ -983,6 +998,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="confirmPassPress:" destination="lZj-km-Gcv" eventType="touchUpInside" id="RfB-sL-D5S"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -995,10 +1013,15 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="pass" destination="cML-6D-3Ga" id="ILc-Mq-Wel"/>
+                        <outlet property="verifyPass" destination="tfJ-Lo-0m5" id="LhY-lG-vwQ"/>
+                        <segue destination="euz-ue-xcZ" kind="custom" identifier="tohome" customClass="DismissSegue" id="U3g-eM-tF2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GcK-ku-yDl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1270" y="1349"/>
+            <point key="canvasLocation" x="422" y="453"/>
         </scene>
         <!--loginNav-->
         <scene sceneID="IyR-6p-3ip">
@@ -1064,8 +1087,8 @@
         <image name="xunzhang3_red" width="70" height="90"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EC2-o1-vzt"/>
-        <segue reference="npZ-RJ-fqi"/>
+        <segue reference="U3g-eM-tF2"/>
+        <segue reference="y3c-H2-zHy"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

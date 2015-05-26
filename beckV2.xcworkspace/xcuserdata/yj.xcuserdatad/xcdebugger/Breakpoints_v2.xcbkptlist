@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "beckV2/login/RegisterVC.m"
-            timestampString = "454341554.562121"
+            timestampString = "454346640.119311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "-onPressedBtn:"
             landmarkType = "5">
          </BreakpointContent>

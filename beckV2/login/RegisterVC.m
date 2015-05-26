@@ -7,7 +7,7 @@
 //
 
 #import "RegisterVC.h"
-
+#import "VerifyVC.h"
 @interface RegisterVC ()
 @property(nonatomic,weak)IBOutlet UITextField *numberTF;
 @property (nonatomic, strong) NSNumber *smsCode;
@@ -26,7 +26,9 @@
     // Dispose of any resources that can be recreated.
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
+    VerifyVC *vc=segue.destinationViewController;
+    vc.verifyPhone=self.numberTF.text;
+    vc.smsCode=[NSString stringWithFormat:@"%@",self.smsCode];
 }
 
 - (IBAction)onPressedBtn:(id)sender {
@@ -47,12 +49,12 @@
                 [self hideLoading];
             }
             else {
-                [self getValueWithBeckUrl:@"/front/sendTemplateSmsAct.htm" params:@{@"loginName":self.numberTF.text} CompleteBlock:^(id aResponseObject, NSError *anError) {
+                [self getValueWithBeckUrl:@"/front/sendsmsAct.htm" params:@{@"loginName":self.numberTF.text} CompleteBlock:^(id aResponseObject, NSError *anError) {
                     [self hideLoading];
                     if (!anError) {
                         NSNumber *errorcode = aResponseObject[@"errorcode"];
-                        if (errorcode.boolValue) {
-                            [[OTSAlertView alertWithMessage:@"发送失败" andCompleteBlock:nil] show];
+                        if (errorcode.integerValue!=0) {
+                            [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
                         }
                         else {
                             self.smsCode = aResponseObject[@"value"];

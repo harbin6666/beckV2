@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3D4715DB-C59C-45E0-A5CB-BAC8259A3E97</string>
+	<key>IDESourceControlProjectName</key>
+	<string>beckV2</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7EC8607A665B693D99DCE30095469E8BE35BCB09</key>
+		<string>github.com:harbin6666/beckV2.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>beckV2.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7EC8607A665B693D99DCE30095469E8BE35BCB09</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:harbin6666/beckV2.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7EC8607A665B693D99DCE30095469E8BE35BCB09</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7EC8607A665B693D99DCE30095469E8BE35BCB09</string>
+			<key>IDESourceControlWCCName</key>
+			<string>beckv2</string>
+		</dict>
+	</array>
+</dict>
+</plist>

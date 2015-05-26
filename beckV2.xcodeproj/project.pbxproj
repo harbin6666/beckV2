@@ -21,6 +21,9 @@
 		39372E871B0A559400891F52 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39372E861B0A559400891F52 /* HomeVC.m */; };
 		39372E8D1B0A5EF600891F52 /* ConditionContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39372E8C1B0A5EF600891F52 /* ConditionContainerVC.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
+		397DDAD61B14B64C00E8F73B /* VerifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD51B14B64C00E8F73B /* VerifyVC.m */; };
+		397DDAD91B14C3D000E8F73B /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD81B14C3D000E8F73B /* SetPasswordVC.m */; };
+		397DDADC1B14C9F800E8F73B /* FindPassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDADB1B14C9F800E8F73B /* FindPassVC.m */; };
 		39D4BC271B0B6E4A00F5FABF /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D4BC261B0B6E4A00F5FABF /* LoginVC.m */; };
 		39D780BF1B13644E009F5C8E /* DismissSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D780BE1B13644E009F5C8E /* DismissSegue.m */; };
 		39D780C21B136E93009F5C8E /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D780C11B136E93009F5C8E /* Global.m */; };
@@ -67,6 +70,12 @@
 		39372E8C1B0A5EF600891F52 /* ConditionContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionContainerVC.m; sourceTree = "<group>"; };
 		397DDAD11B14B04100E8F73B /* RegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterVC.h; sourceTree = "<group>"; };
 		397DDAD21B14B04100E8F73B /* RegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterVC.m; sourceTree = "<group>"; };
+		397DDAD41B14B64C00E8F73B /* VerifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyVC.h; sourceTree = "<group>"; };
+		397DDAD51B14B64C00E8F73B /* VerifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyVC.m; sourceTree = "<group>"; };
+		397DDAD71B14C3D000E8F73B /* SetPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPasswordVC.h; sourceTree = "<group>"; };
+		397DDAD81B14C3D000E8F73B /* SetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPasswordVC.m; sourceTree = "<group>"; };
+		397DDADA1B14C9F800E8F73B /* FindPassVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPassVC.h; sourceTree = "<group>"; };
+		397DDADB1B14C9F800E8F73B /* FindPassVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPassVC.m; sourceTree = "<group>"; };
 		39D4BC251B0B6E4A00F5FABF /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		39D4BC261B0B6E4A00F5FABF /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		39D780BD1B13644E009F5C8E /* DismissSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissSegue.h; sourceTree = "<group>"; };
@@ -202,6 +211,12 @@
 				39D4BC261B0B6E4A00F5FABF /* LoginVC.m */,
 				397DDAD11B14B04100E8F73B /* RegisterVC.h */,
 				397DDAD21B14B04100E8F73B /* RegisterVC.m */,
+				397DDAD41B14B64C00E8F73B /* VerifyVC.h */,
+				397DDAD51B14B64C00E8F73B /* VerifyVC.m */,
+				397DDAD71B14C3D000E8F73B /* SetPasswordVC.h */,
+				397DDAD81B14C3D000E8F73B /* SetPasswordVC.m */,
+				397DDADA1B14C9F800E8F73B /* FindPassVC.h */,
+				397DDADB1B14C9F800E8F73B /* FindPassVC.m */,
 				39D780BD1B13644E009F5C8E /* DismissSegue.h */,
 				39D780BE1B13644E009F5C8E /* DismissSegue.m */,
 			);
@@ -375,13 +390,16 @@
 			files = (
 				39372E721B0A267000891F52 /* BaseViewController.m in Sources */,
 				39D780C51B138490009F5C8E /* ChengjiuVC.m in Sources */,
+				397DDAD91B14C3D000E8F73B /* SetPasswordVC.m in Sources */,
 				39D780BF1B13644E009F5C8E /* DismissSegue.m in Sources */,
 				39D780C21B136E93009F5C8E /* Global.m in Sources */,
 				3919ABE31B0647F200336E77 /* AppDelegate.m in Sources */,
 				39D4BC271B0B6E4A00F5FABF /* LoginVC.m in Sources */,
+				397DDAD61B14B64C00E8F73B /* VerifyVC.m in Sources */,
 				39D780CD1B1386C9009F5C8E /* OTSAlertView.m in Sources */,
 				39372E7B1B0A2C0500891F52 /* Model.xcdatamodeld in Sources */,
 				39372E871B0A559400891F52 /* HomeVC.m in Sources */,
+				397DDADC1B14C9F800E8F73B /* FindPassVC.m in Sources */,
 				397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */,
 				39D780C81B138533009F5C8E /* HonorTVCell.m in Sources */,
 				39372E8D1B0A5EF600891F52 /* ConditionContainerVC.m in Sources */,

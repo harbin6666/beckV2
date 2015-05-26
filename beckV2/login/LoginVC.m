@@ -7,6 +7,7 @@
 //
 
 #import "LoginVC.h"
+#import "FindPassVC.h"
 
 @interface LoginVC ()
 
@@ -28,8 +29,11 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"dismisssegue"]) {
         [Global sharedSingle].logined=YES;
-    }
-    
+    }    
+}
+
+-(IBAction)forgetPassPress:(id)sender{
+    [self performSegueWithIdentifier:@"tofindpass" sender:self];
 }
 /*
 #pragma mark - Navigation
