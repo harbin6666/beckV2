@@ -1,0 +1,1 @@
+../../../AFSQLManager/AFSQLManager.h

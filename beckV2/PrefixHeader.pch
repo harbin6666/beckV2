@@ -1,0 +1,47 @@
+//
+//  PrefixHeader.pch
+//  beckV2
+//
+//  Created by yj on 15/5/18.
+//  Copyright (c) 2015年 yj. All rights reserved.
+//
+
+#ifndef beckV2_PrefixHeader_pch
+#define beckV2_PrefixHeader_pch
+
+#import "UIView+create.h"
+//#import "OTSBorder.h"
+//#import "OTSAlertView.h"
+//#import "NSMutableArray+safe.h"
+//#import "NSMutableDictionary+safe.h"
+//#import "NSString+clear.h"
+#import <AFNetworkReachabilityManager.h>
+#define WEAK_SELF __weak typeof(self)weakSelf = self
+#define STRONG_SELF typeof(weakSelf)self = weakSelf
+
+#define kOpenQQAppKey       @"100344815"
+
+#define kSinaAppKey         @"238406070"
+#define kSinaRedirectURI    @"http://www.beck.com"
+
+#define kRenRenAppId        @"473852"
+#define kRenRenAppKey       @"50047f5dfd9d468bbf58caf6580a8f07"
+#define kRenRenAppSecretKey @"a8e2924a91cb495c981a8b6f05a46410"
+
+#define singleton_interface(className) \
++ (className *)sharedSingle;
+
+
+#define singleton_implementation(className) \
+static className *_instance; \
++ (className *)sharedSingle \
+{ \
+static dispatch_once_t onceToken; \
+dispatch_once(&onceToken, ^{ \
+_instance = [[self alloc] init]; \
+}); \
+return _instance; \
+}
+#import "Global.h"
+#import "OTSAlertView.h"
+#endif
