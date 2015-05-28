@@ -44,4 +44,6 @@ return _instance; \
 }
 #import "Global.h"
 #import "OTSAlertView.h"
+#import <AFSQLManager/AFSQLManager.h>
+#import "NSArray+fecth.h"
 #endif

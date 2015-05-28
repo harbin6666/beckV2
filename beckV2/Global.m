@@ -10,7 +10,4 @@
 
 @implementation Global
 singleton_implementation(Global)
--(NSString*)loginName{
-    return @"1234";
-}
 @end

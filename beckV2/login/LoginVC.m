@@ -39,9 +39,38 @@
 
 -(IBAction)loginPress:(id)sender{
     
-    NSMutableDictionary*param=@{@"token":@"twoLogin",@"loginName":@"",@"passWord":@""}.mutableCopy;
+    NSMutableDictionary*param=@{@"token":@"twoLogin",@"loginName":self.usrName.text,@"passWord":self.passw.text}.mutableCopy;
+    [self showLoading];
+    WEAK_SELF;
     [self getValueWithBeckUrl:@"/front/userAct.htm" params:param CompleteBlock:^(id aResponseObject, NSError *anError) {
-        
+        STRONG_SELF;
+        [self hideLoading];
+        if (!anError) {
+            NSNumber *errorcode = aResponseObject[@"errorcode"];
+            if (errorcode.intValue!=0) {
+                [[OTSAlertView alertWithMessage:aResponseObject[@"token"] andCompleteBlock:nil] show];
+            }
+            else {
+                NSDictionary *user=aResponseObject[@"userBean"];
+                [Global sharedSingle].loginName=user[@"loginName"];
+                [Global sharedSingle].userBean=user;
+                [Global sharedSingle].logined=YES;
+                [self performSegueWithIdentifier:@"tohome" sender:self];
+                
+                
+//                if (titleId) {
+//                    [[NSUserDefaults standardUserDefaults] setObject:titleId forKey:@"subjectId"];
+//                    [[NSUserDefaults standardUserDefaults] synchronize];
+//                    [self performSegueWithIdentifier:@"tohome" sender:self];
+//                }
+//                else {
+//                    [self performSegueWithIdentifier:@"toCus" sender:self];
+//                }
+            }
+        }
+        else {
+            [[OTSAlertView alertWithMessage:@"登录失败" andCompleteBlock:nil] show];
+        }
     }];
 }
 /*

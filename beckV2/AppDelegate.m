@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <AFSQLManager/AFSQLManager.h>
 
 @interface AppDelegate ()
 
@@ -18,6 +17,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [[AFSQLManager sharedManager] openLocalDatabaseWithName:@"beck.db" andStatusBlock:^(BOOL success, NSError *error) {
+        if (success) {
+            NSLog(@"beck db open success");
+        }
+        else {
+            NSLog(@"beck db open failed");
+        }
+    }];
+
     return YES;
 }
 

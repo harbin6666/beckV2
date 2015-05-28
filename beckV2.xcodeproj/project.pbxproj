@@ -20,6 +20,8 @@
 		39372E801B0A2F1E00891F52 /* beck.db in Resources */ = {isa = PBXBuildFile; fileRef = 39372E7F1B0A2F1E00891F52 /* beck.db */; };
 		39372E871B0A559400891F52 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39372E861B0A559400891F52 /* HomeVC.m */; };
 		39372E8D1B0A5EF600891F52 /* ConditionContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39372E8C1B0A5EF600891F52 /* ConditionContainerVC.m */; };
+		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
+		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
 		397DDAD61B14B64C00E8F73B /* VerifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD51B14B64C00E8F73B /* VerifyVC.m */; };
 		397DDAD91B14C3D000E8F73B /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD81B14C3D000E8F73B /* SetPasswordVC.m */; };
@@ -68,6 +70,10 @@
 		39372E861B0A559400891F52 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		39372E8B1B0A5EF600891F52 /* ConditionContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionContainerVC.h; sourceTree = "<group>"; };
 		39372E8C1B0A5EF600891F52 /* ConditionContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionContainerVC.m; sourceTree = "<group>"; };
+		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
+		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
+		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
+		396AD3031B1772F6005F92B1 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		397DDAD11B14B04100E8F73B /* RegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterVC.h; sourceTree = "<group>"; };
 		397DDAD21B14B04100E8F73B /* RegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterVC.m; sourceTree = "<group>"; };
 		397DDAD41B14B64C00E8F73B /* VerifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyVC.h; sourceTree = "<group>"; };
@@ -135,6 +141,7 @@
 		3919ABDC1B0647F200336E77 /* beckV2 */ = {
 			isa = PBXGroup;
 			children = (
+				396AD2FE1B176C4A005F92B1 /* category */,
 				39D780CA1B1386AF009F5C8E /* custom */,
 				39D4BC221B0B6C3600F5FABF /* login */,
 				39372E811B0A556500891F52 /* home */,
@@ -185,6 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				39372E7F1B0A2F1E00891F52 /* beck.db */,
+				396AD3021B1772F6005F92B1 /* Position.h */,
+				396AD3031B1772F6005F92B1 /* Position.m */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -202,6 +211,17 @@
 				39D780C71B138533009F5C8E /* HonorTVCell.m */,
 			);
 			path = home;
+			sourceTree = "<group>";
+		};
+		396AD2FE1B176C4A005F92B1 /* category */ = {
+			isa = PBXGroup;
+			children = (
+				39372E731B0A27A100891F52 /* UIView+create.h */,
+				39372E741B0A27A100891F52 /* UIView+create.m */,
+				396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */,
+				396AD3001B176CB5005F92B1 /* NSArray+fecth.m */,
+			);
+			path = category;
 			sourceTree = "<group>";
 		};
 		39D4BC221B0B6C3600F5FABF /* login */ = {
@@ -228,8 +248,6 @@
 			children = (
 				39D780CB1B1386C9009F5C8E /* OTSAlertView.h */,
 				39D780CC1B1386C9009F5C8E /* OTSAlertView.m */,
-				39372E731B0A27A100891F52 /* UIView+create.h */,
-				39372E741B0A27A100891F52 /* UIView+create.m */,
 			);
 			path = custom;
 			sourceTree = "<group>";
@@ -395,8 +413,10 @@
 				39D780C21B136E93009F5C8E /* Global.m in Sources */,
 				3919ABE31B0647F200336E77 /* AppDelegate.m in Sources */,
 				39D4BC271B0B6E4A00F5FABF /* LoginVC.m in Sources */,
+				396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */,
 				397DDAD61B14B64C00E8F73B /* VerifyVC.m in Sources */,
 				39D780CD1B1386C9009F5C8E /* OTSAlertView.m in Sources */,
+				396AD3041B1772F6005F92B1 /* Position.m in Sources */,
 				39372E7B1B0A2C0500891F52 /* Model.xcdatamodeld in Sources */,
 				39372E871B0A559400891F52 /* HomeVC.m in Sources */,
 				397DDADC1B14C9F800E8F73B /* FindPassVC.m in Sources */,
