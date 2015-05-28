@@ -9,12 +9,13 @@
 #import "HomeVC.h"
 #import <UIKit/UIKit.h>
 #import "Position.h"
+#import <QuartzCore/QuartzCore.h>
 @interface HomeVC ()<UITabBarDelegate>
 @property (weak, nonatomic) IBOutlet UITabBar *tabbar;
 @property(nonatomic)BOOL hasShowPickerView;
 @property(nonatomic,weak) IBOutlet UIView *positionView;
 @end
-
+#define padding 10
 @implementation HomeVC
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -60,7 +61,7 @@
     }
 }
 
--(NSArray*)getPositions{
+-(void)getPositions{
     __block NSMutableArray *array=@[].mutableCopy;
     NSString *sql=@"select title_id,title_name from position_title_info";
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
@@ -73,7 +74,23 @@
             [array addObject:postion];
         }
     }];
-    return array;
+    CGFloat btnWidth=(self.view.frame.size.width-4*padding)/3;
+    
+    for (int i=0;i<array.count;i++) {
+        Position*p=array[i];
+        UIButton *b=[UIButton buttonWithType:UIButtonTypeCustom];
+        b.frame=CGRectMake(0, 0, btnWidth, 36);
+        b.layer.borderWidth=1;
+        b.layer.borderColor=[UIColor blackColor].CGColor;
+        [b setTitle:p.titleName forState:UIControlStateNormal];
+        b.titleLabel.numberOfLines=2;
+        b.titleLabel.font=[UIFont systemFontOfSize:14];
+        int y=(int)(i/3);
+        int x=i%3;
+        b.center=CGPointMake((btnWidth/2+padding)+x*(btnWidth+padding), 28+y*(36+padding));
+        NSLog(@"%@",NSStringFromCGPoint(b.center));
+        [self.positionView addSubview:b];
+    }
 }
 -(IBAction)showPositionView:(id)sender{
     self.positionView.hidden=!self.positionView.hidden;
