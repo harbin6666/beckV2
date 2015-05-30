@@ -13,4 +13,6 @@ singleton_interface(Global)
 @property(nonatomic,assign)BOOL logined;
 @property(nonatomic,strong)NSString *loginName;
 @property(nonatomic,strong)NSDictionary *userBean;
+-(void)setUserValue:(id)value Key:(NSString*)key;
+-(id)getUserWithkey:(NSString*)key;
 @end

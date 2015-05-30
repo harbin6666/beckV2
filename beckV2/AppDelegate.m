@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "Position.h"
 @interface AppDelegate ()
 
 @end
@@ -17,14 +17,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [[AFSQLManager sharedManager] openLocalDatabaseWithName:@"beck.db" andStatusBlock:^(BOOL success, NSError *error) {
-        if (success) {
-            NSLog(@"beck db open success");
-        }
-        else {
-            NSLog(@"beck db open failed");
-        }
-    }];
+    [[SQLManager sharedSingle] openDB];
+    NSString * titleid=[[Global sharedSingle] getUserWithkey:@"titleid"];
+    if (titleid==nil) {
+        Position *p=[[[SQLManager sharedSingle] getTitles] firstObject];
+        [[Global sharedSingle] setUserValue:p.titleId Key:@"titleid"];
+        [[Global sharedSingle] setUserValue:p.titleName Key:@"titleName"];
+    }
+    
 
     return YES;
 }

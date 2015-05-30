@@ -10,4 +10,11 @@
 
 @implementation Global
 singleton_implementation(Global)
+-(void)setUserValue:(id)value Key:(NSString*)key{
+    [[NSUserDefaults standardUserDefaults] setValue:value forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+-(id)getUserWithkey:(NSString*)key{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:key];
+}
 @end

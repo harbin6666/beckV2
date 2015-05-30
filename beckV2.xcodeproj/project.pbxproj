@@ -14,7 +14,6 @@
 		3919ABF11B0647F200336E77 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3919ABEF1B0647F200336E77 /* LaunchScreen.xib */; };
 		3919ABFD1B0647F200336E77 /* beckV2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3919ABFC1B0647F200336E77 /* beckV2Tests.m */; };
 		39372E721B0A267000891F52 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39372E711B0A267000891F52 /* BaseViewController.m */; };
-		39372E751B0A27A100891F52 /* UIView+create.m in Sources */ = {isa = PBXBuildFile; fileRef = 39372E741B0A27A100891F52 /* UIView+create.m */; };
 		39372E781B0A2A3000891F52 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39372E771B0A2A3000891F52 /* libsqlite3.dylib */; };
 		39372E7B1B0A2C0500891F52 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 39372E791B0A2C0500891F52 /* Model.xcdatamodeld */; };
 		39372E801B0A2F1E00891F52 /* beck.db in Resources */ = {isa = PBXBuildFile; fileRef = 39372E7F1B0A2F1E00891F52 /* beck.db */; };
@@ -26,6 +25,21 @@
 		397DDAD61B14B64C00E8F73B /* VerifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD51B14B64C00E8F73B /* VerifyVC.m */; };
 		397DDAD91B14C3D000E8F73B /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD81B14C3D000E8F73B /* SetPasswordVC.m */; };
 		397DDADC1B14C9F800E8F73B /* FindPassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDADB1B14C9F800E8F73B /* FindPassVC.m */; };
+		39CE4C3E1B19574800DDAB01 /* UIView+create.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C3D1B19574800DDAB01 /* UIView+create.m */; };
+		39CE4C4A1B19575800DDAB01 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CE4C411B19575800DDAB01 /* TencentOpenAPI.framework */; };
+		39CE4C4B1B19575800DDAB01 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 39CE4C421B19575800DDAB01 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		39CE4C4C1B19575800DDAB01 /* RennSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 39CE4C441B19575800DDAB01 /* RennSDK.bundle */; };
+		39CE4C4D1B19575800DDAB01 /* RennSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CE4C451B19575800DDAB01 /* RennSDK.framework */; };
+		39CE4C4E1B19575800DDAB01 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CE4C471B19575800DDAB01 /* libWeiboSDK.a */; };
+		39CE4C4F1B19575800DDAB01 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 39CE4C481B19575800DDAB01 /* WeiboSDK.bundle */; };
+		39CE4C511B19578300DDAB01 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CE4C501B19578300DDAB01 /* CoreTelephony.framework */; };
+		39CE4C531B19588700DDAB01 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CE4C521B19588700DDAB01 /* libiconv.dylib */; };
+		39CE4C551B19589200DDAB01 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CE4C541B19589200DDAB01 /* SystemConfiguration.framework */; };
+		39CE4C571B1958A000DDAB01 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CE4C561B1958A000DDAB01 /* CoreGraphics.framework */; };
+		39CE4C591B1958B300DDAB01 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CE4C581B1958B300DDAB01 /* libstdc++.dylib */; };
+		39CE4C5B1B1958B900DDAB01 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CE4C5A1B1958B900DDAB01 /* libz.dylib */; };
+		39CE4C5E1B195A2800DDAB01 /* SQLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C5D1B195A2800DDAB01 /* SQLManager.m */; };
+		39CE4C611B196D8700DDAB01 /* NSString+NSdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C601B196D8700DDAB01 /* NSString+NSdate.m */; };
 		39D4BC271B0B6E4A00F5FABF /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D4BC261B0B6E4A00F5FABF /* LoginVC.m */; };
 		39D780BF1B13644E009F5C8E /* DismissSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D780BE1B13644E009F5C8E /* DismissSegue.m */; };
 		39D780C21B136E93009F5C8E /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D780C11B136E93009F5C8E /* Global.m */; };
@@ -60,8 +74,6 @@
 		3919ABFC1B0647F200336E77 /* beckV2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = beckV2Tests.m; sourceTree = "<group>"; };
 		39372E701B0A267000891F52 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		39372E711B0A267000891F52 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		39372E731B0A27A100891F52 /* UIView+create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+create.h"; path = "../UIView+create.h"; sourceTree = "<group>"; };
-		39372E741B0A27A100891F52 /* UIView+create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+create.m"; path = "../UIView+create.m"; sourceTree = "<group>"; };
 		39372E761B0A285200891F52 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		39372E771B0A2A3000891F52 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		39372E7A1B0A2C0500891F52 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -82,6 +94,25 @@
 		397DDAD81B14C3D000E8F73B /* SetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPasswordVC.m; sourceTree = "<group>"; };
 		397DDADA1B14C9F800E8F73B /* FindPassVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPassVC.h; sourceTree = "<group>"; };
 		397DDADB1B14C9F800E8F73B /* FindPassVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPassVC.m; sourceTree = "<group>"; };
+		39CE4C3C1B19574800DDAB01 /* UIView+create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+create.h"; sourceTree = "<group>"; };
+		39CE4C3D1B19574800DDAB01 /* UIView+create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+create.m"; sourceTree = "<group>"; };
+		39CE4C411B19575800DDAB01 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		39CE4C421B19575800DDAB01 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		39CE4C441B19575800DDAB01 /* RennSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RennSDK.bundle; sourceTree = "<group>"; };
+		39CE4C451B19575800DDAB01 /* RennSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RennSDK.framework; sourceTree = "<group>"; };
+		39CE4C471B19575800DDAB01 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
+		39CE4C481B19575800DDAB01 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
+		39CE4C491B19575800DDAB01 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
+		39CE4C501B19578300DDAB01 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		39CE4C521B19588700DDAB01 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		39CE4C541B19589200DDAB01 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		39CE4C561B1958A000DDAB01 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		39CE4C581B1958B300DDAB01 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		39CE4C5A1B1958B900DDAB01 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		39CE4C5C1B195A2800DDAB01 /* SQLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLManager.h; sourceTree = "<group>"; };
+		39CE4C5D1B195A2800DDAB01 /* SQLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLManager.m; sourceTree = "<group>"; };
+		39CE4C5F1B196D8700DDAB01 /* NSString+NSdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSdate.h"; sourceTree = "<group>"; };
+		39CE4C601B196D8700DDAB01 /* NSString+NSdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSdate.m"; sourceTree = "<group>"; };
 		39D4BC251B0B6E4A00F5FABF /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		39D4BC261B0B6E4A00F5FABF /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		39D780BD1B13644E009F5C8E /* DismissSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissSegue.h; sourceTree = "<group>"; };
@@ -103,7 +134,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39CE4C5B1B1958B900DDAB01 /* libz.dylib in Frameworks */,
+				39CE4C591B1958B300DDAB01 /* libstdc++.dylib in Frameworks */,
 				39372E781B0A2A3000891F52 /* libsqlite3.dylib in Frameworks */,
+				39CE4C571B1958A000DDAB01 /* CoreGraphics.framework in Frameworks */,
+				39CE4C551B19589200DDAB01 /* SystemConfiguration.framework in Frameworks */,
+				39CE4C531B19588700DDAB01 /* libiconv.dylib in Frameworks */,
+				39CE4C511B19578300DDAB01 /* CoreTelephony.framework in Frameworks */,
+				39CE4C4E1B19575800DDAB01 /* libWeiboSDK.a in Frameworks */,
+				39CE4C4A1B19575800DDAB01 /* TencentOpenAPI.framework in Frameworks */,
+				39CE4C4D1B19575800DDAB01 /* RennSDK.framework in Frameworks */,
 				9A5399A3109B24A746CB7B6E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,6 +181,7 @@
 		3919ABDC1B0647F200336E77 /* beckV2 */ = {
 			isa = PBXGroup;
 			children = (
+				39CE4C3F1B19575800DDAB01 /* ThirdParty */,
 				396AD2FE1B176C4A005F92B1 /* category */,
 				39D780CA1B1386AF009F5C8E /* custom */,
 				39D4BC221B0B6C3600F5FABF /* login */,
@@ -194,6 +235,8 @@
 				39372E7F1B0A2F1E00891F52 /* beck.db */,
 				396AD3021B1772F6005F92B1 /* Position.h */,
 				396AD3031B1772F6005F92B1 /* Position.m */,
+				39CE4C5C1B195A2800DDAB01 /* SQLManager.h */,
+				39CE4C5D1B195A2800DDAB01 /* SQLManager.m */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -216,12 +259,52 @@
 		396AD2FE1B176C4A005F92B1 /* category */ = {
 			isa = PBXGroup;
 			children = (
-				39372E731B0A27A100891F52 /* UIView+create.h */,
-				39372E741B0A27A100891F52 /* UIView+create.m */,
+				39CE4C3C1B19574800DDAB01 /* UIView+create.h */,
+				39CE4C3D1B19574800DDAB01 /* UIView+create.m */,
 				396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */,
 				396AD3001B176CB5005F92B1 /* NSArray+fecth.m */,
+				39CE4C5F1B196D8700DDAB01 /* NSString+NSdate.h */,
+				39CE4C601B196D8700DDAB01 /* NSString+NSdate.m */,
 			);
 			path = category;
+			sourceTree = "<group>";
+		};
+		39CE4C3F1B19575800DDAB01 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				39CE4C401B19575800DDAB01 /* OpenQQ */,
+				39CE4C431B19575800DDAB01 /* RenRen */,
+				39CE4C461B19575800DDAB01 /* Sina */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		39CE4C401B19575800DDAB01 /* OpenQQ */ = {
+			isa = PBXGroup;
+			children = (
+				39CE4C411B19575800DDAB01 /* TencentOpenAPI.framework */,
+				39CE4C421B19575800DDAB01 /* TencentOpenApi_IOS_Bundle.bundle */,
+			);
+			path = OpenQQ;
+			sourceTree = "<group>";
+		};
+		39CE4C431B19575800DDAB01 /* RenRen */ = {
+			isa = PBXGroup;
+			children = (
+				39CE4C441B19575800DDAB01 /* RennSDK.bundle */,
+				39CE4C451B19575800DDAB01 /* RennSDK.framework */,
+			);
+			path = RenRen;
+			sourceTree = "<group>";
+		};
+		39CE4C461B19575800DDAB01 /* Sina */ = {
+			isa = PBXGroup;
+			children = (
+				39CE4C471B19575800DDAB01 /* libWeiboSDK.a */,
+				39CE4C481B19575800DDAB01 /* WeiboSDK.bundle */,
+				39CE4C491B19575800DDAB01 /* WeiboSDK.h */,
+			);
+			path = Sina;
 			sourceTree = "<group>";
 		};
 		39D4BC221B0B6C3600F5FABF /* login */ = {
@@ -255,6 +338,12 @@
 		70958AE9CD511F39D8940797 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39CE4C5A1B1958B900DDAB01 /* libz.dylib */,
+				39CE4C581B1958B300DDAB01 /* libstdc++.dylib */,
+				39CE4C561B1958A000DDAB01 /* CoreGraphics.framework */,
+				39CE4C541B19589200DDAB01 /* SystemConfiguration.framework */,
+				39CE4C521B19588700DDAB01 /* libiconv.dylib */,
+				39CE4C501B19578300DDAB01 /* CoreTelephony.framework */,
 				39372E771B0A2A3000891F52 /* libsqlite3.dylib */,
 				A729BAD88020A10CD32E18F4 /* libPods.a */,
 			);
@@ -353,8 +442,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				39372E801B0A2F1E00891F52 /* beck.db in Resources */,
+				39CE4C4C1B19575800DDAB01 /* RennSDK.bundle in Resources */,
 				3919ABEC1B0647F200336E77 /* Main.storyboard in Resources */,
 				3919ABF11B0647F200336E77 /* LaunchScreen.xib in Resources */,
+				39CE4C4F1B19575800DDAB01 /* WeiboSDK.bundle in Resources */,
+				39CE4C4B1B19575800DDAB01 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				3919ABEE1B0647F200336E77 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,6 +498,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39CE4C3E1B19574800DDAB01 /* UIView+create.m in Sources */,
 				39372E721B0A267000891F52 /* BaseViewController.m in Sources */,
 				39D780C51B138490009F5C8E /* ChengjiuVC.m in Sources */,
 				397DDAD91B14C3D000E8F73B /* SetPasswordVC.m in Sources */,
@@ -415,15 +508,16 @@
 				39D4BC271B0B6E4A00F5FABF /* LoginVC.m in Sources */,
 				396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */,
 				397DDAD61B14B64C00E8F73B /* VerifyVC.m in Sources */,
+				39CE4C5E1B195A2800DDAB01 /* SQLManager.m in Sources */,
 				39D780CD1B1386C9009F5C8E /* OTSAlertView.m in Sources */,
 				396AD3041B1772F6005F92B1 /* Position.m in Sources */,
 				39372E7B1B0A2C0500891F52 /* Model.xcdatamodeld in Sources */,
 				39372E871B0A559400891F52 /* HomeVC.m in Sources */,
 				397DDADC1B14C9F800E8F73B /* FindPassVC.m in Sources */,
 				397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */,
+				39CE4C611B196D8700DDAB01 /* NSString+NSdate.m in Sources */,
 				39D780C81B138533009F5C8E /* HonorTVCell.m in Sources */,
 				39372E8D1B0A5EF600891F52 /* ConditionContainerVC.m in Sources */,
-				39372E751B0A27A100891F52 /* UIView+create.m in Sources */,
 				3919ABE01B0647F200336E77 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,9 +645,20 @@
 			baseConfigurationReference = 08016BB26AE122BEB02EE394 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/beckV2/ThirdParty/OpenQQ",
+					"$(PROJECT_DIR)/beckV2/ThirdParty/RenRen",
+				);
 				GCC_PREFIX_HEADER = beckV2/PrefixHeader.pch;
 				INFOPLIST_FILE = beckV2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/beckV2/ThirdParty/Sina",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -563,9 +668,20 @@
 			baseConfigurationReference = 7B9F314246001A0BFD1B92F4 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/beckV2/ThirdParty/OpenQQ",
+					"$(PROJECT_DIR)/beckV2/ThirdParty/RenRen",
+				);
 				GCC_PREFIX_HEADER = beckV2/PrefixHeader.pch;
 				INFOPLIST_FILE = beckV2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/beckV2/ThirdParty/Sina",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -40,15 +40,14 @@
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
-            condition = "i=3"
             continueAfterRunningActions = "No"
             filePath = "beckV2/home/HomeVC.m"
-            timestampString = "454525502.977225"
+            timestampString = "454655178.16666"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "-getPositions"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "-tabBar:didSelectItem:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
