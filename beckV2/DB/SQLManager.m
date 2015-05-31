@@ -19,6 +19,19 @@
 @implementation SQLManager
 singleton_implementation(SQLManager);
 
+//已经做过的题目
+-(NSInteger)countDoneByOutlineid:(NSString*)outlineid{
+    __block NSInteger total=0;
+    NSString *sql=[NSString stringWithFormat:@"select count(*) from (select * from choice_questions where outlet_id==%@ and is_valid ==0) union all select count(*) from (select * from compatibility_info where outlet_id==%@ and is_valid ==0)",outlineid,outlineid];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            total+=[row[0] integerValue];
+        }
+    }];
+    return total;
+}
 
 //计算章节下总数
 -(NSInteger)countDownByOutlineid:(NSString*)outlineid{
@@ -85,6 +98,7 @@ singleton_implementation(SQLManager);
     }];
     return ar;
 }
+
 -(NSArray *)getOutLineByParentId:(NSString*)parentid{
     __block NSMutableArray* outlineList=@[].mutableCopy;
     NSString *sql=[NSString stringWithFormat:@"select * from exam_outline where parent_id==%@",parentid];

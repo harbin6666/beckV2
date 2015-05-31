@@ -49,10 +49,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"course"];
     if (cell==nil) {
-        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"course"];
+        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"course"];
     }
     Outline *ol=self.dataAr[indexPath.row];
     cell.textLabel.text=ol.courseName;
+    NSInteger done=[[SQLManager sharedSingle] countDoneByOutlineid:ol.outlineid];
+    NSInteger total=[[SQLManager sharedSingle] countDownByOutlineid:ol.outlineid];
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"%ld/%ld",done,total];
+
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;

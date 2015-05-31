@@ -31,5 +31,10 @@ singleton_interface(SQLManager);
 -(NSArray *)getOutLineByParentId:(NSString*)parentid;
 
 -(NSArray*)getQuestionByOutlineId:(NSString*)outlineId;
+
+-(NSInteger)countDoneByOutlineid:(NSString*)outlineid;
+
+-(NSInteger)countDownByOutlineid:(NSString*)outlineid;
+
 -(void)openDB;
 @end
