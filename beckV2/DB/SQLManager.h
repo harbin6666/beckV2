@@ -20,8 +20,16 @@ singleton_interface(SQLManager);
 
 -(void)excuseSql:(NSString*)sql;
 
+//用postion id查科目subjcetid
+-(NSArray*)getSubjectByid:(NSArray *)subjectIdList;
 
+//用科目 subjectid查 章节outlineid
+-(NSArray*)getoutLineByid:(NSString *)subjectid;
 
+-(NSArray* )getSubjectIdArrayByid:(NSString *)titleid;
 
+-(NSArray *)getOutLineByParentId:(NSString*)parentid;
+
+-(NSArray*)getQuestionByOutlineId:(NSString*)outlineId;
 -(void)openDB;
 @end

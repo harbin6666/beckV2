@@ -40,6 +40,15 @@
 		39CE4C5B1B1958B900DDAB01 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CE4C5A1B1958B900DDAB01 /* libz.dylib */; };
 		39CE4C5E1B195A2800DDAB01 /* SQLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C5D1B195A2800DDAB01 /* SQLManager.m */; };
 		39CE4C611B196D8700DDAB01 /* NSString+NSdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C601B196D8700DDAB01 /* NSString+NSdate.m */; };
+		39CE4C661B19B4A500DDAB01 /* PractisHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C651B19B4A500DDAB01 /* PractisHomeVC.m */; };
+		39CE4C691B19B80C00DDAB01 /* Subject.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C681B19B80C00DDAB01 /* Subject.m */; };
+		39CE4C6C1B19B81B00DDAB01 /* Outline.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C6B1B19B81B00DDAB01 /* Outline.m */; };
+		39CE4C6E1B19BCB200DDAB01 /* Practis.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39CE4C6D1B19BCB200DDAB01 /* Practis.storyboard */; };
+		39CE4C711B19BE2A00DDAB01 /* OutlineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C701B19BE2A00DDAB01 /* OutlineCell.m */; };
+		39CE4C741B1A245400DDAB01 /* TabbarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C731B1A245400DDAB01 /* TabbarVC.m */; };
+		39CE4C771B1A433200DDAB01 /* CourseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C761B1A433200DDAB01 /* CourseVC.m */; };
+		39CE4C7A1B1A4C9B00DDAB01 /* ChoiceQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C791B1A4C9B00DDAB01 /* ChoiceQuestion.m */; };
+		39CE4C7D1B1A4CAC00DDAB01 /* CompatyQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C7C1B1A4CAC00DDAB01 /* CompatyQuestion.m */; };
 		39D4BC271B0B6E4A00F5FABF /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D4BC261B0B6E4A00F5FABF /* LoginVC.m */; };
 		39D780BF1B13644E009F5C8E /* DismissSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D780BE1B13644E009F5C8E /* DismissSegue.m */; };
 		39D780C21B136E93009F5C8E /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D780C11B136E93009F5C8E /* Global.m */; };
@@ -113,6 +122,23 @@
 		39CE4C5D1B195A2800DDAB01 /* SQLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLManager.m; sourceTree = "<group>"; };
 		39CE4C5F1B196D8700DDAB01 /* NSString+NSdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSdate.h"; sourceTree = "<group>"; };
 		39CE4C601B196D8700DDAB01 /* NSString+NSdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSdate.m"; sourceTree = "<group>"; };
+		39CE4C641B19B4A500DDAB01 /* PractisHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PractisHomeVC.h; sourceTree = "<group>"; };
+		39CE4C651B19B4A500DDAB01 /* PractisHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PractisHomeVC.m; sourceTree = "<group>"; };
+		39CE4C671B19B80C00DDAB01 /* Subject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subject.h; sourceTree = "<group>"; };
+		39CE4C681B19B80C00DDAB01 /* Subject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Subject.m; sourceTree = "<group>"; };
+		39CE4C6A1B19B81B00DDAB01 /* Outline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Outline.h; sourceTree = "<group>"; };
+		39CE4C6B1B19B81B00DDAB01 /* Outline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Outline.m; sourceTree = "<group>"; };
+		39CE4C6D1B19BCB200DDAB01 /* Practis.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Practis.storyboard; path = beckV2/execise/Practis.storyboard; sourceTree = SOURCE_ROOT; };
+		39CE4C6F1B19BE2A00DDAB01 /* OutlineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineCell.h; sourceTree = "<group>"; };
+		39CE4C701B19BE2A00DDAB01 /* OutlineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineCell.m; sourceTree = "<group>"; };
+		39CE4C721B1A245400DDAB01 /* TabbarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabbarVC.h; sourceTree = "<group>"; };
+		39CE4C731B1A245400DDAB01 /* TabbarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabbarVC.m; sourceTree = "<group>"; };
+		39CE4C751B1A433200DDAB01 /* CourseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseVC.h; sourceTree = "<group>"; };
+		39CE4C761B1A433200DDAB01 /* CourseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseVC.m; sourceTree = "<group>"; };
+		39CE4C781B1A4C9B00DDAB01 /* ChoiceQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceQuestion.h; sourceTree = "<group>"; };
+		39CE4C791B1A4C9B00DDAB01 /* ChoiceQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceQuestion.m; sourceTree = "<group>"; };
+		39CE4C7B1B1A4CAC00DDAB01 /* CompatyQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompatyQuestion.h; sourceTree = "<group>"; };
+		39CE4C7C1B1A4CAC00DDAB01 /* CompatyQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompatyQuestion.m; sourceTree = "<group>"; };
 		39D4BC251B0B6E4A00F5FABF /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		39D4BC261B0B6E4A00F5FABF /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		39D780BD1B13644E009F5C8E /* DismissSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissSegue.h; sourceTree = "<group>"; };
@@ -181,6 +207,8 @@
 		3919ABDC1B0647F200336E77 /* beckV2 */ = {
 			isa = PBXGroup;
 			children = (
+				39CE4C621B19B48D00DDAB01 /* exam */,
+				39CE4C631B19B48D00DDAB01 /* execise */,
 				39CE4C3F1B19575800DDAB01 /* ThirdParty */,
 				396AD2FE1B176C4A005F92B1 /* category */,
 				39D780CA1B1386AF009F5C8E /* custom */,
@@ -189,6 +217,7 @@
 				39372E7E1B0A2F1E00891F52 /* DB */,
 				3919ABE11B0647F200336E77 /* AppDelegate.h */,
 				3919ABE21B0647F200336E77 /* AppDelegate.m */,
+				39CE4C6D1B19BCB200DDAB01 /* Practis.storyboard */,
 				3919ABEA1B0647F200336E77 /* Main.storyboard */,
 				3919ABED1B0647F200336E77 /* Images.xcassets */,
 				3919ABEF1B0647F200336E77 /* LaunchScreen.xib */,
@@ -235,6 +264,14 @@
 				39372E7F1B0A2F1E00891F52 /* beck.db */,
 				396AD3021B1772F6005F92B1 /* Position.h */,
 				396AD3031B1772F6005F92B1 /* Position.m */,
+				39CE4C6A1B19B81B00DDAB01 /* Outline.h */,
+				39CE4C6B1B19B81B00DDAB01 /* Outline.m */,
+				39CE4C671B19B80C00DDAB01 /* Subject.h */,
+				39CE4C681B19B80C00DDAB01 /* Subject.m */,
+				39CE4C781B1A4C9B00DDAB01 /* ChoiceQuestion.h */,
+				39CE4C791B1A4C9B00DDAB01 /* ChoiceQuestion.m */,
+				39CE4C7B1B1A4CAC00DDAB01 /* CompatyQuestion.h */,
+				39CE4C7C1B1A4CAC00DDAB01 /* CompatyQuestion.m */,
 				39CE4C5C1B195A2800DDAB01 /* SQLManager.h */,
 				39CE4C5D1B195A2800DDAB01 /* SQLManager.m */,
 			);
@@ -252,6 +289,8 @@
 				39D780C41B138490009F5C8E /* ChengjiuVC.m */,
 				39D780C61B138533009F5C8E /* HonorTVCell.h */,
 				39D780C71B138533009F5C8E /* HonorTVCell.m */,
+				39CE4C721B1A245400DDAB01 /* TabbarVC.h */,
+				39CE4C731B1A245400DDAB01 /* TabbarVC.m */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -305,6 +344,26 @@
 				39CE4C491B19575800DDAB01 /* WeiboSDK.h */,
 			);
 			path = Sina;
+			sourceTree = "<group>";
+		};
+		39CE4C621B19B48D00DDAB01 /* exam */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = exam;
+			sourceTree = "<group>";
+		};
+		39CE4C631B19B48D00DDAB01 /* execise */ = {
+			isa = PBXGroup;
+			children = (
+				39CE4C641B19B4A500DDAB01 /* PractisHomeVC.h */,
+				39CE4C651B19B4A500DDAB01 /* PractisHomeVC.m */,
+				39CE4C6F1B19BE2A00DDAB01 /* OutlineCell.h */,
+				39CE4C701B19BE2A00DDAB01 /* OutlineCell.m */,
+				39CE4C751B1A433200DDAB01 /* CourseVC.h */,
+				39CE4C761B1A433200DDAB01 /* CourseVC.m */,
+			);
+			path = execise;
 			sourceTree = "<group>";
 		};
 		39D4BC221B0B6C3600F5FABF /* login */ = {
@@ -448,6 +507,7 @@
 				39CE4C4F1B19575800DDAB01 /* WeiboSDK.bundle in Resources */,
 				39CE4C4B1B19575800DDAB01 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				3919ABEE1B0647F200336E77 /* Images.xcassets in Resources */,
+				39CE4C6E1B19BCB200DDAB01 /* Practis.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,24 +560,32 @@
 			files = (
 				39CE4C3E1B19574800DDAB01 /* UIView+create.m in Sources */,
 				39372E721B0A267000891F52 /* BaseViewController.m in Sources */,
+				39CE4C661B19B4A500DDAB01 /* PractisHomeVC.m in Sources */,
 				39D780C51B138490009F5C8E /* ChengjiuVC.m in Sources */,
 				397DDAD91B14C3D000E8F73B /* SetPasswordVC.m in Sources */,
 				39D780BF1B13644E009F5C8E /* DismissSegue.m in Sources */,
 				39D780C21B136E93009F5C8E /* Global.m in Sources */,
+				39CE4C711B19BE2A00DDAB01 /* OutlineCell.m in Sources */,
+				39CE4C741B1A245400DDAB01 /* TabbarVC.m in Sources */,
 				3919ABE31B0647F200336E77 /* AppDelegate.m in Sources */,
 				39D4BC271B0B6E4A00F5FABF /* LoginVC.m in Sources */,
+				39CE4C7D1B1A4CAC00DDAB01 /* CompatyQuestion.m in Sources */,
 				396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */,
 				397DDAD61B14B64C00E8F73B /* VerifyVC.m in Sources */,
+				39CE4C691B19B80C00DDAB01 /* Subject.m in Sources */,
 				39CE4C5E1B195A2800DDAB01 /* SQLManager.m in Sources */,
 				39D780CD1B1386C9009F5C8E /* OTSAlertView.m in Sources */,
 				396AD3041B1772F6005F92B1 /* Position.m in Sources */,
+				39CE4C771B1A433200DDAB01 /* CourseVC.m in Sources */,
 				39372E7B1B0A2C0500891F52 /* Model.xcdatamodeld in Sources */,
 				39372E871B0A559400891F52 /* HomeVC.m in Sources */,
 				397DDADC1B14C9F800E8F73B /* FindPassVC.m in Sources */,
 				397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */,
 				39CE4C611B196D8700DDAB01 /* NSString+NSdate.m in Sources */,
+				39CE4C6C1B19B81B00DDAB01 /* Outline.m in Sources */,
 				39D780C81B138533009F5C8E /* HonorTVCell.m in Sources */,
 				39372E8D1B0A5EF600891F52 /* ConditionContainerVC.m in Sources */,
+				39CE4C7A1B1A4C9B00DDAB01 /* ChoiceQuestion.m in Sources */,
 				3919ABE01B0647F200336E77 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

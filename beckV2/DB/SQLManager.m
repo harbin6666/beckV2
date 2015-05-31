@@ -9,9 +9,152 @@
 #import "SQLManager.h"
 #import "Position.h"
 #import <AFSQLManager/AFSQLManager.h>
+#import "Outline.h"
+#import "Subject.h"
+#import "ChoiceQuestion.h"
+#import "CompatyQuestion.h"
+@interface SQLManager()
 
+@end
 @implementation SQLManager
 singleton_implementation(SQLManager);
+
+
+//计算章节下总数
+-(NSInteger)countDownByOutlineid:(NSString*)outlineid{
+    __block NSInteger total=0;
+    NSString *sql=[NSString stringWithFormat:@"select count(*) from (select * from choice_questions where outlet_id==%@) union all select count(*) from (select * from compatibility_info where outlet_id==%@)",outlineid,outlineid];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            total+=[row[0] integerValue];
+        }
+    }];
+    return total;
+}
+//获取章节下选择题和配伍题
+-(NSArray*)getQuestionByOutlineId:(NSString*)outlineId{
+    __block NSMutableArray *ar=[NSMutableArray array];
+    NSString *choice=[NSString stringWithFormat:@"select * from choice_questions where outlet_id==%@ ORDER BY custom_id asc",outlineId];
+    [[AFSQLManager sharedManager] performQuery:choice withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            ChoiceQuestion *q=[ChoiceQuestion new];
+            q.choice_id=row[0];
+            q.custom_id=row[1];
+            q.source=row[2];
+            q.outlet_id=row[3];
+            q.subject_id=row[4];
+            q.lib_id=row[5];
+            q.product_id=row[6];
+            q.hardness=row[7];
+            q.choice_num=row[8];
+            q.choice_content=row[9];
+            q.is_img=row[10];
+            q.choice_parse=row[11];
+            q.answer=row[12];
+            q.is_valid=row[13];
+            q.descript=row[14];
+            q.memo=row[15];
+            q.img_content=row[16];
+            [ar addObject:q];
+        }
+    }];
+    NSString *compatibility=[NSString stringWithFormat:@"select * from compatibility_info where outlet_id==%@ ORDER BY custom_id asc",outlineId];
+    [[AFSQLManager sharedManager] performQuery:compatibility withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            CompatyQuestion *q=[CompatyQuestion new];
+            q.outlet_id=row[1];
+            q.lib_id=row[2];
+            q.subject_id=row[3];
+            q.custom_id=row[4];
+            q.source=row[5];
+            q.product_id=row[6];
+            q.hardness=row[7];
+            q.title=row[8];
+            q.is_valid=row[9];
+            q.memo=row[10];
+            q.is_img=row[11];
+            q.img_content=row[12];
+            [ar addObject:q];
+        }
+    }];
+    return ar;
+}
+-(NSArray *)getOutLineByParentId:(NSString*)parentid{
+    __block NSMutableArray* outlineList=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat:@"select * from exam_outline where parent_id==%@",parentid];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            Outline*outline=[Outline new];
+            outline.outlineid=row[0];
+            outline.subjectid=row[1];
+            outline.parentId=row[4];
+            outline.courseName=row[5];
+            [outlineList addObject:outline];
+        }
+    }];
+    return outlineList;
+}
+-(NSArray*)getoutLineByid:(NSString *)subjectid{
+    __block NSMutableArray* outlineList=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat:@"select * from exam_outline where subject_id ==%@ and parent_id==0",subjectid];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            Outline*outline=[Outline new];
+            outline.outlineid=row[0];
+            outline.subjectid=row[1];
+            outline.parentId=row[4];
+            outline.courseName=row[5];
+            [outlineList addObject:outline];
+        }
+    }];
+    return outlineList;
+}
+
+-(NSArray*)getSubjectByid:(NSArray *)subjectIdList{
+    __block NSMutableArray* subjectAr=@[].mutableCopy;
+    for (int i=0; i<subjectIdList.count; i++) {
+        NSString *subjectid=subjectIdList[i];
+        NSString *sql=[NSString stringWithFormat:@"select * from exam_subject where id ==%@",subjectid];
+        [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+            if (finished) {
+                
+            }else{
+                Subject*sub=[Subject new];
+                sub.subjectName=row[1];
+                sub.subjectid=subjectid;
+                [subjectAr addObject:sub];
+            }
+        }];
+
+    }
+    return subjectAr;
+}
+//用titleid  查 subjectidlist
+-(NSArray* )getSubjectIdArrayByid:(NSString *)titleid{
+    __block NSMutableArray *subjectList=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat:@"select subject_id from subject_position_relation where title_id==%@",titleid];
+    [[AFSQLManager sharedManager]performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }
+        else {
+            [subjectList addObject:row[0]];
+            
+        }
+    }];
+    return subjectList;
+}
+
 -(NSArray*)getTitles{
     __block NSMutableArray *array=@[].mutableCopy;
     NSString *sql=@"select title_id,title_name from position_title_info";

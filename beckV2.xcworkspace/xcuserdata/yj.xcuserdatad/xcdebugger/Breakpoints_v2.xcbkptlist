@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "beckV2/home/HomeVC.m"
-            timestampString = "454655178.16666"
+            filePath = "beckV2/BaseViewController.m"
+            timestampString = "454701583.860196"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "-tabBar:didSelectItem:"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "-leftBtnClick:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

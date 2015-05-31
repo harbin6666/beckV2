@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="a5U-C2-ef4">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -399,7 +400,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rl7-aE-9fo" userLabel="loginView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rl7-aE-9fo" userLabel="loginView">
                                 <rect key="frame" x="26" y="94" width="268" height="88"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4DE-y4-P4Z" userLabel="line">
@@ -482,14 +483,14 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6OA-a8-pbY" userLabel="checkbox">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6OA-a8-pbY" userLabel="checkbox">
                                 <rect key="frame" x="38" y="199" width="24" height="24"/>
                                 <state key="normal" backgroundImage="uncheckbox">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="selected" image="chosen" backgroundImage="uncheckbox"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="记住我" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hI-ac-E5S">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="记住我" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hI-ac-E5S">
                                 <rect key="frame" x="90" y="202" width="72" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Ajv-QS-rFl"/>
@@ -505,7 +506,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rQ-uh-06t">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rQ-uh-06t">
                                 <rect key="frame" x="26" y="233" width="268" height="36"/>
                                 <color key="backgroundColor" red="0.90196078430000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -520,7 +521,7 @@
                                     <action selector="loginPress:" destination="oSE-ah-dXk" eventType="touchUpInside" id="PIS-fb-lLo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAt-Kc-o3V">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAt-Kc-o3V">
                                 <rect key="frame" x="227" y="279" width="60" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="uck-I8-8xq"/>
@@ -1122,9 +1123,9 @@
         <image name="chosen" width="19" height="15"/>
         <image name="homejiang" width="241" height="180"/>
         <image name="num0" width="62" height="89"/>
-        <image name="qq" width="126" height="131"/>
-        <image name="renren" width="50" height="50"/>
-        <image name="sina" width="32" height="32"/>
+        <image name="qq" width="96" height="96"/>
+        <image name="renren" width="96" height="96"/>
+        <image name="sina" width="96" height="96"/>
         <image name="tab1" width="33" height="29"/>
         <image name="tab2" width="33" height="29"/>
         <image name="tab3" width="33" height="29"/>
@@ -1139,7 +1140,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="npZ-RJ-fqi"/>
-        <segue reference="EC2-o1-vzt"/>
+        <segue reference="vAU-pr-r13"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

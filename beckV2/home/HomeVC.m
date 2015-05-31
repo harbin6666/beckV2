@@ -9,6 +9,7 @@
 #import "HomeVC.h"
 #import <UIKit/UIKit.h>
 #import "Position.h"
+#import "TabbarVC.h"
 #import <QuartzCore/QuartzCore.h>
 @interface HomeVC ()<UITabBarDelegate>
 @property (weak, nonatomic) IBOutlet UITabBar *tabbar;
@@ -33,7 +34,7 @@
     [self freshNav];
     self.titleBtn.titleLabel.numberOfLines=2;
     self.titleBtn.titleLabel.textAlignment=NSTextAlignmentCenter;
-
+    self.navigationController.navigationBarHidden=NO;
 }
 
 
@@ -92,9 +93,9 @@
 -(void)freshNav{
     [self.titleBtn setTitle:[[Global sharedSingle] getUserWithkey:@"titleName"] forState:UIControlStateNormal];
     NSInteger days=[[SQLManager sharedSingle] getExamDate:[[Global sharedSingle] getUserWithkey:@"titleid"]];
-    int h = days / 100;
-    int t = (days - h * 100) / 10;
-    int c = days - h * 100 - t * 10;
+    int h = (int)days / 100;
+    int t = (int)(days - h * 100) / 10;
+    int c = (int)days - h * 100 - t * 10;
     self.hIV.image = [UIImage imageNamed:[NSString stringWithFormat:@"num%d",h]];
     self.tIV.image = [UIImage imageNamed:[NSString stringWithFormat:@"num%d",t]];
     self.cIV.image = [UIImage imageNamed:[NSString stringWithFormat:@"num%d",c]];
@@ -184,33 +185,40 @@
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
-    switch ([tabBar.items indexOfObject:item]) {
-        case 0:
-            [self performSegueWithIdentifier:@"Practise" sender:self];
-
-//            sb = [UIStoryboard storyboardWithName:@"Practise" bundle:nil];
-            break;
-        case 1:
-            [self performSegueWithIdentifier:@"Exam" sender:self];
+    UIStoryboard*   sb = [UIStoryboard storyboardWithName:@"Practis" bundle:nil];
+    NSInteger tag=[tabBar.items indexOfObject:item];
+//    switch ([tabBar.items indexOfObject:item]) {
+//        case 0:
+//            [self performSegueWithIdentifier:@"topractise" sender:self];
+//
+//            sb = [UIStoryboard storyboardWithName:@"Practis" bundle:nil];
+//            break;
+//        case 1:
+//            [self performSegueWithIdentifier:@"toexam" sender:self];
 
 //            sb = [UIStoryboard storyboardWithName:@"Exam" bundle:nil];
-            break;
-        case 2:
-            [self performSegueWithIdentifier:@"MyAccount" sender:self];
+//            break;
+//        case 2:
+//            [self performSegueWithIdentifier:@"tonote" sender:self];
 
 //            sb = [UIStoryboard storyboardWithName:@"MyAccount" bundle:nil];
-            break;
-        case 3:
-            [self performSegueWithIdentifier:@"More" sender:self];
+//            break;
+//        case 3:
+//            [self performSegueWithIdentifier:@"tomore" sender:self];
 
 //            sb = [UIStoryboard storyboardWithName:@"More" bundle:nil];
-            break;
-        default:
-            break;
+//            break;
+//        default:
+//            break;
+//    }
+    if (sb==nil) {
+        return;
     }
+    TabbarVC *vc = [sb instantiateInitialViewController];
+    vc.navigationController.navigationBarHidden=YES;
     
-//    UIViewController *vc = [sb instantiateInitialViewController];
-//    [self.navigationController pushViewController:vc animated:YES];
+    vc.selectedIndex=tag;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(IBAction)signInPress:(id)sender{
     WEAK_SELF;

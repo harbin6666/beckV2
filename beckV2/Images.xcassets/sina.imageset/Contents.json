@@ -7,11 +7,12 @@
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "LOGO_64x64.png"
+      "filename" : "登录方式2.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "登录方式2-1.png"
     }
   ],
   "info" : {
