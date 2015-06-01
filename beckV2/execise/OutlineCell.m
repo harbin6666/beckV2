@@ -7,11 +7,14 @@
 //
 
 #import "OutlineCell.h"
-
 @implementation OutlineCell
 
+
 - (void)awakeFromNib {
+    self.contentView.translatesAutoresizingMaskIntoConstraints=NO;
     // Initialization code
+    self.textLabel.numberOfLines=2;
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface OutlineCell : UITableViewCell
-
+@property(nonatomic,weak)IBOutlet UILabel *textlab;
+@property(nonatomic,weak)IBOutlet UILabel *detailLab;
 @end

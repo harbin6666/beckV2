@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--更多-->
@@ -54,6 +55,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90196078430000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.90196078430000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="pab-I8-n2M" kind="relationship" relationship="viewControllers" id="eCJ-OH-ELT"/>
@@ -171,26 +173,28 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="30" reuseIdentifier="outlinecell" textLabel="kzJ-o3-vXJ" detailTextLabel="bPO-QR-4pi" style="IBUITableViewCellStyleValue1" id="dHt-Vg-x94" customClass="OutlineCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="10" reuseIdentifier="outlinecell" textLabel="SQL-AX-zam" detailTextLabel="q1t-uD-jvz" style="IBUITableViewCellStyleValue1" id="dHt-Vg-x94" customClass="OutlineCell">
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dHt-Vg-x94" id="9hq-iz-VJE">
+                                <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dHt-Vg-x94" id="9hq-iz-VJE">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kzJ-o3-vXJ">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SQL-AX-zam">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bPO-QR-4pi">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="q1t-uD-jvz">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <inset key="separatorInset" minX="30" minY="0.0" maxX="10" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="textlab" destination="SQL-AX-zam" id="SfH-ZU-HuQ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -204,9 +208,9 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="table" destination="Diz-M0-bFt" id="9df-4P-W7f"/>
+                        <segue destination="P5y-Ym-vDP" kind="show" id="Ypn-Ex-Hzq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5AZ-hr-IGb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -218,7 +222,7 @@
             <objects>
                 <tableViewController title="章节练习" id="P5y-Ym-vDP" customClass="CourseVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="iCi-Nd-ZR9">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -234,13 +238,85 @@
                             <outlet property="delegate" destination="P5y-Ym-vDP" id="7nG-2q-q8e"/>
                         </connections>
                     </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="table" destination="iCi-Nd-ZR9" id="NtE-Pn-Zn8"/>
+                        <segue destination="pUw-SV-lWw" kind="show" id="Tba-nh-sKs"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wHW-uH-qTb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="694" y="611"/>
+            <point key="canvasLocation" x="455.5" y="618.5"/>
+        </scene>
+        <!--100/100-->
+        <scene sceneID="7Uk-vk-IlB">
+            <objects>
+                <viewController storyboardIdentifier="practise" title="100/100" id="pUw-SV-lWw" customClass="PractiseVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PJM-4h-Rbd"/>
+                        <viewControllerLayoutGuide type="bottom" id="iVv-Gp-NAQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="luI-Ix-bS6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KEN-H2-seQ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="200"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Gyo-8z-O3y"/>
+                                </constraints>
+                            </view>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fBS-34-Ylu">
+                                <rect key="frame" x="0.0" y="569" width="375" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="上一题" image="back" id="BHa-ys-pRG"/>
+                                    <tabBarItem tag="1" title="查看答案" image="answer" id="bF1-C3-dgN"/>
+                                    <tabBarItem tag="2" title="设置" image="setting" id="Fkq-rV-GRf"/>
+                                    <tabBarItem tag="3" title="收藏" image="favorate" id="rGm-Wo-9Uc"/>
+                                    <tabBarItem tag="4" title="下一题" image="next" id="vVw-Vq-gnR"/>
+                                </items>
+                                <color key="selectedImageTintColor" red="0.90196078430000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
+                            </tabBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5M-Kq-Vhs">
+                                <rect key="frame" x="289" y="499" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="2EL-31-mDG"/>
+                                    <constraint firstAttribute="width" constant="50" id="CmO-HB-ZJY"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="changeitem">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90196078430000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="fBS-34-Ylu" firstAttribute="top" secondItem="G5M-Kq-Vhs" secondAttribute="bottom" constant="20" id="BB1-kA-Lv4"/>
+                            <constraint firstItem="G5M-Kq-Vhs" firstAttribute="trailing" secondItem="luI-Ix-bS6" secondAttribute="trailingMargin" constant="-20" id="Feu-yc-Pmr"/>
+                            <constraint firstItem="KEN-H2-seQ" firstAttribute="top" secondItem="PJM-4h-Rbd" secondAttribute="bottom" id="FxV-BH-Joa"/>
+                            <constraint firstItem="KEN-H2-seQ" firstAttribute="leading" secondItem="fBS-34-Ylu" secondAttribute="leading" id="RAY-gx-1By"/>
+                            <constraint firstItem="iVv-Gp-NAQ" firstAttribute="top" secondItem="fBS-34-Ylu" secondAttribute="bottom" id="RvJ-3L-Op9"/>
+                            <constraint firstItem="KEN-H2-seQ" firstAttribute="bottom" secondItem="fBS-34-Ylu" secondAttribute="bottom" id="ZQv-Eq-bWJ"/>
+                            <constraint firstItem="KEN-H2-seQ" firstAttribute="trailing" secondItem="fBS-34-Ylu" secondAttribute="trailing" id="gGt-HI-FAo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KEN-H2-seQ" secondAttribute="trailing" constant="-16" id="hoB-KL-nr5"/>
+                            <constraint firstItem="KEN-H2-seQ" firstAttribute="leading" secondItem="luI-Ix-bS6" secondAttribute="leadingMargin" constant="-16" id="jRz-PN-QXy"/>
+                            <constraint firstItem="KEN-H2-seQ" firstAttribute="centerY" secondItem="fBS-34-Ylu" secondAttribute="centerY" constant="-478.5" id="kGY-PO-S4W"/>
+                            <constraint firstItem="KEN-H2-seQ" firstAttribute="centerX" secondItem="fBS-34-Ylu" secondAttribute="centerX" id="vLi-pJ-Eab"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ZQv-Eq-bWJ"/>
+                                <exclude reference="kGY-PO-S4W"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QRC-PS-ETI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="975.5" y="629.5"/>
         </scene>
         <!--练习-->
         <scene sceneID="Gmv-5Y-j4O">
@@ -265,6 +341,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="answer" width="24" height="21"/>
+        <image name="back" width="24" height="21"/>
+        <image name="changeitem" width="42" height="42"/>
+        <image name="favorate" width="24" height="21"/>
+        <image name="next" width="24" height="21"/>
+        <image name="setting" width="23" height="23"/>
         <image name="tab1" width="33" height="29"/>
         <image name="tab2" width="33" height="29"/>
         <image name="tab3" width="33" height="29"/>

@@ -8,6 +8,7 @@
 
 #import "CourseVC.h"
 #import "Outline.h"
+#import "PractiseVC.h"
 @interface CourseVC ()
 @property(nonatomic,weak)IBOutlet UITableView *table;
 @property(nonatomic,strong)NSArray *dataAr;
@@ -53,6 +54,7 @@
     }
     Outline *ol=self.dataAr[indexPath.row];
     cell.textLabel.text=ol.courseName;
+    cell.textLabel.numberOfLines=2;
     NSInteger done=[[SQLManager sharedSingle] countDoneByOutlineid:ol.outlineid];
     NSInteger total=[[SQLManager sharedSingle] countDownByOutlineid:ol.outlineid];
     cell.detailTextLabel.text=[NSString stringWithFormat:@"%ld/%ld",done,total];
@@ -65,7 +67,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     Outline *ol=self.dataAr[indexPath.row];
-    NSArray* ar=[[SQLManager sharedSingle] getQuestionByOutlineId:ol.outlineid];
+    UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
+    PractiseVC *vc = [mainStoryboard instantiateViewControllerWithIdentifier:@"practise"];
+
+    vc.outletid=ol.outlineid;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 /*
 #pragma mark - Navigation
