@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CompatyQuestion : NSObject
+@interface CompatyInfo : NSObject
+@property(nonatomic,strong)NSString *info_id;
 @property(nonatomic,strong)NSString *outlet_id;
 @property(nonatomic,strong)NSString *lib_id;
 @property(nonatomic,strong)NSString *subject_id;
@@ -21,4 +22,30 @@
 @property(nonatomic,strong)NSString *memo;
 @property(nonatomic,strong)NSString *is_img;
 @property(nonatomic,strong)NSString *img_content;
+@end
+
+
+@interface CompatyQuestion : NSObject
+@property(nonatomic,strong)NSString *question_id;
+@property(nonatomic,strong)NSString *choice_content;
+@property(nonatomic,strong)NSString *is_img;
+@property(nonatomic,strong)NSString *choice_parse;
+@property(nonatomic,strong)NSString *answer_id;
+@property(nonatomic,strong)NSString *compatibility_id ;
+@property(nonatomic,strong)NSString *descript ;
+@property(nonatomic,strong)NSString *memo;
+@property(nonatomic,strong)NSString *img_content;
+@end
+
+
+@interface CompatyItem : NSObject
+@property(nonatomic,strong)NSString *answerid;
+@property(nonatomic,strong)NSString *item_number;
+@property(nonatomic,strong)NSString *item_content;
+
+@property(nonatomic,strong)NSString *is_img;
+@property(nonatomic,strong)NSString *compatibiliy_id;
+@property(nonatomic,strong)NSString *memo;
+@property(nonatomic,strong)NSString *img_content;
+
 @end

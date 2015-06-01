@@ -11,3 +11,11 @@
 @implementation CompatyQuestion
 
 @end
+@implementation CompatyItem
+
+
+
+@end
+@implementation CompatyInfo
+
+@end

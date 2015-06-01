@@ -36,5 +36,11 @@ singleton_interface(SQLManager);
 
 -(NSInteger)countDownByOutlineid:(NSString*)outlineid;
 
+
+-(NSArray*)getChoiceItemByChoiceId:(NSString*)choiceid;
+
+-(NSArray*)getCompatyQuestionsByinfoId:(NSString*)infoId;
+
+-(NSArray*)getCompatyItemByCompid:(NSString*)compatyid;
 -(void)openDB;
 @end

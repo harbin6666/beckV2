@@ -13,11 +13,79 @@
 #import "Subject.h"
 #import "ChoiceQuestion.h"
 #import "CompatyQuestion.h"
+#import "ChoiceItem.h"
+
 @interface SQLManager()
 
 @end
 @implementation SQLManager
 singleton_implementation(SQLManager);
+
+-(NSArray*)getCompatyItemByCompid:(NSString*)compatyid{
+    __block NSMutableArray*result=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat:@"select * from compatibility_items where compatibility_id==%@",compatyid];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            CompatyItem *item=[CompatyItem new];
+            item.answerid=row[0];
+            item.item_number=row[1];
+            item.item_content=row[2];
+            item.is_img=row[3];
+            item.compatibiliy_id=row[4];
+            item.memo=row[5];
+            item.img_content=row[6];
+            [result addObject:item];
+        }
+    }];
+    return result;    
+}
+
+-(NSArray*)getCompatyQuestionsByinfoId:(NSString*)infoId{
+    __block NSMutableArray*result=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat:@"select * from compatibility_questions where compatibility_id==%@",infoId];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            CompatyQuestion *q=[CompatyQuestion new];
+            q.question_id=row[0];;
+            q.choice_content=row[1];
+            q.is_img=row[2];
+            q.choice_parse=row[3];
+            q.answer_id=row[4];
+            q.compatibility_id=row[5] ;
+            q.descript=row[6] ;
+            q.memo=row[7];
+            q.img_content=row[8];
+            [result addObject:q];
+        }
+    }];
+    return result;
+
+}
+
+-(NSArray*)getChoiceItemByChoiceId:(NSString*)choiceid{
+    __block NSMutableArray*result=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat:@"select * from choice_items where choice_id==%@",choiceid];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            ChoiceItem *item=[ChoiceItem new];
+            item.choice_id=row[1];
+            item.item_number=row[2];
+            item.item_content=row[3];
+            item.is_img=row[4];
+            item.is_answer=row[5];
+            item.memo=row[6];
+            item.img_content=row[7];
+            [result addObject:item];
+        }
+    }];
+    return result;
+}
 
 //已经做过的题目
 -(NSInteger)countDoneByOutlineid:(NSString*)outlineid{
@@ -80,7 +148,8 @@ singleton_implementation(SQLManager);
         if (finished) {
             
         }else{
-            CompatyQuestion *q=[CompatyQuestion new];
+            CompatyInfo *q=[CompatyInfo new];
+            q.info_id=row[0];
             q.outlet_id=row[1];
             q.lib_id=row[2];
             q.subject_id=row[3];
