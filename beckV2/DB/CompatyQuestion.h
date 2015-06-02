@@ -35,6 +35,8 @@
 @property(nonatomic,strong)NSString *descript ;
 @property(nonatomic,strong)NSString *memo;
 @property(nonatomic,strong)NSString *img_content;
+
+@property(nonatomic,strong)NSArray *items;
 @end
 
 

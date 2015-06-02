@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:CompatyCell.h">
+   </FileRef>
+   <FileRef
+      location = "group:CompatyCell.m">
+   </FileRef>
+   <FileRef
       location = "group:beckV2.xcodeproj">
    </FileRef>
    <FileRef
