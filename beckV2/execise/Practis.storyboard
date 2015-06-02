@@ -428,6 +428,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="questionBtn" destination="G5M-Kq-Vhs" id="SYw-51-b49"/>
+                        <outlet property="tabbar" destination="fBS-34-Ylu" id="w3z-Oc-nL2"/>
                         <outlet property="table" destination="mJy-7m-lFm" id="2kg-Ep-EBq"/>
                         <outlet property="testLab" destination="ymV-Re-Paw" id="qq0-5B-8Uw"/>
                     </connections>

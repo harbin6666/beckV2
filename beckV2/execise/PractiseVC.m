@@ -19,6 +19,7 @@
 @property(nonatomic,strong)NSArray *choiceArray;//选择题选项数组
 @property(nonatomic,strong)NSArray *compatibilyArray;//配伍题数组
 @property(nonatomic,weak) IBOutlet UIButton *questionBtn;
+@property(nonatomic,weak)IBOutlet UITabBar* tabbar;
 @end
 
 @implementation PractiseVC
@@ -31,7 +32,6 @@
 
     self.questionsAr=[[SQLManager sharedSingle] getQuestionByOutlineId:self.outletid];
     self.currentQIndex=0;
-    self.title=[NSString stringWithFormat:@"%zd/%zd",self.currentQIndex+1,self.questionsAr.count];
     [self freshView];
 }
 
@@ -39,7 +39,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)freshView{
-    
+    self.title=[NSString stringWithFormat:@"%zd/%zd",self.currentQIndex+1,self.questionsAr.count];
     id p=[self.questionsAr objectAtIndex:self.currentQIndex];
         if ([p isKindOfClass:[ChoiceQuestion class]]) {
             ChoiceQuestion* q=(ChoiceQuestion*)p;
@@ -63,7 +63,43 @@
 
         }
     
-//    [self.table reloadData];
+    [self.table reloadData];
+    
+  UITabBarItem*item5= [self.tabbar.items lastObject];
+    UITabBarItem*item1= [self.tabbar.items firstObject];
+    if (self.currentQIndex==self.questionsAr.count-1) {
+        [item1 setImage:[UIImage imageNamed:@"back_sel"]];
+        [item1 setSelectedImage:[UIImage imageNamed:@"back_sel"]];
+        [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
+        [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
+        
+        [item5 setImage:[UIImage imageNamed:@"next"]];
+        [item5 setSelectedImage:[UIImage imageNamed:@"next"]];
+        [item5 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
+        [item5 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateSelected];
+
+    }else if (self.currentQIndex==0) {
+        [item1 setImage:[UIImage imageNamed:@"back"]];
+        [item1 setSelectedImage:[UIImage imageNamed:@"back"]];
+        [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
+        [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateSelected];
+        [item5 setImage:[UIImage imageNamed:@"next_sel"]];
+        [item5 setSelectedImage:[UIImage imageNamed:@"next_sel"]];
+        [item5 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
+        [item5 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
+
+    }else{
+        [item5 setImage:[UIImage imageNamed:@"next_sel"]];
+        [item5 setSelectedImage:[UIImage imageNamed:@"next_sel"]];
+        [item5 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
+        [item5 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
+        
+        [item1 setImage:[UIImage imageNamed:@"back_sel"]];
+        [item1 setSelectedImage:[UIImage imageNamed:@"back_sel"]];
+        [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
+        [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
+
+    }
     [self.view bringSubviewToFront:self.questionBtn];
 }
 
@@ -115,19 +151,19 @@
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
     switch (item.tag) {
         case 0:
-            [self backwardPress];
+            [self backwardPress:item];
             break;
         case 1:
-            [self showAnswer];
+            [self showAnswer:item];
             break;
         case 2:
-            [self showSetting];
+            [self showSetting:item];
             break;
         case 3:
-            [self addFaver];
+            [self addFaver:item];
             break;
         case 4:
-            [self forwardPress];
+            [self forwardPress:item];
             break;
         default:
             break;
@@ -138,23 +174,40 @@
     
 }
 
--(void)showAnswer{
+-(void)showAnswer:(UITabBarItem *)item{
     
 }
 
--(void)showSetting{
+-(void)showSetting:(UITabBarItem *)item{
     
 }
 
--(void)backwardPress{
-    
+-(void)backwardPress:(UITabBarItem *)item{
+    if (self.currentQIndex>0) {
+        self.currentQIndex--;
+    }
+
+    if (self.currentQIndex==0) {
+        item.image=[UIImage imageNamed:@"back"];
+    }else{
+        item.image=[UIImage imageNamed:@"back_sel"];
+    }
+    [self freshView];
 }
 
--(void)forwardPress{
-    
+-(void)forwardPress:(UITabBarItem *)item{
+    if (self.currentQIndex<self.questionsAr.count) {
+        self.currentQIndex++;
+    }
+    if (self.currentQIndex==self.questionsAr.count-1) {
+        item.image=[UIImage imageNamed:@"next"];
+    }else{
+        item.image=[UIImage imageNamed:@"next_sel"];
+    }
+    [self freshView];
 }
 
--(void)addFaver{
+-(void)addFaver:(UITabBarItem *)item{
     
 }
 
