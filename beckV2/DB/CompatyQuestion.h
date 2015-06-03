@@ -12,8 +12,6 @@
 @property(nonatomic,strong)NSString *info_id;
 @property(nonatomic,strong)NSString *outlet_id;
 @property(nonatomic,strong)NSString *lib_id;
-@property(nonatomic,strong)NSString *subject_id;
-@property(nonatomic,strong)NSString *custom_id;
 @property(nonatomic,strong)NSString *source;
 @property(nonatomic,strong)NSString *product_id;
 @property(nonatomic,strong)NSString *hardness;

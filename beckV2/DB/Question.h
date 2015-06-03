@@ -15,5 +15,7 @@ typedef NS_ENUM(int, Answertype){
 
 @interface Question : NSObject
 @property(nonatomic,assign)Answertype answerType;
+@property(nonatomic,strong)NSString *custom_id;
+@property(nonatomic,strong)NSString *subject_id;
 
 @end

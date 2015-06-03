@@ -84,6 +84,23 @@
     
   UITabBarItem*item5= [self.tabbar.items lastObject];
     UITabBarItem*item1= [self.tabbar.items firstObject];
+    
+    UITabBarItem*item3= [self.tabbar.items objectAtIndex:2];
+    UITabBarItem*item4= [self.tabbar.items objectAtIndex:3];
+
+    
+    [item4 setImage:[[UIImage imageNamed:@"favorate"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [item4 setSelectedImage:[[UIImage imageNamed:@"favorate"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [item4 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
+    [item4 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateSelected];
+
+    
+    [item3 setImage:[[UIImage imageNamed:@"setting"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [item3 setSelectedImage:[[UIImage imageNamed:@"setting"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [item3 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
+    [item3 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
+
+    
     if (self.currentQIndex==self.questionsAr.count-1) {
         [item1 setImage:[[UIImage imageNamed:@"back_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [item1 setSelectedImage:[[UIImage imageNamed:@"back_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
@@ -121,7 +138,46 @@
 }
 
 -(void)rightBtnClick:(UIButton *)sender{
+    [self showLoading];
+    NSMutableDictionary *params = @{}.mutableCopy;
+    params[@"token"] = @"add";
     
+//    PractiseVO *vo = [PractiseVO createWithItemVOs:self.items];
+    
+    NSMutableDictionary *json = @{}.mutableCopy;
+//    json[@"loginName"] = [[NSUserDefaults standardUserDefaults] stringForKey:@"loginName"];
+//    json[@"subjectId"] = self.subjectId;
+//    json[@"outlineId"] = self.examOutlineId;
+//    json[@"amount"] = vo.getAmount;
+//    json[@"accurateRate"] = vo.getAccurateRate;
+//    json[@"list"] = vo.getAnswerList;
+//    json[@"score"] = vo.getScore;
+    
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json options:kNilOptions error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    params[@"json"] = jsonString;
+    
+    WEAK_SELF;
+    [self showLoading];
+    [self getValueWithBeckUrl:@"/front/userExerciseAct.htm" params:params CompleteBlock:^(id aResponseObject, NSError *anError) {
+        STRONG_SELF;
+        [self hideLoading];
+        if (!anError) {
+            NSNumber *errorcode = aResponseObject[@"errorcode"];
+            if (errorcode.boolValue) {
+                [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
+            }
+            else {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+        else {
+            [[OTSAlertView alertWithMessage:@"提交失败" andCompleteBlock:nil] show];
+        }
+    }];
+
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -148,6 +204,9 @@
         if (indexPath.row==self.choiceArray.count+1) {
             cell=[tableView dequeueReusableCellWithIdentifier:@"answercell" forIndexPath:indexPath];
             self.answerCell=cell;
+            cell.textLabel.text=[p choice_parse];
+            cell.textLabel.hidden=YES;
+            cell.textLabel.backgroundColor=[UIColor orangeColor];
         }else if (indexPath.row==self.choiceArray.count) {
             cell=[tableView dequeueReusableCellWithIdentifier:@"notecell" forIndexPath:indexPath];
         }else{
@@ -159,6 +218,16 @@
     }else{
         if (indexPath.row==self.compatibilyArray.count+1) {
             cell=[tableView dequeueReusableCellWithIdentifier:@"answercell" forIndexPath:indexPath];
+            self.answerCell=cell;
+            NSMutableString *answer=@"".mutableCopy;
+            for (int i=0; i<self.compatibilyArray.count; i++) {
+                CompatyQuestion *q=self.compatibilyArray[i];
+                [answer appendFormat:@"%d.%@",i+1,q.choice_parse];
+            }
+            cell.textLabel.text=answer;
+            cell.textLabel.hidden=YES;
+            cell.textLabel.backgroundColor=[UIColor orangeColor];
+
         }else if (indexPath.row==self.compatibilyArray.count) {
             cell=[tableView dequeueReusableCellWithIdentifier:@"notecell" forIndexPath:indexPath];
         }else{
@@ -230,7 +299,55 @@
 }
 
 -(void)showAnswer:(UITabBarItem *)item{
+    self.answerCell.textLabel.hidden=!self.answerCell.textLabel.hidden;
+    if (self.answerCell.textLabel.hidden) {
+        [item setImage:[[UIImage imageNamed:@"answer"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [item setSelectedImage:[[UIImage imageNamed:@"answer"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateSelected];
+    }else{
+        [item setImage:[[UIImage imageNamed:@"answer_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [item setSelectedImage:[[UIImage imageNamed:@"answer_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
+        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
+
+    }
+}
+
+-(void)addFaver:(UITabBarItem *)item{
+    [self showLoading];
     
+    NSMutableDictionary *param=@{}.mutableCopy;
+    param[@"outlineid"]=self.outletid;
+    param[@"loginName"]=[Global sharedSingle].loginName;
+    Question *q=[self.questionsAr objectAtIndex:self.currentQIndex];
+    param[@"typeid"]=[q custom_id];
+    param[@"subjectId"]=[q subject_id];
+    
+    NSData *data=[NSJSONSerialization dataWithJSONObject:param options:0 error:nil];
+    NSString *str=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    WEAK_SELF;
+    [self getValueWithBeckUrl:@"/front/userCollectionAct.htm" params:@{@"token":@"add",@"json":str} CompleteBlock:^(id aResponseObject, NSError *anError) {
+        STRONG_SELF;
+        [self hideLoading];
+        if (anError==nil) {
+            if ([aResponseObject[@"errorcode"] intValue]==0) {
+                [item setImage:[[UIImage imageNamed:@"favorate_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+                [item setSelectedImage:[[UIImage imageNamed:@"favorate_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+                [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
+                [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
+                
+                [self showLoadingWithMessage:@"收藏成功" hideAfter:2];
+            }else if ([aResponseObject[@"errorcode"] intValue]==2){
+                [self showLoadingWithMessage:@"已经收藏" hideAfter:2];
+            }else {
+                [OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil];
+            }
+        }else{
+            [OTSAlertView alertWithMessage:@"收藏失败" andCompleteBlock:nil];
+        }
+        
+    }];
 }
 
 -(void)showSetting:(UITabBarItem *)item{
@@ -239,13 +356,11 @@
 
 -(void)backwardPress:(UITabBarItem *)item{
     if (self.currentQIndex==0) {
-        //        item.image=[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
         return;
     }
-    //    else{
-    //        item.image=[[UIImage imageNamed:@"back_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    //    }
 
+    
     if (self.currentQIndex>0) {
         self.currentQIndex--;
     }
@@ -255,22 +370,15 @@
 
 -(void)forwardPress:(UITabBarItem *)item{
     if (self.currentQIndex==self.questionsAr.count-1) {
-        //        item.image=[[UIImage imageNamed:@"next"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         return;
     }
-    //    else{
-    //        item.image=[[UIImage imageNamed:@"next_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    //    }
-
+    
     if (self.currentQIndex<self.questionsAr.count) {
         self.currentQIndex++;
     }
     [self freshView];
 }
 
--(void)addFaver:(UITabBarItem *)item{
-    
-}
 
 -(IBAction)progressPress:(id)sender{
     
