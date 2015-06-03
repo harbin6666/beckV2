@@ -42,7 +42,7 @@
 }
 
 -(void)leftBtnClick:(UIButton *)sender{
-    [self.tabBarController.navigationController popToRootViewControllerAnimated:YES];
+    [self.tabBarController.navigationController popToRootViewControllerAnimated:NO];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSArray *temp=self.dataAr[section];

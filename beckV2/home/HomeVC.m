@@ -36,27 +36,40 @@
     self.titleBtn.titleLabel.textAlignment=NSTextAlignmentCenter;
     self.navigationController.navigationBarHidden=NO;
 }
+-(void)configTabbar{
+    UITabBarItem*item1= [self.tabbar.items objectAtIndex:0];
+    [item1 setImage:[[UIImage imageNamed:@"tab1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [item1 setSelectedImage:[[UIImage imageNamed:@"tab1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
+    [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateSelected];
+    
+    UITabBarItem*item2= [self.tabbar.items objectAtIndex:1];
+    [item2 setImage:[[UIImage imageNamed:@"tab2"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [item2 setSelectedImage:[[UIImage imageNamed:@"tab2"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [item2 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
+    [item2 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateSelected];
+    
+    UITabBarItem*item3= [self.tabbar.items objectAtIndex:2];
+    [item3 setImage:[[UIImage imageNamed:@"tab3"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [item3 setSelectedImage:[[UIImage imageNamed:@"tab3"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [item3 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
+    [item3 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateSelected];
+    
+    UITabBarItem*item4= [self.tabbar.items objectAtIndex:3];
+    [item4 setImage:[[UIImage imageNamed:@"tab4"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [item4 setSelectedImage:[[UIImage imageNamed:@"tab4"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [item4 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
+    [item4 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateSelected];
+    
+}
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configTabbar];
     [self getPositions];
 
-    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_7_0) {
-        UITabBarItem *item1 = self.tabbar.items[0];
-        [item1 setSelectedImage:[[UIImage imageNamed:@"tab1_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        
-        UITabBarItem *item2 = self.tabbar.items[1];
-        [item2 setSelectedImage:[[UIImage imageNamed:@"tab2_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        
-        UITabBarItem *item3 = self.tabbar.items[2];
-        [item3 setSelectedImage:[[UIImage imageNamed:@"tab3_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        
-        UITabBarItem *item4 = self.tabbar.items[3];
-        [item4 setSelectedImage:[[UIImage imageNamed:@"tab4_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    }
-    else {
-    }
+
 }
 
 -(void)getPositions{
@@ -187,30 +200,6 @@
 {
     UIStoryboard*   sb = [UIStoryboard storyboardWithName:@"Practis" bundle:nil];
     NSInteger tag=[tabBar.items indexOfObject:item];
-//    switch ([tabBar.items indexOfObject:item]) {
-//        case 0:
-//            [self performSegueWithIdentifier:@"topractise" sender:self];
-//
-//            sb = [UIStoryboard storyboardWithName:@"Practis" bundle:nil];
-//            break;
-//        case 1:
-//            [self performSegueWithIdentifier:@"toexam" sender:self];
-
-//            sb = [UIStoryboard storyboardWithName:@"Exam" bundle:nil];
-//            break;
-//        case 2:
-//            [self performSegueWithIdentifier:@"tonote" sender:self];
-
-//            sb = [UIStoryboard storyboardWithName:@"MyAccount" bundle:nil];
-//            break;
-//        case 3:
-//            [self performSegueWithIdentifier:@"tomore" sender:self];
-
-//            sb = [UIStoryboard storyboardWithName:@"More" bundle:nil];
-//            break;
-//        default:
-//            break;
-//    }
     if (sb==nil) {
         return;
     }
@@ -218,7 +207,7 @@
     vc.navigationController.navigationBarHidden=YES;
     
     vc.selectedIndex=tag;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:vc animated:NO];
 }
 -(IBAction)signInPress:(id)sender{
     WEAK_SELF;
