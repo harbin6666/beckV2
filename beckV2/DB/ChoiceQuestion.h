@@ -6,9 +6,8 @@
 //  Copyright (c) 2015年 yj. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface ChoiceQuestion : NSObject
+#import "Question.h"
+@interface ChoiceQuestion : Question
 @property(nonatomic,strong)NSString *choice_id;
 @property(nonatomic,strong)NSString *custom_id;
 @property(nonatomic,strong)NSString *source;

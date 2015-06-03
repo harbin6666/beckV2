@@ -53,6 +53,9 @@
 		39CE4C851B1CC47700DDAB01 /* ChoiceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C841B1CC47700DDAB01 /* ChoiceItem.m */; };
 		39CE4C8B1B1DFD2700DDAB01 /* ChoiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C8A1B1DFD2700DDAB01 /* ChoiceCell.m */; };
 		39CE4C8E1B1E044B00DDAB01 /* CompatyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C8D1B1E044B00DDAB01 /* CompatyCell.m */; };
+		39CE4C941B1F3CB300DDAB01 /* QCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C931B1F3CB300DDAB01 /* QCollectionVC.m */; };
+		39CE4C971B1F431300DDAB01 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C961B1F431300DDAB01 /* Question.m */; };
+		39CE4C9A1B1F479D00DDAB01 /* AnswerCVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C991B1F479D00DDAB01 /* AnswerCVCCell.m */; };
 		39D4BC271B0B6E4A00F5FABF /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D4BC261B0B6E4A00F5FABF /* LoginVC.m */; };
 		39D780BF1B13644E009F5C8E /* DismissSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D780BE1B13644E009F5C8E /* DismissSegue.m */; };
 		39D780C21B136E93009F5C8E /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D780C11B136E93009F5C8E /* Global.m */; };
@@ -151,6 +154,12 @@
 		39CE4C8A1B1DFD2700DDAB01 /* ChoiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceCell.m; sourceTree = "<group>"; };
 		39CE4C8C1B1E044B00DDAB01 /* CompatyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompatyCell.h; sourceTree = "<group>"; };
 		39CE4C8D1B1E044B00DDAB01 /* CompatyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompatyCell.m; sourceTree = "<group>"; };
+		39CE4C921B1F3CB300DDAB01 /* QCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCollectionVC.h; sourceTree = "<group>"; };
+		39CE4C931B1F3CB300DDAB01 /* QCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCollectionVC.m; sourceTree = "<group>"; };
+		39CE4C951B1F431300DDAB01 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
+		39CE4C961B1F431300DDAB01 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		39CE4C981B1F479D00DDAB01 /* AnswerCVCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerCVCCell.h; sourceTree = "<group>"; };
+		39CE4C991B1F479D00DDAB01 /* AnswerCVCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerCVCCell.m; sourceTree = "<group>"; };
 		39D4BC251B0B6E4A00F5FABF /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		39D4BC261B0B6E4A00F5FABF /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		39D780BD1B13644E009F5C8E /* DismissSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissSegue.h; sourceTree = "<group>"; };
@@ -281,6 +290,8 @@
 				39CE4C671B19B80C00DDAB01 /* Subject.h */,
 				39CE4C681B19B80C00DDAB01 /* Subject.m */,
 				39CE4C781B1A4C9B00DDAB01 /* ChoiceQuestion.h */,
+				39CE4C951B1F431300DDAB01 /* Question.h */,
+				39CE4C961B1F431300DDAB01 /* Question.m */,
 				39CE4C791B1A4C9B00DDAB01 /* ChoiceQuestion.m */,
 				39CE4C831B1CC47700DDAB01 /* ChoiceItem.h */,
 				39CE4C841B1CC47700DDAB01 /* ChoiceItem.m */,
@@ -382,6 +393,10 @@
 				39CE4C8D1B1E044B00DDAB01 /* CompatyCell.m */,
 				39CE4C7E1B1CB1F800DDAB01 /* PractiseVC.h */,
 				39CE4C7F1B1CB1F800DDAB01 /* PractiseVC.m */,
+				39CE4C921B1F3CB300DDAB01 /* QCollectionVC.h */,
+				39CE4C931B1F3CB300DDAB01 /* QCollectionVC.m */,
+				39CE4C981B1F479D00DDAB01 /* AnswerCVCCell.h */,
+				39CE4C991B1F479D00DDAB01 /* AnswerCVCCell.m */,
 			);
 			path = execise;
 			sourceTree = "<group>";
@@ -580,6 +595,7 @@
 			files = (
 				39CE4C3E1B19574800DDAB01 /* UIView+create.m in Sources */,
 				39372E721B0A267000891F52 /* BaseViewController.m in Sources */,
+				39CE4C9A1B1F479D00DDAB01 /* AnswerCVCCell.m in Sources */,
 				39CE4C661B19B4A500DDAB01 /* PractisHomeVC.m in Sources */,
 				39D780C51B138490009F5C8E /* ChengjiuVC.m in Sources */,
 				397DDAD91B14C3D000E8F73B /* SetPasswordVC.m in Sources */,
@@ -598,6 +614,7 @@
 				39D780CD1B1386C9009F5C8E /* OTSAlertView.m in Sources */,
 				39CE4C821B1CBAF400DDAB01 /* CourseVC.m in Sources */,
 				39CE4C8B1B1DFD2700DDAB01 /* ChoiceCell.m in Sources */,
+				39CE4C941B1F3CB300DDAB01 /* QCollectionVC.m in Sources */,
 				396AD3041B1772F6005F92B1 /* Position.m in Sources */,
 				39CE4C801B1CB1F800DDAB01 /* PractiseVC.m in Sources */,
 				39372E7B1B0A2C0500891F52 /* Model.xcdatamodeld in Sources */,
@@ -609,6 +626,7 @@
 				39CE4C851B1CC47700DDAB01 /* ChoiceItem.m in Sources */,
 				39D780C81B138533009F5C8E /* HonorTVCell.m in Sources */,
 				39372E8D1B0A5EF600891F52 /* ConditionContainerVC.m in Sources */,
+				39CE4C971B1F431300DDAB01 /* Question.m in Sources */,
 				39CE4C7A1B1A4C9B00DDAB01 /* ChoiceQuestion.m in Sources */,
 				3919ABE01B0647F200336E77 /* main.m in Sources */,
 			);

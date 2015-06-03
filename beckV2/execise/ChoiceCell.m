@@ -29,6 +29,7 @@
 -(void)updateWithChoice:(ChoiceItem*)item{
     self.item=item;
     self.lab.text=[NSString stringWithFormat:@"%@ %@",item.item_number,item.item_content];
+    self.lab.numberOfLines=2;
     self.selectedBackgroundView=[[UIView alloc] init];
 }
 @end

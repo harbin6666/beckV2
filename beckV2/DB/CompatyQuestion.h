@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 yj. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Question.h"
 
-@interface CompatyInfo : NSObject
+@interface CompatyInfo : Question
 @property(nonatomic,strong)NSString *info_id;
 @property(nonatomic,strong)NSString *outlet_id;
 @property(nonatomic,strong)NSString *lib_id;
@@ -22,6 +22,7 @@
 @property(nonatomic,strong)NSString *memo;
 @property(nonatomic,strong)NSString *is_img;
 @property(nonatomic,strong)NSString *img_content;
+
 @end
 
 

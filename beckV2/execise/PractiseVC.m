@@ -11,7 +11,8 @@
 #import "CompatyQuestion.h"
 #import "ChoiceCell.h"
 #import "CompatyCell.h"
-@interface PractiseVC ()<UITabBarDelegate,UITableViewDataSource,UITableViewDelegate>
+#import "QCollectionVC.h"
+@interface PractiseVC ()<UITabBarDelegate,UITableViewDataSource,UITableViewDelegate,QCollectionVCDelegate>
 @property(nonatomic,strong)NSArray *questionsAr;
 @property(nonatomic,weak) IBOutlet UILabel *testLab;
 @property(nonatomic,assign)NSInteger currentQIndex;
@@ -23,6 +24,14 @@
 @end
 
 @implementation PractiseVC
+
+- (void)didSelectedItemIndexInAnswerCVC:(NSInteger)index{
+    [self.navigationController popViewControllerAnimated:YES];
+
+    self.currentQIndex=index;
+    [self freshView];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -68,34 +77,34 @@
   UITabBarItem*item5= [self.tabbar.items lastObject];
     UITabBarItem*item1= [self.tabbar.items firstObject];
     if (self.currentQIndex==self.questionsAr.count-1) {
-        [item1 setImage:[UIImage imageNamed:@"back_sel"]];
-        [item1 setSelectedImage:[UIImage imageNamed:@"back_sel"]];
+        [item1 setImage:[[UIImage imageNamed:@"back_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [item1 setSelectedImage:[[UIImage imageNamed:@"back_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
         [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
         
-        [item5 setImage:[UIImage imageNamed:@"next"]];
-        [item5 setSelectedImage:[UIImage imageNamed:@"next"]];
+        [item5 setImage:[[UIImage imageNamed:@"next"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [item5 setSelectedImage:[[UIImage imageNamed:@"next"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [item5 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
         [item5 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateSelected];
 
     }else if (self.currentQIndex==0) {
-        [item1 setImage:[UIImage imageNamed:@"back"]];
-        [item1 setSelectedImage:[UIImage imageNamed:@"back"]];
+        [item1 setImage:[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [item1 setSelectedImage:[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
         [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateSelected];
-        [item5 setImage:[UIImage imageNamed:@"next_sel"]];
-        [item5 setSelectedImage:[UIImage imageNamed:@"next_sel"]];
+        [item5 setImage:[[UIImage imageNamed:@"next_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [item5 setSelectedImage:[[UIImage imageNamed:@"next_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [item5 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
         [item5 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
 
     }else{
-        [item5 setImage:[UIImage imageNamed:@"next_sel"]];
-        [item5 setSelectedImage:[UIImage imageNamed:@"next_sel"]];
+        [item5 setImage:[[UIImage imageNamed:@"next_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [item5 setSelectedImage:[[UIImage imageNamed:@"next_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [item5 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
         [item5 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
         
-        [item1 setImage:[UIImage imageNamed:@"back_sel"]];
-        [item1 setSelectedImage:[UIImage imageNamed:@"back_sel"]];
+        [item1 setImage:[[UIImage imageNamed:@"back_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [item1 setSelectedImage:[[UIImage imageNamed:@"back_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
         [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
 
@@ -188,10 +197,12 @@
     }
 
     if (self.currentQIndex==0) {
-        item.image=[UIImage imageNamed:@"back"];
-    }else{
-        item.image=[UIImage imageNamed:@"back_sel"];
+//        item.image=[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        return;
     }
+//    else{
+//        item.image=[[UIImage imageNamed:@"back_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    }
     [self freshView];
 }
 
@@ -200,10 +211,12 @@
         self.currentQIndex++;
     }
     if (self.currentQIndex==self.questionsAr.count-1) {
-        item.image=[UIImage imageNamed:@"next"];
-    }else{
-        item.image=[UIImage imageNamed:@"next_sel"];
+//        item.image=[[UIImage imageNamed:@"next"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        return;
     }
+//    else{
+//        item.image=[[UIImage imageNamed:@"next_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    }
     [self freshView];
 }
 
@@ -220,6 +233,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"toprogress"]) {
+        QCollectionVC *vc=segue.destinationViewController;
+        vc.vcDelegate=self;
+        vc.questions=self.questionsAr;
+    }
+}
 /*
 #pragma mark - Navigation
 
