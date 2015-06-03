@@ -319,12 +319,19 @@
                                                         <constraint firstAttribute="width" constant="19" id="e0x-1g-gAq"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A 中药防治诊断疾病及保健作用" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j15-iE-jWY">
-                                                    <rect key="frame" x="47" y="0.0" width="320" height="44"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="10086" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A 中药防治诊断疾病及保健作用" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j15-iE-jWY">
+                                                    <rect key="frame" x="47" y="0.0" width="295" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cDT-PN-fPm">
+                                                    <rect key="frame" x="347" y="12" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="GMg-KT-6Ms"/>
+                                                        <constraint firstAttribute="width" constant="20" id="hia-fv-qyP"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="j15-iE-jWY" firstAttribute="leading" secondItem="bRL-Qq-O7Z" secondAttribute="leadingMargin" constant="39" id="07s-Tf-8xG"/>
@@ -332,8 +339,10 @@
                                                 <constraint firstAttribute="centerY" secondItem="9C7-lC-SfD" secondAttribute="centerY" constant="0.5" id="9Qe-vk-bxe"/>
                                                 <constraint firstItem="9C7-lC-SfD" firstAttribute="leading" secondItem="bRL-Qq-O7Z" secondAttribute="leadingMargin" constant="9" id="cQd-g1-LTl"/>
                                                 <constraint firstItem="j15-iE-jWY" firstAttribute="top" secondItem="bRL-Qq-O7Z" secondAttribute="topMargin" constant="-8" id="joS-aI-qCM"/>
-                                                <constraint firstItem="j15-iE-jWY" firstAttribute="trailing" secondItem="bRL-Qq-O7Z" secondAttribute="trailingMargin" id="kZD-Gf-GCt"/>
+                                                <constraint firstItem="j15-iE-jWY" firstAttribute="trailing" secondItem="bRL-Qq-O7Z" secondAttribute="trailingMargin" constant="-25" id="kZD-Gf-GCt"/>
+                                                <constraint firstAttribute="centerY" secondItem="cDT-PN-fPm" secondAttribute="centerY" id="mhl-0H-Ktz"/>
                                                 <constraint firstAttribute="centerY" secondItem="j15-iE-jWY" secondAttribute="centerY" id="nzo-NT-8Am"/>
+                                                <constraint firstItem="cDT-PN-fPm" firstAttribute="trailing" secondItem="bRL-Qq-O7Z" secondAttribute="trailingMargin" id="sZq-lQ-cqv"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="j15-iE-jWY" secondAttribute="bottom" constant="-8" id="w3L-kj-c8q"/>
                                             </constraints>
                                             <variation key="default">
@@ -344,6 +353,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="lab" destination="j15-iE-jWY" id="unb-M7-l9g"/>
+                                            <outlet property="mark" destination="cDT-PN-fPm" id="GkR-Y1-nx5"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="compatycell" rowHeight="88" id="EbC-Zo-f3v" customClass="CompatyCell">
@@ -354,7 +364,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rq-Ex-YlQ">
                                                     <rect key="frame" x="8" y="8" width="367" height="39"/>
-                                                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="39" id="6A2-wu-n2d"/>
                                                     </constraints>

@@ -10,6 +10,7 @@
 @interface ChoiceCell()
 @property(nonatomic,copy)ItemSelectBlock block;
 @property(nonatomic,strong)ChoiceItem *item;
+
 @end
 @implementation ChoiceCell
 

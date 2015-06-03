@@ -13,6 +13,7 @@ typedef  void(^ItemSelectBlock)(BOOL right);
 
 @interface ChoiceCell : UITableViewCell
 @property(nonatomic,weak)IBOutlet UILabel *lab;
-
 -(void)updateWithChoice:(ChoiceItem*)item;
+@property(nonatomic,weak)IBOutlet UIImageView *mark;
+
 @end

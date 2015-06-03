@@ -21,6 +21,7 @@
 @property(nonatomic,strong)NSArray *compatibilyArray;//配伍题数组
 @property(nonatomic,weak) IBOutlet UIButton *questionBtn;
 @property(nonatomic,weak)IBOutlet UITabBar* tabbar;
+@property(nonatomic,weak)UITableViewCell *answerCell;
 @end
 
 @implementation PractiseVC
@@ -51,6 +52,7 @@
     self.title=[NSString stringWithFormat:@"%zd/%zd",self.currentQIndex+1,self.questionsAr.count];
     id p=[self.questionsAr objectAtIndex:self.currentQIndex];
         if ([p isKindOfClass:[ChoiceQuestion class]]) {
+            self.table.allowsSelection=YES;
             ChoiceQuestion* q=(ChoiceQuestion*)p;
             self.testLab.text= q.choice_content;
             q.choiceItems=[[SQLManager sharedSingle] getChoiceItemByChoiceId:q.choice_id];
@@ -59,7 +61,6 @@
         }else{
             self.table.allowsSelection=NO;
             CompatyInfo *comp=(CompatyInfo*)p;
-            self.testLab.text=comp.title;
             
             self.compatibilyArray=[[SQLManager sharedSingle] getCompatyQuestionsByinfoId:comp.info_id];
             //子题目
@@ -69,6 +70,13 @@
                 NSArray *comItem=[[SQLManager sharedSingle] getCompatyItemByCompid:q.compatibility_id];
                 q.items=comItem;
             }
+            CompatyQuestion* q=self.compatibilyArray[0];
+            NSMutableString *str=comp.title.mutableCopy;
+            for (int i=0; i<q.items.count; i++) {
+                CompatyItem* it=q.items[i];
+                [str appendFormat:@"\n%@ %@",it.item_number,it.item_content];
+            }
+            self.testLab.text=str;
 
         }
     
@@ -125,12 +133,21 @@
     }
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([[self.questionsAr objectAtIndex:self.currentQIndex] isKindOfClass:[CompatyInfo class]]) {
+        if (indexPath.row<self.compatibilyArray.count) {
+            return 88;
+        }
+    }
+    return 44;
+}
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell=nil;
     id p=[self.questionsAr objectAtIndex:self.currentQIndex];
     if ([p isKindOfClass:[ChoiceQuestion class]]) {
         if (indexPath.row==self.choiceArray.count+1) {
             cell=[tableView dequeueReusableCellWithIdentifier:@"answercell" forIndexPath:indexPath];
+            self.answerCell=cell;
         }else if (indexPath.row==self.choiceArray.count) {
             cell=[tableView dequeueReusableCellWithIdentifier:@"notecell" forIndexPath:indexPath];
         }else{
@@ -140,13 +157,15 @@
 
         }
     }else{
-        if (indexPath.row==self.choiceArray.count+1) {
+        if (indexPath.row==self.compatibilyArray.count+1) {
             cell=[tableView dequeueReusableCellWithIdentifier:@"answercell" forIndexPath:indexPath];
         }else if (indexPath.row==self.compatibilyArray.count) {
             cell=[tableView dequeueReusableCellWithIdentifier:@"notecell" forIndexPath:indexPath];
         }else{
            CompatyCell* cell=(CompatyCell* )[tableView dequeueReusableCellWithIdentifier:@"compatycell" forIndexPath:indexPath];
-            [cell updateCompatyCell:p selectedBlock:^(BOOL right) {
+            cell.row=indexPath.row;
+            CompatyQuestion *q=self.compatibilyArray[indexPath.row];
+            [cell updateCompatyCell:q selectedBlock:^(BOOL right) {
                 
             }];
             return cell;
@@ -155,7 +174,34 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    id p=[self.questionsAr objectAtIndex:self.currentQIndex];
+    if ([p isKindOfClass:[ChoiceQuestion class]]&&indexPath.row<self.choiceArray.count) {
+        ChoiceQuestion *q=(ChoiceQuestion*)p;
+        ChoiceItem *item=q.choiceItems[indexPath.row];
+        if (item.is_answer.integerValue==0) {
+            for (int i=0;i<q.choiceItems.count;i++) {
+                ChoiceItem *item=q.choiceItems[i];
+                ChoiceCell *cell=(ChoiceCell*)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:indexPath.section]];
+                if (item.is_answer.integerValue==1) {
+                    cell.mark.image=[UIImage imageNamed:@"choiceRight"];
+                    cell.contentView.layer.borderColor=[UIColor greenColor].CGColor;
+                    cell.contentView.layer.borderWidth=1;
+                }else{
+                    cell.mark.image=nil;
+                    cell.contentView.layer.borderColor=[UIColor clearColor].CGColor;
+                }
+            }
+            ChoiceCell *cell=(ChoiceCell*)[tableView cellForRowAtIndexPath:indexPath];
+            cell.mark.image=[UIImage imageNamed:@"choiceWrong"];
+        }else {
+            for (int i=0;i<q.choiceItems.count;i++) {
+                ChoiceCell *cell=(ChoiceCell*)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:indexPath.section]];
+                cell.mark.image=nil;
+                cell.contentView.layer.borderColor=[UIColor clearColor].CGColor;
+
+            }
+        }
+    }
 }
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
     switch (item.tag) {
@@ -192,31 +238,33 @@
 }
 
 -(void)backwardPress:(UITabBarItem *)item{
+    if (self.currentQIndex==0) {
+        //        item.image=[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        return;
+    }
+    //    else{
+    //        item.image=[[UIImage imageNamed:@"back_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //    }
+
     if (self.currentQIndex>0) {
         self.currentQIndex--;
     }
 
-    if (self.currentQIndex==0) {
-//        item.image=[[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        return;
-    }
-//    else{
-//        item.image=[[UIImage imageNamed:@"back_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//    }
     [self freshView];
 }
 
 -(void)forwardPress:(UITabBarItem *)item{
+    if (self.currentQIndex==self.questionsAr.count-1) {
+        //        item.image=[[UIImage imageNamed:@"next"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        return;
+    }
+    //    else{
+    //        item.image=[[UIImage imageNamed:@"next_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //    }
+
     if (self.currentQIndex<self.questionsAr.count) {
         self.currentQIndex++;
     }
-    if (self.currentQIndex==self.questionsAr.count-1) {
-//        item.image=[[UIImage imageNamed:@"next"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        return;
-    }
-//    else{
-//        item.image=[[UIImage imageNamed:@"next_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//    }
     [self freshView];
 }
 

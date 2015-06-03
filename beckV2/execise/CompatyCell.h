@@ -11,5 +11,6 @@
 typedef  void(^ItemSelectBlock)(BOOL right);
 @interface CompatyCell : UITableViewCell
 @property(nonatomic,weak)IBOutlet UILabel *lab;
+@property(nonatomic)NSInteger row;
 -(void)updateCompatyCell:(CompatyQuestion*)compatyQ selectedBlock:(ItemSelectBlock)block;
 @end
