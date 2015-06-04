@@ -19,7 +19,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="kC2-h6-nIP"/>
+                    <navigationItem key="navigationItem" title="更多" id="kC2-h6-nIP">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="5Wg-UY-i4I"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2cl-JC-vit" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -38,7 +40,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="RdH-Ae-iPJ"/>
+                    <navigationItem key="navigationItem" title="笔记" id="Qgw-NT-ExI">
+                        <barButtonItem key="leftBarButtonItem" title="首页" id="1O0-9D-Nav"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kzr-QE-xAw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -78,6 +82,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="N9h-nb-iL6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.90196078430000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,7 +100,7 @@
         <!--考试-->
         <scene sceneID="QCg-HN-5rq">
             <objects>
-                <viewController id="uYa-4q-r0L" sceneMemberID="viewController">
+                <viewController title="考试" id="uYa-4q-r0L" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="n6Y-Kt-AfU"/>
                         <viewControllerLayoutGuide type="bottom" id="yO9-Wd-YNq"/>
@@ -105,7 +110,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="考试" id="jUg-e5-oxj"/>
+                    <navigationItem key="navigationItem" title="考试" id="jUg-e5-oxj">
+                        <barButtonItem key="leftBarButtonItem" image="home" id="mUG-d8-FRh"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fmn-Nm-9H2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -120,6 +127,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dE0-FL-3bG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.90196078430000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -143,6 +151,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kab-0Y-vXb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.90196078430000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -605,6 +614,7 @@
         <image name="cuo" width="8" height="6"/>
         <image name="dui" width="8" height="6"/>
         <image name="favorate" width="24" height="21"/>
+        <image name="home" width="9" height="14"/>
         <image name="radio" width="19" height="19"/>
         <image name="radio_sel" width="19" height="19"/>
         <image name="setting" width="23" height="23"/>
