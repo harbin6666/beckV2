@@ -51,14 +51,24 @@
 -(void)openLocalDatabaseWithName:(NSString *)name andStatusBlock:(statusBlock)status {
     
     NSString *path = [[NSBundle mainBundle]pathForResource:[[name lastPathComponent]stringByDeletingPathExtension] ofType:[name pathExtension]];
-
-    if (sqlite3_open([path UTF8String], &_database) != SQLITE_OK) {
-        NSLog(@"Failed to open database!");
-        status(NO, nil);
-    } else {
-        NSLog(@"Database opened properly");
-        status(YES, nil);
+    
+    NSString *dest=[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/local"] stringByAppendingPathExtension:@"db"];
+    
+    if (![[NSFileManager defaultManager]fileExistsAtPath:dest]) {
+        NSError *error=nil;
+        if ([[NSFileManager defaultManager] copyItemAtPath:path toPath:dest error:&error]) {
+            
+        }
     }
+        if (sqlite3_open([dest UTF8String], &_database) != SQLITE_OK) {
+            NSLog(@"Failed to open database!");
+            status(NO, nil);
+        } else {
+            NSLog(@"Database opened properly");
+            status(YES, nil);
+        }
+
+   
 }
 
 -(void)closeLocalDatabaseWithName:(NSString *)name andStatusBlock:(statusBlock)status {

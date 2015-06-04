@@ -143,11 +143,12 @@
     params[@"token"] = @"add";
     
 //    PractiseVO *vo = [PractiseVO createWithItemVOs:self.items];
-    
+    Question* q=[self.questionsAr objectAtIndex:self.currentQIndex];
+
     NSMutableDictionary *json = @{}.mutableCopy;
-//    json[@"loginName"] = [[NSUserDefaults standardUserDefaults] stringForKey:@"loginName"];
-//    json[@"subjectId"] = self.subjectId;
-//    json[@"outlineId"] = self.examOutlineId;
+    json[@"loginName"] = [Global sharedSingle].loginName;
+    json[@"subjectId"] = q.subject_id;
+    json[@"outlineId"] = self.outletid;
 //    json[@"amount"] = vo.getAmount;
 //    json[@"accurateRate"] = vo.getAccurateRate;
 //    json[@"list"] = vo.getAnswerList;
@@ -318,10 +319,11 @@
     [self showLoading];
     
     NSMutableDictionary *param=@{}.mutableCopy;
-    param[@"outlineid"]=self.outletid;
+    param[@"titleId"]=[[Global sharedSingle] getUserWithkey:@"titleid"];
+    param[@"outlineId"]=self.outletid;
     param[@"loginName"]=[Global sharedSingle].loginName;
     Question *q=[self.questionsAr objectAtIndex:self.currentQIndex];
-    param[@"typeid"]=[q custom_id];
+    param[@"typeId"]=[q custom_id];
     param[@"subjectId"]=[q subject_id];
     
     NSData *data=[NSJSONSerialization dataWithJSONObject:param options:0 error:nil];
@@ -338,6 +340,8 @@
                 [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
                 
                 [self showLoadingWithMessage:@"收藏成功" hideAfter:2];
+                [[SQLManager sharedSingle] excuseSql:aResponseObject[@"sql"]];
+                
             }else if ([aResponseObject[@"errorcode"] intValue]==2){
                 [self showLoadingWithMessage:@"已经收藏" hideAfter:2];
             }else {

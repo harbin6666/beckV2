@@ -356,7 +356,7 @@ singleton_implementation(SQLManager);
         }
     }];
     
-    NSString *examPaperId = @"select max(id) from exam_paper";
+    NSString *examPaperId = @"select max(paper_id) from exam_paper";
     [[AFSQLManager sharedManager] performQuery:examPaperId withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
@@ -379,8 +379,17 @@ singleton_implementation(SQLManager);
 }
 
 -(void)excuseSql:(NSString*)sql{
-    [[AFSQLManager sharedManager] performQuery:sql withBlock:nil];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished){
+        if (error!=nil) {
+            NSLog(@"%@",error);
+        }
+        if (finished) {
+            
+        }
+    
+    }];
 }
+
 
 -(void)openDB{
     [[AFSQLManager sharedManager] openLocalDatabaseWithName:@"beck.db" andStatusBlock:^(BOOL success, NSError *error) {

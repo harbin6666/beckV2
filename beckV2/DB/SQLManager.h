@@ -42,5 +42,7 @@ singleton_interface(SQLManager);
 -(NSArray*)getCompatyQuestionsByinfoId:(NSString*)infoId;
 
 -(NSArray*)getCompatyItemByCompid:(NSString*)compatyid;
+
 -(void)openDB;
+-(void)creatDB;
 @end

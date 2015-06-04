@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "beckV2/execise/PractiseVC.m"
-            timestampString = "455052078.375771"
+            filePath = "Pods/AFSQLManager/AFSQLManager.m"
+            timestampString = "455117528.027108"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
-            landmarkName = "-addFaver:"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "-openLocalDatabaseWithName:andStatusBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
