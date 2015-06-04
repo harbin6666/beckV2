@@ -7,46 +7,91 @@
     </dependencies>
     <scenes>
         <!--更多-->
-        <scene sceneID="u83-3Z-nCn">
+        <scene sceneID="z7o-mu-zKH">
             <objects>
-                <viewController title="更多" id="HgM-q9-h9v" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zMr-NN-fPe"/>
-                        <viewControllerLayoutGuide type="bottom" id="501-ZA-bTf"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="o0G-C2-kfP">
+                <tableViewController title="更多" id="PTZ-KV-p8g" customClass="MoreVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="wFP-wI-7Go">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="更多" id="kC2-h6-nIP">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="5Wg-UY-i4I"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" id="yVc-Nq-OCV">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yVc-Nq-OCV" id="UEk-3l-3ec">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PTZ-KV-p8g" id="rWu-6g-wbm"/>
+                            <outlet property="delegate" destination="PTZ-KV-p8g" id="QXd-kk-GX7"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="更多" id="yWw-nV-b3X">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="ecb-hB-Nrc">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pze-9C-HwJ">
+                                <rect key="frame" x="16" y="7" width="30" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="backhome">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="homeClick:" destination="PTZ-KV-p8g" eventType="touchUpInside" id="w5h-Bc-oEv"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2cl-JC-vit" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    <connections>
+                        <outlet property="table" destination="wFP-wI-7Go" id="WPg-k7-mKf"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WpE-A7-mw3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="504.5" y="-107.5"/>
+            <point key="canvasLocation" x="278" y="-997"/>
         </scene>
         <!--笔记-->
-        <scene sceneID="DR6-Q8-5mc">
+        <scene sceneID="Jjf-cN-diW">
             <objects>
-                <viewController title="笔记" id="qJn-44-lZx" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Sbh-oH-Sk3"/>
-                        <viewControllerLayoutGuide type="bottom" id="dyc-7b-teG"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5iW-c1-we3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <tableViewController id="MFm-9N-DFj" customClass="NoteVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4LM-s5-LQJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="笔记" id="Qgw-NT-ExI">
-                        <barButtonItem key="leftBarButtonItem" title="首页" id="1O0-9D-Nav"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" id="Slw-1J-cJd">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Slw-1J-cJd" id="Ybj-FP-Ch3">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MFm-9N-DFj" id="b65-Hs-8sQ"/>
+                            <outlet property="delegate" destination="MFm-9N-DFj" id="UwA-rT-Uk3"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="笔记" id="9q2-ec-Q6n">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="sRP-dH-U9s">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nxt-ue-haz">
+                                <rect key="frame" x="16" y="7" width="30" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="backhome">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="homeClick:" destination="MFm-9N-DFj" eventType="touchUpInside" id="0Nz-89-Vh6"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kzr-QE-xAw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="table" destination="4LM-s5-LQJ" id="ImI-ZY-vJZ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="21M-DG-HNZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="504.5" y="-1565.5"/>
+            <point key="canvasLocation" x="278" y="-1690"/>
         </scene>
         <!--TabbarVC-->
         <scene sceneID="zMu-RM-YPQ">
@@ -95,12 +140,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EeC-Sc-7CY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-116.5" y="-875.5"/>
+            <point key="canvasLocation" x="13.5" y="-135.5"/>
         </scene>
         <!--考试-->
         <scene sceneID="QCg-HN-5rq">
             <objects>
-                <viewController title="考试" id="uYa-4q-r0L" sceneMemberID="viewController">
+                <viewController title="考试" id="uYa-4q-r0L" customClass="ExamHomeVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="n6Y-Kt-AfU"/>
                         <viewControllerLayoutGuide type="bottom" id="yO9-Wd-YNq"/>
@@ -111,12 +156,23 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="考试" id="jUg-e5-oxj">
-                        <barButtonItem key="leftBarButtonItem" image="home" id="mUG-d8-FRh"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="UuW-Gi-OJx">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Dcj-ds-2ao">
+                                <rect key="frame" x="16" y="7" width="30" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="backhome">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="homeClick:" destination="uYa-4q-r0L" eventType="touchUpInside" id="bbw-Yc-wmX"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fmn-Nm-9H2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="425.5" y="-855.5"/>
+            <point key="canvasLocation" x="735.5" y="-83.5"/>
         </scene>
         <!--笔记-->
         <scene sceneID="mGG-zb-0On">
@@ -124,7 +180,7 @@
                 <navigationController title="笔记" automaticallyAdjustsScrollViewInsets="NO" id="pmu-Qo-gaj" userLabel="笔记" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="2" title="笔记" image="tab3" id="odq-TT-Xnj" userLabel="笔记"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dE0-FL-3bG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="dE0-FL-3bG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -135,12 +191,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="qJn-44-lZx" kind="relationship" relationship="rootViewController" id="V1W-eh-ngr"/>
+                        <segue destination="MFm-9N-DFj" kind="relationship" relationship="rootViewController" id="7aU-HZ-pcs"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fo1-LS-5kV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-82.5" y="-1565.5"/>
+            <point key="canvasLocation" x="-96.5" y="-1630.5"/>
         </scene>
         <!--更多-->
         <scene sceneID="CUY-nJ-KrB">
@@ -159,12 +215,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="HgM-q9-h9v" kind="relationship" relationship="rootViewController" id="zW7-sM-MuI"/>
+                        <segue destination="PTZ-KV-p8g" kind="relationship" relationship="rootViewController" id="YzY-M2-qYA"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="788-SX-F3Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-82.5" y="-107.5"/>
+            <point key="canvasLocation" x="-172.5" y="-947.5"/>
         </scene>
         <!--练习-->
         <scene sceneID="EIN-tg-i0h">
@@ -213,8 +269,17 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="练习" id="tbr-qU-pVI">
-                        <barButtonItem key="backBarButtonItem" title="back" id="euN-60-QLF">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="heS-in-Aty">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3Cw-PA-XFi">
+                                <rect key="frame" x="16" y="7" width="30" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="backhome">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="homeClick:" destination="GTZ-3e-npX" eventType="touchUpInside" id="kKm-nL-3qP"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -586,6 +651,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cqt-ua-cCJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.90196078430000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -609,12 +675,12 @@
     </scenes>
     <resources>
         <image name="answer" width="24" height="21"/>
+        <image name="backhome" width="30" height="33"/>
         <image name="biji" width="57" height="23"/>
         <image name="changeitem" width="42" height="42"/>
         <image name="cuo" width="8" height="6"/>
         <image name="dui" width="8" height="6"/>
         <image name="favorate" width="24" height="21"/>
-        <image name="home" width="9" height="14"/>
         <image name="radio" width="19" height="19"/>
         <image name="radio_sel" width="19" height="19"/>
         <image name="setting" width="23" height="23"/>

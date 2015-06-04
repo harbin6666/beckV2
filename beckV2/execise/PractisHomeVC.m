@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self setNavigationBarButtonName:@"首页" width:40 isLeft:YES];
+
     self.dataAr=[NSMutableArray array];
     self.subjectIdList=[[SQLManager sharedSingle] getSubjectIdArrayByid:[[Global sharedSingle] getUserWithkey:@"titleid"]];
     self.subjectList=[[SQLManager sharedSingle] getSubjectByid:self.subjectIdList];
@@ -41,7 +41,7 @@
     [self.table reloadData];
 }
 
--(void)leftBtnClick:(UIButton *)sender{
+-(IBAction)homeClick:(UIButton *)sender{
     [self.tabBarController.navigationController popToRootViewControllerAnimated:NO];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

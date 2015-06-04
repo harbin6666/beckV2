@@ -35,7 +35,14 @@
     self.titleBtn.titleLabel.numberOfLines=2;
     self.titleBtn.titleLabel.textAlignment=NSTextAlignmentCenter;
     self.navigationController.navigationBarHidden=NO;
+
 }
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self getPositions];
+}
+
 -(void)configTabbar{
     UITabBarItem*item1= [self.tabbar.items objectAtIndex:0];
     [item1 setImage:[[UIImage imageNamed:@"tab1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
@@ -67,7 +74,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configTabbar];
-    [self getPositions];
 
 
 }
@@ -75,14 +81,18 @@
 -(void)getPositions{
 
     NSArray *array=[SQLManager sharedSingle].getTitles;
+    UIImageView*imgv=[[UIImageView alloc] initWithFrame:self.positionView.bounds];
+    imgv.image=[[UIImage imageNamed:@"positionBg"] resizableImageWithCapInsets:UIEdgeInsetsMake(2, 2, 5, 2)resizingMode:UIImageResizingModeStretch];
+    imgv.userInteractionEnabled=YES;
+    [self.positionView addSubview:imgv];
     CGFloat btnWidth=(self.view.frame.size.width-4*padding)/3;
     
     for (int i=0;i<array.count;i++) {
         Position*p=array[i];
         UIButton *b=[UIButton buttonWithType:UIButtonTypeCustom];
         b.frame=CGRectMake(0, 0, btnWidth, 36);
-        b.layer.borderWidth=1;
-        b.layer.borderColor=[UIColor blackColor].CGColor;
+//        b.layer.borderWidth=1;
+//        b.layer.borderColor=[UIColor blackColor].CGColor;
         [b setTitle:p.titleName forState:UIControlStateNormal];
         if ([p.titleName isEqualToString:[[Global sharedSingle] getUserWithkey:@"titleName"]]) {
             b.selected=YES;
@@ -91,8 +101,10 @@
         }
         b.titleLabel.numberOfLines=2;
         b.titleLabel.font=[UIFont systemFontOfSize:14];
-        [b setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
+        [b setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
         [b setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [b setBackgroundImage:[UIImage imageNamed:@"position_sel"] forState:UIControlStateSelected];
+        [b setBackgroundImage:[UIImage imageNamed:@"position"] forState:UIControlStateNormal];
         int y=(int)(i/3);
         int x=i%3;
         b.tag=i+10;
@@ -104,7 +116,13 @@
 }
 
 -(void)freshNav{
-    [self.titleBtn setTitle:[[Global sharedSingle] getUserWithkey:@"titleName"] forState:UIControlStateNormal];
+    NSMutableString *str=[NSMutableString stringWithString:[[Global sharedSingle] getUserWithkey:@"titleName"]];
+    if (self.positionView.hidden) {
+        [str appendString:@" ▼"];
+    }else{
+        [str appendString:@" ▲"];
+    }
+    [self.titleBtn setTitle:str forState:UIControlStateNormal];
     NSInteger days=[[SQLManager sharedSingle] getExamDate:[[Global sharedSingle] getUserWithkey:@"titleid"]];
     int h = (int)days / 100;
     int t = (int)(days - h * 100) / 10;

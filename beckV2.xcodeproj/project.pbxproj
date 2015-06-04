@@ -25,6 +25,9 @@
 		397DDAD61B14B64C00E8F73B /* VerifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD51B14B64C00E8F73B /* VerifyVC.m */; };
 		397DDAD91B14C3D000E8F73B /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD81B14C3D000E8F73B /* SetPasswordVC.m */; };
 		397DDADC1B14C9F800E8F73B /* FindPassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDADB1B14C9F800E8F73B /* FindPassVC.m */; };
+		39CD45F61B209A7E005320B5 /* MoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CD45F51B209A7E005320B5 /* MoreVC.m */; };
+		39CD45F91B209A8D005320B5 /* NoteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CD45F81B209A8D005320B5 /* NoteVC.m */; };
+		39CD45FC1B209B19005320B5 /* ExamHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CD45FB1B209B19005320B5 /* ExamHomeVC.m */; };
 		39CE4C3E1B19574800DDAB01 /* UIView+create.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CE4C3D1B19574800DDAB01 /* UIView+create.m */; };
 		39CE4C4A1B19575800DDAB01 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CE4C411B19575800DDAB01 /* TencentOpenAPI.framework */; };
 		39CE4C4B1B19575800DDAB01 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 39CE4C421B19575800DDAB01 /* TencentOpenApi_IOS_Bundle.bundle */; };
@@ -110,6 +113,12 @@
 		397DDAD81B14C3D000E8F73B /* SetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPasswordVC.m; sourceTree = "<group>"; };
 		397DDADA1B14C9F800E8F73B /* FindPassVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPassVC.h; sourceTree = "<group>"; };
 		397DDADB1B14C9F800E8F73B /* FindPassVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPassVC.m; sourceTree = "<group>"; };
+		39CD45F41B209A7E005320B5 /* MoreVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreVC.h; sourceTree = "<group>"; };
+		39CD45F51B209A7E005320B5 /* MoreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreVC.m; sourceTree = "<group>"; };
+		39CD45F71B209A8D005320B5 /* NoteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteVC.h; sourceTree = "<group>"; };
+		39CD45F81B209A8D005320B5 /* NoteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteVC.m; sourceTree = "<group>"; };
+		39CD45FA1B209B19005320B5 /* ExamHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamHomeVC.h; sourceTree = "<group>"; };
+		39CD45FB1B209B19005320B5 /* ExamHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamHomeVC.m; sourceTree = "<group>"; };
 		39CE4C3C1B19574800DDAB01 /* UIView+create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+create.h"; sourceTree = "<group>"; };
 		39CE4C3D1B19574800DDAB01 /* UIView+create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+create.m"; sourceTree = "<group>"; };
 		39CE4C411B19575800DDAB01 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
@@ -228,6 +237,8 @@
 		3919ABDC1B0647F200336E77 /* beckV2 */ = {
 			isa = PBXGroup;
 			children = (
+				39CD45F21B209A5D005320B5 /* more */,
+				39CD45F31B209A5D005320B5 /* note */,
 				39CE4C621B19B48D00DDAB01 /* exam */,
 				39CE4C631B19B48D00DDAB01 /* execise */,
 				39CE4C3F1B19575800DDAB01 /* ThirdParty */,
@@ -333,6 +344,24 @@
 			path = category;
 			sourceTree = "<group>";
 		};
+		39CD45F21B209A5D005320B5 /* more */ = {
+			isa = PBXGroup;
+			children = (
+				39CD45F41B209A7E005320B5 /* MoreVC.h */,
+				39CD45F51B209A7E005320B5 /* MoreVC.m */,
+			);
+			path = more;
+			sourceTree = "<group>";
+		};
+		39CD45F31B209A5D005320B5 /* note */ = {
+			isa = PBXGroup;
+			children = (
+				39CD45F71B209A8D005320B5 /* NoteVC.h */,
+				39CD45F81B209A8D005320B5 /* NoteVC.m */,
+			);
+			path = note;
+			sourceTree = "<group>";
+		};
 		39CE4C3F1B19575800DDAB01 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +403,8 @@
 		39CE4C621B19B48D00DDAB01 /* exam */ = {
 			isa = PBXGroup;
 			children = (
+				39CD45FA1B209B19005320B5 /* ExamHomeVC.h */,
+				39CD45FB1B209B19005320B5 /* ExamHomeVC.m */,
 			);
 			path = exam;
 			sourceTree = "<group>";
@@ -613,8 +644,10 @@
 				39CE4C5E1B195A2800DDAB01 /* SQLManager.m in Sources */,
 				39D780CD1B1386C9009F5C8E /* OTSAlertView.m in Sources */,
 				39CE4C821B1CBAF400DDAB01 /* CourseVC.m in Sources */,
+				39CD45F91B209A8D005320B5 /* NoteVC.m in Sources */,
 				39CE4C8B1B1DFD2700DDAB01 /* ChoiceCell.m in Sources */,
 				39CE4C941B1F3CB300DDAB01 /* QCollectionVC.m in Sources */,
+				39CD45FC1B209B19005320B5 /* ExamHomeVC.m in Sources */,
 				396AD3041B1772F6005F92B1 /* Position.m in Sources */,
 				39CE4C801B1CB1F800DDAB01 /* PractiseVC.m in Sources */,
 				39372E7B1B0A2C0500891F52 /* Model.xcdatamodeld in Sources */,
@@ -626,6 +659,7 @@
 				39CE4C851B1CC47700DDAB01 /* ChoiceItem.m in Sources */,
 				39D780C81B138533009F5C8E /* HonorTVCell.m in Sources */,
 				39372E8D1B0A5EF600891F52 /* ConditionContainerVC.m in Sources */,
+				39CD45F61B209A7E005320B5 /* MoreVC.m in Sources */,
 				39CE4C971B1F431300DDAB01 /* Question.m in Sources */,
 				39CE4C7A1B1A4C9B00DDAB01 /* ChoiceQuestion.m in Sources */,
 				3919ABE01B0647F200336E77 /* main.m in Sources */,
