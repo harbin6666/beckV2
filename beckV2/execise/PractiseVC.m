@@ -319,10 +319,17 @@
     [self showLoading];
     
     NSMutableDictionary *param=@{}.mutableCopy;
-    param[@"titleId"]=[[Global sharedSingle] getUserWithkey:@"titleid"];
+    Question *q=[self.questionsAr objectAtIndex:self.currentQIndex];
+    //尼玛的又成了题目id，晕菜
+    if ([q isKindOfClass:[ChoiceQuestion class]]) {
+        ChoiceQuestion *p=(ChoiceQuestion*)q;
+        param[@"titleId"]=[p choice_id];
+    }else{
+        CompatyQuestion *c=(CompatyQuestion*)q;
+        param[@"titleId"]=c.compatibility_id;
+    }
     param[@"outlineId"]=self.outletid;
     param[@"loginName"]=[Global sharedSingle].loginName;
-    Question *q=[self.questionsAr objectAtIndex:self.currentQIndex];
     param[@"typeId"]=[q custom_id];
     param[@"subjectId"]=[q subject_id];
     
@@ -343,6 +350,10 @@
                 [[SQLManager sharedSingle] excuseSql:aResponseObject[@"sql"]];
                 
             }else if ([aResponseObject[@"errorcode"] intValue]==2){
+                [item setImage:[[UIImage imageNamed:@"favorate_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+                [item setSelectedImage:[[UIImage imageNamed:@"favorate_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+                [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
+                [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
                 [self showLoadingWithMessage:@"已经收藏" hideAfter:2];
             }else {
                 [OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil];
