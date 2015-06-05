@@ -11,6 +11,7 @@
 #import "Position.h"
 #import "TabbarVC.h"
 #import <QuartzCore/QuartzCore.h>
+
 @interface HomeVC ()<UITabBarDelegate>
 @property (weak, nonatomic) IBOutlet UITabBar *tabbar;
 @property(nonatomic)IBOutlet UIButton* titleBtn ;
@@ -22,15 +23,14 @@
 #define padding 10
 @implementation HomeVC
 
+
+
 -(void)viewWillAppear:(BOOL)animated{
     if (![[Global sharedSingle] logined]) {
         [self performSegueWithIdentifier:@"nologin" sender:self];
     }
     
     self.positionView.hidden=YES;
-    if ([Global sharedSingle].logined) {
-        [self updateDB];
-    }
     [self freshNav];
     self.titleBtn.titleLabel.numberOfLines=2;
     self.titleBtn.titleLabel.textAlignment=NSTextAlignmentCenter;
@@ -74,6 +74,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configTabbar];
+    if ([Global sharedSingle].logined) {
+        [self updateDB];
+    }
 
 
 }

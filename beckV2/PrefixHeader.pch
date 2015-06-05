@@ -19,10 +19,10 @@
 #define WEAK_SELF __weak typeof(self)weakSelf = self
 #define STRONG_SELF typeof(weakSelf)self = weakSelf
 
-#define kOpenQQAppKey       @"100344815"
+#define kOpenQQAppKey       @"1104313746"
 
-#define kSinaAppKey         @"238406070"
-#define kSinaRedirectURI    @"http://www.beck.com"
+#define kSinaAppKey         @"1145181677"
+#define kSinaRedirectURI    @"http://www.weibo.com"
 
 #define kRenRenAppId        @"473852"
 #define kRenRenAppKey       @"50047f5dfd9d468bbf58caf6580a8f07"

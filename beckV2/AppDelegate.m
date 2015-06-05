@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 #import "Position.h"
+#import "WeiboSDK.h"
+#import <TencentOpenAPI/TencentOAuth.h>
+//#import <RennSDK/RennSDK.h>
+
 @interface AppDelegate ()
 
 @end
@@ -25,6 +29,20 @@
         [[Global sharedSingle] setUserValue:p.titleName Key:@"titleName"];
     }
     
+
+    return YES;
+}
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    if ([TencentOAuth CanHandleOpenURL:url]) {
+        return [TencentOAuth HandleOpenURL:url];
+    }
+    else if ([sourceApplication isEqualToString:@"com.sina.weibo"]){
+       return [WeiboSDK handleOpenURL:url delegate:self.loginVC];
+    }
+//    else if ([sourceApplication isEqualToString:@"com.xiaonei.xiaonei"]) {
+//        return [RennClient handleOpenURL:url];
+//    }
 
     return YES;
 }

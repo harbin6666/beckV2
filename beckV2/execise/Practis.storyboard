@@ -10,7 +10,7 @@
         <scene sceneID="z7o-mu-zKH">
             <objects>
                 <tableViewController title="更多" id="PTZ-KV-p8g" customClass="MoreVC" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="wFP-wI-7Go">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="wFP-wI-7Go">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -30,7 +30,7 @@
                     <navigationItem key="navigationItem" title="更多" id="yWw-nV-b3X">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="ecb-hB-Nrc">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pze-9C-HwJ">
-                                <rect key="frame" x="16" y="7" width="30" height="32"/>
+                                <rect key="frame" x="16" y="6" width="20" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="backhome">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -43,11 +43,39 @@
                     </navigationItem>
                     <connections>
                         <outlet property="table" destination="wFP-wI-7Go" id="WPg-k7-mKf"/>
+                        <segue destination="gHY-L9-lsU" kind="show" identifier="updatedb" id="3ut-er-BmD"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WpE-A7-mw3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="278" y="-997"/>
+            <point key="canvasLocation" x="344.5" y="-992.5"/>
+        </scene>
+        <!--Updata DbVC-->
+        <scene sceneID="PiH-hG-PYg">
+            <objects>
+                <tableViewController id="gHY-L9-lsU" customClass="UpdataDbVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Biw-fF-vRf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Vgx-7x-ppi">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vgx-7x-ppi" id="jjJ-oP-BFw">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="gHY-L9-lsU" id="H7v-Oa-Jo7"/>
+                            <outlet property="delegate" destination="gHY-L9-lsU" id="rAb-uG-xn2"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TBN-p3-oxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="773.5" y="-992.5"/>
         </scene>
         <!--笔记-->
         <scene sceneID="Jjf-cN-diW">
@@ -73,7 +101,7 @@
                     <navigationItem key="navigationItem" title="笔记" id="9q2-ec-Q6n">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="sRP-dH-U9s">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nxt-ue-haz">
-                                <rect key="frame" x="16" y="7" width="30" height="32"/>
+                                <rect key="frame" x="16" y="6" width="20" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="backhome">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -158,7 +186,7 @@
                     <navigationItem key="navigationItem" title="考试" id="jUg-e5-oxj">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="UuW-Gi-OJx">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Dcj-ds-2ao">
-                                <rect key="frame" x="16" y="7" width="30" height="32"/>
+                                <rect key="frame" x="16" y="6" width="20" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="backhome">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -271,7 +299,7 @@
                     <navigationItem key="navigationItem" title="练习" id="tbr-qU-pVI">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="heS-in-Aty">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3Cw-PA-XFi">
-                                <rect key="frame" x="16" y="7" width="30" height="32"/>
+                                <rect key="frame" x="16" y="6" width="20" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="backhome">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -675,7 +703,7 @@
     </scenes>
     <resources>
         <image name="answer" width="24" height="21"/>
-        <image name="backhome" width="30" height="33"/>
+        <image name="backhome" width="20" height="22"/>
         <image name="biji" width="57" height="23"/>
         <image name="changeitem" width="42" height="42"/>
         <image name="cuo" width="8" height="6"/>

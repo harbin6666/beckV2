@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3915499D1B21F1F500BF5BBF /* UpdataDbVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3915499C1B21F1F500BF5BBF /* UpdataDbVC.m */; };
 		3919ABE01B0647F200336E77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3919ABDF1B0647F200336E77 /* main.m */; };
 		3919ABE31B0647F200336E77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3919ABE21B0647F200336E77 /* AppDelegate.m */; };
 		3919ABEC1B0647F200336E77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3919ABEA1B0647F200336E77 /* Main.storyboard */; };
@@ -80,6 +81,8 @@
 
 /* Begin PBXFileReference section */
 		08016BB26AE122BEB02EE394 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		3915499B1B21F1F500BF5BBF /* UpdataDbVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdataDbVC.h; sourceTree = "<group>"; };
+		3915499C1B21F1F500BF5BBF /* UpdataDbVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdataDbVC.m; sourceTree = "<group>"; };
 		3919ABDA1B0647F200336E77 /* beckV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = beckV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3919ABDE1B0647F200336E77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3919ABDF1B0647F200336E77 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -349,6 +352,8 @@
 			children = (
 				39CD45F41B209A7E005320B5 /* MoreVC.h */,
 				39CD45F51B209A7E005320B5 /* MoreVC.m */,
+				3915499B1B21F1F500BF5BBF /* UpdataDbVC.h */,
+				3915499C1B21F1F500BF5BBF /* UpdataDbVC.m */,
 			);
 			path = more;
 			sourceTree = "<group>";
@@ -661,6 +666,7 @@
 				39372E8D1B0A5EF600891F52 /* ConditionContainerVC.m in Sources */,
 				39CD45F61B209A7E005320B5 /* MoreVC.m in Sources */,
 				39CE4C971B1F431300DDAB01 /* Question.m in Sources */,
+				3915499D1B21F1F500BF5BBF /* UpdataDbVC.m in Sources */,
 				39CE4C7A1B1A4C9B00DDAB01 /* ChoiceQuestion.m in Sources */,
 				3919ABE01B0647F200336E77 /* main.m in Sources */,
 			);

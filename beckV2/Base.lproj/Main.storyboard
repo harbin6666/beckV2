@@ -557,6 +557,9 @@
                                         <state key="normal" backgroundImage="qq">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onPressedQQ:" destination="oSE-ah-dXk" eventType="touchUpInside" id="SEY-OH-JyZ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iK2-qd-8PI" userLabel="sina">
                                         <rect key="frame" x="129" y="48" width="63" height="63"/>
@@ -567,6 +570,9 @@
                                         <state key="normal" backgroundImage="sina">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onPressedSina:" destination="oSE-ah-dXk" eventType="touchUpInside" id="af6-f8-1Da"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PpW-Iu-h4E" userLabel="renren">
                                         <rect key="frame" x="242" y="48" width="63" height="63"/>

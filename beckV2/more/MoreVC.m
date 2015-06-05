@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.table.tableFooterView=[[UIView alloc] init];
 
     self.table.backgroundColor=[UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1];
     UILabel *lab=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
@@ -110,7 +111,31 @@
     return cell;
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section==0) {
+        if (indexPath.row==0) {
+            
+        }else if (indexPath.row==1){
+            [self performSegueWithIdentifier:@"updatedb" sender:self];
+        }else if (indexPath.row==2){
+            
+        }
+    }else if (indexPath.section==1){
+        if (indexPath.row==0) {
+            
+        }else if (indexPath.row==1){
+            
+        }else{
+            
+        }
+    }else{
+        if (indexPath.row==0) {
+            
+        }else{
+            
+        }
+    }
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
