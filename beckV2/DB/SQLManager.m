@@ -21,6 +21,27 @@
 @implementation SQLManager
 singleton_implementation(SQLManager);
 
+-(NSArray*)getCompatyItemByCompid:(NSString *)compatyid memo:(NSString*)memo{
+    __block NSMutableArray*result=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat:@"select * from compatibility_items where compatibility_id==%@ and memo =%@",compatyid,memo];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            CompatyItem *item=[CompatyItem new];
+            item.answerid=row[0];
+            item.item_number=row[1];
+            item.item_content=row[2];
+            item.is_img=row[3];
+            item.compatibiliy_id=row[4];
+            item.memo=row[5];
+            item.img_content=row[6];
+            [result addObject:item];
+        }
+    }];
+    return result;
+
+}
 -(NSArray*)getCompatyItemByCompid:(NSString*)compatyid{
     __block NSMutableArray*result=@[].mutableCopy;
     NSString *sql=[NSString stringWithFormat:@"select * from compatibility_items where compatibility_id==%@",compatyid];

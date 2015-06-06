@@ -25,6 +25,7 @@
 @property(nonatomic,weak)IBOutlet UITabBar* tabbar;
 @property(nonatomic,weak)UITableViewCell *answerCell;
 @property(nonatomic,strong)NSMutableArray *answerArray;
+@property(nonatomic,assign)BOOL showAnswer;
 @end
 
 @implementation PractiseVC
@@ -53,7 +54,7 @@
 }
 -(void)freshView{
     self.title=[NSString stringWithFormat:@"%zd/%zd",self.currentQIndex+1,self.questionsAr.count];
-    id p=[self.questionsAr objectAtIndex:self.currentQIndex];
+    Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
         if ([p isKindOfClass:[ChoiceQuestion class]]) {
             self.table.allowsSelection=YES;
             ChoiceQuestion* q=(ChoiceQuestion*)p;
@@ -70,16 +71,25 @@
             for (int i=0; i<self.compatibilyArray.count; i++) {
                 CompatyQuestion* q=self.compatibilyArray[i];
                 //选项
-                NSArray *comItem=[[SQLManager sharedSingle] getCompatyItemByCompid:q.compatibility_id];
-                q.items=comItem;
+                if (comp.custom_id.intValue==11) {
+                    NSArray *comItem=[[SQLManager sharedSingle] getCompatyItemByCompid:q.compatibility_id memo:@(i+1).stringValue];
+                    q.items=comItem;
+                }else{
+                    NSArray *comItem=[[SQLManager sharedSingle] getCompatyItemByCompid:q.compatibility_id];
+                    q.items=comItem;
+                }
             }
             CompatyQuestion* q=self.compatibilyArray[0];
             NSMutableString *str=comp.title.mutableCopy;
-            for (int i=0; i<q.items.count; i++) {
-                CompatyItem* it=q.items[i];
-                [str appendFormat:@"\n%@ %@",it.item_number,it.item_content];
+            if (comp.custom_id.intValue!=11) {
+                for (int i=0; i<q.items.count; i++) {
+                    CompatyItem* it=q.items[i];
+                    [str appendFormat:@"\n%@ %@",it.item_number,it.item_content];
+                }
+
             }
             self.testLab.text=str;
+            self.testLab.textAlignment=NSTextAlignmentLeft;
 
         }
     
@@ -243,8 +253,13 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([[self.questionsAr objectAtIndex:self.currentQIndex] isKindOfClass:[CompatyInfo class]]) {
+    Question *q=[self.questionsAr objectAtIndex:self.currentQIndex];
+    if ([[self.questionsAr objectAtIndex:self.currentQIndex] isKindOfClass:[CompatyInfo class]]) {       
         if (indexPath.row<self.compatibilyArray.count) {
+            if (q.custom_id.intValue==11) {
+                CompatyQuestion* comp=[self.compatibilyArray objectAtIndex:indexPath.row];
+                return  48+40*comp.items.count;
+            }
             return 88;
         }
     }
@@ -252,13 +267,17 @@
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell=nil;
-    id p=[self.questionsAr objectAtIndex:self.currentQIndex];
+    Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
     if ([p isKindOfClass:[ChoiceQuestion class]]) {
+        ChoiceQuestion* c=(ChoiceQuestion*)p;
         if (indexPath.row==self.choiceArray.count+1) {
             cell=[tableView dequeueReusableCellWithIdentifier:@"answercell" forIndexPath:indexPath];
             self.answerCell=cell;
-            cell.textLabel.text=[p choice_parse];
+            cell.textLabel.text=[c choice_parse];
             cell.textLabel.hidden=YES;
+            if (self.showAnswer) {
+                cell.textLabel.hidden=NO;
+            }
             cell.textLabel.backgroundColor=[UIColor orangeColor];
         }else if (indexPath.row==self.choiceArray.count) {
             cell=[tableView dequeueReusableCellWithIdentifier:@"notecell" forIndexPath:indexPath];
@@ -279,6 +298,10 @@
             }
             cell.textLabel.text=answer;
             cell.textLabel.hidden=YES;
+            if (self.showAnswer) {
+                cell.textLabel.hidden=NO;
+            }
+
             cell.textLabel.backgroundColor=[UIColor orangeColor];
 
         }else if (indexPath.row==self.compatibilyArray.count) {
@@ -287,9 +310,13 @@
            CompatyCell* cell=(CompatyCell* )[tableView dequeueReusableCellWithIdentifier:@"compatycell" forIndexPath:indexPath];
             cell.row=indexPath.row;
             CompatyQuestion *q=self.compatibilyArray[indexPath.row];
-            [cell updateCompatyCell:q selectedBlock:^(BOOL right,NSString *answer) {
-                
-            }];
+                [cell updateCompatyCell:q  customid:p.custom_id selectedBlock:^(BOOL right,CompatyItem *answer) {
+                    if(q.answer_id==answer.answerid){
+                        
+                    }
+                }];
+
+
             return cell;
         }
     }
@@ -369,7 +396,8 @@
 
 -(void)showAnswer:(UITabBarItem *)item{
     self.answerCell.textLabel.hidden=!self.answerCell.textLabel.hidden;
-    if (self.answerCell.textLabel.hidden) {
+    self.showAnswer=self.answerCell.textLabel.hidden;
+    if (self.showAnswer) {
         [item setImage:[[UIImage imageNamed:@"answer"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [item setSelectedImage:[[UIImage imageNamed:@"answer"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];

@@ -43,6 +43,7 @@ singleton_interface(SQLManager);
 
 -(NSArray*)getCompatyItemByCompid:(NSString*)compatyid;
 
+-(NSArray*)getCompatyItemByCompid:(NSString *)compatyid memo:(NSString*)memo;
 -(void)openDB;
--(void)creatDB;
+
 @end

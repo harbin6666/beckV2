@@ -12,6 +12,7 @@
 @property(nonatomic,copy)ItemSelectBlock block;
 @property(nonatomic,strong)CompatyQuestion *question;
 @property(nonatomic,strong)NSMutableArray *viewAr;
+@property(nonatomic,strong)NSMutableArray *answers;
 
 @end
 @implementation CompatyCell
@@ -21,7 +22,8 @@
     self.viewAr=@[].mutableCopy;
 }
 
--(void)updateCompatyCell:(CompatyQuestion*)compatyQ selectedBlock:(ItemSelectBlock)block{
+
+-(void)updateCompatyCell:(CompatyQuestion*)compatyQ customid:(NSString *)qCustomid selectedBlock:(ItemSelectBlock)block{
     
     for (UIView *v in self.viewAr) {
         [v removeFromSuperview];
@@ -31,14 +33,21 @@
     self.lab.text=[NSString stringWithFormat:@"%zd.%@",self.row+1,compatyQ.choice_content];
     self.lab.tag=10086;
     CGFloat width=self.contentView.frame.size.width/compatyQ.items.count;
+    if (qCustomid.intValue==11) {
+        width=self.contentView.frame.size.width;
+    }
     self.block=block;
     for (int i=0; i<compatyQ.items.count; i++) {
         CompatyItem *item=compatyQ.items[i];
         UIView *v=[[UIView alloc] initWithFrame:CGRectMake(width*i, 44, width, 40)];
+        if (qCustomid.intValue==11) {
+            v.frame=CGRectMake(0, 44+40*i, width, 40);
+        }
         v.tag=i+100;
         [self.contentView addSubview:v];
         
         UIImageView *sel=[[UIImageView alloc] initWithFrame:CGRectMake(0, 12, 19, 19)];
+
         sel.image=[UIImage imageNamed:@"radio"];
         sel.tag=99;
         [v addSubview:sel];
@@ -47,9 +56,19 @@
         UILabel *la=[[UILabel alloc] initWithFrame:CGRectMake(20, 5, 20, 30)];
         la.text=item.item_number;
         la.textAlignment=NSTextAlignmentCenter;
+
+        if (qCustomid.intValue==11) {
+            la.frame=CGRectMake(20, 5, width-42, 30);
+            la.text=[NSString stringWithFormat:@"%@ %@",item.item_number,item.item_content];
+            la.textAlignment=NSTextAlignmentLeft;
+        }
+
         [v addSubview:la];
 
         UIImageView *signal=[[UIImageView alloc] initWithFrame:CGRectMake(width-20-2, 12, 20, 20)];
+        if (qCustomid.intValue==11) {
+            signal.frame=CGRectMake(width-20-2, 12, 20, 20);
+        }
 
         signal.tag=88;
         [v addSubview:signal];
@@ -58,9 +77,6 @@
         UIButton *b=[UIButton buttonWithType:UIButtonTypeCustom];
         b.frame=v.bounds;
         b.tag=i+100;
-//        b.titleLabel.font=[UIFont systemFontOfSize:13];
-//        [b setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [b setTitle:item.item_content forState:UIControlStateNormal];
         b.titleLabel.numberOfLines=2;
         b.highlighted=NO;
         b.titleLabel.textAlignment=NSTextAlignmentLeft;
@@ -97,9 +113,9 @@
 
     CompatyItem *item=self.question.items[sender.tag-100];
     if ([item.answerid isEqualToString:self.question.answer_id]) {
-        self.block(YES,item.item_number);
+        self.block(YES,item);
     }else{
-        self.block(NO,item.item_number);
+        self.block(NO,item);
         v1.image=[UIImage imageNamed:@"choiceWrong"];
         v1.hidden=NO;
         for (int i=0;i<self.question.items.count;i++) {

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "CompatyQuestion.h"
-typedef  void(^ItemSelectBlock)(BOOL right,NSString *answer);
+typedef  void(^ItemSelectBlock)(BOOL right,CompatyItem *answer);
 @interface CompatyCell : UITableViewCell
 @property(nonatomic,weak)IBOutlet UILabel *lab;
 @property(nonatomic)NSInteger row;
--(void)updateCompatyCell:(CompatyQuestion*)compatyQ selectedBlock:(ItemSelectBlock)block;
+-(void)updateCompatyCell:(CompatyQuestion*)compatyQ customid:(NSString *)qCustomid selectedBlock:(ItemSelectBlock)block;
 @end
