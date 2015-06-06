@@ -57,7 +57,7 @@
     cell.textLabel.numberOfLines=2;
     NSInteger done=[[SQLManager sharedSingle] countDoneByOutlineid:ol.outlineid];
     NSInteger total=[[SQLManager sharedSingle] countDownByOutlineid:ol.outlineid];
-    cell.detailTextLabel.text=[NSString stringWithFormat:@"%ld/%ld",done,total];
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"%zd/%zd",done,total];
 
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     

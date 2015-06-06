@@ -80,6 +80,7 @@
     NSArray *ar=[[SQLManager sharedSingle] getOutLineByParentId:ot.outlineid];
     NSInteger total=0;
     for (Outline *subOt in ar) {
+        done+=[[SQLManager sharedSingle] countDoneByOutlineid:subOt.outlineid];
        total+=[[SQLManager sharedSingle] countDownByOutlineid:subOt.outlineid];
     }
     cell.detailTextLabel.text=[NSString stringWithFormat:@"%ld/%ld",done,total];
