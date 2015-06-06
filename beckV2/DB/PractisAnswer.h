@@ -14,5 +14,6 @@
 @property(nonatomic,strong)NSString *titleId;
 @property(nonatomic,strong)NSString *userAnswer;
 @property(nonatomic,strong)NSString *titleTypeId;
+@property(nonatomic,strong)NSMutableArray *multiAnswer;
 -(NSDictionary*)toJson;
 @end

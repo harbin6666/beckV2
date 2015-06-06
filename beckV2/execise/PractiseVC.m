@@ -25,6 +25,7 @@
 @property(nonatomic,weak)IBOutlet UITabBar* tabbar;
 @property(nonatomic,weak)UITableViewCell *answerCell;
 @property(nonatomic,strong)NSMutableArray *answerArray;
+@property(nonatomic,strong)PractisAnswer* answer;
 @property(nonatomic,assign)BOOL showAnswer;
 @end
 
@@ -55,10 +56,23 @@
 -(void)freshView{
     self.title=[NSString stringWithFormat:@"%zd/%zd",self.currentQIndex+1,self.questionsAr.count];
     Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
-        if ([p isKindOfClass:[ChoiceQuestion class]]) {
+
+    if (self.answer!=nil) {
+        [self addAnswer:self.answer];
+    }
+    self.answer=nil;
+    self.answer=[PractisAnswer new];
+
+
+    if ([p isKindOfClass:[ChoiceQuestion class]]) {
             self.table.allowsSelection=YES;
             ChoiceQuestion* q=(ChoiceQuestion*)p;
             self.testLab.text= q.choice_content;
+            if (q.custom_id.intValue==12) {
+                self.table.allowsMultipleSelection=YES;
+            }else{
+                self.table.allowsMultipleSelection=NO;
+            }
             q.choiceItems=[[SQLManager sharedSingle] getChoiceItemByChoiceId:q.choice_id];
             self.choiceArray=[[SQLManager sharedSingle] getChoiceItemByChoiceId:q.choice_id];
 
@@ -159,7 +173,8 @@
             break;
         }
     }
-    if (dest!=nil) {
+    Question*q=[self.questionsAr objectAtIndex:self.currentQIndex];
+    if (dest!=nil&&q.custom_id.integerValue!=12) {
         [self.answerArray removeObject:dest];
     }
     [self.answerArray addObject:pAnswer];
@@ -231,9 +246,9 @@
                         [[SQLManager sharedSingle] excuseSql:sqlAr[i]];
                     }
                 }
-                [OTSAlertView alertWithMessage:@"提交成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+                [[OTSAlertView alertWithMessage:@"提交成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
                     [self.navigationController popViewControllerAnimated:YES];
-                }];
+                }] show];
             }
         }
         else {
@@ -283,6 +298,9 @@
             cell=[tableView dequeueReusableCellWithIdentifier:@"notecell" forIndexPath:indexPath];
         }else{
            ChoiceCell* cell=(ChoiceCell*)[tableView dequeueReusableCellWithIdentifier:@"choicecell" forIndexPath:indexPath];
+            cell.mark.image=nil;
+            cell.contentView.layer.borderColor=[UIColor clearColor].CGColor;
+
             [cell updateWithChoice:self.choiceArray[indexPath.row]];
             return cell;
 
@@ -327,12 +345,11 @@
     if ([p isKindOfClass:[ChoiceQuestion class]]&&indexPath.row<self.choiceArray.count) {
         ChoiceQuestion *q=(ChoiceQuestion*)p;
         ChoiceItem *item=q.choiceItems[indexPath.row];
-        PractisAnswer *answer=[PractisAnswer new];
-        answer.priority=@(self.currentQIndex+1).stringValue;
+        self.answer.priority=@(self.currentQIndex+1).stringValue;
         
-        //答错
+        //显示答案
         if (item.is_answer.integerValue==0) {
-            answer.isRight=@"false";
+            self.answer.isRight=@"false";
             for (int i=0;i<q.choiceItems.count;i++) {
                 ChoiceItem *item=q.choiceItems[i];
                 ChoiceCell *cell=(ChoiceCell*)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:indexPath.section]];
@@ -348,7 +365,7 @@
             ChoiceCell *cell=(ChoiceCell*)[tableView cellForRowAtIndexPath:indexPath];
             cell.mark.image=[UIImage imageNamed:@"choiceWrong"];
         }else {
-            answer.isRight=@"true";
+            self.answer.isRight=@"true";
             for (int i=0;i<q.choiceItems.count;i++) {
                 ChoiceCell *cell=(ChoiceCell*)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:indexPath.section]];
                 cell.mark.image=nil;
@@ -356,16 +373,41 @@
 
             }
         }
-        
-        answer.titleId=q.choice_id;
-        answer.titleTypeId=q.custom_id;
-        answer.userAnswer=item.item_number;
-        
-        [self addAnswer:answer];
+        self.answer.titleId=q.choice_id;
+        self.answer.titleTypeId=q.custom_id;
+
+        if ([p custom_id].intValue!=12) {
+            self.answer.userAnswer=item.item_number;
+            
+        }else{
+            [self addMultiAnswer:item.item_number];
+        }
     }
     
 }
 
+//多选
+-(void)addMultiAnswer:(NSString *)item_mun{
+    NSString *dest=nil;
+    for (NSString *num in self.answer.multiAnswer) {
+        if ([num isEqualToString:item_mun]) {
+            dest=num;
+            break;
+        }
+    }
+    if (dest!=nil) {
+        [self.answer.multiAnswer removeObject:dest];
+    }
+    [self.answer.multiAnswer addObject:item_mun];
+    ChoiceQuestion * c=[self.questionsAr objectAtIndex:self.currentQIndex];
+    //只要有一个候选答案不对，题目就错了
+    for (NSString *str in self.answer.multiAnswer) {
+        if (![c.answer containsString:str]) {
+            self.answer.isRight=@"false";
+            break;
+        }
+    }
+}
 
 
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
@@ -391,7 +433,47 @@
 }
 
 -(IBAction)notePress{
-    
+    [[OTSAlertView alertWithTitle:@"添加笔记" message:nil leftBtn:@"取消" rightBtn:@"添加" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+        if (buttonIndex==1) {
+            UITextField *tf=[alertView textFieldAtIndex:0];
+            if (tf.text.length==0) {
+                return ;
+            }
+            NSMutableDictionary *json = @{}.mutableCopy;
+
+            Question *q=[self.questionsAr objectAtIndex:self.currentQIndex];
+            //尼玛的又成了题目id，晕菜
+            if ([q isKindOfClass:[ChoiceQuestion class]]) {
+                ChoiceQuestion *p=(ChoiceQuestion*)q;
+                json[@"titleId"]=[p choice_id];
+            }else{
+                CompatyQuestion *c=(CompatyQuestion*)q;
+                json[@"titleId"]=c.compatibility_id;
+            }
+            json[@"typeId"]=[q custom_id];
+            json[@"loginName"] = [Global sharedSingle].loginName;
+            json[@"subjectId"] = [[self.questionsAr objectAtIndex:self.currentQIndex] subject_id];
+            json[@"outlineId"] = self.outletid;
+            json[@"Note"]=tf.text;
+            json[@"Type"]=@0;//0：添加 1：更新
+            WEAK_SELF;
+            [self getValueWithBeckUrl:@"/front/userNoteAct.htm" params:@{@"token":@"addUpdate"} CompleteBlock:^(id aResponseObject, NSError *anError) {
+                STRONG_SELF;
+                if (anError==nil) {
+                    if ([aResponseObject[@"errorcode"] integerValue]==0) {
+                        [self showLoadingWithMessage:@"添加成功" hideAfter:2];
+
+                    }else{
+                        [self showLoadingWithMessage:@"添加失败" hideAfter:2];
+
+                    }
+                }else{
+                    [self showLoadingWithMessage:@"添加失败" hideAfter:2];
+
+                }
+            }];
+        }
+    }] show];
 }
 
 -(void)showAnswer:(UITabBarItem *)item{
@@ -452,10 +534,10 @@
                 [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
                 [self showLoadingWithMessage:@"已经收藏" hideAfter:2];
             }else {
-                [OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil];
+                [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
             }
         }else{
-            [OTSAlertView alertWithMessage:@"收藏失败" andCompleteBlock:nil];
+            [[OTSAlertView alertWithMessage:@"收藏失败" andCompleteBlock:nil] show];
         }
         
     }];
