@@ -53,7 +53,7 @@
     NSString *path = [[NSBundle mainBundle]pathForResource:[[name lastPathComponent]stringByDeletingPathExtension] ofType:[name pathExtension]];
     
     NSString *dest=[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/local"] stringByAppendingPathExtension:@"db"];
-    
+    NSLog(@"%@",dest);
     if (![[NSFileManager defaultManager]fileExistsAtPath:dest]) {
         NSError *error=nil;
         if ([[NSFileManager defaultManager] copyItemAtPath:path toPath:dest error:&error]) {

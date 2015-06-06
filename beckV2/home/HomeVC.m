@@ -142,7 +142,9 @@
     [[Global sharedSingle] setUserValue:p.titleId Key:@"titleid"];
     [[Global sharedSingle] setUserValue:p.titleName Key:@"titleName"];
     for (UIButton *b in self.positionView.subviews) {
-        b.selected=NO;
+        if ([b isKindOfClass:[UIButton class]]) {
+            b.selected=NO;
+        }
     }
     UIButton *selB=(UIButton *)[self.positionView viewWithTag:sender.tag];
     selB.selected=YES;

@@ -72,8 +72,16 @@
     NSArray *temp=self.dataAr[indexPath.section];
     Outline *ot=temp[indexPath.row];
     cell.textLabel.text=ot.courseName;
-    NSInteger done=[[SQLManager sharedSingle] countDoneByOutlineid:ot.outlineid];
-    NSInteger total=[[SQLManager sharedSingle] countDownByOutlineid:ot.outlineid];
+//    NSInteger done=[[SQLManager sharedSingle] countDoneByOutlineid:ot.outlineid];
+//    NSInteger total=[[SQLManager sharedSingle] countDownByOutlineid:ot.outlineid];
+
+    
+    NSInteger done=0;
+    NSArray *ar=[[SQLManager sharedSingle] getOutLineByParentId:ot.outlineid];
+    NSInteger total=0;
+    for (Outline *subOt in ar) {
+       total+=[[SQLManager sharedSingle] countDownByOutlineid:subOt.outlineid];
+    }
     cell.detailTextLabel.text=[NSString stringWithFormat:@"%ld/%ld",done,total];
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     return cell;
