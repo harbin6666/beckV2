@@ -97,9 +97,9 @@
 
     CompatyItem *item=self.question.items[sender.tag-100];
     if ([item.answerid isEqualToString:self.question.answer_id]) {
-        self.block(YES);
+        self.block(YES,item.item_number);
     }else{
-        self.block(NO);
+        self.block(NO,item.item_number);
         v1.image=[UIImage imageNamed:@"choiceWrong"];
         v1.hidden=NO;
         for (int i=0;i<self.question.items.count;i++) {

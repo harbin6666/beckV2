@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ChoiceItem.h"
 
-typedef  void(^ItemSelectBlock)(BOOL right);
+
 
 @interface ChoiceCell : UITableViewCell
 @property(nonatomic,weak)IBOutlet UILabel *lab;

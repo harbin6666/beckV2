@@ -12,6 +12,8 @@
 #import "ChoiceCell.h"
 #import "CompatyCell.h"
 #import "QCollectionVC.h"
+
+#import "PractisAnswer.h"
 @interface PractiseVC ()<UITabBarDelegate,UITableViewDataSource,UITableViewDelegate,QCollectionVCDelegate>
 @property(nonatomic,strong)NSArray *questionsAr;
 @property(nonatomic,weak) IBOutlet UILabel *testLab;
@@ -22,6 +24,7 @@
 @property(nonatomic,weak) IBOutlet UIButton *questionBtn;
 @property(nonatomic,weak)IBOutlet UITabBar* tabbar;
 @property(nonatomic,weak)UITableViewCell *answerCell;
+@property(nonatomic,strong)NSMutableArray *answerArray;
 @end
 
 @implementation PractiseVC
@@ -39,7 +42,7 @@
     
     [self setNavigationBarButtonName:@"提交" width:40 isLeft:NO];
     [self setNavigationBarButtonName:@"返回" width:40 isLeft:YES];
-
+    self.answerArray=[[NSMutableArray alloc] init];
     self.questionsAr=[[SQLManager sharedSingle] getQuestionByOutlineId:self.outletid];
     self.currentQIndex=0;
     [self freshView];
@@ -137,25 +140,63 @@
     [self.view bringSubviewToFront:self.questionBtn];
 }
 
+
+-(void)addAnswer:(PractisAnswer*)pAnswer{
+    PractisAnswer *dest=nil;
+    for (PractisAnswer*a in self.answerArray) {
+        if (a.titleId.integerValue==pAnswer.titleId.integerValue&&a.titleTypeId.integerValue==pAnswer.titleTypeId.integerValue) {
+            dest=a;
+            break;
+        }
+    }
+    if (dest!=nil) {
+        [self.answerArray removeObject:dest];
+    }
+    [self.answerArray addObject:pAnswer];
+    
+}
+
+-(NSDictionary *)formatSubmitArg{
+    Question* q=[self.questionsAr objectAtIndex:self.currentQIndex];
+    
+    NSMutableDictionary *json = @{}.mutableCopy;
+    json[@"loginName"] = [Global sharedSingle].loginName;
+    json[@"subjectId"] = q.subject_id;
+    json[@"outlineId"] = self.outletid;
+    json[@"amount"] = @(self.answerArray.count).stringValue;
+
+    return [self addAccurateRateList:json];
+//    json[@"accurateRate"] = [self getAccurateRate];
+//    json[@"list"] = self.answerArray;
+//    return json;
+}
+
+-(NSDictionary*)addAccurateRateList:(NSMutableDictionary *)olderDic{
+    
+    NSInteger count=0;
+    NSMutableArray *ar=[NSMutableArray array];
+    for (PractisAnswer*an in self.answerArray) {
+        if ([an.isRight isEqualToString:@"true"]) {
+            count++;
+        }
+        [ar addObject:[an toJson]];
+    }
+    float rate=(float)count/self.answerArray.count;
+    olderDic[@"accurateRate"]=[NSString stringWithFormat:@"%.2f",rate];
+    olderDic[@"list"]=ar;
+    return olderDic;
+    
+}
+
 -(void)rightBtnClick:(UIButton *)sender{
     [self showLoading];
     NSMutableDictionary *params = @{}.mutableCopy;
     params[@"token"] = @"add";
     
 //    PractiseVO *vo = [PractiseVO createWithItemVOs:self.items];
-    Question* q=[self.questionsAr objectAtIndex:self.currentQIndex];
-
-    NSMutableDictionary *json = @{}.mutableCopy;
-    json[@"loginName"] = [Global sharedSingle].loginName;
-    json[@"subjectId"] = q.subject_id;
-    json[@"outlineId"] = self.outletid;
-//    json[@"amount"] = vo.getAmount;
-//    json[@"accurateRate"] = vo.getAccurateRate;
-//    json[@"list"] = vo.getAnswerList;
-//    json[@"score"] = vo.getScore;
     
     NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:json options:kNilOptions error:&error];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[self formatSubmitArg] options:kNilOptions error:&error];
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     
     params[@"json"] = jsonString;
@@ -167,11 +208,22 @@
         [self hideLoading];
         if (!anError) {
             NSNumber *errorcode = aResponseObject[@"errorcode"];
-            if (errorcode.boolValue) {
+            if (errorcode.integerValue!=0) {
                 [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
             }
             else {
-                [self.navigationController popViewControllerAnimated:YES];
+                if (aResponseObject[@"sql"]) {
+                    [[SQLManager sharedSingle] excuseSql:aResponseObject[@"sql"]];
+                }
+                NSArray *sqlAr=aResponseObject[@"list"];
+                if (sqlAr.count>0) {
+                    for (int i=0; i<sqlAr.count; i++) {
+                        [[SQLManager sharedSingle] excuseSql:sqlAr[i]];
+                    }
+                }
+                [OTSAlertView alertWithMessage:@"提交成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
             }
         }
         else {
@@ -235,7 +287,7 @@
            CompatyCell* cell=(CompatyCell* )[tableView dequeueReusableCellWithIdentifier:@"compatycell" forIndexPath:indexPath];
             cell.row=indexPath.row;
             CompatyQuestion *q=self.compatibilyArray[indexPath.row];
-            [cell updateCompatyCell:q selectedBlock:^(BOOL right) {
+            [cell updateCompatyCell:q selectedBlock:^(BOOL right,NSString *answer) {
                 
             }];
             return cell;
@@ -248,7 +300,12 @@
     if ([p isKindOfClass:[ChoiceQuestion class]]&&indexPath.row<self.choiceArray.count) {
         ChoiceQuestion *q=(ChoiceQuestion*)p;
         ChoiceItem *item=q.choiceItems[indexPath.row];
+        PractisAnswer *answer=[PractisAnswer new];
+        answer.priority=@(self.currentQIndex+1).stringValue;
+        
+        //答错
         if (item.is_answer.integerValue==0) {
+            answer.isRight=@"false";
             for (int i=0;i<q.choiceItems.count;i++) {
                 ChoiceItem *item=q.choiceItems[i];
                 ChoiceCell *cell=(ChoiceCell*)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:indexPath.section]];
@@ -264,6 +321,7 @@
             ChoiceCell *cell=(ChoiceCell*)[tableView cellForRowAtIndexPath:indexPath];
             cell.mark.image=[UIImage imageNamed:@"choiceWrong"];
         }else {
+            answer.isRight=@"true";
             for (int i=0;i<q.choiceItems.count;i++) {
                 ChoiceCell *cell=(ChoiceCell*)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:indexPath.section]];
                 cell.mark.image=nil;
@@ -271,8 +329,18 @@
 
             }
         }
+        
+        answer.titleId=q.choice_id;
+        answer.titleTypeId=q.custom_id;
+        answer.userAnswer=item.item_number;
+        
+        [self addAnswer:answer];
     }
+    
 }
+
+
+
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
     switch (item.tag) {
         case 0:

@@ -29,7 +29,10 @@
     if (![[Global sharedSingle] logined]) {
         [self performSegueWithIdentifier:@"nologin" sender:self];
     }
-    
+    if ([Global sharedSingle].logined) {
+        [self updateDB];
+    }
+
     self.positionView.hidden=YES;
     [self freshNav];
     self.titleBtn.titleLabel.numberOfLines=2;
@@ -74,9 +77,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configTabbar];
-    if ([Global sharedSingle].logined) {
-        [self updateDB];
-    }
 
 
 }

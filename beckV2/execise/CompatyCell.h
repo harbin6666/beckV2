@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CompatyQuestion.h"
-typedef  void(^ItemSelectBlock)(BOOL right);
+typedef  void(^ItemSelectBlock)(BOOL right,NSString *answer);
 @interface CompatyCell : UITableViewCell
 @property(nonatomic,weak)IBOutlet UILabel *lab;
 @property(nonatomic)NSInteger row;
