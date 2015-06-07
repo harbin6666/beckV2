@@ -21,6 +21,8 @@
 		39372E871B0A559400891F52 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39372E861B0A559400891F52 /* HomeVC.m */; };
 		39372E8D1B0A5EF600891F52 /* ConditionContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39372E8C1B0A5EF600891F52 /* ConditionContainerVC.m */; };
 		394C4A0F1B233C390002838B /* PractisAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A0E1B233C390002838B /* PractisAnswer.m */; };
+		394C4A121B24539F0002838B /* ExamPaper.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A111B24539F0002838B /* ExamPaper.m */; };
+		394C4A1B1B24B4D60002838B /* ExamScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A1A1B24B4D60002838B /* ExamScreenVC.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -107,6 +109,10 @@
 		39372E8C1B0A5EF600891F52 /* ConditionContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionContainerVC.m; sourceTree = "<group>"; };
 		394C4A0D1B233C390002838B /* PractisAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PractisAnswer.h; sourceTree = "<group>"; };
 		394C4A0E1B233C390002838B /* PractisAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PractisAnswer.m; sourceTree = "<group>"; };
+		394C4A101B24539F0002838B /* ExamPaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamPaper.h; sourceTree = "<group>"; };
+		394C4A111B24539F0002838B /* ExamPaper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamPaper.m; sourceTree = "<group>"; };
+		394C4A191B24B4D60002838B /* ExamScreenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamScreenVC.h; sourceTree = "<group>"; };
+		394C4A1A1B24B4D60002838B /* ExamScreenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamScreenVC.m; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -316,6 +322,8 @@
 				39CE4C7C1B1A4CAC00DDAB01 /* CompatyQuestion.m */,
 				394C4A0D1B233C390002838B /* PractisAnswer.h */,
 				394C4A0E1B233C390002838B /* PractisAnswer.m */,
+				394C4A101B24539F0002838B /* ExamPaper.h */,
+				394C4A111B24539F0002838B /* ExamPaper.m */,
 				39CE4C5C1B195A2800DDAB01 /* SQLManager.h */,
 				39CE4C5D1B195A2800DDAB01 /* SQLManager.m */,
 			);
@@ -415,6 +423,8 @@
 			children = (
 				39CD45FA1B209B19005320B5 /* ExamHomeVC.h */,
 				39CD45FB1B209B19005320B5 /* ExamHomeVC.m */,
+				394C4A191B24B4D60002838B /* ExamScreenVC.h */,
+				394C4A1A1B24B4D60002838B /* ExamScreenVC.m */,
 			);
 			path = exam;
 			sourceTree = "<group>";
@@ -644,6 +654,7 @@
 				39D780C21B136E93009F5C8E /* Global.m in Sources */,
 				39CE4C711B19BE2A00DDAB01 /* OutlineCell.m in Sources */,
 				39CE4C741B1A245400DDAB01 /* TabbarVC.m in Sources */,
+				394C4A1B1B24B4D60002838B /* ExamScreenVC.m in Sources */,
 				3919ABE31B0647F200336E77 /* AppDelegate.m in Sources */,
 				39D4BC271B0B6E4A00F5FABF /* LoginVC.m in Sources */,
 				39CE4C7D1B1A4CAC00DDAB01 /* CompatyQuestion.m in Sources */,
@@ -671,6 +682,7 @@
 				39D780C81B138533009F5C8E /* HonorTVCell.m in Sources */,
 				39372E8D1B0A5EF600891F52 /* ConditionContainerVC.m in Sources */,
 				39CD45F61B209A7E005320B5 /* MoreVC.m in Sources */,
+				394C4A121B24539F0002838B /* ExamPaper.m in Sources */,
 				39CE4C971B1F431300DDAB01 /* Question.m in Sources */,
 				3915499D1B21F1F500BF5BBF /* UpdataDbVC.m in Sources */,
 				39CE4C7A1B1A4C9B00DDAB01 /* ChoiceQuestion.m in Sources */,

@@ -14,12 +14,107 @@
 #import "ChoiceQuestion.h"
 #import "CompatyQuestion.h"
 #import "ChoiceItem.h"
+#import "ExamPaper.h"
 
 @interface SQLManager()
 
 @end
 @implementation SQLManager
 singleton_implementation(SQLManager);
+
+-(NSArray*)getExamPaperContentByPaperid:(NSString*)paperid{
+    
+    
+    __block NSMutableArray*result=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat:@"select * from exam_paper_content where paper_id==%@",paperid];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            ExamPaper_Content *paper=[ExamPaper_Content new];
+            paper.content_id=row[0];
+            paper.paper_id=row[2];
+            paper.comp_id=row[1];
+            paper.paper_id=row[3];
+            paper.item_id=row[4];
+            paper.priority=row[5];
+            paper.score=row[6];
+            paper.custom_id=row[7];
+            paper.descript=row[8];
+            paper.memo=row[9];
+            [result addObject:paper];
+        }
+    }];
+    return result;
+}
+
+-(NSArray*)getExamPaperCompositonByPaperId:(NSString*)paperid{
+    __block NSMutableArray*result=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat:@"select * from exam_paper_composition where paper_id==%@",paperid];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            ExamPaperComposition *paper=[ExamPaperComposition new];
+            paper.comp_id=row[0];
+            paper.paper_id=row[1];
+            paper.lib_id=row[2];
+            paper.title=row[3];
+            paper.score=row[4];
+            paper.count=row[5];
+            paper.priority=row[6];
+            paper.content=row[7];
+            paper.custom_id=row[8];
+            paper.descript=row[9];
+            paper.memo=row[10];
+            [result addObject:paper];
+        }
+    }];
+    return result;
+}
+
+-(NSArray*)getExamPaperType:(NSString*)type screen:(NSString *)screenid{
+    __block NSMutableArray*result=@[].mutableCopy;
+//    NSString *subjectid=[self getSubjectidByTitleId:[[Global sharedSingle] getUserWithkey:@"titleid"]];
+    
+    
+    NSString *sql=[NSString stringWithFormat: @"select * from exam_paper where title_id==%@ and type==%@ and screening==%@",[[Global sharedSingle] getUserWithkey:@"titleid"],type,screenid ];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            ExamPaper *paper=[ExamPaper new];
+            paper.paper_id=row[0];
+            paper.paper_name=row[1];
+            paper.publish_type=row[2];
+            paper.outline_id=row[3];
+            paper.type=row[4];
+            paper.fullmark=row[5];
+            paper.total_amount=row[6];
+            paper.answer_time=row[7];
+            paper.subject_id=row[8];
+            paper.lib_id=row[9];
+            paper.year=row[10];
+            paper.product_id=row[11];
+            paper.creator_id=row[12];
+            paper.create_time=row[13];
+            paper.is_pbulish=row[14];
+            paper.price=row[15];
+            paper.points=row[16];
+            paper.is_display=row[17];
+            paper.descript=row[18];
+            paper.memo=row[19];
+            paper.title_id=row[20];
+            paper.screening=row[21];
+            [result addObject:paper];
+        }
+    }];
+    return result;
+
+    
+}
+
+
 
 -(NSArray*)getCompatyItemByCompid:(NSString *)compatyid memo:(NSString*)memo{
     __block NSMutableArray*result=@[].mutableCopy;
@@ -273,6 +368,20 @@ singleton_implementation(SQLManager);
         }
     }];
     return array;
+}
+
+-(NSString*)getSubjectidByTitleId:(NSArray*)titleid{
+    __block NSString *subjectid=nil;
+    NSString *sql=[NSString stringWithFormat:@"select subject_id from subject_position_relation where title_id==%@",titleid];
+    [[AFSQLManager sharedManager]performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }
+        else {
+            subjectid=[row firstObject];
+        }
+    }];
+    return subjectid;
 }
 -(NSInteger)getExamDate:(NSString*)titleid{
 

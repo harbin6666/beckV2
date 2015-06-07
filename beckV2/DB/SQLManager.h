@@ -23,6 +23,8 @@ singleton_interface(SQLManager);
 //用postion id查科目subjcetid
 -(NSArray*)getSubjectByid:(NSArray *)subjectIdList;
 
+-(NSString*)getSubjectidByTitleId:(NSArray*)titleid;
+
 //用科目 subjectid查 章节outlineid
 -(NSArray*)getoutLineByid:(NSString *)subjectid;
 
@@ -44,6 +46,12 @@ singleton_interface(SQLManager);
 -(NSArray*)getCompatyItemByCompid:(NSString*)compatyid;
 
 -(NSArray*)getCompatyItemByCompid:(NSString *)compatyid memo:(NSString*)memo;
+
+-(NSArray*)getExamPaperType:(NSString*)type screen:(NSString *)screenid;
+
+-(NSArray*)getExamPaperCompositonByPaperId:(NSString*)paperid;
+
+-(NSArray*)getExamPaperContentByPaperid:(NSString*)paperid;
 -(void)openDB;
 
 @end
