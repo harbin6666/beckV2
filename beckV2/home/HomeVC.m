@@ -148,13 +148,21 @@
     }
     UIButton *selB=(UIButton *)[self.positionView viewWithTag:sender.tag];
     selB.selected=YES;
-
-    [self freshNav];
     [self showPositionView:nil];
+    [self freshNav];
 }
 
 -(IBAction)showPositionView:(id)sender{
     self.positionView.hidden=!self.positionView.hidden;
+    [self.view bringSubviewToFront:self.positionView];
+    NSMutableString *str=[NSMutableString stringWithString:[[Global sharedSingle] getUserWithkey:@"titleName"]];
+    if (self.positionView.hidden) {
+        [str appendString:@" ▼"];
+    }else{
+        [str appendString:@" ▲"];
+    }
+    [self.titleBtn setTitle:str forState:UIControlStateNormal];
+
 }
 //-(void)replacePickerContainerViewTopConstraintWithConstant:(CGFloat)constant
 //{
