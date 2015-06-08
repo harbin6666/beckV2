@@ -8,8 +8,11 @@
 
 #import "ExamScreenVC.h"
 #import "ExamPaper.h"
+#import "Question.h"
+#import "ExamVC.h"
 @interface ExamScreenVC ()
-
+@property(nonatomic,strong)NSMutableArray *qAr;
+@property(nonatomic,strong)ExamPaper*currentPaper;
 @end
 
 @implementation ExamScreenVC
@@ -52,20 +55,57 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-   ExamPaper*p=self.papers[indexPath.row];
+   self.currentPaper=self.papers[indexPath.row];
+    NSArray *examcompose=[[SQLManager sharedSingle] getExamPaperCompositonByPaperId:self.currentPaper.paper_id];
+    NSMutableArray *quest=[[NSMutableArray alloc] init];
+    for (int i=0; i<examcompose.count; i++) {
+        ExamPaperComposition*comp=examcompose[i];
+        NSArray* questions=[[SQLManager sharedSingle] getExamPaperContentByPaperid:comp.paper_id compid:comp.comp_id];
+        [quest addObjectsFromArray:questions];
+    }
     
+    self.qAr=[[NSMutableArray alloc] init];
+    for (int i=0; i<quest.count; i++) {
+        ExamPaper_Content *con=quest[i];
+        Question* q=[[SQLManager sharedSingle] getExamQuestionByItemId:con.item_id customid:con.custom_id];
+        [self.qAr addObject:q];
+    }
+    ExamVC* vc=[[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"exam"];
+    vc.questionsAr=self.qAr;
+    vc.examComp=self.currentPaper;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
 
- 
+
 /*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"toexamvc"]) {
+        
+        NSArray *examcompose=[[SQLManager sharedSingle] getExamPaperCompositonByPaperId:self.currentPaper.paper_id];
+        NSMutableArray *quest=[[NSMutableArray alloc] init];
+        for (int i=0; i<examcompose.count; i++) {
+            ExamPaperComposition*comp=examcompose[i];
+            NSArray* questions=[[SQLManager sharedSingle] getExamPaperContentByPaperid:comp.paper_id compid:comp.comp_id];
+            [quest addObjectsFromArray:questions];
+        }
+        
+        self.qAr=[[NSMutableArray alloc] init];
+        for (int i=0; i<quest.count; i++) {
+            ExamPaper_Content *con=quest[i];
+            Question* q=[[SQLManager sharedSingle] getExamQuestionByItemId:con.item_id customid:con.custom_id];
+            [self.qAr addObject:q];
+        }
+
+        
+        ExamVC*dest=segue.destinationViewController;
+        dest.questionsAr=self.qAr;
+        dest.examTime=self.currentPaper.answer_time.integerValue;
+    }
 }
 */
 

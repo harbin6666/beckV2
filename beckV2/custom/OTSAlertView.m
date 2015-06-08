@@ -45,7 +45,6 @@
     }
     
     OTSAlertView *alertView = [[self alloc] initWithTitle:aTitle message:aMessage delegate:nil cancelButtonTitle:leftBtnName otherButtonTitles:nil];
-    alertView.alertViewStyle=UIAlertViewStylePlainTextInput;
     alertView.delegate = alertView;
     
     if (rightBtnName) {

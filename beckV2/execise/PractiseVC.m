@@ -433,7 +433,7 @@
 }
 
 -(IBAction)notePress{
-    [[OTSAlertView alertWithTitle:@"添加笔记" message:nil leftBtn:@"取消" rightBtn:@"添加" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+    OTSAlertView*alert=[OTSAlertView alertWithTitle:@"添加笔记" message:nil leftBtn:@"取消" rightBtn:@"添加" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex==1) {
             UITextField *tf=[alertView textFieldAtIndex:0];
             if (tf.text.length==0) {
@@ -457,7 +457,7 @@
             json[@"Note"]=tf.text;
             json[@"Type"]=@0;//0：添加 1：更新
             WEAK_SELF;
-            [self getValueWithBeckUrl:@"/front/userNoteAct.htm" params:@{@"token":@"addUpdate"} CompleteBlock:^(id aResponseObject, NSError *anError) {
+            [self getValueWithBeckUrl:@"/front/userNoteAct.htm" params:@{@"token":@"addUpdate",@"json":json} CompleteBlock:^(id aResponseObject, NSError *anError) {
                 STRONG_SELF;
                 if (anError==nil) {
                     if ([aResponseObject[@"errorcode"] integerValue]==0) {
@@ -473,7 +473,9 @@
                 }
             }];
         }
-    }] show];
+    }] ;
+    alert.alertViewStyle=UIAlertViewStylePlainTextInput;
+    [alert show];
 }
 
 -(void)showAnswer:(UITabBarItem *)item{

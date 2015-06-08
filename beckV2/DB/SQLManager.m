@@ -22,11 +22,71 @@
 @implementation SQLManager
 singleton_implementation(SQLManager);
 
--(NSArray*)getExamPaperContentByPaperid:(NSString*)paperid{
+-(id)getExamQuestionByItemId:(NSString*)qid customid:(NSString*)customid{
+    __block NSMutableArray *ar=[NSMutableArray array];
+
+    //到配伍题表找
+    if (customid.integerValue==10||customid.integerValue==11) {
+        NSString *compatibility=[NSString stringWithFormat:@"select * from compatibility_info where id==%@",qid];
+        [[AFSQLManager sharedManager] performQuery:compatibility withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+            if (finished) {
+                
+            }else{
+                CompatyInfo *q=[CompatyInfo new];
+                q.info_id=row[0];
+                q.outlet_id=row[1];
+                q.lib_id=row[2];
+                q.subject_id=row[3];
+                q.custom_id=row[4];
+                q.source=row[5];
+                q.product_id=row[6];
+                q.hardness=row[7];
+                q.title=row[8];
+                q.is_valid=row[9];
+                q.memo=row[10];
+                q.is_img=row[11];
+                q.img_content=row[12];
+                [ar addObject:q];
+            }
+        }];
+
+    }else{
+        NSString *choice=[NSString stringWithFormat:@"select * from choice_questions where choice_id==%@",qid];
+        [[AFSQLManager sharedManager] performQuery:choice withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+            if (finished) {
+                
+            }else{
+                ChoiceQuestion *q=[ChoiceQuestion new];
+                q.choice_id=row[0];
+                q.custom_id=row[1];
+                q.source=row[2];
+                q.outlet_id=row[3];
+                q.subject_id=row[4];
+                q.lib_id=row[5];
+                q.product_id=row[6];
+                q.hardness=row[7];
+                q.choice_num=row[8];
+                q.choice_content=row[9];
+                q.is_img=row[10];
+                q.choice_parse=row[11];
+                q.answer=row[12];
+                q.is_valid=row[13];
+                q.descript=row[14];
+                q.memo=row[15];
+                q.img_content=row[16];
+                [ar addObject:q];
+            }
+        }];
+
+    }
+    return ar[0];
+}
+
+-(NSArray*)getExamPaperContentByPaperid:(NSString*)paperid compid:(NSString*)compid{
     
     
     __block NSMutableArray*result=@[].mutableCopy;
-    NSString *sql=[NSString stringWithFormat:@"select * from exam_paper_content where paper_id==%@",paperid];
+    NSString *sql=[NSString stringWithFormat:@"select * from exam_paper_content where paper_id==%@ and comp_id==%@ ORDER BY priority asc",paperid,compid];
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
@@ -35,13 +95,12 @@ singleton_implementation(SQLManager);
             paper.content_id=row[0];
             paper.paper_id=row[2];
             paper.comp_id=row[1];
-            paper.paper_id=row[3];
-            paper.item_id=row[4];
-            paper.priority=row[5];
-            paper.score=row[6];
-            paper.custom_id=row[7];
-            paper.descript=row[8];
-            paper.memo=row[9];
+            paper.item_id=row[3];
+            paper.priority=row[4];
+            paper.score=row[5];
+            paper.custom_id=row[6];
+            paper.descript=row[7];
+            paper.memo=row[8];
             [result addObject:paper];
         }
     }];

@@ -31,4 +31,28 @@
     }
     return _userAnswer;
 }
+
+@end
+
+@implementation ExamAnswer
+
+-(NSString*)userAnswer{
+    NSMutableString*str=@"".mutableCopy;
+    if (self.multiAnswer!=nil&&self.multiAnswer.count>0) {
+        for (NSString *a in self.multiAnswer) {
+            [str appendFormat:@"%@,",a];
+        }
+        _userAnswer=[str substringToIndex:str.length-2];
+    }
+    return _userAnswer;
+}
+
+-(NSMutableArray*)multiAnswer{
+    if (_multiAnswer==nil) {
+        _multiAnswer=[[NSMutableArray alloc] init];
+    }
+    return _multiAnswer;
+}
+
+
 @end

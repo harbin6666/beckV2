@@ -89,13 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "beckV2/exam/ExamScreenVC.m"
-            timestampString = "455391354.931011"
+            filePath = "beckV2/execise/PractiseVC.m"
+            timestampString = "455460592.237449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "462"
+            endingLineNumber = "462"
+            landmarkName = "-notePress"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

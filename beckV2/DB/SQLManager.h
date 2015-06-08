@@ -51,7 +51,9 @@ singleton_interface(SQLManager);
 
 -(NSArray*)getExamPaperCompositonByPaperId:(NSString*)paperid;
 
--(NSArray*)getExamPaperContentByPaperid:(NSString*)paperid;
+-(NSArray*)getExamPaperContentByPaperid:(NSString*)paperid compid:(NSString*)compid;
+
+-(id)getExamQuestionByItemId:(NSString*)qid customid:(NSString*)customid;
 -(void)openDB;
 
 @end

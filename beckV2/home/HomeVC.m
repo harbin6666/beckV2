@@ -243,8 +243,8 @@
 -(IBAction)signInPress:(id)sender{
     WEAK_SELF;
     [self showLoading];
-#warning 接口bug
-    [self getValueWithBeckUrl:@"/front/userAct.htm" params:@{@"token":@"sign",@"loginName":[Global sharedSingle].loginName} CompleteBlock:^(id aResponseObject, NSError *anError) {
+
+    [self getValueWithBeckUrl:@"/front/signInAct.htm" params:@{@"token":@"sign",@"loginName":[Global sharedSingle].loginName} CompleteBlock:^(id aResponseObject, NSError *anError) {
         STRONG_SELF;
         [self hideLoading];
         if (!anError&&aResponseObject[@"msg"]) {

@@ -23,6 +23,7 @@
 		394C4A0F1B233C390002838B /* PractisAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A0E1B233C390002838B /* PractisAnswer.m */; };
 		394C4A121B24539F0002838B /* ExamPaper.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A111B24539F0002838B /* ExamPaper.m */; };
 		394C4A1B1B24B4D60002838B /* ExamScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A1A1B24B4D60002838B /* ExamScreenVC.m */; };
+		394C4A1E1B24BE900002838B /* ExamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A1D1B24BE900002838B /* ExamVC.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -113,6 +114,8 @@
 		394C4A111B24539F0002838B /* ExamPaper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamPaper.m; sourceTree = "<group>"; };
 		394C4A191B24B4D60002838B /* ExamScreenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamScreenVC.h; sourceTree = "<group>"; };
 		394C4A1A1B24B4D60002838B /* ExamScreenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamScreenVC.m; sourceTree = "<group>"; };
+		394C4A1C1B24BE900002838B /* ExamVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamVC.h; sourceTree = "<group>"; };
+		394C4A1D1B24BE900002838B /* ExamVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamVC.m; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -306,6 +309,8 @@
 			isa = PBXGroup;
 			children = (
 				39372E7F1B0A2F1E00891F52 /* beck.db */,
+				39CE4C5C1B195A2800DDAB01 /* SQLManager.h */,
+				39CE4C5D1B195A2800DDAB01 /* SQLManager.m */,
 				396AD3021B1772F6005F92B1 /* Position.h */,
 				396AD3031B1772F6005F92B1 /* Position.m */,
 				39CE4C6A1B19B81B00DDAB01 /* Outline.h */,
@@ -324,8 +329,6 @@
 				394C4A0E1B233C390002838B /* PractisAnswer.m */,
 				394C4A101B24539F0002838B /* ExamPaper.h */,
 				394C4A111B24539F0002838B /* ExamPaper.m */,
-				39CE4C5C1B195A2800DDAB01 /* SQLManager.h */,
-				39CE4C5D1B195A2800DDAB01 /* SQLManager.m */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -425,6 +428,8 @@
 				39CD45FB1B209B19005320B5 /* ExamHomeVC.m */,
 				394C4A191B24B4D60002838B /* ExamScreenVC.h */,
 				394C4A1A1B24B4D60002838B /* ExamScreenVC.m */,
+				394C4A1C1B24BE900002838B /* ExamVC.h */,
+				394C4A1D1B24BE900002838B /* ExamVC.m */,
 			);
 			path = exam;
 			sourceTree = "<group>";
@@ -683,6 +688,7 @@
 				39372E8D1B0A5EF600891F52 /* ConditionContainerVC.m in Sources */,
 				39CD45F61B209A7E005320B5 /* MoreVC.m in Sources */,
 				394C4A121B24539F0002838B /* ExamPaper.m in Sources */,
+				394C4A1E1B24BE900002838B /* ExamVC.m in Sources */,
 				39CE4C971B1F431300DDAB01 /* Question.m in Sources */,
 				3915499D1B21F1F500BF5BBF /* UpdataDbVC.m in Sources */,
 				39CE4C7A1B1A4C9B00DDAB01 /* ChoiceQuestion.m in Sources */,
