@@ -24,6 +24,7 @@
 		394C4A121B24539F0002838B /* ExamPaper.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A111B24539F0002838B /* ExamPaper.m */; };
 		394C4A1B1B24B4D60002838B /* ExamScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A1A1B24B4D60002838B /* ExamScreenVC.m */; };
 		394C4A1E1B24BE900002838B /* ExamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A1D1B24BE900002838B /* ExamVC.m */; };
+		394C4A211B25EC780002838B /* SeeNoteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A201B25EC780002838B /* SeeNoteVC.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -116,6 +117,8 @@
 		394C4A1A1B24B4D60002838B /* ExamScreenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamScreenVC.m; sourceTree = "<group>"; };
 		394C4A1C1B24BE900002838B /* ExamVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamVC.h; sourceTree = "<group>"; };
 		394C4A1D1B24BE900002838B /* ExamVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamVC.m; sourceTree = "<group>"; };
+		394C4A1F1B25EC780002838B /* SeeNoteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeeNoteVC.h; sourceTree = "<group>"; };
+		394C4A201B25EC780002838B /* SeeNoteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeeNoteVC.m; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -379,6 +382,8 @@
 			children = (
 				39CD45F71B209A8D005320B5 /* NoteVC.h */,
 				39CD45F81B209A8D005320B5 /* NoteVC.m */,
+				394C4A1F1B25EC780002838B /* SeeNoteVC.h */,
+				394C4A201B25EC780002838B /* SeeNoteVC.m */,
 			);
 			path = note;
 			sourceTree = "<group>";
@@ -651,6 +656,7 @@
 			files = (
 				39CE4C3E1B19574800DDAB01 /* UIView+create.m in Sources */,
 				39372E721B0A267000891F52 /* BaseViewController.m in Sources */,
+				394C4A211B25EC780002838B /* SeeNoteVC.m in Sources */,
 				39CE4C9A1B1F479D00DDAB01 /* AnswerCVCCell.m in Sources */,
 				39CE4C661B19B4A500DDAB01 /* PractisHomeVC.m in Sources */,
 				39D780C51B138490009F5C8E /* ChengjiuVC.m in Sources */,

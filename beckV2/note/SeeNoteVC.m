@@ -1,35 +1,27 @@
 //
-//  UpdataDbVC.m
+//  SeeNoteVC.m
 //  beckV2
 //
-//  Created by yj on 15/6/5.
+//  Created by yj on 15/6/8.
 //  Copyright (c) 2015年 yj. All rights reserved.
 //
 
-#import "UpdataDbVC.h"
-#import "BaseViewController.h"
+#import "SeeNoteVC.h"
 
-@interface UpdataDbVC ()
+@interface SeeNoteVC ()
 
 @end
 
-@implementation UpdataDbVC
+@implementation SeeNoteVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self showLoading];
-    NSMutableDictionary* json=@{}.mutableCopy;
     
-    json[@"list"]=@[];
-    [self getValueWithBeckUrl:@"/front/versionUpdateAct.htm" params:@{@"token":@"versionList",@"json":json} CompleteBlock:^(id aResponseObject, NSError *anError) {
-        [self hideLoading];
-        NSLog(@"%@",aResponseObject);
-    }];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBar ButtonItem = self.editButtonItem;
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {

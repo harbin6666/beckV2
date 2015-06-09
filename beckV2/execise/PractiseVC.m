@@ -445,19 +445,23 @@
             //尼玛的又成了题目id，晕菜
             if ([q isKindOfClass:[ChoiceQuestion class]]) {
                 ChoiceQuestion *p=(ChoiceQuestion*)q;
-                json[@"titleId"]=[p choice_id];
+                json[@"titleId"]=@([p choice_id].intValue);
             }else{
                 CompatyQuestion *c=(CompatyQuestion*)q;
-                json[@"titleId"]=c.compatibility_id;
+                json[@"titleId"]=@(c.compatibility_id.intValue);
             }
-            json[@"typeId"]=[q custom_id];
+            json[@"typeId"]=@([q custom_id].intValue);
             json[@"loginName"] = [Global sharedSingle].loginName;
-            json[@"subjectId"] = [[self.questionsAr objectAtIndex:self.currentQIndex] subject_id];
-            json[@"outlineId"] = self.outletid;
-            json[@"Note"]=tf.text;
-            json[@"Type"]=@0;//0：添加 1：更新
+            json[@"subjectId"] = @([[self.questionsAr objectAtIndex:self.currentQIndex] subject_id].intValue);
+            json[@"outlineId"] =@( self.outletid.intValue);
+            json[@"note"]=tf.text;
+            json[@"type"]=@0;//0：添加 1：更新
+            
+            NSData*d=[NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
+            NSString *s=[[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
             WEAK_SELF;
-            [self getValueWithBeckUrl:@"/front/userNoteAct.htm" params:@{@"token":@"addUpdate",@"json":json} CompleteBlock:^(id aResponseObject, NSError *anError) {
+#warning bug
+            [self getValueWithBeckUrl:@"/front/userNoteAct.htm" params:@{@"token":@"addUpdate",@"json":s} CompleteBlock:^(id aResponseObject, NSError *anError) {
                 STRONG_SELF;
                 if (anError==nil) {
                     if ([aResponseObject[@"errorcode"] integerValue]==0) {
