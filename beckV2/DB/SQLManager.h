@@ -11,6 +11,8 @@
 @interface SQLManager : NSObject
 singleton_interface(SQLManager);
 
+
+-(NSString*)getMaxidWithTableName:(NSString*)tableName colName:(NSString*)col;
 -(NSArray*)getTitles;
 
 -(NSDictionary*)getAddinParam;

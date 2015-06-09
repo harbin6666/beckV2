@@ -102,6 +102,11 @@
         }else{
             b.selected=NO;
         }
+        if (p.is_vaild.intValue==0) {
+            b.enabled=NO;
+        }else{
+            b.enabled=YES;
+        }
         b.titleLabel.numberOfLines=2;
         b.titleLabel.font=[UIFont systemFontOfSize:14];
         [b setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];

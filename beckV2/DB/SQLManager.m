@@ -20,7 +20,22 @@
 
 @end
 @implementation SQLManager
+
 singleton_implementation(SQLManager);
+-(NSString*)getMaxidWithTableName:(NSString*)tableName colName:(NSString*)col{
+    NSString *sql1 = [NSString stringWithFormat:@"select max(%@) from %@",col,tableName];
+    __block NSString *s=@"";
+    [[AFSQLManager sharedManager] performQuery:sql1 withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }
+        else {
+            s = row[0];
+        }
+    }];
+    return s;
+}
+
 
 -(id)getExamQuestionByItemId:(NSString*)qid customid:(NSString*)customid{
     __block NSMutableArray *ar=[NSMutableArray array];
@@ -415,7 +430,7 @@ singleton_implementation(SQLManager);
 
 -(NSArray*)getTitles{
     __block NSMutableArray *array=@[].mutableCopy;
-    NSString *sql=@"select title_id,title_name from position_title_info";
+    NSString *sql=@"select * from position_title_info";
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
@@ -423,6 +438,8 @@ singleton_implementation(SQLManager);
             Position *postion=[Position new];
             postion.titleId=row[0];
             postion.titleName=row[1];
+            postion.type_id=row[3];
+            postion.is_vaild=row[4];
             [array addObject:postion];
         }
     }];

@@ -50,7 +50,7 @@
             </objects>
             <point key="canvasLocation" x="344.5" y="-992.5"/>
         </scene>
-        <!--Updata DbVC-->
+        <!--题库更新-->
         <scene sceneID="PiH-hG-PYg">
             <objects>
                 <tableViewController id="gHY-L9-lsU" customClass="UpdataDbVC" sceneMemberID="viewController">
@@ -71,6 +71,13 @@
                             <outlet property="delegate" destination="gHY-L9-lsU" id="rAb-uG-xn2"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="题库更新" id="07P-yk-yxk">
+                        <barButtonItem key="rightBarButtonItem" title="全部更新" id="eO5-3h-Z3g">
+                            <connections>
+                                <action selector="updateAllDB" destination="gHY-L9-lsU" id="CCb-hF-4Yu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBN-p3-oxV" userLabel="First Responder" sceneMemberID="firstResponder"/>

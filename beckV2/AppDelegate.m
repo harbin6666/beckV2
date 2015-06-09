@@ -24,7 +24,16 @@
     [[SQLManager sharedSingle] openDB];
     NSString * titleid=[[Global sharedSingle] getUserWithkey:@"titleid"];
     if (titleid==nil) {
-        Position *p=[[[SQLManager sharedSingle] getTitles] firstObject];
+        NSArray *tts=[[SQLManager sharedSingle] getTitles];
+        Position *select=[tts lastObject];
+        for (Position*pt in tts) {
+            if (pt.is_vaild.intValue) {
+                select=pt;
+            }
+        }
+
+        Position*p=select;
+        
         [[Global sharedSingle] setUserValue:p.titleId Key:@"titleid"];
         [[Global sharedSingle] setUserValue:p.titleName Key:@"titleName"];
     }
