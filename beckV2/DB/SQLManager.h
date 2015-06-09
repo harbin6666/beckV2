@@ -56,6 +56,12 @@ singleton_interface(SQLManager);
 -(NSArray*)getExamPaperContentByPaperid:(NSString*)paperid compid:(NSString*)compid;
 
 -(id)getExamQuestionByItemId:(NSString*)qid customid:(NSString*)customid;
+
+
+-(NSMutableArray*)getUserNoteByOutlineId:(NSString*)outlineid;
+
+
+-(NSString *)getcourseNameByOutlineId:(NSString*)outlineid;
 -(void)openDB;
 
 @end

@@ -15,13 +15,62 @@
 #import "CompatyQuestion.h"
 #import "ChoiceItem.h"
 #import "ExamPaper.h"
-
+#import "UserNote.h"
 @interface SQLManager()
 
 @end
 @implementation SQLManager
 
 singleton_implementation(SQLManager);
+
+-(NSString *)getcourseNameByOutlineId:(NSString*)outlineid{
+    __block NSString *st=@"";
+    NSString *sql=[NSString stringWithFormat:@"select course_name from exam_outline where outline_id==%@",outlineid];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            st=row[0];
+        }
+    }];
+    return st;
+}
+
+-(NSMutableArray*)getUserNoteByOutlineId:(NSString*)outlineid{
+    __block NSMutableArray*result=@[].mutableCopy;
+
+    //获取章节下子课程
+    NSArray* ar=[self getOutLineByParentId:outlineid];
+    for (int i=0; i<ar.count; i++) {
+        Outline*o=ar[i];
+        NSString *sql=[NSString stringWithFormat:@"select * from user_note where outline_id==%@ ORDER BY add_time asc",o.outlineid];
+        [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+            if (finished) {
+                
+            }else{
+                UserNote *note=[UserNote new];
+                note.item_id=row[1];
+                note.type_id=row[2];
+                note.user_id=row[3];
+                note.add_time=row[5];
+                note.update_time=row[6];
+                note.outline_id=row[8];
+                note.subject_id=row[9];
+                note.note=row[10];
+                [result addObject:note];
+            }
+        }];
+
+        
+        
+    }
+  
+    return result;
+    
+}
+
+
+
 -(NSString*)getMaxidWithTableName:(NSString*)tableName colName:(NSString*)col{
     NSString *sql1 = [NSString stringWithFormat:@"select max(%@) from %@",col,tableName];
     __block NSString *s=@"";
@@ -595,7 +644,6 @@ singleton_implementation(SQLManager);
     
     }];
 }
-
 
 -(void)openDB{
     [[AFSQLManager sharedManager] openLocalDatabaseWithName:@"beck.db" andStatusBlock:^(BOOL success, NSError *error) {

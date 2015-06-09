@@ -7,85 +7,94 @@
 //
 
 #import "SeeNoteVC.h"
+#import "Subject.h"
+#import "Outline.h"
+#import "NoteListVC.h"
 
 @interface SeeNoteVC ()
+@property(nonatomic,strong)NSArray *subjectIdList;
+@property(nonatomic,strong)NSArray *subjectList;
+@property(nonatomic,strong)NSMutableArray *dataAr;;
 
 @end
 
 @implementation SeeNoteVC
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    UIBarButtonItem*bar= self.navigationItem.rightBarButtonItem;
+    [bar setTitle:[[Global sharedSingle] getUserWithkey:@"titleName"]];
+    if (self.type==0) {
+        self.title=@"查看笔记";
+    }else{
+        self.title=@"练习统计";
+    }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    self.dataAr=[NSMutableArray array];
+    self.subjectIdList=[[SQLManager sharedSingle] getSubjectIdArrayByid:[[Global sharedSingle] getUserWithkey:@"titleid"]];
+    self.subjectList=[[SQLManager sharedSingle] getSubjectByid:self.subjectIdList];
+    
+    for (int i=0; i<self.subjectList.count; i++) {
+        Subject*sb=self.subjectList[i];
+        NSArray *sbAr=[[SQLManager sharedSingle] getoutLineByid:sb.subjectid];
+        [self.dataAr addObject:sbAr];
+    }
+    
+    [self.tableView reloadData];
+}
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSArray *temp=self.dataAr[section];
+    return temp.count;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.subjectList.count;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"headerview"];
+    
+    cell.imageView.image=[UIImage imageNamed:@"uncheckbox"];
+    //    NSArray *ar=[[SQLManager sharedSingle] getSubjectByid:self.subjectIdList];
+    Subject *sb=self.subjectList[section];
+    cell.textLabel.text=sb.subjectName;
     
     return cell;
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 60;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    NSArray *temp=self.dataAr[indexPath.section];
+    Outline *ot=temp[indexPath.row];
+    cell.textLabel.text=ot.courseName;
+    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    return cell;
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSArray *temp=self.dataAr[indexPath.section];
+    Outline *ot=temp[indexPath.row];
+    
+    UIStoryboard*sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
+    NoteListVC*vc=[sb instantiateViewControllerWithIdentifier:@"notelist"];
+    
+    vc.outlineid=ot.outlineid;
+    vc.hidesBottomBarWhenPushed=YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    //    [self performSegueWithIdentifier:@"tocourse" sender:self];
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation

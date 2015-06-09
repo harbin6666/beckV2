@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SeeNoteVC : UITableViewController
-
+@property(nonatomic)NSInteger type;//0笔记 1练习
 @end

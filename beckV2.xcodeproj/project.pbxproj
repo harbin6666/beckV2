@@ -25,6 +25,12 @@
 		394C4A1B1B24B4D60002838B /* ExamScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A1A1B24B4D60002838B /* ExamScreenVC.m */; };
 		394C4A1E1B24BE900002838B /* ExamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A1D1B24BE900002838B /* ExamVC.m */; };
 		394C4A211B25EC780002838B /* SeeNoteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A201B25EC780002838B /* SeeNoteVC.m */; };
+		394C4A241B274AA00002838B /* CollectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A231B274AA00002838B /* CollectVC.m */; };
+		394C4A271B274F460002838B /* NoteDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A261B274F460002838B /* NoteDetailVC.m */; };
+		394C4A2A1B274F8A0002838B /* PractisDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A291B274F8A0002838B /* PractisDetailVC.m */; };
+		394C4A2D1B2750C80002838B /* NoteListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A2C1B2750C80002838B /* NoteListVC.m */; };
+		394C4A301B2752350002838B /* SelectionPan.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A2F1B2752350002838B /* SelectionPan.m */; };
+		394C4A331B275B6B0002838B /* UserNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A321B275B6B0002838B /* UserNote.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -119,6 +125,18 @@
 		394C4A1D1B24BE900002838B /* ExamVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamVC.m; sourceTree = "<group>"; };
 		394C4A1F1B25EC780002838B /* SeeNoteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeeNoteVC.h; sourceTree = "<group>"; };
 		394C4A201B25EC780002838B /* SeeNoteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeeNoteVC.m; sourceTree = "<group>"; };
+		394C4A221B274AA00002838B /* CollectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectVC.h; sourceTree = "<group>"; };
+		394C4A231B274AA00002838B /* CollectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectVC.m; sourceTree = "<group>"; };
+		394C4A251B274F460002838B /* NoteDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteDetailVC.h; sourceTree = "<group>"; };
+		394C4A261B274F460002838B /* NoteDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteDetailVC.m; sourceTree = "<group>"; };
+		394C4A281B274F8A0002838B /* PractisDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PractisDetailVC.h; sourceTree = "<group>"; };
+		394C4A291B274F8A0002838B /* PractisDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PractisDetailVC.m; sourceTree = "<group>"; };
+		394C4A2B1B2750C80002838B /* NoteListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteListVC.h; sourceTree = "<group>"; };
+		394C4A2C1B2750C80002838B /* NoteListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteListVC.m; sourceTree = "<group>"; };
+		394C4A2E1B2752350002838B /* SelectionPan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionPan.h; sourceTree = "<group>"; };
+		394C4A2F1B2752350002838B /* SelectionPan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionPan.m; sourceTree = "<group>"; };
+		394C4A311B275B6B0002838B /* UserNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNote.h; sourceTree = "<group>"; };
+		394C4A321B275B6B0002838B /* UserNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserNote.m; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -314,6 +332,8 @@
 				39372E7F1B0A2F1E00891F52 /* beck.db */,
 				39CE4C5C1B195A2800DDAB01 /* SQLManager.h */,
 				39CE4C5D1B195A2800DDAB01 /* SQLManager.m */,
+				394C4A311B275B6B0002838B /* UserNote.h */,
+				394C4A321B275B6B0002838B /* UserNote.m */,
 				396AD3021B1772F6005F92B1 /* Position.h */,
 				396AD3031B1772F6005F92B1 /* Position.m */,
 				39CE4C6A1B19B81B00DDAB01 /* Outline.h */,
@@ -384,6 +404,14 @@
 				39CD45F81B209A8D005320B5 /* NoteVC.m */,
 				394C4A1F1B25EC780002838B /* SeeNoteVC.h */,
 				394C4A201B25EC780002838B /* SeeNoteVC.m */,
+				394C4A2B1B2750C80002838B /* NoteListVC.h */,
+				394C4A2C1B2750C80002838B /* NoteListVC.m */,
+				394C4A251B274F460002838B /* NoteDetailVC.h */,
+				394C4A261B274F460002838B /* NoteDetailVC.m */,
+				394C4A281B274F8A0002838B /* PractisDetailVC.h */,
+				394C4A291B274F8A0002838B /* PractisDetailVC.m */,
+				394C4A221B274AA00002838B /* CollectVC.h */,
+				394C4A231B274AA00002838B /* CollectVC.m */,
 			);
 			path = note;
 			sourceTree = "<group>";
@@ -486,6 +514,8 @@
 			children = (
 				39D780CB1B1386C9009F5C8E /* OTSAlertView.h */,
 				39D780CC1B1386C9009F5C8E /* OTSAlertView.m */,
+				394C4A2E1B2752350002838B /* SelectionPan.h */,
+				394C4A2F1B2752350002838B /* SelectionPan.m */,
 			);
 			path = custom;
 			sourceTree = "<group>";
@@ -661,6 +691,7 @@
 				39CE4C661B19B4A500DDAB01 /* PractisHomeVC.m in Sources */,
 				39D780C51B138490009F5C8E /* ChengjiuVC.m in Sources */,
 				397DDAD91B14C3D000E8F73B /* SetPasswordVC.m in Sources */,
+				394C4A241B274AA00002838B /* CollectVC.m in Sources */,
 				39D780BF1B13644E009F5C8E /* DismissSegue.m in Sources */,
 				39D780C21B136E93009F5C8E /* Global.m in Sources */,
 				39CE4C711B19BE2A00DDAB01 /* OutlineCell.m in Sources */,
@@ -668,7 +699,9 @@
 				394C4A1B1B24B4D60002838B /* ExamScreenVC.m in Sources */,
 				3919ABE31B0647F200336E77 /* AppDelegate.m in Sources */,
 				39D4BC271B0B6E4A00F5FABF /* LoginVC.m in Sources */,
+				394C4A271B274F460002838B /* NoteDetailVC.m in Sources */,
 				39CE4C7D1B1A4CAC00DDAB01 /* CompatyQuestion.m in Sources */,
+				394C4A331B275B6B0002838B /* UserNote.m in Sources */,
 				396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */,
 				397DDAD61B14B64C00E8F73B /* VerifyVC.m in Sources */,
 				39CE4C8E1B1E044B00DDAB01 /* CompatyCell.m in Sources */,
@@ -680,8 +713,10 @@
 				39CD45F91B209A8D005320B5 /* NoteVC.m in Sources */,
 				39CE4C8B1B1DFD2700DDAB01 /* ChoiceCell.m in Sources */,
 				39CE4C941B1F3CB300DDAB01 /* QCollectionVC.m in Sources */,
+				394C4A301B2752350002838B /* SelectionPan.m in Sources */,
 				39CD45FC1B209B19005320B5 /* ExamHomeVC.m in Sources */,
 				396AD3041B1772F6005F92B1 /* Position.m in Sources */,
+				394C4A2A1B274F8A0002838B /* PractisDetailVC.m in Sources */,
 				39CE4C801B1CB1F800DDAB01 /* PractiseVC.m in Sources */,
 				39372E7B1B0A2C0500891F52 /* Model.xcdatamodeld in Sources */,
 				39372E871B0A559400891F52 /* HomeVC.m in Sources */,
@@ -696,6 +731,7 @@
 				394C4A121B24539F0002838B /* ExamPaper.m in Sources */,
 				394C4A1E1B24BE900002838B /* ExamVC.m in Sources */,
 				39CE4C971B1F431300DDAB01 /* Question.m in Sources */,
+				394C4A2D1B2750C80002838B /* NoteListVC.m in Sources */,
 				3915499D1B21F1F500BF5BBF /* UpdataDbVC.m in Sources */,
 				39CE4C7A1B1A4C9B00DDAB01 /* ChoiceQuestion.m in Sources */,
 				3919ABE01B0647F200336E77 /* main.m in Sources */,
