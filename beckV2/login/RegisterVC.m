@@ -51,10 +51,10 @@
                 [self hideLoading];
             }
             else {
-                [self getValueWithBeckUrl:@"/front/sendsmsAct.htm" params:@{@"loginName":self.numberTF.text} CompleteBlock:^(id aResponseObject, NSError *anError) {
+                [self getValueWithBeckUrl:@"/front/sendTemplateSmsAct.htm" params:@{@"loginName":self.numberTF.text} CompleteBlock:^(id aResponseObject, NSError *anError) {
                     [self hideLoading];
                     if (!anError) {
-                        NSNumber *errorcode = aResponseObject[@"errorcode"];
+                        NSNumber *errorcode = aResponseObject[@"code"];
                         if (errorcode.integerValue!=0) {
                             [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
                         }

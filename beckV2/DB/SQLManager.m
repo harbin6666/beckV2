@@ -479,7 +479,7 @@ singleton_implementation(SQLManager);
 
 -(NSArray*)getTitles{
     __block NSMutableArray *array=@[].mutableCopy;
-    NSString *sql=@"select * from position_title_info";
+    NSString *sql=@"select * from position_title_info ORDER BY is_valid desc";
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             

@@ -36,9 +36,9 @@
 -(IBAction)freshPress:(id)sender{
     [self showLoading];
 
-    [self getValueWithBeckUrl:@"/front/sendsmsAct.htm" params:@{@"loginName":self.verifyPhone} CompleteBlock:^(id aResponseObject, NSError *anError) {
+    [self getValueWithBeckUrl:@"/front/sendTemplateSmsAct.htm" params:@{@"loginName":self.verifyPhone} CompleteBlock:^(id aResponseObject, NSError *anError) {
         if (!anError) {
-            NSNumber *errorcode = aResponseObject[@"errorcode"];
+            NSNumber *errorcode = aResponseObject[@"code"];
             if (errorcode.integerValue!=0) {
                 [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
             }

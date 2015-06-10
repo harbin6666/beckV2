@@ -151,6 +151,7 @@
             b.selected=NO;
         }
     }
+    sender.selected=YES;
     UIButton *selB=(UIButton *)[self.positionView viewWithTag:sender.tag];
     selB.selected=YES;
     [self showPositionView:nil];
