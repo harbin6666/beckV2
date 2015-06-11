@@ -82,6 +82,9 @@ singleton_implementation(SQLManager);
             s = row[0];
         }
     }];
+    if (s==nil||[s isKindOfClass:[NSNull class]]||s.length==0) {
+        s=@"0";
+    }
     return s;
 }
 

@@ -73,6 +73,7 @@
                     <connections>
                         <outlet property="table" destination="wFP-wI-7Go" id="WPg-k7-mKf"/>
                         <segue destination="gHY-L9-lsU" kind="show" identifier="updatedb" id="3ut-er-BmD"/>
+                        <segue destination="p5O-we-4MD" kind="show" id="mrv-T8-6EC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WpE-A7-mw3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -111,7 +112,63 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBN-p3-oxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1433.5" y="-1244.5"/>
+            <point key="canvasLocation" x="1113.5" y="-1412.5"/>
+        </scene>
+        <!--High Frequency ListVC-->
+        <scene sceneID="0DP-qy-hAE">
+            <objects>
+                <viewController id="p5O-we-4MD" customClass="HighFrequencyListVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pe3-TL-beF"/>
+                        <viewControllerLayoutGuide type="bottom" id="n0N-AV-Yan"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ldy-jo-Ftq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4r-pR-AWj">
+                                <rect key="frame" x="0.0" y="61" width="375" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="24i-6H-NP0"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zRO-1x-QNC">
+                                <rect key="frame" x="0.0" y="63" width="375" height="555"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="1Q4-Ab-kEe">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Q4-Ab-kEe" id="oAC-o2-e2p">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="p5O-we-4MD" id="JYe-X7-dd3"/>
+                                    <outlet property="delegate" destination="p5O-we-4MD" id="cqC-Vr-KH4"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="J4r-pR-AWj" firstAttribute="leading" secondItem="Ldy-jo-Ftq" secondAttribute="leadingMargin" constant="-16" id="TD4-dm-MCw"/>
+                            <constraint firstItem="Pe3-TL-beF" firstAttribute="top" secondItem="J4r-pR-AWj" secondAttribute="bottom" constant="2" id="eOx-vX-cJ2"/>
+                            <constraint firstItem="n0N-AV-Yan" firstAttribute="top" secondItem="zRO-1x-QNC" secondAttribute="bottom" id="guh-pp-Dzk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="J4r-pR-AWj" secondAttribute="trailing" constant="-16" id="qhc-lU-cKx"/>
+                            <constraint firstItem="zRO-1x-QNC" firstAttribute="leading" secondItem="Ldy-jo-Ftq" secondAttribute="leadingMargin" constant="-16" id="vWa-5K-DZl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zRO-1x-QNC" secondAttribute="trailing" constant="-16" id="vkM-MT-o49"/>
+                            <constraint firstItem="zRO-1x-QNC" firstAttribute="top" secondItem="J4r-pR-AWj" secondAttribute="bottom" constant="1" id="xf3-GV-qCe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="table" destination="zRO-1x-QNC" id="4gq-RI-1ra"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WDl-PF-nS3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1097.5" y="-747.5"/>
         </scene>
         <!--笔记-->
         <scene sceneID="Jjf-cN-diW">
@@ -180,6 +237,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="paQ-tN-8sA" id="NCm-CW-IWv">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>

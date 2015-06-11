@@ -7,7 +7,7 @@
 //
 
 #import "MoreVC.h"
-
+#import "HighFrequencyListVC.h"
 @interface MoreVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,weak)IBOutlet UITableView*table;
 @end
@@ -114,7 +114,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
         if (indexPath.row==0) {
-            
+            HighFrequencyListVC*hc=[[HighFrequencyListVC alloc] init];
+            [self.navigationController pushViewController:hc animated:YES];
         }else if (indexPath.row==1){
             [self performSegueWithIdentifier:@"updatedb" sender:self];
         }else if (indexPath.row==2){

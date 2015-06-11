@@ -77,6 +77,7 @@
 		39D780C51B138490009F5C8E /* ChengjiuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D780C41B138490009F5C8E /* ChengjiuVC.m */; };
 		39D780C81B138533009F5C8E /* HonorTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D780C71B138533009F5C8E /* HonorTVCell.m */; };
 		39D780CD1B1386C9009F5C8E /* OTSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D780CC1B1386C9009F5C8E /* OTSAlertView.m */; };
+		39EEA1C01B29F651009BE945 /* HighFrequencyListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39EEA1BF1B29F651009BE945 /* HighFrequencyListVC.m */; };
 		9A5399A3109B24A746CB7B6E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A729BAD88020A10CD32E18F4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -217,6 +218,8 @@
 		39D780C71B138533009F5C8E /* HonorTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HonorTVCell.m; sourceTree = "<group>"; };
 		39D780CB1B1386C9009F5C8E /* OTSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTSAlertView.h; sourceTree = "<group>"; };
 		39D780CC1B1386C9009F5C8E /* OTSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTSAlertView.m; sourceTree = "<group>"; };
+		39EEA1BE1B29F651009BE945 /* HighFrequencyListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighFrequencyListVC.h; sourceTree = "<group>"; };
+		39EEA1BF1B29F651009BE945 /* HighFrequencyListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighFrequencyListVC.m; sourceTree = "<group>"; };
 		7B9F314246001A0BFD1B92F4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A729BAD88020A10CD32E18F4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -393,6 +396,8 @@
 				39CD45F51B209A7E005320B5 /* MoreVC.m */,
 				3915499B1B21F1F500BF5BBF /* UpdataDbVC.h */,
 				3915499C1B21F1F500BF5BBF /* UpdataDbVC.m */,
+				39EEA1BE1B29F651009BE945 /* HighFrequencyListVC.h */,
+				39EEA1BF1B29F651009BE945 /* HighFrequencyListVC.m */,
 			);
 			path = more;
 			sourceTree = "<group>";
@@ -735,6 +740,7 @@
 				3915499D1B21F1F500BF5BBF /* UpdataDbVC.m in Sources */,
 				39CE4C7A1B1A4C9B00DDAB01 /* ChoiceQuestion.m in Sources */,
 				3919ABE01B0647F200336E77 /* main.m in Sources */,
+				39EEA1C01B29F651009BE945 /* HighFrequencyListVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
