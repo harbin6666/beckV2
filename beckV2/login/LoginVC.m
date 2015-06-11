@@ -8,9 +8,8 @@
 
 #import "LoginVC.h"
 #import "FindPassVC.h"
-#import "WeiboSDK.h"
 #import <TencentOpenAPI/TencentOAuth.h>
-//#import <RennSDK/RennSDK.h>
+
 #import "AppDelegate.h"
 @interface LoginVC ()<TencentLoginDelegate,TencentSessionDelegate>
 @property(nonatomic,weak)IBOutlet UITextField* usrName;

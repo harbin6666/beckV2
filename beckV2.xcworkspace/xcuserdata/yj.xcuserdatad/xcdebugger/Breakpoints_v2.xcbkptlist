@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "beckV2/login/LoginVC.m"
-            timestampString = "455292250.167197"
+            timestampString = "455732648.704562"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "-didReceiveWeiboResponse:"
             landmarkType = "5">
          </BreakpointContent>
@@ -80,6 +80,22 @@
             startingLineNumber = "73"
             endingLineNumber = "73"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "beckV2/exam/ExamHomeVC.m"
+            timestampString = "455732694.468591"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "-BtnPress:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

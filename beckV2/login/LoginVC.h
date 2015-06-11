@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import "WeiboSDK.h"
 
-@interface LoginVC : BaseViewController
+@interface LoginVC : BaseViewController<WeiboSDKDelegate>
 
 @end
