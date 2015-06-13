@@ -2,16 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "什么是邀请码.jpg"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "考试模式.png"
+      "filename" : "什么是邀请码-1.jpg"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "什么是邀请码-2.jpg"
     }
   ],
   "info" : {

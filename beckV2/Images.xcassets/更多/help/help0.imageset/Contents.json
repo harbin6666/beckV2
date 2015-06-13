@@ -2,16 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "怎样注册.jpg"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "练习模式.png"
+      "filename" : "怎样注册-1.jpg"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "怎样注册-2.jpg"
     }
   ],
   "info" : {

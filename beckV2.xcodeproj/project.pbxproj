@@ -37,6 +37,9 @@
 		395899221B2BD6AD0056B9A5 /* HelpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899211B2BD6AD0056B9A5 /* HelpVC.m */; };
 		395899251B2BD7960056B9A5 /* PointShopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899241B2BD7960056B9A5 /* PointShopVC.m */; };
 		395899281B2BEC6F0056B9A5 /* MessageVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899271B2BEC6F0056B9A5 /* MessageVO.m */; };
+		3958992B1B2C25F30056B9A5 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3958992A1B2C25F30056B9A5 /* MessageCell.m */; };
+		3958992E1B2C97160056B9A5 /* PointDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3958992D1B2C97160056B9A5 /* PointDetailVC.m */; };
+		395899311B2CA5D90056B9A5 /* PointDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899301B2CA5D90056B9A5 /* PointDetailCell.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -156,6 +159,12 @@
 		395899241B2BD7960056B9A5 /* PointShopVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointShopVC.m; sourceTree = "<group>"; };
 		395899261B2BEC6F0056B9A5 /* MessageVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageVO.h; sourceTree = "<group>"; };
 		395899271B2BEC6F0056B9A5 /* MessageVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageVO.m; sourceTree = "<group>"; };
+		395899291B2C25F30056B9A5 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		3958992A1B2C25F30056B9A5 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		3958992C1B2C97160056B9A5 /* PointDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointDetailVC.h; sourceTree = "<group>"; };
+		3958992D1B2C97160056B9A5 /* PointDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointDetailVC.m; sourceTree = "<group>"; };
+		3958992F1B2CA5D90056B9A5 /* PointDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointDetailCell.h; sourceTree = "<group>"; };
+		395899301B2CA5D90056B9A5 /* PointDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointDetailCell.m; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -422,12 +431,18 @@
 				395899181B2BD6710056B9A5 /* UserCenterVC.m */,
 				3958991A1B2BD6800056B9A5 /* MessageVC.h */,
 				3958991B1B2BD6800056B9A5 /* MessageVC.m */,
+				395899291B2C25F30056B9A5 /* MessageCell.h */,
+				3958992A1B2C25F30056B9A5 /* MessageCell.m */,
 				3958991D1B2BD6990056B9A5 /* FeedbackVC.h */,
 				3958991E1B2BD6990056B9A5 /* FeedbackVC.m */,
 				395899201B2BD6AD0056B9A5 /* HelpVC.h */,
 				395899211B2BD6AD0056B9A5 /* HelpVC.m */,
 				395899231B2BD7960056B9A5 /* PointShopVC.h */,
 				395899241B2BD7960056B9A5 /* PointShopVC.m */,
+				3958992C1B2C97160056B9A5 /* PointDetailVC.h */,
+				3958992D1B2C97160056B9A5 /* PointDetailVC.m */,
+				3958992F1B2CA5D90056B9A5 /* PointDetailCell.h */,
+				395899301B2CA5D90056B9A5 /* PointDetailCell.m */,
 			);
 			path = more;
 			sourceTree = "<group>";
@@ -722,6 +737,7 @@
 				39CE4C3E1B19574800DDAB01 /* UIView+create.m in Sources */,
 				39372E721B0A267000891F52 /* BaseViewController.m in Sources */,
 				394C4A211B25EC780002838B /* SeeNoteVC.m in Sources */,
+				3958992B1B2C25F30056B9A5 /* MessageCell.m in Sources */,
 				39CE4C9A1B1F479D00DDAB01 /* AnswerCVCCell.m in Sources */,
 				39CE4C661B19B4A500DDAB01 /* PractisHomeVC.m in Sources */,
 				39D780C51B138490009F5C8E /* ChengjiuVC.m in Sources */,
@@ -733,6 +749,7 @@
 				39CE4C741B1A245400DDAB01 /* TabbarVC.m in Sources */,
 				394C4A1B1B24B4D60002838B /* ExamScreenVC.m in Sources */,
 				3919ABE31B0647F200336E77 /* AppDelegate.m in Sources */,
+				395899311B2CA5D90056B9A5 /* PointDetailCell.m in Sources */,
 				39D4BC271B0B6E4A00F5FABF /* LoginVC.m in Sources */,
 				394C4A271B274F460002838B /* NoteDetailVC.m in Sources */,
 				39CE4C7D1B1A4CAC00DDAB01 /* CompatyQuestion.m in Sources */,
@@ -742,6 +759,7 @@
 				39CE4C8E1B1E044B00DDAB01 /* CompatyCell.m in Sources */,
 				395899221B2BD6AD0056B9A5 /* HelpVC.m in Sources */,
 				394C4A0F1B233C390002838B /* PractisAnswer.m in Sources */,
+				3958992E1B2C97160056B9A5 /* PointDetailVC.m in Sources */,
 				39CE4C691B19B80C00DDAB01 /* Subject.m in Sources */,
 				39CE4C5E1B195A2800DDAB01 /* SQLManager.m in Sources */,
 				39D780CD1B1386C9009F5C8E /* OTSAlertView.m in Sources */,

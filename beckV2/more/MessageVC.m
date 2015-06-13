@@ -8,6 +8,7 @@
 
 #import "MessageVC.h"
 #import "MessageVO.h"
+#import "MessageCell.h"
 @interface MessageVC ()
 @property(nonatomic,strong)NSArray *msgs;
 @end
@@ -38,9 +39,11 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-  MessageVO*msg=  self.msgs[indexPath.row];
-    cell.textLabel.text=msg.title;
+    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"msgcell" forIndexPath:indexPath];
+    MessageVO*msg=  self.msgs[indexPath.row];
+    cell.titleLab.text=msg.title;
+    cell.timeLab.text=msg.issue_time;
+    cell.content.text=msg.content;
     
     return cell;
 }

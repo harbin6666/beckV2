@@ -7,7 +7,7 @@
 //
 
 #import "UserCenterVC.h"
-
+#import "PointDetailVC.h"
 @interface UserCenterVC ()
 
 @end
@@ -17,10 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.scrollEnabled=NO;
-    
+    self.title=@"个人档案";
     UIImageView *imv=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     UILabel *l=[[UILabel alloc] initWithFrame:imv.bounds];
-    l.text=@"13988789909 欢迎你，邀请码：2289";
+    
+    l.text=[NSString stringWithFormat:@"%@ 欢迎你，邀请码：%@",[[Global sharedSingle].userBean valueForKey:@"loginName"],[[Global sharedSingle].userBean valueForKey:@"verificationCode"]];
     l.textAlignment=NSTextAlignmentCenter;
     imv.image=[[UIImage imageNamed:@"personalbg"] stretchableImageWithLeftCapWidth:5 topCapHeight:2];
     
@@ -34,9 +35,16 @@
     [bu setTitle:@"退出当前账号" forState:UIControlStateNormal] ;
     [bu setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     bu.frame=CGRectMake(0, 0, 280, 40);
+    [bu addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     bu.center=v.center;
     [v addSubview:bu];
     self.tableView.tableFooterView=v;
+}
+-(void)logout{
+    [Global sharedSingle].userBean=nil;
+    [Global sharedSingle].logined=NO;
+    [Global sharedSingle].loginName=nil;
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,7 +73,7 @@
     switch (indexPath.row) {
         case 0:
             str=@"我的积分";
-            cell.detailTextLabel.text=@"761";
+            cell.detailTextLabel.text=[[Global sharedSingle].userBean valueForKey:@"totalPoints"];
             break;
         case 1:
             str=@"修改密码";
@@ -87,7 +95,23 @@
     return cell;
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row==0) {
+        UIStoryboard*sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
+        PointDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"pointdetail"];
+        vc.type=0;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row==1){
+        
+    }else if (indexPath.row==2){
+        UIStoryboard*sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
+        PointDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"pointdetail"];
+        vc.type=1;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row==3){
+        
+    }
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

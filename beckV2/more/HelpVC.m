@@ -9,13 +9,33 @@
 #import "HelpVC.h"
 
 @interface HelpVC ()
-
+@property(nonatomic,strong) UIScrollView *scroll;
 @end
 
 @implementation HelpVC
-
+//-(void)viewDidAppear:(BOOL)animated{
+//    CGFloat w=self.view.frame.size.width;
+//    CGFloat h=self.view.frame.size.height;
+//    self.scroll.contentSize=CGSizeMake(w*4, h);
+//    for (int i=0; i<4; i++) {
+//        UIImageView *image=[[UIImageView alloc] initWithFrame:CGRectMake(w*i, 0, w, h)];
+//        image.image=[UIImage imageNamed:[NSString stringWithFormat:@"help%zd",i]];
+//        [self.scroll addSubview:image];
+//    }
+//}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    CGFloat w=self.view.frame.size.width;
+    CGFloat h=self.view.frame.size.height;
+    self.scroll=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, w, h)];
+    self.scroll.contentSize=CGSizeMake(w*4, h);
+    self.scroll.pagingEnabled=YES;
+    for (int i=0; i<4; i++) {
+        UIImageView *image=[[UIImageView alloc] initWithFrame:CGRectMake(w*i, 64, w, h-64)];
+        image.image=[UIImage imageNamed:[NSString stringWithFormat:@"help%zd",i]];
+        [self.scroll addSubview:image];
+    }
+    [self.view addSubview:self.scroll];
     // Do any additional setup after loading the view.
 }
 
