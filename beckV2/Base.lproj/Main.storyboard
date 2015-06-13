@@ -247,8 +247,8 @@
                                     <outlet property="delegate" destination="euz-ue-xcZ" id="n81-7y-aPM"/>
                                 </connections>
                             </tabBar>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="homejiang" translatesAutoresizingMaskIntoConstraints="NO" id="3RB-1P-MpP">
-                                <rect key="frame" x="66" y="199" width="241" height="180"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homejiang" translatesAutoresizingMaskIntoConstraints="NO" id="3RB-1P-MpP">
+                                <rect key="frame" x="39.5" y="244" width="241" height="180"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="ASJ-Y7-vBg"/>
@@ -390,10 +390,12 @@
                     <connections>
                         <outlet property="cIV" destination="mCK-iA-KNs" id="ZjJ-zl-yK2"/>
                         <outlet property="hIV" destination="rvH-eE-AHC" id="GZG-Wv-YVi"/>
+                        <outlet property="oldHome" destination="3RB-1P-MpP" id="LVJ-8m-pHP"/>
                         <outlet property="positionView" destination="J5M-E4-ILO" id="I2M-de-Lkc"/>
                         <outlet property="tIV" destination="rZq-lV-5Y3" id="5DO-W4-lqc"/>
                         <outlet property="tabbar" destination="lgo-qa-EdA" id="441-P2-lD6"/>
                         <outlet property="titleBtn" destination="ZSX-aJ-bFX" id="C6Y-Ww-2Ew"/>
+                        <outlet property="trainbtn" destination="0tW-9I-pWQ" id="WxK-gf-YXx"/>
                         <segue destination="98s-8J-Dgh" kind="presentation" identifier="nologin" animates="NO" id="lnB-SP-J4b"/>
                         <segue destination="MaF-Kr-Yhl" kind="show" identifier="topractise" id="S5j-Xq-Ol7"/>
                         <segue destination="8mg-nP-4zx" kind="show" identifier="toexam" id="hhI-Zu-fSi"/>

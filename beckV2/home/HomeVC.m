@@ -19,6 +19,8 @@
 @property(nonatomic,weak)IBOutlet UIImageView *hIV;
 @property(nonatomic,weak)IBOutlet UIImageView *tIV;
 @property(nonatomic,weak)IBOutlet UIImageView *cIV;
+@property(nonatomic,weak)IBOutlet UIImageView *oldHome;
+@property(nonatomic,weak)IBOutlet UIButton *trainbtn;
 @end
 #define padding 10
 @implementation HomeVC
