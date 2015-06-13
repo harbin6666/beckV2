@@ -23,6 +23,25 @@
 @implementation SQLManager
 
 singleton_implementation(SQLManager);
+
+-(NSArray*)getPoints{
+    __block NSMutableArray *ar=@[].mutableCopy;
+//    NSString *sql=[NSString stringWithFormat: @"select * from point_transaction where user_id ==%@",[[Global sharedSingle].userBean valueForKey:@"userId"] ];
+    NSString *sql=@"select * from point_transaction";
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            NSMutableDictionary *msg=[NSMutableDictionary dictionary];
+            msg[@"description"]=row[7];
+            msg[@"payDate"]=row[6];
+            msg[@"moeny"]=@([row[4] integerValue]);
+            [ar addObject:msg];
+        }
+    }];
+    return ar;
+    
+}
 -(NSArray*)getMessage{
     __block NSMutableArray *ar=@[].mutableCopy;
     NSString *sql=[NSString stringWithFormat: @"select * from message where user_id ==%@",[[Global sharedSingle].userBean valueForKey:@"userId"] ];

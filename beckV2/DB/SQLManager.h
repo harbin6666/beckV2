@@ -65,6 +65,9 @@ singleton_interface(SQLManager);
 
 
 -(NSArray*)getMessage;
+
+
+-(NSArray*)getPoints;
 -(void)openDB;
 
 @end

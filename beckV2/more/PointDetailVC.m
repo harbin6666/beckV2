@@ -18,12 +18,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"支付信息";
     NSString *url=@"";
     if (self.type==0) {
         url=@"/front/pointTransAct.htm";
+        self.title=@"我的积分";
     }else{
         url=@"/front/orderAct.htm";
+        self.title=@"支付信息";
     }
     [self showLoading];
     [self getValueWithBeckUrl:url params:@{@"token":@"list",@"loginName":[Global sharedSingle].loginName} CompleteBlock:^(id aResponseObject, NSError *anError) {
@@ -31,10 +32,13 @@
         if (anError==nil) {
             if ([aResponseObject[@"errorcode"] integerValue]==0) {
                 if (self.type==0) {
-                    NSArray *ar=aResponseObject[@"list"];
-                    for (NSString *sql in ar) {
-                        [[SQLManager sharedSingle] excuseSql:sql];
-                    }
+//                    NSArray *ar=aResponseObject[@"list"];
+//                    for (NSString *sql in ar) {
+//                        [[SQLManager sharedSingle] excuseSql:sql];
+//                    }
+                    
+                    self.buylist=[[SQLManager sharedSingle] getPoints];
+                    [self.tableView reloadData];
                 }else{
                     self.buylist=aResponseObject[@"list"];
                     [self.tableView reloadData];
