@@ -62,6 +62,9 @@ singleton_interface(SQLManager);
 
 
 -(NSString *)getcourseNameByOutlineId:(NSString*)outlineid;
+
+
+-(NSArray*)getMessage;
 -(void)openDB;
 
 @end

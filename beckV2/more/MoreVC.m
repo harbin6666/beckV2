@@ -57,7 +57,7 @@
     int p=0;
     switch (section) {
         case 0:
-            p=2;
+            p=3;
             break;
         case 1:
             p=3;
@@ -89,8 +89,10 @@
     if (indexPath.section==0) {
         if (indexPath.row==0) {
             text=@"高频考点";
-        }else{
+        }else if(indexPath.row==1){
             text=@"题库更新";
+        }else{
+            text=@"积分商城";
         }
     }else if (indexPath.section==1){
         if (indexPath.row==0) {
@@ -114,26 +116,25 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
         if (indexPath.row==0) {
-            HighFrequencyListVC*hc=[[HighFrequencyListVC alloc] init];
-            [self.navigationController pushViewController:hc animated:YES];
+            [self performSegueWithIdentifier:@"tohigh" sender:self];
         }else if (indexPath.row==1){
             [self performSegueWithIdentifier:@"updatedb" sender:self];
         }else if (indexPath.row==2){
-            
+            [self performSegueWithIdentifier:@"topointshop" sender:self];
         }
     }else if (indexPath.section==1){
         if (indexPath.row==0) {
-            
+            [self performSegueWithIdentifier:@"tousercenter" sender:self];
         }else if (indexPath.row==1){
-            
+            [self performSegueWithIdentifier:@"tomessage" sender:self];
         }else{
             
         }
     }else{
         if (indexPath.row==0) {
-            
+            [self performSegueWithIdentifier:@"tofeedback" sender:self];
         }else{
-            
+            [self performSegueWithIdentifier:@"tohelp" sender:self];
         }
     }
 }

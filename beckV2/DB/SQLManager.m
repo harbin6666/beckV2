@@ -16,12 +16,30 @@
 #import "ChoiceItem.h"
 #import "ExamPaper.h"
 #import "UserNote.h"
+#import "MessageVO.h"
 @interface SQLManager()
 
 @end
 @implementation SQLManager
 
 singleton_implementation(SQLManager);
+-(NSArray*)getMessage{
+    __block NSMutableArray *ar=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat: @"select * from message where user_id ==%@",[[Global sharedSingle].userBean valueForKey:@"userId"] ];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            MessageVO *msg=[MessageVO new];
+            msg.title=row[4];
+            msg.content=row[5];
+            msg.issue_time=row[6];
+            [ar addObject:msg];
+        }
+    }];
+    return ar;
+
+}
 
 -(NSString *)getcourseNameByOutlineId:(NSString*)outlineid{
     __block NSString *st=@"";
