@@ -43,6 +43,10 @@
 		395899391B2D3B790056B9A5 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 395899331B2D3B790056B9A5 /* AlipaySDK.bundle */; };
 		3958993A1B2D3B790056B9A5 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395899341B2D3B790056B9A5 /* AlipaySDK.framework */; };
 		3958993B1B2D3B790056B9A5 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 395899361B2D3B790056B9A5 /* libWeChatSDK.a */; };
+		3958993F1B2D5DEC0056B9A5 /* Train2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3958993E1B2D5DEC0056B9A5 /* Train2VC.m */; };
+		395899421B2D5DFC0056B9A5 /* Train3VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899411B2D5DFC0056B9A5 /* Train3VC.m */; };
+		395899451B2D829C0056B9A5 /* TrainSelcetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899441B2D829C0056B9A5 /* TrainSelcetView.m */; };
+		3958994B1B2DDC690056B9A5 /* DXPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 3958994A1B2DDC690056B9A5 /* DXPopover.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -171,6 +175,14 @@
 		395899361B2D3B790056B9A5 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		395899371B2D3B790056B9A5 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		395899381B2D3B790056B9A5 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		3958993D1B2D5DEC0056B9A5 /* Train2VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Train2VC.h; sourceTree = "<group>"; };
+		3958993E1B2D5DEC0056B9A5 /* Train2VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Train2VC.m; sourceTree = "<group>"; };
+		395899401B2D5DFC0056B9A5 /* Train3VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Train3VC.h; sourceTree = "<group>"; };
+		395899411B2D5DFC0056B9A5 /* Train3VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Train3VC.m; sourceTree = "<group>"; };
+		395899431B2D829C0056B9A5 /* TrainSelcetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainSelcetView.h; sourceTree = "<group>"; };
+		395899441B2D829C0056B9A5 /* TrainSelcetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainSelcetView.m; sourceTree = "<group>"; };
+		395899491B2DDC690056B9A5 /* DXPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXPopover.h; sourceTree = "<group>"; };
+		3958994A1B2DDC690056B9A5 /* DXPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXPopover.m; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -308,6 +320,7 @@
 		3919ABDC1B0647F200336E77 /* beckV2 */ = {
 			isa = PBXGroup;
 			children = (
+				3958993C1B2D5DCA0056B9A5 /* train */,
 				39CD45F21B209A5D005320B5 /* more */,
 				39CD45F31B209A5D005320B5 /* note */,
 				39CE4C621B19B48D00DDAB01 /* exam */,
@@ -427,6 +440,21 @@
 				395899381B2D3B790056B9A5 /* WXApiObject.h */,
 			);
 			path = wechat;
+			sourceTree = "<group>";
+		};
+		3958993C1B2D5DCA0056B9A5 /* train */ = {
+			isa = PBXGroup;
+			children = (
+				3958993D1B2D5DEC0056B9A5 /* Train2VC.h */,
+				3958993E1B2D5DEC0056B9A5 /* Train2VC.m */,
+				395899401B2D5DFC0056B9A5 /* Train3VC.h */,
+				395899411B2D5DFC0056B9A5 /* Train3VC.m */,
+				395899431B2D829C0056B9A5 /* TrainSelcetView.h */,
+				395899441B2D829C0056B9A5 /* TrainSelcetView.m */,
+				395899491B2DDC690056B9A5 /* DXPopover.h */,
+				3958994A1B2DDC690056B9A5 /* DXPopover.m */,
+			);
+			path = train;
 			sourceTree = "<group>";
 		};
 		396AD2FE1B176C4A005F92B1 /* category */ = {
@@ -778,15 +806,18 @@
 				394C4A0F1B233C390002838B /* PractisAnswer.m in Sources */,
 				3958992E1B2C97160056B9A5 /* PointDetailVC.m in Sources */,
 				39CE4C691B19B80C00DDAB01 /* Subject.m in Sources */,
+				3958994B1B2DDC690056B9A5 /* DXPopover.m in Sources */,
 				39CE4C5E1B195A2800DDAB01 /* SQLManager.m in Sources */,
 				39D780CD1B1386C9009F5C8E /* OTSAlertView.m in Sources */,
 				39CE4C821B1CBAF400DDAB01 /* CourseVC.m in Sources */,
+				395899421B2D5DFC0056B9A5 /* Train3VC.m in Sources */,
 				3958991C1B2BD6800056B9A5 /* MessageVC.m in Sources */,
 				39CD45F91B209A8D005320B5 /* NoteVC.m in Sources */,
 				39CE4C8B1B1DFD2700DDAB01 /* ChoiceCell.m in Sources */,
 				39CE4C941B1F3CB300DDAB01 /* QCollectionVC.m in Sources */,
 				394C4A301B2752350002838B /* SelectionPan.m in Sources */,
 				39CD45FC1B209B19005320B5 /* ExamHomeVC.m in Sources */,
+				395899451B2D829C0056B9A5 /* TrainSelcetView.m in Sources */,
 				396AD3041B1772F6005F92B1 /* Position.m in Sources */,
 				394C4A2A1B274F8A0002838B /* PractisDetailVC.m in Sources */,
 				39CE4C801B1CB1F800DDAB01 /* PractiseVC.m in Sources */,
@@ -811,6 +842,7 @@
 				3915499D1B21F1F500BF5BBF /* UpdataDbVC.m in Sources */,
 				39CE4C7A1B1A4C9B00DDAB01 /* ChoiceQuestion.m in Sources */,
 				3919ABE01B0647F200336E77 /* main.m in Sources */,
+				3958993F1B2D5DEC0056B9A5 /* Train2VC.m in Sources */,
 				39EEA1C01B29F651009BE945 /* HighFrequencyListVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

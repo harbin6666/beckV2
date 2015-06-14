@@ -57,22 +57,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "beckV2/login/LoginVC.m"
-            timestampString = "455953708.817483"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "-didReceiveWeiboResponse:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "beckV2/execise/CourseVC.m"
             timestampString = "455567985.661273"
             startingColumnNumber = "9223372036854775807"
@@ -89,13 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "beckV2/login/LoginVC.m"
-            timestampString = "455953722.85181"
+            filePath = "beckV2/train/Train3VC.m"
+            timestampString = "455990976.042791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "-onResp:"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "-click"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -105,13 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "beckV2/AppDelegate.m"
-            timestampString = "455954323.339712"
+            filePath = "beckV2/train/Train3VC.m"
+            timestampString = "455990931.873117"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "-application:openURL:sourceApplication:annotation:"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
+            landmarkName = "-textFieldShouldReturn:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -14,7 +14,7 @@
 @implementation SelectionPan
 
 -(void)updatePanWithTitles:(NSArray *)title selectBlock:(PanSelectBlock)block{
-    self.backgroundColor=[UIColor grayColor];
+    self.backgroundColor=[UIColor whiteColor];
     self.block=block;
     self.btnAr=[[NSMutableArray alloc] init];
     float width=self.frame.size.width/title.count;

@@ -55,8 +55,8 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"sectionheader"];
-
-    cell.imageView.image=[UIImage imageNamed:@"uncheckbox"];
+    cell.backgroundColor=[UIColor whiteColor];
+    cell.imageView.image=[UIImage imageNamed:@"flag"];
 //    NSArray *ar=[[SQLManager sharedSingle] getSubjectByid:self.subjectIdList];
     Subject *sb=self.subjectList[section];
     cell.textLabel.text=sb.subjectName;

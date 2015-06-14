@@ -138,7 +138,7 @@ static NSString *publicKey=@"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4ALzpzgxlXwU
 
                     NSNumber *paystatus=resultDic[@"resultStatus"];
                     if (paystatus.integerValue==9000) {
-
+                        [[OTSAlertView alertWithMessage:@"支付成功" andCompleteBlock:nil] show];
                     }else if (paystatus.integerValue==6001){
                         
                     }else{

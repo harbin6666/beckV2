@@ -135,8 +135,8 @@
     if ([response isKindOfClass:WBAuthorizeResponse.class])
     {
         //(int)response.statusCode = 0 is ok
-        NSLog(@"Sina 登录成功");
         if ([(WBAuthorizeResponse *)response userID]) {
+            NSLog(@"Sina 登录成功");
             [self unoinLogin];
         }
         NSLog(@"userID = %@, accessToken = %@", [(WBAuthorizeResponse *)response userID], [(WBAuthorizeResponse *)response accessToken]);

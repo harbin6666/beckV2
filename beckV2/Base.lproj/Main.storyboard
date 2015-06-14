@@ -65,7 +65,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ar0-hF-X5Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="889" y="-1502"/>
+            <point key="canvasLocation" x="1421" y="-1502"/>
         </scene>
         <!--考试-->
         <scene sceneID="tiZ-YG-Da2">
@@ -84,7 +84,112 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Qw-h2-QHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1021" y="-820"/>
+            <point key="canvasLocation" x="1553" y="-820"/>
+        </scene>
+        <!--培训招生-->
+        <scene sceneID="pyF-U8-yOn">
+            <objects>
+                <viewController title="培训招生" id="8fR-LD-g9H" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qEB-iG-Hqd"/>
+                        <viewControllerLayoutGuide type="bottom" id="G1X-dV-0C0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YMz-u1-Tap">
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="train1" translatesAutoresizingMaskIntoConstraints="NO" id="To1-qN-Em8">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zMa-Sf-DIo" userLabel="back">
+                                <rect key="frame" x="230" y="64" width="90" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="vwn-yW-jhK"/>
+                                    <constraint firstAttribute="height" constant="61" id="xhx-fU-LnQ"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="8fR-LD-g9H" kind="custom" customClass="DismissSegue" id="4Ua-sL-DrL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GRE-hR-hMg" userLabel="gotrain">
+                                <rect key="frame" x="83" y="449" width="152" height="119"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="119" id="Fx9-vY-5xY"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Ulf-S4-lTV" kind="show" id="qDG-z2-HKH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zMa-Sf-DIo" firstAttribute="top" secondItem="qEB-iG-Hqd" secondAttribute="bottom" id="0vo-aU-irn"/>
+                            <constraint firstItem="To1-qN-Em8" firstAttribute="leading" secondItem="YMz-u1-Tap" secondAttribute="leading" id="4AD-vR-zuY"/>
+                            <constraint firstAttribute="trailing" secondItem="To1-qN-Em8" secondAttribute="trailing" id="6gX-87-g2v"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zMa-Sf-DIo" secondAttribute="trailing" constant="-16" id="7dA-bx-5W6"/>
+                            <constraint firstItem="To1-qN-Em8" firstAttribute="top" secondItem="qEB-iG-Hqd" secondAttribute="bottom" id="DJg-Tb-mt5"/>
+                            <constraint firstItem="G1X-dV-0C0" firstAttribute="top" secondItem="GRE-hR-hMg" secondAttribute="bottom" id="PIh-CV-qAw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GRE-hR-hMg" secondAttribute="trailing" constant="69" id="PpL-YT-KdM"/>
+                            <constraint firstItem="To1-qN-Em8" firstAttribute="bottom" secondItem="G1X-dV-0C0" secondAttribute="top" id="jbh-vq-dSC"/>
+                            <constraint firstItem="To1-qN-Em8" firstAttribute="top" secondItem="YMz-u1-Tap" secondAttribute="top" id="pfw-o1-6lX"/>
+                            <constraint firstItem="GRE-hR-hMg" firstAttribute="leading" secondItem="YMz-u1-Tap" secondAttribute="leadingMargin" constant="67" id="sPj-Rm-lh8"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="pfw-o1-6lX"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="培训招生" id="csS-AU-JXX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aRQ-qh-15S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1229" y="-2060"/>
+        </scene>
+        <!--Train2VC-->
+        <scene sceneID="JwT-1o-EtX">
+            <objects>
+                <viewController storyboardIdentifier="train2" id="Ulf-S4-lTV" customClass="Train2VC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1sd-fw-Sns"/>
+                        <viewControllerLayoutGuide type="bottom" id="TYw-WC-hB2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oRf-lK-Q04">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="qof-08-U9f" kind="show" id="q6s-dA-FYb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Qu-E7-2LP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-761" y="-2060"/>
+        </scene>
+        <!--Train3VC-->
+        <scene sceneID="oSO-yw-amk">
+            <objects>
+                <viewController storyboardIdentifier="train3" id="qof-08-U9f" customClass="Train3VC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BKW-S1-SgI"/>
+                        <viewControllerLayoutGuide type="bottom" id="2gd-5M-hBr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lqr-rj-IJP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A8p-BL-UGI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-317" y="-2060"/>
         </scene>
         <!--个人成就-->
         <scene sceneID="dE9-lM-9gt">
@@ -217,7 +322,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ajs-AQ-Tla" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-391" y="-1383"/>
+            <point key="canvasLocation" x="141" y="-1383"/>
         </scene>
         <!--homeVC-->
         <scene sceneID="Rcr-zS-EwL">
@@ -315,6 +420,9 @@
                                 <state key="normal" image="jiayou">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="VK3-U4-B8M" kind="presentation" id="hlm-UH-s4k"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -405,7 +513,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ble-Dr-ogL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-337" y="-589"/>
+            <point key="canvasLocation" x="195" y="-589"/>
         </scene>
         <!--登录-->
         <scene sceneID="gth-R0-6LJ">
@@ -1143,7 +1251,27 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xC8-RO-Xoa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-955" y="-576"/>
+            <point key="canvasLocation" x="-2067" y="-480"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hGw-6p-EtT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="VK3-U4-B8M" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TCR-6P-n1s">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.90196078430000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8fR-LD-g9H" kind="relationship" relationship="rootViewController" id="MWS-GT-JBi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ncv-LA-3zH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1170" y="-970"/>
         </scene>
     </scenes>
     <resources>
@@ -1159,6 +1287,7 @@
         <image name="tab2" width="33" height="29"/>
         <image name="tab3" width="33" height="29"/>
         <image name="tab4" width="33" height="29"/>
+        <image name="train1" width="540" height="960"/>
         <image name="uncheckbox" width="24" height="24"/>
         <image name="xunzhang1_gray" width="70" height="90"/>
         <image name="xunzhang1_red" width="70" height="90"/>
@@ -1168,8 +1297,9 @@
         <image name="xunzhang3_red" width="70" height="90"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vAU-pr-r13"/>
+        <segue reference="EC2-o1-vzt"/>
         <segue reference="npZ-RJ-fqi"/>
+        <segue reference="MWS-GT-JBi"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
