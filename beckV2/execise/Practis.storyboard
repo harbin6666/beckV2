@@ -1377,6 +1377,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="lab" destination="Sz0-Gi-v9a" id="61Q-8f-xZQ"/>
+                                            <outlet property="radio" destination="mve-gx-WzQ" id="xdH-ag-8Nr"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="compatycell" rowHeight="88" id="Fmz-ym-nbO" customClass="CompatyCell">

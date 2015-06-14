@@ -78,11 +78,35 @@
     self.title=[NSString stringWithFormat:@"%zd/%zd",self.currentQIndex+1,self.questionsAr.count];
     Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
     
-    if (self.answer!=nil) {
+    BOOL containAnswer=NO;
+    for (PractisAnswer* an in self.answerArray) {
+        NSString *titid=nil;
+        if ([p isKindOfClass:[ChoiceQuestion class]]) {
+            titid=[(ChoiceQuestion*)p choice_id];
+        }else{
+            titid=[(CompatyInfo*)p info_id];
+        }
+        if (an.titleId.integerValue==titid.integerValue&&an.titleTypeId.integerValue==p.custom_id.integerValue) {
+            self.answer=an;
+            containAnswer=YES;
+            break;
+        }
+    }
+    
+    if (containAnswer) {
+    }else{
+        self.answer=nil;
+        self.answer=[PractisAnswer new];
+        self.answer.priority=[NSString stringWithFormat:@"%zd", self.currentQIndex+1];
+        self.answer.titleTypeId=p.custom_id;
+        if ([p isKindOfClass:[ChoiceQuestion class]]) {
+            self.answer.titleId=[(ChoiceQuestion*)p choice_id];
+        }else{
+            self.answer.titleId=[(CompatyInfo*)p info_id];
+        }
         [self addAnswer:self.answer];
     }
-    self.answer=nil;
-    self.answer=[PractisAnswer new];
+    
     
     if ([p isKindOfClass:[ChoiceQuestion class]]) {
         self.table.allowsSelection=YES;
@@ -206,8 +230,8 @@
     NSMutableDictionary *json = @{}.mutableCopy;
     json[@"loginName"] = [Global sharedSingle].loginName;
     json[@"paperId"] = self.examComp.paper_id;
-    json[@"beginTime"] = self.beginTime;
-    json[@"endTime"]=[NSDate date];
+    json[@"beginTime"] = [NSString stringWithFormat:@"%@",self.beginTime];
+    json[@"endTime"]=[NSString stringWithFormat:@"%@",[NSDate date]];
     return [self addAccurateRateList:json];
 }
 
@@ -225,12 +249,10 @@
         }else{
             wrongCount++;
         }
-    [ar addObject:[an toJson]];
+    [ar addObject:[an toExamJson]];
     }
     olderDic[@"rightAmount"]=@(count);
     olderDic[@"wrongAmount"]=@(wrongCount);
-    olderDic[@"beginTime"]=self.beginTime;
-    olderDic[@"endTime"]=[NSDate date];
     olderDic[@"Score"]=@(score);
     olderDic[@"userAnswer"]=ar;
     return olderDic;
@@ -263,14 +285,11 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
     if ([p isKindOfClass:[ChoiceQuestion class]]) {
-            ChoiceCell* cell=(ChoiceCell*)[tableView dequeueReusableCellWithIdentifier:@"choicecell" forIndexPath:indexPath];
-            cell.mark.image=nil;
-            cell.contentView.layer.borderColor=[UIColor clearColor].CGColor;
-            
-            [cell updateWithChoice:self.choiceArray[indexPath.row] answer:self.answer showAnswer:NO];
-            return cell;
-            
+        ChoiceCell* cell=(ChoiceCell*)[tableView dequeueReusableCellWithIdentifier:@"choicecell" forIndexPath:indexPath];
+        cell.mark.image=nil;
         
+        [cell updateWithChoice:self.choiceArray[indexPath.row] answer:self.answer showAnswer:NO];
+        return cell;
     }else{
             CompatyCell* cell=(CompatyCell* )[tableView dequeueReusableCellWithIdentifier:@"compatycell" forIndexPath:indexPath];
             cell.row=indexPath.row;

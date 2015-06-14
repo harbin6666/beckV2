@@ -16,6 +16,7 @@
 @property(nonatomic,strong)NSString *titleTypeId;
 //@property(nonatomic,strong)NSMutableArray *multiAnswer;
 -(NSDictionary*)toJson;
+-(NSDictionary*)toExamJson;
 @end
 
 @interface ExamAnswer : NSObject

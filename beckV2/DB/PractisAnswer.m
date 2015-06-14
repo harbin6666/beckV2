@@ -32,6 +32,29 @@
     NSDictionary *dic=@{@"isRight":self.isRight,@"priority":self.priority,@"titleId":self.titleId,@"userAnswer":str,@"titleTypeId":self.titleTypeId};
     return dic;
 }
+
+-(NSDictionary*)toExamJson{
+    id answer=nil;
+    if (self.titleTypeId.integerValue==10||self.titleTypeId.integerValue==1) {
+        NSMutableDictionary *dic=[NSMutableDictionary dictionary];
+        
+        for (NSDictionary *d in self.userAnswer) {
+            [dic addEntriesFromDictionary:d];
+        }
+        answer=dic;
+    }else{
+        NSMutableArray *ar=[NSMutableArray array];
+        for (int i=0; i<self.userAnswer.count; i++) {
+            ChoiceItem*it=(ChoiceItem*)self.userAnswer[i];
+            [ar addObject:it.nid];
+        }
+        answer=ar;
+    }
+    NSData*data=[NSJSONSerialization dataWithJSONObject:answer options:0 error:nil];
+    NSString *str=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSDictionary *dic=@{@"userAnswer":str};
+    return dic;
+}
 /*
  isRight;
  @property(nonatomic,strong)NSString *priority;
