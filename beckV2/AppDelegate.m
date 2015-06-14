@@ -11,6 +11,9 @@
 #import "WeiboSDK.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "WXApi.h"
+#import "CoreNewFeatureVC.h"
+#import "CALayer+Transition.h"
+
 //#import <RennSDK/RennSDK.h>
 
 @interface AppDelegate ()
@@ -38,10 +41,33 @@
         [[Global sharedSingle] setUserValue:p.titleId Key:@"titleid"];
         [[Global sharedSingle] setUserValue:p.titleName Key:@"titleName"];
     }
-    
+    if([CoreNewFeatureVC canShowNewFeature]){
+        
+        NewFeatureModel *m1 = [NewFeatureModel model:[UIImage imageNamed:@"f1"]];
+        
+        NewFeatureModel *m2 = [NewFeatureModel model:[UIImage imageNamed:@"f2"]];
+        
+        NewFeatureModel *m3 = [NewFeatureModel model:[UIImage imageNamed:@"f3"]];
+        NewFeatureModel *m4 = [NewFeatureModel model:[UIImage imageNamed:@"f4"]];
 
+        self.window.rootViewController = [CoreNewFeatureVC newFeatureVCWithModels:@[m1,m2,m3,m4] enterBlock:^{
+            [self enter];
+        }];
+    }else{
+        UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        UIViewController *vc=[sb instantiateInitialViewController];
+        self.window.rootViewController = vc;
+    }
     return YES;
 }
+
+-(void)enter{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    UIViewController *vc=[sb instantiateInitialViewController];
+    self.window.rootViewController = vc;
+    [self.window.layer transitionWithAnimType:TransitionAnimTypeRamdom subType:TransitionSubtypesFromRamdom curve:TransitionCurveRamdom duration:2.0f];
+}
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     if ([TencentOAuth CanHandleOpenURL:url]) {
