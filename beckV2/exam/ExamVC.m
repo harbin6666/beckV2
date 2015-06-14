@@ -45,7 +45,9 @@
 
 -(void)updateTime{
     self.seconds--;
-    self.timeLab.text=[NSString stringWithFormat:@"%zd",self.seconds];
+    NSInteger h=(NSInteger)self.seconds/60;
+    NSInteger s=self.seconds%60;
+    self.timeLab.text=[NSString stringWithFormat:@"%zd:%zd",h,s];
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
