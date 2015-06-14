@@ -12,7 +12,7 @@
 #import "ChoiceCell.h"
 #import "CompatyCell.h"
 #import "QCollectionVC.h"
-
+#import "CachedAnswer.h"
 #import "PractisAnswer.h"
 @interface PractiseVC ()<UITabBarDelegate,UITableViewDataSource,UITableViewDelegate,QCollectionVCDelegate>
 @property(nonatomic,strong)NSArray *questionsAr;
@@ -33,7 +33,6 @@
 
 - (void)didSelectedItemIndexInAnswerCVC:(NSInteger)index{
     [self.navigationController popViewControllerAnimated:YES];
-
     self.currentQIndex=index;
     [self freshView];
 }
@@ -44,24 +43,84 @@
     
     [self setNavigationBarButtonName:@"提交" width:40 isLeft:NO];
     [self setNavigationBarButtonName:@"返回" width:40 isLeft:YES];
-    self.answerArray=[[NSMutableArray alloc] init];
+
     self.questionsAr=[[SQLManager sharedSingle] getQuestionByOutlineId:self.outletid];
+    self.showAnswer=NO;
+
     self.currentQIndex=0;
+
+    self.answerArray=[[CachedAnswer new] getCacheByOutlineid:self.outletid];
+    if (self.answerArray==nil) {
+        self.answerArray=[[NSMutableArray alloc] init];
+    }else{
+        self.answerArray=[[CachedAnswer new] getCacheByOutlineid:self.outletid];
+       __block PractisAnswer *temp=nil;
+        [self.answerArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            PractisAnswer *an=(PractisAnswer *)obj;
+            if (an.priority.integerValue>temp.priority.integerValue) {
+                temp=an;
+            }
+        }];
+        NSString *s=[NSString stringWithFormat:@"上次练习到%@题，是否继续",temp.priority];
+        [[OTSAlertView alertWithTitle:@"" message:s leftBtn:@"取消" rightBtn:@"继续" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex==0) {
+                
+            }else{
+                self.currentQIndex=temp.priority.integerValue-1;
+                [self freshView];
+            }
+            
+        }] show];
+    }
     [self freshView];
+
 }
 
 -(void)leftBtnClick:(UIButton *)sender{
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    [[OTSAlertView alertWithTitle:@"提示" message:@"是否保存练习" leftBtn:@"取消" rightBtn:@"保存" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+        if (buttonIndex==0) {
+            
+        }else{
+            [[CachedAnswer new] saveCache:self.answerArray outlineid:self.outletid];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+
+    }] show];
+    
 }
 -(void)freshView{
     self.title=[NSString stringWithFormat:@"%zd/%zd",self.currentQIndex+1,self.questionsAr.count];
     Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
+    
+    BOOL containAnswer=NO;
+    for (PractisAnswer* an in self.answerArray) {
+        NSString *titid=nil;
+        if ([p isKindOfClass:[ChoiceQuestion class]]) {
+            titid=[(ChoiceQuestion*)p choice_id];
+        }else{
+            titid=[(CompatyInfo*)p info_id];
+        }
+        if (an.titleId.integerValue==titid.integerValue&&an.titleTypeId.integerValue==p.custom_id.integerValue) {
+            self.answer=an;
+            containAnswer=YES;
+            break;
+        }
+    }
 
-    if (self.answer!=nil) {
+    if (containAnswer) {
+    }else{
+        self.answer=nil;
+        self.answer=[PractisAnswer new];
+        self.answer.priority=[NSString stringWithFormat:@"%zd", self.currentQIndex+1];
+        self.answer.titleTypeId=p.custom_id;
+        if ([p isKindOfClass:[ChoiceQuestion class]]) {
+            self.answer.titleId=[(ChoiceQuestion*)p choice_id];
+        }else{
+            self.answer.titleId=[(CompatyInfo*)p info_id];
+        }
         [self addAnswer:self.answer];
     }
-    self.answer=nil;
-    self.answer=[PractisAnswer new];
 
 
     if ([p isKindOfClass:[ChoiceQuestion class]]) {
@@ -173,8 +232,8 @@
             break;
         }
     }
-    Question*q=[self.questionsAr objectAtIndex:self.currentQIndex];
-    if (dest!=nil&&q.custom_id.integerValue!=12) {
+
+    if (dest!=nil) {
         [self.answerArray removeObject:dest];
     }
     [self.answerArray addObject:pAnswer];
@@ -214,6 +273,7 @@
 }
 
 -(void)rightBtnClick:(UIButton *)sender{
+    
     [self showLoading];
     NSMutableDictionary *params = @{}.mutableCopy;
     params[@"token"] = @"add";
@@ -299,9 +359,8 @@
         }else{
            ChoiceCell* cell=(ChoiceCell*)[tableView dequeueReusableCellWithIdentifier:@"choicecell" forIndexPath:indexPath];
             cell.mark.image=nil;
-            cell.contentView.layer.borderColor=[UIColor clearColor].CGColor;
 
-            [cell updateWithChoice:self.choiceArray[indexPath.row]];
+            [cell updateWithChoice:self.choiceArray[indexPath.row] answer:self.answer showAnswer:self.showAnswer];
             return cell;
 
         }
@@ -328,10 +387,13 @@
            CompatyCell* cell=(CompatyCell* )[tableView dequeueReusableCellWithIdentifier:@"compatycell" forIndexPath:indexPath];
             cell.row=indexPath.row;
             CompatyQuestion *q=self.compatibilyArray[indexPath.row];
-                [cell updateCompatyCell:q  customid:p.custom_id selectedBlock:^(BOOL right,CompatyItem *answer) {
-                    if(q.answer_id==answer.answerid){
-                        
+                [cell updateCompatyCell:q  customid:p.custom_id answer:self.answer showAnswer:self.showAnswer selectedBlock:^(BOOL right,CompatyItem *answer) {
+                    if (right) {
+                        p.answerType=answeredRight;
+                    }else{
+                        p.answerType=answeredwrong;
                     }
+                    [tableView reloadData];
                 }];
 
 
@@ -341,72 +403,42 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    id p=[self.questionsAr objectAtIndex:self.currentQIndex];
+    Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
     if ([p isKindOfClass:[ChoiceQuestion class]]&&indexPath.row<self.choiceArray.count) {
         ChoiceQuestion *q=(ChoiceQuestion*)p;
         ChoiceItem *item=q.choiceItems[indexPath.row];
-        self.answer.priority=@(self.currentQIndex+1).stringValue;
+//        self.answer.priority=@(self.currentQIndex+1).stringValue;
         
         //显示答案
         if (item.is_answer.integerValue==0) {
             self.answer.isRight=@"false";
-            for (int i=0;i<q.choiceItems.count;i++) {
-                ChoiceItem *item=q.choiceItems[i];
-                ChoiceCell *cell=(ChoiceCell*)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:indexPath.section]];
-                if (item.is_answer.integerValue==1) {
-                    cell.mark.image=[UIImage imageNamed:@"choiceRight"];
-                    cell.contentView.layer.borderColor=[UIColor greenColor].CGColor;
-                    cell.contentView.layer.borderWidth=1;
-                }else{
-                    cell.mark.image=nil;
-                    cell.contentView.layer.borderColor=[UIColor clearColor].CGColor;
-                }
-            }
-            ChoiceCell *cell=(ChoiceCell*)[tableView cellForRowAtIndexPath:indexPath];
-            cell.mark.image=[UIImage imageNamed:@"choiceWrong"];
+            p.answerType=answeredwrong;
         }else {
             self.answer.isRight=@"true";
-            for (int i=0;i<q.choiceItems.count;i++) {
-                ChoiceCell *cell=(ChoiceCell*)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:indexPath.section]];
-                cell.mark.image=nil;
-                cell.contentView.layer.borderColor=[UIColor clearColor].CGColor;
+            p.answerType=answeredRight;
 
-            }
         }
-        self.answer.titleId=q.choice_id;
-        self.answer.titleTypeId=q.custom_id;
+
 
         if ([p custom_id].intValue!=12) {
-            self.answer.userAnswer=item.item_number;
+            [self.answer.userAnswer removeAllObjects];
+            [self.answer.userAnswer addObject:item];
             
         }else{
-            [self addMultiAnswer:item.item_number];
+            ChoiceItem *dest=nil;
+            for (ChoiceItem*it in self.answer.userAnswer) {
+                if (it.nid.integerValue==item.nid.integerValue) {
+                    dest=it;
+                }
+            }
+            if (dest) {
+                [self.answer.userAnswer removeObject:dest];
+            }else {
+                [self.answer.userAnswer addObject:item];
+            }
         }
     }
-    
-}
-
-//多选
--(void)addMultiAnswer:(NSString *)item_mun{
-    NSString *dest=nil;
-    for (NSString *num in self.answer.multiAnswer) {
-        if ([num isEqualToString:item_mun]) {
-            dest=num;
-            break;
-        }
-    }
-    if (dest!=nil) {
-        [self.answer.multiAnswer removeObject:dest];
-    }
-    [self.answer.multiAnswer addObject:item_mun];
-    ChoiceQuestion * c=[self.questionsAr objectAtIndex:self.currentQIndex];
-    //只要有一个候选答案不对，题目就错了
-    for (NSString *str in self.answer.multiAnswer) {
-        if (![c.answer containsString:str]) {
-            self.answer.isRight=@"false";
-            break;
-        }
-    }
+    [tableView reloadData];
 }
 
 
@@ -483,9 +515,9 @@
 }
 
 -(void)showAnswer:(UITabBarItem *)item{
-    self.answerCell.textLabel.hidden=!self.answerCell.textLabel.hidden;
-    self.showAnswer=self.answerCell.textLabel.hidden;
-    if (self.showAnswer) {
+//    self.answerCell.textLabel.hidden=!self.answerCell.textLabel.hidden;
+    self.showAnswer=!self.showAnswer;
+    if (!self.showAnswer) {
         [item setImage:[[UIImage imageNamed:@"answer"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [item setSelectedImage:[[UIImage imageNamed:@"answer"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
@@ -497,6 +529,7 @@
         [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
 
     }
+    [self.table reloadData];
 }
 
 -(void)addFaver:(UITabBarItem *)item{
@@ -594,6 +627,7 @@
         QCollectionVC *vc=segue.destinationViewController;
         vc.vcDelegate=self;
         vc.questions=self.questionsAr;
+
     }
 }
 /*

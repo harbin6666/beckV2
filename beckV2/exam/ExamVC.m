@@ -288,7 +288,7 @@
             cell.mark.image=nil;
             cell.contentView.layer.borderColor=[UIColor clearColor].CGColor;
             
-            [cell updateWithChoice:self.choiceArray[indexPath.row]];
+            [cell updateWithChoice:self.choiceArray[indexPath.row] answer:self.answer showAnswer:NO];
             return cell;
             
         
@@ -296,7 +296,7 @@
             CompatyCell* cell=(CompatyCell* )[tableView dequeueReusableCellWithIdentifier:@"compatycell" forIndexPath:indexPath];
             cell.row=indexPath.row;
             CompatyQuestion *q=self.compatibilyArray[indexPath.row];
-            [cell updateCompatyCell:q  customid:p.custom_id selectedBlock:^(BOOL right,CompatyItem *answer) {
+            [cell updateCompatyCell:q  customid:p.custom_id answer:self.answer showAnswer:NO selectedBlock:^(BOOL right,CompatyItem *answer) {
                 if(q.answer_id==answer.answerid){
                     
                 }

@@ -1008,7 +1008,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AMD-r7-WDg" id="bRL-Qq-O7Z">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radio" highlightedImage="radio_sel" translatesAutoresizingMaskIntoConstraints="NO" id="9C7-lC-SfD">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radio" translatesAutoresizingMaskIntoConstraints="NO" id="9C7-lC-SfD">
                                                     <rect key="frame" x="17" y="12" width="19" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="19" id="Ibg-kF-gf4"/>
@@ -1050,6 +1050,7 @@
                                         <connections>
                                             <outlet property="lab" destination="j15-iE-jWY" id="unb-M7-l9g"/>
                                             <outlet property="mark" destination="cDT-PN-fPm" id="GkR-Y1-nx5"/>
+                                            <outlet property="radio" destination="9C7-lC-SfD" id="qcx-WK-7mB"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="compatycell" rowHeight="88" id="EbC-Zo-f3v" customClass="CompatyCell">

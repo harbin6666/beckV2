@@ -353,6 +353,7 @@ singleton_implementation(SQLManager);
             
         }else{
             ChoiceItem *item=[ChoiceItem new];
+            item.nid=row[0];
             item.choice_id=row[1];
             item.item_number=row[2];
             item.item_content=row[3];

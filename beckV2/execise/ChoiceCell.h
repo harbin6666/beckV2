@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ChoiceItem.h"
-
+#import "PractisAnswer.h"
 
 
 @interface ChoiceCell : UITableViewCell
 @property(nonatomic,weak)IBOutlet UILabel *lab;
--(void)updateWithChoice:(ChoiceItem*)item;
+-(void)updateWithChoice:(ChoiceItem*)item answer:(PractisAnswer*)answer showAnswer:(BOOL)b;
 @property(nonatomic,weak)IBOutlet UIImageView *mark;
-
+@property(nonatomic,weak)IBOutlet UIImageView *radio;
 @end

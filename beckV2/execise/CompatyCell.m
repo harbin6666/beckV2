@@ -13,6 +13,9 @@
 @property(nonatomic,strong)CompatyQuestion *question;
 @property(nonatomic,strong)NSMutableArray *viewAr;
 @property(nonatomic,strong)NSMutableArray *answers;
+@property(nonatomic,strong)PractisAnswer *answ;
+@property(nonatomic,strong)NSString *customid;
+@property(nonatomic)BOOL show;
 
 @end
 @implementation CompatyCell
@@ -23,8 +26,9 @@
 }
 
 
--(void)updateCompatyCell:(CompatyQuestion*)compatyQ customid:(NSString *)qCustomid selectedBlock:(ItemSelectBlock)block{
-    
+-(void)updateCompatyCell:(CompatyQuestion*)compatyQ customid:(NSString *)qCustomid answer:(PractisAnswer*)answer showAnswer:(BOOL)show selectedBlock:(ItemSelectBlock)block{
+    self.answ=answer;
+    self.customid=qCustomid;
     for (UIView *v in self.viewAr) {
         [v removeFromSuperview];
     }
@@ -36,7 +40,13 @@
     if (qCustomid.intValue==11) {
         width=self.contentView.frame.size.width;
     }
-    self.block=block;
+    if (block) {
+        self.block=block;
+    }
+//    NSDictionary *selectDic=nil;
+//    if (self.answ.userAnswer.count>0) {
+//        selectDic=self.answ.userAnswer[0];
+//    }
     for (int i=0; i<compatyQ.items.count; i++) {
         CompatyItem *item=compatyQ.items[i];
         UIView *v=[[UIView alloc] initWithFrame:CGRectMake(width*i, 44, width, 40)];
@@ -47,8 +57,17 @@
         [self.contentView addSubview:v];
         
         UIImageView *sel=[[UIImageView alloc] initWithFrame:CGRectMake(0, 12, 19, 19)];
-
         sel.image=[UIImage imageNamed:@"radio"];
+        
+        for (NSDictionary *d in self.answ.userAnswer) {
+            if ([d[self.question.question_id] integerValue]==item.answerid.integerValue&&self.question.question_id.integerValue==[d.allKeys[0] integerValue]) {
+                sel.image=[UIImage imageNamed:@"radio_sel"];
+            }
+//            else{
+//                sel.image=[UIImage imageNamed:@"radio"];
+//                
+//            }
+        }
         sel.tag=99;
         [v addSubview:sel];
         
@@ -69,7 +88,13 @@
         if (qCustomid.intValue==11) {
             signal.frame=CGRectMake(width-20-2, 12, 20, 20);
         }
-
+        if (show) {
+            if ([item.answerid isEqualToString:self.question.answer_id]){
+                signal.image=[UIImage imageNamed:@"choiceRight"];
+            }else{
+                signal.image=[UIImage imageNamed:@"choiceWrong"];
+            }
+        }
         signal.tag=88;
         [v addSubview:signal];
         
@@ -88,51 +113,68 @@
 }
 
 -(void)itemClick:(UIButton*)sender{
-
-    
-    for (UIView *view in self.viewAr) {
-        UIImageView *v=(UIImageView *)[view viewWithTag:99];
-        UIImageView *v1=(UIImageView *)[view viewWithTag:88];
-        UIButton *btn=(UIButton *)[view viewWithTag:view.tag];
-        if (sender.tag==btn.tag) {
-            sender.selected=YES;
-            v.image=[UIImage imageNamed:@"radio_sel"];
-        }else{
-            sender.selected=NO;
-            v.image=[UIImage imageNamed:@"radio"];
-
-        }
-        v1.hidden=YES;
-        view.layer.borderColor=[UIColor clearColor].CGColor;
-
-    }
-    
-
-    UIImageView *v1=(UIImageView *)[sender.superview viewWithTag:88];
-
-
     CompatyItem *item=self.question.items[sender.tag-100];
+    NSMutableDictionary *dic=[NSMutableDictionary dictionary];
+    dic[self.question.question_id]=item.answerid;
+    NSDictionary *dest=nil;
+    for (NSDictionary *d in self.answ.userAnswer) {
+        if (d[self.question.question_id]) {
+            dest=d;
+        }
+    }
+    if (dest) {
+        [self.answ.userAnswer removeObject:dest];
+    }
+//    [self.answ.userAnswer removeAllObjects];
+    
+    
+    [self.answ.userAnswer addObject:dic];
+//    [self updateCompatyCell:self.question customid:self.customid answer:self.answ showAnswer:self.show selectedBlock:nil];
+    
+//    for (UIView *view in self.viewAr) {
+//        UIImageView *v=(UIImageView *)[view viewWithTag:99];
+//        UIImageView *v1=(UIImageView *)[view viewWithTag:88];
+//        UIButton *btn=(UIButton *)[view viewWithTag:view.tag];
+//        if (sender.tag==btn.tag) {
+//            sender.selected=YES;
+//            v.image=[UIImage imageNamed:@"radio_sel"];
+//        }else{
+//            sender.selected=NO;
+//            v.image=[UIImage imageNamed:@"radio"];
+//
+//        }
+//        v1.hidden=YES;
+//
+//    }
+//    
+//
+//    UIImageView *v1=(UIImageView *)[sender.superview viewWithTag:88];
+//
+//
     if ([item.answerid isEqualToString:self.question.answer_id]) {
         self.block(YES,item);
+//        self.answ.isRight=@"true";
+
     }else{
         self.block(NO,item);
-        v1.image=[UIImage imageNamed:@"choiceWrong"];
-        v1.hidden=NO;
-        for (int i=0;i<self.question.items.count;i++) {
-            CompatyItem *item=self.question.items[i];
-            if ([item.answerid isEqualToString:self.question.answer_id]) {
-                UIView *view=[self.contentView viewWithTag:i+100];
-                view.layer.borderColor=[UIColor greenColor].CGColor;
-                view.layer.borderWidth=1;
-                
-                UIImageView*imgv=(UIImageView *)[view viewWithTag:88];
-                imgv.image=[UIImage imageNamed:@"choiceRight"];
-                imgv.hidden=NO;
-                
-            }
-        }
-
+        self.answ.isRight=@"false";
     }
+//        v1.image=[UIImage imageNamed:@"choiceWrong"];
+//        v1.hidden=NO;
+//        for (int i=0;i<self.question.items.count;i++) {
+//            CompatyItem *item=self.question.items[i];
+//            if ([item.answerid isEqualToString:self.question.answer_id]) {
+//                UIView *view=[self.contentView viewWithTag:i+100];
+//
+//                
+//                UIImageView*imgv=(UIImageView *)[view viewWithTag:88];
+//                imgv.image=[UIImage imageNamed:@"choiceRight"];
+//                imgv.hidden=NO;
+//                
+//            }
+//        }
+//
+//    }
 
     
 }

@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PractisAnswer : NSObject
+@interface PractisAnswer : NSObject<NSCoding>
 @property(nonatomic,strong)NSString *isRight;
 @property(nonatomic,strong)NSString *priority;
 @property(nonatomic,strong)NSString *titleId;
-@property(nonatomic,strong)NSString *userAnswer;
+@property(nonatomic,strong)NSMutableArray* userAnswer;
 @property(nonatomic,strong)NSString *titleTypeId;
-@property(nonatomic,strong)NSMutableArray *multiAnswer;
+//@property(nonatomic,strong)NSMutableArray *multiAnswer;
 -(NSDictionary*)toJson;
 @end
 

@@ -84,6 +84,7 @@
 		395899D71B2DE2BE0056B9A5 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899B41B2DE2BE0056B9A5 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		395899D81B2DE2BE0056B9A5 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899B61B2DE2BE0056B9A5 /* View+MASAdditions.m */; };
 		395899D91B2DE2BE0056B9A5 /* UIView+Masony.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899B91B2DE2BE0056B9A5 /* UIView+Masony.m */; };
+		395899DF1B2DF4680056B9A5 /* CachedAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899DE1B2DF4680056B9A5 /* CachedAnswer.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -299,6 +300,8 @@
 		395899B71B2DE2BE0056B9A5 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		395899B81B2DE2BE0056B9A5 /* UIView+Masony.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Masony.h"; sourceTree = "<group>"; };
 		395899B91B2DE2BE0056B9A5 /* UIView+Masony.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Masony.m"; sourceTree = "<group>"; };
+		395899DD1B2DF4680056B9A5 /* CachedAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachedAnswer.h; sourceTree = "<group>"; };
+		395899DE1B2DF4680056B9A5 /* CachedAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachedAnswer.m; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -983,6 +986,8 @@
 				39CE4C931B1F3CB300DDAB01 /* QCollectionVC.m */,
 				39CE4C981B1F479D00DDAB01 /* AnswerCVCCell.h */,
 				39CE4C991B1F479D00DDAB01 /* AnswerCVCCell.m */,
+				395899DD1B2DF4680056B9A5 /* CachedAnswer.h */,
+				395899DE1B2DF4680056B9A5 /* CachedAnswer.m */,
 			);
 			path = execise;
 			sourceTree = "<group>";
@@ -1214,6 +1219,7 @@
 				39CE4C7D1B1A4CAC00DDAB01 /* CompatyQuestion.m in Sources */,
 				395899D01B2DE2BE0056B9A5 /* MASCompositeConstraint.m in Sources */,
 				395899BA1B2DE2BE0056B9A5 /* NSString+File.m in Sources */,
+				395899DF1B2DF4680056B9A5 /* CachedAnswer.m in Sources */,
 				395899CA1B2DE2BE0056B9A5 /* UIImage+FixOrientation.m in Sources */,
 				394C4A331B275B6B0002838B /* UserNote.m in Sources */,
 				395899D41B2DE2BE0056B9A5 /* MASViewAttribute.m in Sources */,

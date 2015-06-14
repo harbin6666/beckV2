@@ -32,7 +32,13 @@
         [self performSegueWithIdentifier:@"nologin" sender:self];
     }
     if ([Global sharedSingle].logined) {
-        [self updateDB];
+        [self showLoading];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+            [self updateDB];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self hideLoading];
+            });
+        });
     }
 
     self.positionView.hidden=YES;
@@ -172,43 +178,8 @@
     [self.titleBtn setTitle:str forState:UIControlStateNormal];
 
 }
-//-(void)replacePickerContainerViewTopConstraintWithConstant:(CGFloat)constant
-//{
-//    for(NSLayoutConstraint*constraint in self.positionView.superview.constraints){
-//        if(constraint.firstItem==self.positionView&&constraint.firstAttribute==NSLayoutAttributeBottom){
-//            constraint.constant=constant;
-//            }
-//        }
-//}
-//
-//-(IBAction)showPositionView:(id)sender{
-//    self.hasShowPickerView=!self.hasShowPickerView;
-//    if(self.hasShowPickerView){
-//        CGRect frame=self.positionView.frame;
-//        frame=[self.view convertRect:frame fromView:self.positionView];
-//        CGFloat offset=frame.origin.y+frame.size.height;
-//        CGFloat gap=offset-(self.view.frame.size.height-self.positionView.frame.size.height);
-//        CGRect bounds=self.view.bounds;
-//        if(gap>0){
-//            bounds.origin.y=gap;
-//            }else{
-//                gap=0;
-//                }
-//        [self replacePickerContainerViewTopConstraintWithConstant:offset];
-//        [UIView animateWithDuration:0.25 animations:^{
-//            self.view.bounds=bounds;
-//            [self.view layoutIfNeeded];
-//            }];
-//        }else{
-//            [self replacePickerContainerViewTopConstraintWithConstant:self.view.frame.size.height];
-//            CGRect bounds=self.view.bounds;
-//            bounds.origin.y=0;
-//            [UIView animateWithDuration:0.25 animations:^{
-//                self.view.bounds=bounds;
-//                [self.view layoutIfNeeded];
-//                }];
-//            }
-//}
+
+
 -(void)updateDB{
     NSDictionary *addIn=[[SQLManager sharedSingle] getAddinParam];
     

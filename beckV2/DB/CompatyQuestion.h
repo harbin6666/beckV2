@@ -20,7 +20,6 @@
 @property(nonatomic,strong)NSString *memo;
 @property(nonatomic,strong)NSString *is_img;
 @property(nonatomic,strong)NSString *img_content;
-
 @end
 
 

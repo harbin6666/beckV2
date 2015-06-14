@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ChoiceItem : NSObject
+@interface ChoiceItem : NSObject<NSCoding>
+@property(nonatomic,strong)NSString *nid;
 @property(nonatomic,strong)NSString *choice_id;
 @property(nonatomic,strong)NSString *item_number;
 @property(nonatomic,strong)NSString *item_content;
