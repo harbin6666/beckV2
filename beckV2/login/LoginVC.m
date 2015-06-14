@@ -9,7 +9,6 @@
 #import "LoginVC.h"
 #import "FindPassVC.h"
 #import <TencentOpenAPI/TencentOAuth.h>
-
 #import "AppDelegate.h"
 @interface LoginVC ()<TencentLoginDelegate,TencentSessionDelegate>
 @property(nonatomic,weak)IBOutlet UITextField* usrName;
@@ -31,9 +30,7 @@
     
     [WeiboSDK registerApp:kSinaAppKey];
     
-    //        [RennClient initWithAppId:kRenRenAppId
-    //                           apiKey:kRenRenAppKey
-    //                        secretKey:kRenRenAppSecretKey];
+    [WXApi registerApp:kWXAPP_ID];
     
     [self setNavigationBarButtonName:@"" width:0 isLeft:YES];
 }
@@ -45,7 +42,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark -wechat
+-(void) onResp:(BaseResp*)resp{
+    SendAuthResp*auth=(SendAuthResp*)resp;
+    
+}
 #pragma mark - <TencentLoginDelegate>
 - (IBAction)onPressedQQ:(id)sender {
     if ([TencentOAuth iphoneQQSupportSSOLogin]) {
@@ -70,13 +71,12 @@
     [WeiboSDK sendRequest:request];
 }
 
-//- (IBAction)onPressedRenRen:(id)sender {
-//    if ([RennClient isLogin]) {
-//        [RennClient logoutWithDelegate:self];
-//    }
-//
-//    [RennClient loginWithDelegate:self];
-//}
+- (IBAction)onPressedwechat:(id)sender {
+    SendAuthReq*req=[SendAuthReq new];
+    req.scope = @"snsapi_userinfo" ;
+    req.state = @"beck" ;
+    [WXApi sendReq:req];
+}
 
 
 -(void)unoinLogin{

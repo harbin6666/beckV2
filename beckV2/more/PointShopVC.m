@@ -8,11 +8,19 @@
 
 #import "PointShopVC.h"
 #import "BaseViewController.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import "WXApi.h"
+
 @interface PointShopVC ()
 @property(nonatomic,strong)NSArray *pointAr;
 @property(nonatomic,strong)NSDictionary *selectP;
 @property(nonatomic,assign)NSInteger currentIndex;
 @end
+static NSString *partid=@"2088811668420352";
+static NSString *seller=@"whbyxxjs@126.com";
+static NSString *privatekey=@"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALgAvOnODGVfBT7rk7xcpLLnpJaMJjuxbVuuplFdje8c5MYbsyiic/6HCuXiPi185X6kLdNrhn4qTjkY6BagvzxzV+31oJyy+92OnkQEG7qqCJZZjvcHr2FYocQXK9N6U02PYw5/SGHRdMnVqEwDar8IMiv956W89oLO7rR84CcLAgMBAAECgYBj99KrXE0Tzjo1YxwS3GqG4J9lQ6OKDu2RQCQQVLnGTXZlw6rkys4mXQwotXB+mjq9QUm8cdDSPv3cu5Fsqcz7iNtMwwrsqxVwWBJeLJ1QVY5iRdHff0epQJaJRFnUf2e18Teg2Cupp9v/uyss+ovvLS4zFT6VrbGSy1EylsycoQJBAODrm1OmSBQ1RBoO1LShQ3nd55pcKWIMl4nrrWX1QSFqfKR9SMnwCm23c/QSXTdgp7bt4MBhF5x6cdupItY85vkCQQDRbbS6VtJ8GxVs5A6WEk6ssFtJRTMhQ2tCgv+8a97o574HzbqqkjTEWB7T48hrfPxvGDREBw8cIgvh262iNusjAkEAq2G7lEyipYtE3hoo543tjWGRxWOuQMDZg0UqdgMf4qdyXB/+o6idOabM2tBXaQfkI5Y0aEJTLG98bGT/X4E+eQJANTJfsOFy79FVXOaFCfu2fkkBtxfbx/w/F5L88NiZs6GB9Kt+WetvedxEYGBAvYTu/i0wwYLlhKjlScaqUUUP7wJAJBI74DxPsJDl+A1E6xE1+c8kVP+Y62P20fIiDfETIVD3HT3rkYW2tl9MM1N3V8LJviTqafGP2rVRJFcbCeBueQ==";
+
+static NSString *publicKey=@"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4ALzpzgxlXwU+65O8XKSy56SWjCY7sW1brqZRXY3vHOTGG7MoonP+hwrl4j4tfOV+pC3Ta4Z+Kk45GOgWoL88c1ft9aCcsvvdjp5EBBu6qgiWWY73B69hWKHEFyvTelNNj2MOf0hh0XTJ1ahMA2q/CDIr/eelvPaCzu60fOAnCwIDAQAB";
 
 @implementation PointShopVC
 
@@ -125,7 +133,18 @@
         if (anError==nil) {
             if ([aResponseObject[@"errorcode"] integerValue]==0) {
                 NSString *code=aResponseObject[@"orderSn"];//orderSn值传给支付宝 out_trade_no这个字段  支付宝异步url：/front/notifyUrlAct.htm
-                
+                NSString *paystr=[NSString stringWithFormat:@"partner=\"%@\"&seller_id=\"%@\"&out_trade_no=\"%@\"&subject=\"%@\"&body=\"%@\"&total_fee=\"%@\"&notify_url=\"%@\"&service=\"mobile.securitypay.pay\"&payment_type=\"1\"&_input_charset=\"utf-8\"&it_b_pay=\"30m\"&show_url=\"m.alipay.com\"&sign=\"%@\"&sign_type=RSA",partid,seller,code,@"医百分",[NSString stringWithFormat:@"%@积分",self.selectP[@"point"]],self.selectP[@"money"],@"http://www.zhongxinlan.com/beck/front/notifyUrlAct.htm",privatekey];
+                [[AlipaySDK defaultService] payOrder:paystr fromScheme:@"beck" callback:^(NSDictionary *resultDic) {
+
+                    NSNumber *paystatus=resultDic[@"resultStatus"];
+                    if (paystatus.integerValue==9000) {
+
+                    }else if (paystatus.integerValue==6001){
+                        
+                    }else{
+                        [[OTSAlertView alertWithMessage:resultDic[@"memo"] andCompleteBlock:nil] show];
+                    }
+                }];
             }else{
                 [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
             }

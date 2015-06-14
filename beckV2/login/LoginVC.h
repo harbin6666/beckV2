@@ -8,7 +8,8 @@
 
 #import "BaseViewController.h"
 #import "WeiboSDK.h"
+#import "WXApi.h"
 
-@interface LoginVC : BaseViewController<WeiboSDKDelegate>
+@interface LoginVC : BaseViewController<WeiboSDKDelegate,WXApiDelegate>
 
 @end

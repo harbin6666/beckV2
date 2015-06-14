@@ -16,7 +16,7 @@
 #define STRONG_SELF typeof(weakSelf)self = weakSelf
 
 #define kOpenQQAppKey       @"1104313746"
-
+#define  kWXAPP_ID          @"wxe9546a8b8614b7c6"
 #define kSinaAppKey         @"1145181677"
 #define kSinaRedirectURI    @"http://www.weibo.com"
 
