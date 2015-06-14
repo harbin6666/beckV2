@@ -28,6 +28,10 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
+    [Global sharedSingle].logined=[[[Global sharedSingle] getUserWithkey:@"logined"] boolValue];
+    
+    [Global sharedSingle].loginName=[[Global sharedSingle] getUserWithkey:@"loginName"];
+
     if (![[Global sharedSingle] logined]) {
         [self performSegueWithIdentifier:@"nologin" sender:self];
     }
@@ -84,6 +88,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSString * str=@"2015-7-1";
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate*d=[dateFormatter dateFromString: str];
+    
+    NSDate* current=[NSDate date];
+    
+    if ([current compare:d]==NSOrderedDescending) {
+        self.oldHome.hidden=NO;
+        self.trainbtn.hidden=YES;
+    }else{
+        self.oldHome.hidden=YES;
+        self.trainbtn.hidden=NO;
+    }
     [self configTabbar];
 
 

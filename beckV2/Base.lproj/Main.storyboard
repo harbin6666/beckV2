@@ -95,14 +95,14 @@
                         <viewControllerLayoutGuide type="bottom" id="G1X-dV-0C0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YMz-u1-Tap">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="train1" translatesAutoresizingMaskIntoConstraints="NO" id="To1-qN-Em8">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="train1" translatesAutoresizingMaskIntoConstraints="NO" id="To1-qN-Em8">
+                                <rect key="frame" x="0.0" y="64" width="600" height="504"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zMa-Sf-DIo" userLabel="back">
-                                <rect key="frame" x="230" y="64" width="90" height="61"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zMa-Sf-DIo" userLabel="back">
+                                <rect key="frame" x="510" y="64" width="90" height="61"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="vwn-yW-jhK"/>
                                     <constraint firstAttribute="height" constant="61" id="xhx-fU-LnQ"/>
@@ -115,7 +115,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GRE-hR-hMg" userLabel="gotrain">
-                                <rect key="frame" x="83" y="449" width="152" height="119"/>
+                                <rect key="frame" x="83" y="481" width="432" height="119"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="119" id="Fx9-vY-5xY"/>
                                 </constraints>
@@ -161,7 +161,7 @@
                         <viewControllerLayoutGuide type="bottom" id="TYw-WC-hB2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="oRf-lK-Q04">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -182,7 +182,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2gd-5M-hBr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lqr-rj-IJP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -615,7 +615,10 @@
                                 <state key="normal" backgroundImage="uncheckbox">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" image="chosen" backgroundImage="uncheckbox"/>
+                                <state key="selected" image="incheckbox" backgroundImage="incheckbox"/>
+                                <connections>
+                                    <action selector="remenberclick:" destination="oSE-ah-dXk" eventType="touchUpInside" id="oa5-a3-ldo"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="记住我" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hI-ac-E5S">
                                 <rect key="frame" x="90" y="202" width="72" height="21"/>
@@ -829,6 +832,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="passw" destination="ihk-0Y-qs1" id="rFx-e2-rxg"/>
+                        <outlet property="remenber" destination="6OA-a8-pbY" id="x54-Nh-Enh"/>
                         <outlet property="usrName" destination="kF7-MN-EBK" id="Cz6-Fz-XGe"/>
                         <segue destination="j4b-K1-tpg" kind="show" identifier="tofindpass" id="Mbl-gZ-3B9"/>
                         <segue destination="euz-ue-xcZ" kind="custom" identifier="tohome" customClass="DismissSegue" id="vAU-pr-r13"/>
@@ -1276,8 +1280,8 @@
     </scenes>
     <resources>
         <image name="chengjiu" width="156" height="41"/>
-        <image name="chosen" width="19" height="15"/>
         <image name="homejiang" width="241" height="180"/>
+        <image name="incheckbox" width="24" height="24"/>
         <image name="jiayou" width="150" height="134"/>
         <image name="num0" width="62" height="89"/>
         <image name="qq" width="96" height="96"/>
@@ -1297,7 +1301,7 @@
         <image name="xunzhang3_red" width="70" height="90"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EC2-o1-vzt"/>
+        <segue reference="vAU-pr-r13"/>
         <segue reference="npZ-RJ-fqi"/>
         <segue reference="MWS-GT-JBi"/>
     </inferredMetricsTieBreakers>

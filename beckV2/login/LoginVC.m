@@ -10,11 +10,13 @@
 #import "FindPassVC.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "AppDelegate.h"
+#import "Global.h"
 @interface LoginVC ()<TencentLoginDelegate,TencentSessionDelegate>
 @property(nonatomic,weak)IBOutlet UITextField* usrName;
 @property(nonatomic,weak)IBOutlet UITextField* passw;
 @property (nonatomic, strong) TencentOAuth *tencentOAuth;
 @property(nonatomic,strong)NSString*accessToken;
+@property(nonatomic,weak) IBOutlet UIButton* remenber;
 
 @end
 
@@ -34,7 +36,10 @@
     
     [self setNavigationBarButtonName:@"" width:0 isLeft:YES];
 }
-
+-(IBAction)remenberclick:(UIButton*)b{
+    b.selected=!b.selected;
+    
+}
 - (void)getUserInfoResponse:(APIResponse*) response{
     
 }
@@ -192,6 +197,14 @@
                 [Global sharedSingle].loginName=user[@"loginName"];
                 [Global sharedSingle].userBean=user;
                 [Global sharedSingle].logined=YES;
+                if (self.remenber.selected) {
+                    [[Global sharedSingle] setUserValue:@1 Key:@"logined"];
+                    [[Global sharedSingle] setUserValue:[Global sharedSingle].loginName Key:@"loginName"];
+
+                }else{
+                    [[Global sharedSingle] setUserValue:@0 Key:@"logined"];
+
+                }
                 [self performSegueWithIdentifier:@"tohome" sender:self];
                 
                 
