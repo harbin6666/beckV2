@@ -68,6 +68,7 @@
     for (int i=0; i<quest.count; i++) {
         ExamPaper_Content *con=quest[i];
         Question* q=[[SQLManager sharedSingle] getExamQuestionByItemId:con.item_id customid:con.custom_id];
+        q.examScore=con.score;
         [self.qAr addObject:q];
     }
     ExamVC* vc=[[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"exam"];

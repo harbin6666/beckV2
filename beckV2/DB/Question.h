@@ -17,6 +17,7 @@ typedef NS_ENUM(int, Answertype){
 @property(nonatomic,assign)Answertype answerType;
 @property(nonatomic,strong)NSString *custom_id;
 @property(nonatomic,strong)NSString *subject_id;
+@property(nonatomic,strong)NSString *examScore;
 //user action
 @property(nonatomic,strong)id userAnswer;
 @end

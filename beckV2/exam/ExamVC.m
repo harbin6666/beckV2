@@ -26,7 +26,7 @@
 @property(nonatomic,weak)IBOutlet UITabBar* tabbar;
 
 @property(nonatomic,strong)NSMutableArray *answerArray;
-@property(nonatomic,strong)ExamAnswer* answer;
+@property(nonatomic,strong)PractisAnswer* answer;
 @property(nonatomic,assign)BOOL showUndone;
 @property(nonatomic,strong)NSTimer* timer;
 @property(nonatomic,assign)NSInteger seconds;
@@ -80,7 +80,7 @@
         [self addAnswer:self.answer];
     }
     self.answer=nil;
-    self.answer=[ExamAnswer new];
+    self.answer=[PractisAnswer new];
     
     if ([p isKindOfClass:[ChoiceQuestion class]]) {
         self.table.allowsSelection=YES;
@@ -183,40 +183,16 @@
 
 #warning answer todo
 
-//多选
--(void)addMultiAnswer:(NSString *)item_mun{
-    NSString *dest=nil;
-    for (NSString *num in self.answer.multiAnswer) {
-        if ([num isEqualToString:item_mun]) {
-            dest=num;
-            break;
-        }
-    }
-    if (dest!=nil) {
-        [self.answer.multiAnswer removeObject:dest];
-    }
-    [self.answer.multiAnswer addObject:item_mun];
-    ChoiceQuestion * c=[self.questionsAr objectAtIndex:self.currentQIndex];
-    //只要有一个候选答案不对，题目就错了
-    for (NSString *str in self.answer.multiAnswer) {
-        if (![c.answer containsString:str]) {
-            self.answer.isRight=@"false";
-            break;
-        }
-    }
-}
-#warning answer todo
-
--(void)addAnswer:(ExamAnswer*)pAnswer{
-    ExamAnswer *dest=nil;
-    for (ExamAnswer*a in self.answerArray) {
+-(void)addAnswer:(PractisAnswer*)pAnswer{
+    PractisAnswer *dest=nil;
+    for (PractisAnswer*a in self.answerArray) {
         if (a.titleId.integerValue==pAnswer.titleId.integerValue&&a.titleTypeId.integerValue==pAnswer.titleTypeId.integerValue) {
             dest=a;
             break;
         }
     }
-    Question*q=[self.questionsAr objectAtIndex:self.currentQIndex];
-    if (dest!=nil&&q.custom_id.integerValue!=12) {
+    
+    if (dest!=nil) {
         [self.answerArray removeObject:dest];
     }
     [self.answerArray addObject:pAnswer];
@@ -237,22 +213,24 @@
     
     NSInteger count=0;
     NSInteger wrongCount=0;
+    NSInteger score=0;
     NSMutableArray *ar=[NSMutableArray array];
-    for (ExamAnswer*an in self.answerArray) {
+    for (PractisAnswer*an in self.answerArray) {
         if ([an.isRight isEqualToString:@"true"]) {
             count++;
+            Question*q=self.questionsAr[an.priority.integerValue];
+            score+=q.examScore.integerValue;
         }else{
             wrongCount++;
         }
+    [ar addObject:[an toJson]];
     }
     olderDic[@"rightAmount"]=@(count);
     olderDic[@"wrongAmount"]=@(wrongCount);
-//    float rate=(float)count/self.answerArray.count;
-//    olderDic[@"accurateRate"]=[NSString stringWithFormat:@"%.2f",rate];
-//    olderDic[@"list"]=ar;
-#warning answer todo
-//    olderDic[@"Score"]=;
-//    olderDic[@"userAnswer"]=;
+    olderDic[@"beginTime"]=self.beginTime;
+    olderDic[@"endTime"]=[NSDate date];
+    olderDic[@"Score"]=@(score);
+    olderDic[@"userAnswer"]=ar;
     return olderDic;
     
 }
@@ -283,7 +261,6 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
     if ([p isKindOfClass:[ChoiceQuestion class]]) {
-        ChoiceQuestion* c=(ChoiceQuestion*)p;
             ChoiceCell* cell=(ChoiceCell*)[tableView dequeueReusableCellWithIdentifier:@"choicecell" forIndexPath:indexPath];
             cell.mark.image=nil;
             cell.contentView.layer.borderColor=[UIColor clearColor].CGColor;
@@ -308,28 +285,42 @@
     }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    id p=[self.questionsAr objectAtIndex:self.currentQIndex];
+    Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
     if ([p isKindOfClass:[ChoiceQuestion class]]&&indexPath.row<self.choiceArray.count) {
         ChoiceQuestion *q=(ChoiceQuestion*)p;
         ChoiceItem *item=q.choiceItems[indexPath.row];
-        self.answer.priority=@(self.currentQIndex+1).stringValue;
+        //        self.answer.priority=@(self.currentQIndex+1).stringValue;
         
         //显示答案
         if (item.is_answer.integerValue==0) {
             self.answer.isRight=@"false";
+            p.answerType=answeredwrong;
         }else {
             self.answer.isRight=@"true";
+            p.answerType=answeredRight;
+            
         }
-        self.answer.titleId=q.choice_id;
-        self.answer.titleTypeId=q.custom_id;
+        
         
         if ([p custom_id].intValue!=12) {
-            self.answer.userAnswer=item.item_number;
+            [self.answer.userAnswer removeAllObjects];
+            [self.answer.userAnswer addObject:item];
             
         }else{
-            [self addMultiAnswer:item.item_number];
+            ChoiceItem *dest=nil;
+            for (ChoiceItem*it in self.answer.userAnswer) {
+                if (it.nid.integerValue==item.nid.integerValue) {
+                    dest=it;
+                }
+            }
+            if (dest) {
+                [self.answer.userAnswer removeObject:dest];
+            }else {
+                [self.answer.userAnswer addObject:item];
+            }
         }
     }
+    [tableView reloadData];
     
 }
 
@@ -444,12 +435,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@"toprogress"]) {
-        QCollectionVC *vc=segue.destinationViewController;
-        vc.vcDelegate=self;
-        vc.questions=self.questionsAr;
-    }
-}
 @end
