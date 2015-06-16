@@ -37,15 +37,7 @@
             [Global sharedSingle].loginName=[[Global sharedSingle] getUserWithkey:@"loginName"];
             [Global sharedSingle].userBean=[[Global sharedSingle] getUserWithkey:@"userBean"];
         }
-        [self showLoading];
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self updateDB];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self hideLoading];
-                });
-            });
-        
+    
     
 
     self.positionView.hidden=YES;
@@ -53,6 +45,14 @@
     self.titleBtn.titleLabel.numberOfLines=2;
     self.titleBtn.titleLabel.textAlignment=NSTextAlignmentCenter;
     self.navigationController.navigationBarHidden=NO;
+//    [self showLoading];
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+        //            dispatch_async(dispatch_get_main_queue(), ^{
+        [self updateDB];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self hideLoading];
+//        });
+//    });
 
 }
 
@@ -203,7 +203,7 @@
 
 -(void)updateDB{
     NSDictionary *addIn=[[SQLManager sharedSingle] getAddinParam];
-    
+    [self showLoading];
     //查询配置
     [self getValueWithBeckUrl:@"/front/userAct.htm" params:addIn CompleteBlock:^(id aResponseObject, NSError *anError) {
         if (anError==nil) {
@@ -218,6 +218,7 @@
        }else{
            [[OTSAlertView alertWithMessage:@"获取更新失败" andCompleteBlock:nil] show];
         }
+        [self hideLoading];
     }];
 
 }
