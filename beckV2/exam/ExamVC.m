@@ -61,7 +61,9 @@
     [super viewDidLoad];
     self.beginTime=[NSDate date];
     self.seconds=self.examComp.answer_time.integerValue*60;
-    self.timeLab.text=[NSString stringWithFormat:@"%zd",self.seconds];
+    NSInteger h=(NSInteger)self.seconds/60;
+    NSInteger s=self.seconds%60;
+    self.timeLab.text=[NSString stringWithFormat:@"%zd:%zd",h,s];
 
     self.timer=[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
     self.answerArray=[[NSMutableArray alloc] init];

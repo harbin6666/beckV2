@@ -35,6 +35,7 @@
     }
         if ([[[Global sharedSingle] getUserWithkey:@"logined"] boolValue]) {
             [Global sharedSingle].loginName=[[Global sharedSingle] getUserWithkey:@"loginName"];
+            [Global sharedSingle].userBean=[[Global sharedSingle] getUserWithkey:@"userBean"];
         }
         [self showLoading];
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{

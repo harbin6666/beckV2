@@ -23,29 +23,35 @@
     [super viewDidLoad];
 
     
-    [self showLoading];
-    WEAK_SELF;
-    [self getValueWithBeckUrl:@"/front/userAct.htm" params:@{@"token":@"personal",@"loginName":[Global sharedSingle].loginName} CompleteBlock:^(id aResponseObject, NSError *anError) {
-        STRONG_SELF;
-        [self hideLoading];
-        if (!anError) {
-            NSNumber *errorcode = aResponseObject[@"errorcode"];
-            if (errorcode.boolValue) {
-                [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
-            }
-            else {
-                self.infos = aResponseObject;
-                self.sectionNames = @[@"    我的勋章", @"    我的统计", @"    我的积分"];
-                self.tableView.tableFooterView = self.footerView;
-                [self.tableView reloadData];
-            }
-        }
-        else {
-            [[OTSAlertView alertWithMessage:@"获取成就失败" andCompleteBlock:nil] show];
-        }
-    }];
-    // Do any additional setup after loading the view.
-    
+//    [self showLoading];
+//    WEAK_SELF;
+//    [self getValueWithBeckUrl:@"/front/userAct.htm" params:@{@"token":@"personal",@"loginName":[Global sharedSingle].loginName} CompleteBlock:^(id aResponseObject, NSError *anError) {
+//        STRONG_SELF;
+//        [self hideLoading];
+//        if (!anError) {
+//            NSNumber *errorcode = aResponseObject[@"errorcode"];
+//            if (errorcode.boolValue) {
+//                [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
+//            }
+//            else {
+//                self.infos = aResponseObject;
+//            }
+//        }
+//        else {
+//            [[OTSAlertView alertWithMessage:@"获取成就失败" andCompleteBlock:nil] show];
+//        }
+//    }];
+
+    self.sectionNames = @[@"    我的勋章", @"    我的积分"];
+    UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+    UIButton *b=[UIButton buttonWithType:UIButtonTypeCustom];
+    b.frame=CGRectMake(10, 5, 100, 23);
+    [b setBackgroundImage:[UIImage imageNamed:@"info"] forState:UIControlStateNormal];
+    [v addSubview:b];
+    self.tableView.tableFooterView =v;
+    self.tableView.allowsSelection=NO;
+    [self.tableView reloadData];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,11 +69,8 @@
     if (section == 0) {
         return 1;
     }
-    else if (section == 1) {
-        return 1;
-    }
     else {
-        return 1;
+        return 2;
     }
 }
 
@@ -79,7 +82,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return 100;
+        return 130;
     }
     
     return 44;
@@ -98,18 +101,17 @@
     UITableViewCell *cell = nil;
     if (indexPath.section == 0) {
         HonorTVCell *tempCell = [tableView dequeueReusableCellWithIdentifier:@"HonorCell" forIndexPath:indexPath];
-        [tempCell updateWithPoint:self.infos[@"integral"]];
+        [tempCell updateWithPoint:[Global sharedSingle].userBean[@"totalPoints"]];
         cell = tempCell;
-    }
-    else if (indexPath.section == 1) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"StatisticCell" forIndexPath:indexPath];
-        cell.textLabel.text = [NSString stringWithFormat:@"您已经做了%@套模拟试题，共计%@题",self.infos[@"count"],self.infos[@"problem"]];
-    }
-    else {
+    }else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"PointCell" forIndexPath:indexPath];
         if (indexPath.row == 0) {
+            cell.textLabel.text = @"累计积分";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[Global sharedSingle].userBean[@"totalPoints"]];
+        }else{
             cell.textLabel.text = @"当前积分";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",self.infos[@"integral"]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[Global sharedSingle].userBean[@"currentPoints"]];
+
         }
     }
     

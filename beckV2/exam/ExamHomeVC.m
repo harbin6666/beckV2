@@ -11,6 +11,7 @@
 #import "ExamPaper.h"
 @interface ExamHomeVC ()
 @property(nonatomic,strong)NSArray *papers;
+@property(nonatomic)NSInteger papertag;
 @end
 
 @implementation ExamHomeVC
@@ -24,6 +25,7 @@
 
 -(IBAction)BtnPress:(UIButton*)sender{
     //模拟从1开始，真题从11开始
+    self.papertag=sender.tag;
     NSString *screen=@"";
     NSString *type=@"1";
     switch (sender.tag) {
@@ -72,7 +74,11 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"examselect"]) {
         ExamScreenVC *vc=segue.destinationViewController;
-        vc.title=[NSString stringWithFormat:@"模拟场次%@",[(ExamPaper*)self.papers[0] screening]];
+        if (self.papertag>10) {
+            vc.title=@"真题考试";
+        }else{
+            vc.title=@"模拟考试";
+        }
         vc.papers=self.papers;
         vc.hidesBottomBarWhenPushed=YES;
     }

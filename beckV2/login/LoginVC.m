@@ -204,7 +204,7 @@
                 if (self.remenber.selected) {
                     [[Global sharedSingle] setUserValue:@1 Key:@"logined"];
                     [[Global sharedSingle] setUserValue:[Global sharedSingle].loginName Key:@"loginName"];
-
+                    [[Global sharedSingle] setUserValue:user Key:@"userBean"];
                 }
                 [self performSegueWithIdentifier:@"tohome" sender:self];
                 

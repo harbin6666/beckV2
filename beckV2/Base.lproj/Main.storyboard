@@ -203,21 +203,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aRn-PB-x1j">
-                                <rect key="frame" x="0.0" y="400" width="320" height="44"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="icZ-zo-VL4">
-                                        <rect key="frame" x="137" y="0.0" width="46" height="30"/>
-                                        <state key="normal" title="Button">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sri-Wy-PXd">
+                                <rect key="frame" x="0.0" y="20" width="320" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="WxY-aO-Mmn"/>
+                                </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="131" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="NeE-Ao-07l">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="NeE-Ao-07l">
+                                <rect key="frame" x="0.0" y="21" width="320" height="547"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HonorCell" rowHeight="130" id="KiB-vW-nTi" customClass="HonorTVCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -240,14 +235,14 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xunzhang3_gray" highlightedImage="xunzhang3_red" translatesAutoresizingMaskIntoConstraints="NO" id="UJX-0z-uZQ">
-                                                    <rect key="frame" x="165" y="8" width="70" height="90"/>
+                                                    <rect key="frame" x="171" y="8" width="70" height="90"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="hFC-EW-olY"/>
                                                         <constraint firstAttribute="height" constant="90" id="x4u-0u-HNs"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xunzhang3_gray" translatesAutoresizingMaskIntoConstraints="NO" id="aSM-pQ-g64">
-                                                    <rect key="frame" x="250" y="8" width="70" height="90"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xunzhang4_gray" highlightedImage="xunzhang4_red" translatesAutoresizingMaskIntoConstraints="NO" id="aSM-pQ-g64">
+                                                    <rect key="frame" x="249" y="8" width="70" height="90"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="VMH-YU-kS1"/>
                                                         <constraint firstAttribute="height" constant="90" id="iUO-o0-18x"/>
@@ -257,9 +252,9 @@
                                             <constraints>
                                                 <constraint firstItem="aSM-pQ-g64" firstAttribute="top" secondItem="UJX-0z-uZQ" secondAttribute="top" id="3IY-1d-PSO"/>
                                                 <constraint firstAttribute="centerX" secondItem="OUW-Ug-ch9" secondAttribute="centerX" constant="124" id="Apg-eM-rax"/>
-                                                <constraint firstAttribute="centerX" secondItem="UJX-0z-uZQ" secondAttribute="centerX" constant="-40" id="CNI-R7-Hma"/>
+                                                <constraint firstAttribute="centerX" secondItem="UJX-0z-uZQ" secondAttribute="centerX" constant="-46" id="CNI-R7-Hma"/>
                                                 <constraint firstAttribute="centerX" secondItem="Vbf-lY-jd2" secondAttribute="centerX" constant="46" id="Faq-2r-TCK"/>
-                                                <constraint firstAttribute="centerX" secondItem="aSM-pQ-g64" secondAttribute="centerX" constant="-125" id="awM-pz-duP"/>
+                                                <constraint firstAttribute="centerX" secondItem="aSM-pQ-g64" secondAttribute="centerX" constant="-124" id="awM-pz-duP"/>
                                                 <constraint firstItem="OUW-Ug-ch9" firstAttribute="top" secondItem="IUW-vj-GNO" secondAttribute="topMargin" id="hdj-XS-JGa"/>
                                                 <constraint firstItem="UJX-0z-uZQ" firstAttribute="top" secondItem="Vbf-lY-jd2" secondAttribute="top" id="uAC-7i-B8F"/>
                                                 <constraint firstItem="Vbf-lY-jd2" firstAttribute="top" secondItem="OUW-Ug-ch9" secondAttribute="top" id="wEh-KQ-YxC"/>
@@ -269,16 +264,10 @@
                                             <outlet property="xunzhang1" destination="OUW-Ug-ch9" id="rJz-d7-5ji"/>
                                             <outlet property="xunzhang2" destination="Vbf-lY-jd2" id="pYx-Jo-uGy"/>
                                             <outlet property="xunzhang3" destination="UJX-0z-uZQ" id="Y1V-D7-1Ue"/>
+                                            <outlet property="xunzhang4" destination="aSM-pQ-g64" id="hBV-V0-Ol1"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StatisticCell" rowHeight="44" id="rbQ-57-7XV">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rbQ-57-7XV" id="MXs-d6-U7Z">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PointCell" textLabel="YLC-eI-QeT" detailTextLabel="4R5-Zf-iHP" rowHeight="44" style="IBUITableViewCellStyleValue1" id="2NV-su-wcU">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PointCell" textLabel="YLC-eI-QeT" detailTextLabel="4R5-Zf-iHP" rowHeight="44" style="IBUITableViewCellStyleValue1" id="2NV-su-wcU">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2NV-su-wcU" id="bgf-hZ-jF0">
@@ -310,13 +299,15 @@
                         <constraints>
                             <constraint firstItem="NeE-Ao-07l" firstAttribute="leading" secondItem="Ujm-0o-ezC" secondAttribute="leading" id="5vo-Gd-vO5"/>
                             <constraint firstAttribute="trailing" secondItem="NeE-Ao-07l" secondAttribute="trailing" id="QPl-Jw-MsQ"/>
+                            <constraint firstItem="Sri-Wy-PXd" firstAttribute="leading" secondItem="Ujm-0o-ezC" secondAttribute="leadingMargin" constant="-16" id="Rel-el-wvr"/>
+                            <constraint firstItem="Sri-Wy-PXd" firstAttribute="top" secondItem="B5b-aV-aKT" secondAttribute="bottom" id="hfA-WC-iiJ"/>
+                            <constraint firstAttribute="width" secondItem="Sri-Wy-PXd" secondAttribute="width" id="izO-r2-0uW"/>
                             <constraint firstAttribute="bottomMargin" secondItem="NeE-Ao-07l" secondAttribute="bottom" id="k8w-04-xNZ"/>
-                            <constraint firstItem="NeE-Ao-07l" firstAttribute="top" secondItem="B5b-aV-aKT" secondAttribute="bottom" id="tjX-pZ-i9h"/>
+                            <constraint firstItem="NeE-Ao-07l" firstAttribute="top" secondItem="B5b-aV-aKT" secondAttribute="bottom" constant="1" id="tjX-pZ-i9h"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="footerView" destination="aRn-PB-x1j" id="d8I-J0-SJM"/>
                         <outlet property="tableView" destination="NeE-Ao-07l" id="k7y-so-8Sk"/>
                     </connections>
                 </viewController>
@@ -1360,12 +1351,14 @@
         <image name="tab4" width="33" height="29"/>
         <image name="train1" width="540" height="960"/>
         <image name="uncheckbox" width="24" height="24"/>
-        <image name="xunzhang1_gray" width="70" height="90"/>
+        <image name="xunzhang1_gray" width="96" height="112"/>
         <image name="xunzhang1_red" width="70" height="90"/>
-        <image name="xunzhang2_gray" width="70" height="90"/>
+        <image name="xunzhang2_gray" width="96" height="112"/>
         <image name="xunzhang2_red" width="70" height="90"/>
-        <image name="xunzhang3_gray" width="70" height="90"/>
+        <image name="xunzhang3_gray" width="96" height="112"/>
         <image name="xunzhang3_red" width="70" height="90"/>
+        <image name="xunzhang4_gray" width="96" height="112"/>
+        <image name="xunzhang4_red" width="96" height="112"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vAU-pr-r13"/>

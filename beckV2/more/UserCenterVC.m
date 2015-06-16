@@ -47,7 +47,8 @@
     [Global sharedSingle].loginName=nil;
     [[Global sharedSingle] setUserValue:@0 Key:@"logined"];
     [[Global sharedSingle] setUserValue:nil Key:@"loginName"];
-        
+    [[Global sharedSingle] setUserValue:nil Key:@"userBean"];
+
     AppDelegate *app=[UIApplication sharedApplication].delegate;
     [(UINavigationController*)app.window.rootViewController popToRootViewControllerAnimated:YES];
 }
