@@ -11,6 +11,9 @@
 @implementation Global
 singleton_implementation(Global)
 -(void)setUserValue:(id)value Key:(NSString*)key{
+    if (value==nil) {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+    }
     [[NSUserDefaults standardUserDefaults] setValue:value forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

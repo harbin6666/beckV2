@@ -8,6 +8,7 @@
 
 #import "UserCenterVC.h"
 #import "PointDetailVC.h"
+#import "AppDelegate.h"
 @interface UserCenterVC ()
 
 @end
@@ -44,7 +45,11 @@
     [Global sharedSingle].userBean=nil;
     [Global sharedSingle].logined=NO;
     [Global sharedSingle].loginName=nil;
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [[Global sharedSingle] setUserValue:@0 Key:@"logined"];
+    [[Global sharedSingle] setUserValue:nil Key:@"loginName"];
+        
+    AppDelegate *app=[UIApplication sharedApplication].delegate;
+    [(UINavigationController*)app.window.rootViewController popToRootViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
