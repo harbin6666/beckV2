@@ -85,6 +85,7 @@
 		395899D81B2DE2BE0056B9A5 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899B61B2DE2BE0056B9A5 /* View+MASAdditions.m */; };
 		395899D91B2DE2BE0056B9A5 /* UIView+Masony.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899B91B2DE2BE0056B9A5 /* UIView+Masony.m */; };
 		395899DF1B2DF4680056B9A5 /* CachedAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899DE1B2DF4680056B9A5 /* CachedAnswer.m */; };
+		395899E21B3072B90056B9A5 /* InviteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899E11B3072B90056B9A5 /* InviteVC.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -302,6 +303,8 @@
 		395899B91B2DE2BE0056B9A5 /* UIView+Masony.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Masony.m"; sourceTree = "<group>"; };
 		395899DD1B2DF4680056B9A5 /* CachedAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CachedAnswer.h; sourceTree = "<group>"; };
 		395899DE1B2DF4680056B9A5 /* CachedAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachedAnswer.m; sourceTree = "<group>"; };
+		395899E01B3072B90056B9A5 /* InviteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteVC.h; sourceTree = "<group>"; };
+		395899E11B3072B90056B9A5 /* InviteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteVC.m; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -1007,6 +1010,8 @@
 				397DDADB1B14C9F800E8F73B /* FindPassVC.m */,
 				39D780BD1B13644E009F5C8E /* DismissSegue.h */,
 				39D780BE1B13644E009F5C8E /* DismissSegue.m */,
+				395899E01B3072B90056B9A5 /* InviteVC.h */,
+				395899E11B3072B90056B9A5 /* InviteVC.m */,
 			);
 			path = login;
 			sourceTree = "<group>";
@@ -1280,6 +1285,7 @@
 				394C4A1E1B24BE900002838B /* ExamVC.m in Sources */,
 				395899C31B2DE2BE0056B9A5 /* UIBarButtonItem+Extend.m in Sources */,
 				395899281B2BEC6F0056B9A5 /* MessageVO.m in Sources */,
+				395899E21B3072B90056B9A5 /* InviteVC.m in Sources */,
 				39CE4C971B1F431300DDAB01 /* Question.m in Sources */,
 				3958991F1B2BD6990056B9A5 /* FeedbackVC.m in Sources */,
 				394C4A2D1B2750C80002838B /* NoteListVC.m in Sources */,
@@ -1417,8 +1423,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Qiong Xiong (9GNJALPL5R)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiong Xiong (9GNJALPL5R)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/beckV2/ThirdParty/OpenQQ",
@@ -1445,8 +1451,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wuhan beain Information Technology Co., Ltd. (2A32KCG6SV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wuhan beain Information Technology Co., Ltd. (2A32KCG6SV)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/beckV2/ThirdParty/OpenQQ",
@@ -1463,7 +1469,7 @@
 					"$(PROJECT_DIR)/beckV2/ThirdParty/wechat",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e8adef6d-5156-4f2f-ab5e-25f83137a17b";
 			};
 			name = Release;
 		};

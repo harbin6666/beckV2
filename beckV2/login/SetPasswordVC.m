@@ -7,7 +7,7 @@
 //
 
 #import "SetPasswordVC.h"
-
+#import "InviteVC.h"
 @interface SetPasswordVC ()
 @property(nonatomic,weak)IBOutlet UITextField* pass;
 @property(nonatomic,weak)IBOutlet UITextField* verifyPass;
@@ -23,6 +23,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)unwindVC:(UIStoryboardSegue *)unwindSegue
+{
+    InviteVC *vc=unwindSegue.sourceViewController;
+    self.couponCode=vc.tf.text;
 }
 
 -(IBAction)confirmPassPress:(id)sender{
