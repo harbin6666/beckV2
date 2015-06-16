@@ -28,23 +28,24 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    [Global sharedSingle].logined=[[[Global sharedSingle] getUserWithkey:@"logined"] boolValue];
     
-    [Global sharedSingle].loginName=[[Global sharedSingle] getUserWithkey:@"loginName"];
-
-    if (![[Global sharedSingle] logined]) {
+    if (![[Global sharedSingle] logined]&&![[[Global sharedSingle] getUserWithkey:@"logined"] boolValue]) {
         [self performSegueWithIdentifier:@"nologin" sender:self];
+        return;
     }
-    if ([Global sharedSingle].logined) {
+        if ([[[Global sharedSingle] getUserWithkey:@"logined"] boolValue]) {
+            [Global sharedSingle].loginName=[[Global sharedSingle] getUserWithkey:@"loginName"];
+        }
         [self showLoading];
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self updateDB];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self hideLoading];
+                [self updateDB];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self hideLoading];
+                });
             });
-        });
-    }
+        
+    
 
     self.positionView.hidden=YES;
     [self freshNav];

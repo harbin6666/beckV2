@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title=@"验证码";
     // Do any additional setup after loading the view.
     self.textLab.text=[NSString stringWithFormat: @"验证码已经发送到手机:%@",self.verifyPhone];
 }

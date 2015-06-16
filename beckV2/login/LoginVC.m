@@ -26,7 +26,10 @@
     [super viewDidLoad];
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     delegate.loginVC = self;
-    
+    self.title=@"登录";
+    if ([[[Global sharedSingle] getUserWithkey:@"logined"] integerValue]) {
+        self.remenber.selected=YES;
+    }
     // Do any additional setup after loading the view.
     self.tencentOAuth = [[TencentOAuth alloc] initWithAppId:kOpenQQAppKey andDelegate:self];
     
@@ -35,10 +38,6 @@
     [WXApi registerApp:kWXAPP_ID];
     
     [self setNavigationBarButtonName:@"" width:0 isLeft:YES];
-}
--(IBAction)remenberclick:(UIButton*)b{
-    b.selected=!b.selected;
-    
 }
 - (void)getUserInfoResponse:(APIResponse*) response{
     
@@ -201,21 +200,9 @@
                     [[Global sharedSingle] setUserValue:@1 Key:@"logined"];
                     [[Global sharedSingle] setUserValue:[Global sharedSingle].loginName Key:@"loginName"];
 
-                }else{
-                    [[Global sharedSingle] setUserValue:@0 Key:@"logined"];
-
                 }
                 [self performSegueWithIdentifier:@"tohome" sender:self];
                 
-                
-//                if (titleId) {
-//                    [[NSUserDefaults standardUserDefaults] setObject:titleId forKey:@"subjectId"];
-//                    [[NSUserDefaults standardUserDefaults] synchronize];
-//                    [self performSegueWithIdentifier:@"tohome" sender:self];
-//                }
-//                else {
-//                    [self performSegueWithIdentifier:@"toCus" sender:self];
-//                }
             }
         }
         else {
@@ -223,6 +210,14 @@
         }
     }];
 }
+
+-(IBAction)remenberclick:(UIButton*)b{
+    b.selected=!b.selected;
+    if (b.selected==NO) {
+        [[Global sharedSingle] setUserValue:@0 Key:@"logined"];
+    }
+}
+
 /*
 #pragma mark - Navigation
 
