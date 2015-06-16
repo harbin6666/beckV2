@@ -57,7 +57,7 @@
         return;
     }
 
-    if ([self.smsCode isEqualToString:self.verifyTf.text]) {
+    if (self.smsCode.integerValue ==self.verifyTf.text.integerValue) {
         [self performSegueWithIdentifier:@"tosetpass" sender:self];
     }else{
         [[OTSAlertView alertWithMessage:@"验证码错误" andCompleteBlock:nil] show];

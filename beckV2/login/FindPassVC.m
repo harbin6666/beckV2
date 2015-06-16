@@ -28,6 +28,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     VerifyVC *vc=segue.destinationViewController;
     vc.verifyPhone=self.phoneNum.text;
+    vc.smsCode=self.smsCode;
     vc.findpw=YES;
 }
 
@@ -38,7 +39,7 @@
         return;
     }
     
-    [self getValueWithBeckUrl:@"/front/sendsmsAct.htm" params:@{@"loginName":self.phoneNum.text} CompleteBlock:^(id aResponseObject, NSError *anError) {
+    [self getValueWithBeckUrl:@"/front/sendTemplateSmsAct.htm" params:@{@"loginName":self.phoneNum.text} CompleteBlock:^(id aResponseObject, NSError *anError) {
         if (!anError) {
             NSNumber *errorcode = aResponseObject[@"errorcode"];
             if (errorcode.integerValue!=0) {

@@ -11,7 +11,7 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "AppDelegate.h"
 #import "Global.h"
-@interface LoginVC ()<TencentLoginDelegate,TencentSessionDelegate>
+@interface LoginVC ()<TencentLoginDelegate,TencentSessionDelegate,UITextFieldDelegate>
 @property(nonatomic,weak)IBOutlet UITextField* usrName;
 @property(nonatomic,weak)IBOutlet UITextField* passw;
 @property (nonatomic, strong) TencentOAuth *tencentOAuth;
@@ -20,8 +20,13 @@
 
 @end
 
+
 @implementation LoginVC
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;

@@ -17,6 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (self.findpw) {
+        self.navigationItem.rightBarButtonItem=nil;
+    }
     // Do any additional setup after loading the view.
 }
 
