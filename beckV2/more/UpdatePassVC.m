@@ -23,7 +23,7 @@
         [self getValueWithBeckUrl:@"/front/userAct.htm" params:@{@"token":@"updtePassWord",@"loginName":[Global sharedSingle].loginName,@"passWord":self.tf1.text,@"newPassWord":self.tf2.text} CompleteBlock:^(id aResponseObject, NSError *anError) {
             if (anError==nil) {
                 [[OTSAlertView alertWithMessage:aResponseObject[@"token"] andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
-                    if (aResponseObject[@"errorcode"]==0) {
+                    if ([aResponseObject[@"errorcode"] integerValue]==0) {
                         [self.navigationController popViewControllerAnimated:YES];
                     }
                 }] show];
