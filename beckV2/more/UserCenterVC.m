@@ -22,8 +22,8 @@
     UIImageView *imv=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     UILabel *l=[[UILabel alloc] initWithFrame:imv.bounds];
     
-    l.text=[NSString stringWithFormat:@"%@ 欢迎你，邀请码：%@",[[Global sharedSingle].userBean valueForKey:@"loginName"],[[Global sharedSingle].userBean valueForKey:@"verificationCode"]];
-    l.textAlignment=NSTextAlignmentCenter;
+    l.text=[NSString stringWithFormat:@"      %@ 欢迎你",[[Global sharedSingle].userBean valueForKey:@"loginName"]];
+    l.textAlignment=NSTextAlignmentLeft;
     imv.image=[[UIImage imageNamed:@"personalbg"] stretchableImageWithLeftCapWidth:5 topCapHeight:2];
     
     [imv addSubview:l];
@@ -69,7 +69,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
-    return 4;
+    return 5;
 }
 
 
@@ -79,9 +79,14 @@
     switch (indexPath.row) {
         case 0:
             str=@"我的积分";
-            cell.detailTextLabel.text=[[Global sharedSingle].userBean valueForKey:@"totalPoints"];
+            cell.detailTextLabel.text=[NSString stringWithFormat:@"%@",[[Global sharedSingle].userBean valueForKey:@"currentPoints"]];
             break;
         case 1:
+            str=@"我的邀请码";
+            cell.detailTextLabel.text=[[Global sharedSingle].userBean valueForKey:@"verificationCode"];
+            break;
+
+        case 3:
             str=@"修改密码";
             cell.detailTextLabel.text=@"";
             break;
@@ -89,7 +94,7 @@
             str=@"支付信息";
             cell.detailTextLabel.text=@"";
             break;
-        case 3:
+        case 4:
             str=@"参加培训";
             cell.detailTextLabel.text=@"";
             break;
@@ -107,14 +112,14 @@
         PointDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"pointdetail"];
         vc.type=0;
         [self.navigationController pushViewController:vc animated:YES];
-    }else if (indexPath.row==1){
+    }else if (indexPath.row==3){
         [self performSegueWithIdentifier:@"toupdatepass" sender:self];
     }else if (indexPath.row==2){
         UIStoryboard*sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
         PointDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"pointdetail"];
         vc.type=1;
         [self.navigationController pushViewController:vc animated:YES];
-    }else if (indexPath.row==3){
+    }else if (indexPath.row==4){
         UIStoryboard*sb=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         PointDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"train"];
         [self presentViewController:vc animated:YES completion:^{
