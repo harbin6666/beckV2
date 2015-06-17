@@ -81,7 +81,7 @@
             if ([aResponseObject[@"errorcode"] integerValue]==0) {
                 NSArray *list=aResponseObject[@"list"];
                 if (list.count==0) {
-                    [[OTSAlertView alertWithMessage:@"没有更新" andCompleteBlock:nil] show];
+                    [[OTSAlertView alertWithMessage:@"当前无更新数据" andCompleteBlock:nil] show];
                 }else{
                     for (NSString *s in list) {
                         [[SQLManager sharedSingle] excuseSql:s];
@@ -91,7 +91,7 @@
                 [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
             }
         }else{
-            [[OTSAlertView alertWithMessage:@"没有更新" andCompleteBlock:nil] show];
+            [[OTSAlertView alertWithMessage:@"当前无更新数据" andCompleteBlock:nil] show];
         }
     }];
 }
@@ -114,7 +114,7 @@
             if ([aResponseObject[@"errorcode"] integerValue]==0) {
                 NSArray *list=aResponseObject[@"list"];
                 if (list.count==0) {
-                    [[OTSAlertView alertWithMessage:@"没有更新" andCompleteBlock:nil] show];
+                    [[OTSAlertView alertWithMessage:@"当前无更新数据" andCompleteBlock:nil] show];
                 }else{
                     for (NSString *s in list) {
                         [[SQLManager sharedSingle] excuseSql:s];
@@ -124,7 +124,7 @@
                 [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
             }
         }else{
-            [[OTSAlertView alertWithMessage:@"没有更新" andCompleteBlock:nil] show];
+            [[OTSAlertView alertWithMessage:@"当前无更新数据" andCompleteBlock:nil] show];
         }
     }];
 }

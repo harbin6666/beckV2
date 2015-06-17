@@ -108,7 +108,7 @@
         vc.type=0;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.row==1){
-        
+        [self performSegueWithIdentifier:@"toupdatepass" sender:self];
     }else if (indexPath.row==2){
         UIStoryboard*sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
         PointDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"pointdetail"];

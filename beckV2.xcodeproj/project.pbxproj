@@ -92,6 +92,7 @@
 		395899F11B31DFFC0056B9A5 /* pan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395899F01B31DFFC0056B9A5 /* pan.storyboard */; };
 		395899F41B31E0240056B9A5 /* SettingPanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899F31B31E0240056B9A5 /* SettingPanVC.m */; };
 		395899F71B31E09B0056B9A5 /* UIImage+tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899F61B31E09B0056B9A5 /* UIImage+tool.m */; };
+		395899FA1B31E6650056B9A5 /* UpdatePassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899F91B31E6650056B9A5 /* UpdatePassVC.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -321,6 +322,8 @@
 		395899F31B31E0240056B9A5 /* SettingPanVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingPanVC.m; sourceTree = "<group>"; };
 		395899F51B31E09B0056B9A5 /* UIImage+tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+tool.h"; sourceTree = "<group>"; };
 		395899F61B31E09B0056B9A5 /* UIImage+tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+tool.m"; sourceTree = "<group>"; };
+		395899F81B31E6650056B9A5 /* UpdatePassVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatePassVC.h; sourceTree = "<group>"; };
+		395899F91B31E6650056B9A5 /* UpdatePassVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatePassVC.m; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -907,6 +910,8 @@
 			children = (
 				39CD45F41B209A7E005320B5 /* MoreVC.h */,
 				39CD45F51B209A7E005320B5 /* MoreVC.m */,
+				395899F81B31E6650056B9A5 /* UpdatePassVC.h */,
+				395899F91B31E6650056B9A5 /* UpdatePassVC.m */,
 				3915499B1B21F1F500BF5BBF /* UpdataDbVC.h */,
 				3915499C1B21F1F500BF5BBF /* UpdataDbVC.m */,
 				39EEA1BE1B29F651009BE945 /* HighFrequencyListVC.h */,
@@ -1261,6 +1266,7 @@
 				396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */,
 				395899CD1B2DE2BE0056B9A5 /* UIView+Extend.m in Sources */,
 				397DDAD61B14B64C00E8F73B /* VerifyVC.m in Sources */,
+				395899FA1B31E6650056B9A5 /* UpdatePassVC.m in Sources */,
 				39CE4C8E1B1E044B00DDAB01 /* CompatyCell.m in Sources */,
 				395899221B2BD6AD0056B9A5 /* HelpVC.m in Sources */,
 				394C4A0F1B233C390002838B /* PractisAnswer.m in Sources */,

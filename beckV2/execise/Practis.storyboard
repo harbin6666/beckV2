@@ -143,11 +143,89 @@
                     </tableView>
                     <connections>
                         <segue destination="Low-6v-4Es" kind="show" id="IXu-L0-LVY"/>
+                        <segue destination="IAb-wx-ZXA" kind="show" identifier="toupdatepass" id="BwU-F1-DAU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RjU-Tq-Xck" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1713.5" y="-2299.5"/>
+        </scene>
+        <!--修改密码-->
+        <scene sceneID="vlw-Gc-eJv">
+            <objects>
+                <viewController title="修改密码" id="IAb-wx-ZXA" customClass="UpdatePassVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tCb-QA-GCj"/>
+                        <viewControllerLayoutGuide type="bottom" id="vvg-UP-Oq6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Z1v-TQ-uil">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="当前密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gbe-Sp-EP6">
+                                <rect key="frame" x="44" y="74" width="287" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="287" id="Z6d-fg-An9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="新密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6iL-h7-nHz">
+                                <rect key="frame" x="44" y="114" width="287" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="确认新密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cUa-4c-gJn">
+                                <rect key="frame" x="44" y="154" width="287" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYV-ed-BKw">
+                                <rect key="frame" x="44" y="194" width="287" height="30"/>
+                                <color key="backgroundColor" red="0.90196078430000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="YgN-OQ-dyk"/>
+                                    <constraint firstAttribute="width" constant="287" id="hwm-6V-Znw"/>
+                                </constraints>
+                                <state key="normal" title="修改密码">
+                                    <color key="titleColor" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="hwm-6V-Znw"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="pressed:" destination="IAb-wx-ZXA" eventType="touchUpInside" id="iuO-Su-RRV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Gbe-Sp-EP6" firstAttribute="leading" secondItem="Z1v-TQ-uil" secondAttribute="leadingMargin" constant="28" id="14P-HS-wtH"/>
+                            <constraint firstItem="Gbe-Sp-EP6" firstAttribute="leading" secondItem="cUa-4c-gJn" secondAttribute="leading" id="8g4-RL-lxj"/>
+                            <constraint firstItem="Gbe-Sp-EP6" firstAttribute="top" secondItem="tCb-QA-GCj" secondAttribute="bottom" constant="10" id="Kdz-5a-git"/>
+                            <constraint firstItem="cUa-4c-gJn" firstAttribute="trailing" secondItem="yYV-ed-BKw" secondAttribute="trailing" id="YLp-hc-n3z"/>
+                            <constraint firstItem="Gbe-Sp-EP6" firstAttribute="trailing" secondItem="6iL-h7-nHz" secondAttribute="trailing" id="Zft-4W-pRb"/>
+                            <constraint firstItem="Gbe-Sp-EP6" firstAttribute="leading" secondItem="6iL-h7-nHz" secondAttribute="leading" id="a0K-e8-9ah"/>
+                            <constraint firstItem="cUa-4c-gJn" firstAttribute="leading" secondItem="yYV-ed-BKw" secondAttribute="leading" id="dRQ-JD-Htx"/>
+                            <constraint firstItem="Gbe-Sp-EP6" firstAttribute="centerX" secondItem="Z1v-TQ-uil" secondAttribute="centerX" id="g5o-sx-rSy"/>
+                            <constraint firstItem="cUa-4c-gJn" firstAttribute="top" secondItem="6iL-h7-nHz" secondAttribute="bottom" constant="10" id="kH6-FC-Cyx"/>
+                            <constraint firstItem="yYV-ed-BKw" firstAttribute="top" secondItem="cUa-4c-gJn" secondAttribute="bottom" constant="10" id="oDw-mg-62Q"/>
+                            <constraint firstItem="6iL-h7-nHz" firstAttribute="top" secondItem="Gbe-Sp-EP6" secondAttribute="bottom" constant="10" id="oYU-5v-fi5"/>
+                            <constraint firstItem="Gbe-Sp-EP6" firstAttribute="trailing" secondItem="cUa-4c-gJn" secondAttribute="trailing" id="uqM-Cp-7Jh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tf1" destination="Gbe-Sp-EP6" id="h7Y-KO-18b"/>
+                        <outlet property="tf2" destination="6iL-h7-nHz" id="iFp-ga-Vfj"/>
+                        <outlet property="tf3" destination="cUa-4c-gJn" id="fS4-nk-qsU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jer-q6-Xau" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2237.5" y="-2941.5"/>
         </scene>
         <!--Point DetailVC-->
         <scene sceneID="KWo-Gf-nhc">
