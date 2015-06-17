@@ -1353,7 +1353,7 @@
         <!--Navigation Controller-->
         <scene sceneID="hGw-6p-EtT">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="VK3-U4-B8M" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="train" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="VK3-U4-B8M" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TCR-6P-n1s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

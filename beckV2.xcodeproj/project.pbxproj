@@ -89,6 +89,9 @@
 		395899E51B31C9A60056B9A5 /* CourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899E41B31C9A50056B9A5 /* CourseCell.m */; };
 		395899E81B31CC1F0056B9A5 /* PointRuleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899E71B31CC1F0056B9A5 /* PointRuleVC.m */; };
 		395899EF1B31DE970056B9A5 /* rule.html in Resources */ = {isa = PBXBuildFile; fileRef = 395899EE1B31DE970056B9A5 /* rule.html */; };
+		395899F11B31DFFC0056B9A5 /* pan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395899F01B31DFFC0056B9A5 /* pan.storyboard */; };
+		395899F41B31E0240056B9A5 /* SettingPanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899F31B31E0240056B9A5 /* SettingPanVC.m */; };
+		395899F71B31E09B0056B9A5 /* UIImage+tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899F61B31E09B0056B9A5 /* UIImage+tool.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -313,6 +316,11 @@
 		395899E61B31CC1F0056B9A5 /* PointRuleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointRuleVC.h; sourceTree = "<group>"; };
 		395899E71B31CC1F0056B9A5 /* PointRuleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointRuleVC.m; sourceTree = "<group>"; };
 		395899EE1B31DE970056B9A5 /* rule.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = rule.html; sourceTree = "<group>"; };
+		395899F01B31DFFC0056B9A5 /* pan.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = pan.storyboard; sourceTree = "<group>"; };
+		395899F21B31E0240056B9A5 /* SettingPanVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingPanVC.h; sourceTree = "<group>"; };
+		395899F31B31E0240056B9A5 /* SettingPanVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingPanVC.m; sourceTree = "<group>"; };
+		395899F51B31E09B0056B9A5 /* UIImage+tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+tool.h"; sourceTree = "<group>"; };
+		395899F61B31E09B0056B9A5 /* UIImage+tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+tool.m"; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -463,6 +471,11 @@
 				39372E7E1B0A2F1E00891F52 /* DB */,
 				3919ABE11B0647F200336E77 /* AppDelegate.h */,
 				3919ABE21B0647F200336E77 /* AppDelegate.m */,
+				395899F51B31E09B0056B9A5 /* UIImage+tool.h */,
+				395899F61B31E09B0056B9A5 /* UIImage+tool.m */,
+				395899F21B31E0240056B9A5 /* SettingPanVC.h */,
+				395899F31B31E0240056B9A5 /* SettingPanVC.m */,
+				395899F01B31DFFC0056B9A5 /* pan.storyboard */,
 				39CE4C6D1B19BCB200DDAB01 /* Practis.storyboard */,
 				3919ABEA1B0647F200336E77 /* Main.storyboard */,
 				3919ABED1B0647F200336E77 /* Images.xcassets */,
@@ -1157,6 +1170,7 @@
 				39CE4C4B1B19575800DDAB01 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				3919ABEE1B0647F200336E77 /* Images.xcassets in Resources */,
 				39CE4C6E1B19BCB200DDAB01 /* Practis.storyboard in Resources */,
+				395899F11B31DFFC0056B9A5 /* pan.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1291,6 +1305,7 @@
 				39CE4C851B1CC47700DDAB01 /* ChoiceItem.m in Sources */,
 				3958995F1B2DE2780056B9A5 /* NewFeatureScrollView.m in Sources */,
 				395899BC1B2DE2BE0056B9A5 /* CALayer+Anim.m in Sources */,
+				395899F71B31E09B0056B9A5 /* UIImage+tool.m in Sources */,
 				39D780C81B138533009F5C8E /* HonorTVCell.m in Sources */,
 				395899C51B2DE2BE0056B9A5 /* UIDevice+Extend.m in Sources */,
 				39372E8D1B0A5EF600891F52 /* ConditionContainerVC.m in Sources */,
@@ -1312,6 +1327,7 @@
 				3919ABE01B0647F200336E77 /* main.m in Sources */,
 				3958993F1B2D5DEC0056B9A5 /* Train2VC.m in Sources */,
 				39EEA1C01B29F651009BE945 /* HighFrequencyListVC.m in Sources */,
+				395899F41B31E0240056B9A5 /* SettingPanVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

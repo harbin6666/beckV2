@@ -14,6 +14,7 @@
 #import "QCollectionVC.h"
 #import "CachedAnswer.h"
 #import "PractisAnswer.h"
+#import "SettingPanVC.h"
 @interface PractiseVC ()<UITabBarDelegate,UITableViewDataSource,UITableViewDelegate,QCollectionVCDelegate>
 @property(nonatomic,strong)NSArray *questionsAr;
 @property(nonatomic,weak) IBOutlet UILabel *testLab;
@@ -27,6 +28,9 @@
 @property(nonatomic,strong)NSMutableArray *answerArray;
 @property(nonatomic,strong)PractisAnswer* answer;
 @property(nonatomic,assign)BOOL showAnswer;
+
+@property (nonatomic, strong) SettingPanVC *settingPanVC;
+
 @end
 
 @implementation PractiseVC
@@ -583,7 +587,10 @@
 }
 
 -(void)showSetting:(UITabBarItem *)item{
-    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"pan" bundle:[NSBundle mainBundle]];
+    self.settingPanVC = [sb instantiateViewControllerWithIdentifier:@"settingPanVC"];
+    [self.view addSubview:self.settingPanVC.view];
+
 }
 
 -(void)backwardPress:(UITabBarItem *)item{

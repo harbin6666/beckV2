@@ -115,7 +115,11 @@
         vc.type=1;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.row==3){
-        
+        UIStoryboard*sb=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        PointDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"train"];
+        [self presentViewController:vc animated:YES completion:^{
+            
+        }];
     }
 }
 /*

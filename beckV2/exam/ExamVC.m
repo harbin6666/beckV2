@@ -14,7 +14,7 @@
 #import "QCollectionVC.h"
 
 #import "PractisAnswer.h"
-
+#import "SettingPanVC.h"
 @interface ExamVC ()
 @property(nonatomic,weak)IBOutlet UILabel *timeLab;
 @property(nonatomic,weak) IBOutlet UILabel *testLab;
@@ -31,6 +31,7 @@
 @property(nonatomic,strong)NSTimer* timer;
 @property(nonatomic,assign)NSInteger seconds;
 
+@property (nonatomic, strong) SettingPanVC *settingPanVC;
 
 @property(nonatomic,strong)NSDate *beginTime;
 @end
@@ -423,7 +424,10 @@
 }
 
 -(void)showSetting:(UITabBarItem *)item{
-    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"pan" bundle:[NSBundle mainBundle]];
+    self.settingPanVC = [sb instantiateViewControllerWithIdentifier:@"settingPanVC"];
+    [self.view addSubview:self.settingPanVC.view];
+
 }
 
 -(void)backwardPress:(UITabBarItem *)item{

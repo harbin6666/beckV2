@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Setting PanVC-->
+        <scene sceneID="MGB-Yg-xjC">
+            <objects>
+                <viewController storyboardIdentifier="settingPanVC" id="mtp-vi-Ckt" customClass="SettingPanVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ego-bE-q3J"/>
+                        <viewControllerLayoutGuide type="bottom" id="5WX-rY-nfm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4pS-kc-iqS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NxZ-BS-qqA">
+                                <rect key="frame" x="0.0" y="400" width="600" height="200"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="d38-ap-ZfQ">
+                                        <rect key="frame" x="18" y="100" width="564" height="31"/>
+                                        <color key="minimumTrackTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="maximumTrackTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="onValueChange:" destination="mtp-vi-Ckt" eventType="valueChanged" id="s45-SV-41t"/>
+                                        </connections>
+                                    </slider>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fw-p4-agg">
+                                        <rect key="frame" x="128" y="150" width="44" height="30"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="kfP-cb-g7N"/>
+                                        </constraints>
+                                        <state key="normal" title="确定">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onPressedOK:" destination="mtp-vi-Ckt" eventType="touchUpInside" id="2bt-zP-IEP"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DF5-12-33V">
+                                        <rect key="frame" x="290" y="59" width="19.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DlD-sT-9EX">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="1Rx-6a-Ufp"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="亮度调节">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onPressedBtn:" destination="mtp-vi-Ckt" eventType="touchUpInside" id="5zz-ch-Mu1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwp-Hd-h5V">
+                                        <rect key="frame" x="300" y="0.0" width="300" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="22u-aa-Ukh"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="字体大小">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onPressedBtn:" destination="mtp-vi-Ckt" eventType="touchUpInside" id="VOa-wn-EHZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYB-0z-TQ2">
+                                        <rect key="frame" x="428" y="150" width="44" height="30"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="JbY-iv-heQ"/>
+                                        </constraints>
+                                        <state key="normal" title="取消">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onPressedCancel:" destination="mtp-vi-Ckt" eventType="touchUpInside" id="CFG-3r-1Qa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="d38-ap-ZfQ" firstAttribute="leading" secondItem="NxZ-BS-qqA" secondAttribute="leading" constant="20" id="3Qm-u5-cao"/>
+                                    <constraint firstAttribute="trailing" secondItem="pwp-Hd-h5V" secondAttribute="trailing" id="6ws-fn-dBs"/>
+                                    <constraint firstAttribute="height" constant="200" id="Ap2-Af-Kv9"/>
+                                    <constraint firstItem="GYB-0z-TQ2" firstAttribute="centerX" secondItem="NxZ-BS-qqA" secondAttribute="centerX" multiplier="3/2" id="HBz-An-0M5"/>
+                                    <constraint firstAttribute="bottom" secondItem="0fw-p4-agg" secondAttribute="bottom" constant="20" id="JjH-eh-V8H"/>
+                                    <constraint firstAttribute="centerX" secondItem="DF5-12-33V" secondAttribute="centerX" id="KVC-ON-cHP"/>
+                                    <constraint firstItem="DlD-sT-9EX" firstAttribute="top" secondItem="NxZ-BS-qqA" secondAttribute="top" id="LLT-l8-zJO"/>
+                                    <constraint firstAttribute="width" secondItem="pwp-Hd-h5V" secondAttribute="width" multiplier="2" id="Mgp-dt-z2F"/>
+                                    <constraint firstItem="pwp-Hd-h5V" firstAttribute="top" secondItem="NxZ-BS-qqA" secondAttribute="top" id="Ubm-Q2-ONM"/>
+                                    <constraint firstItem="DlD-sT-9EX" firstAttribute="leading" secondItem="NxZ-BS-qqA" secondAttribute="leading" id="VBA-kl-Neq"/>
+                                    <constraint firstAttribute="trailing" secondItem="d38-ap-ZfQ" secondAttribute="trailing" constant="20" id="XJW-11-U02"/>
+                                    <constraint firstItem="GYB-0z-TQ2" firstAttribute="top" secondItem="d38-ap-ZfQ" secondAttribute="bottom" constant="20" id="fBs-xr-Vdd"/>
+                                    <constraint firstItem="0fw-p4-agg" firstAttribute="centerX" secondItem="NxZ-BS-qqA" secondAttribute="centerX" multiplier="1/2" id="ikk-ih-UjM"/>
+                                    <constraint firstItem="d38-ap-ZfQ" firstAttribute="top" secondItem="DF5-12-33V" secondAttribute="bottom" constant="20" id="jV5-Gh-McY"/>
+                                    <constraint firstAttribute="bottom" secondItem="GYB-0z-TQ2" secondAttribute="bottom" constant="20" id="waG-7q-F7t"/>
+                                    <constraint firstAttribute="width" secondItem="DlD-sT-9EX" secondAttribute="width" multiplier="2" id="yEf-zB-z0z"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="rEV-l9-jF1" appends="YES" id="CQl-GT-jRR"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="5WX-rY-nfm" firstAttribute="top" secondItem="NxZ-BS-qqA" secondAttribute="bottom" id="PRY-WB-QXz"/>
+                            <constraint firstAttribute="trailing" secondItem="NxZ-BS-qqA" secondAttribute="trailing" id="eHI-fe-9FM"/>
+                            <constraint firstItem="NxZ-BS-qqA" firstAttribute="leading" secondItem="4pS-kc-iqS" secondAttribute="leading" id="sig-bk-R0t"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="5LD-Ht-Il6" appends="YES" id="tL1-6d-GpQ"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="brightnessBtn" destination="DlD-sT-9EX" id="2X6-AX-cgj"/>
+                        <outlet property="cancelBtn" destination="GYB-0z-TQ2" id="9lu-cU-Bdd"/>
+                        <outlet property="doneBtn" destination="0fw-p4-agg" id="zmu-9g-0Yr"/>
+                        <outlet property="fontBtn" destination="pwp-Hd-h5V" id="8jN-ie-g1P"/>
+                        <outlet property="label" destination="DF5-12-33V" id="w37-VY-RKH"/>
+                        <outlet property="slider" destination="d38-ap-ZfQ" id="uMg-Fo-WS3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="owT-fA-fs7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="5LD-Ht-Il6">
+                    <connections>
+                        <action selector="onPressedTap:" destination="mtp-vi-Ckt" id="0lj-hn-XFP"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="rEV-l9-jF1"/>
+            </objects>
+            <point key="canvasLocation" x="1087" y="980"/>
+        </scene>
+    </scenes>
+</document>
