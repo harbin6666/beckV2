@@ -77,9 +77,9 @@
                         <segue destination="p5O-we-4MD" kind="show" identifier="tohigh" id="mrv-T8-6EC"/>
                         <segue destination="a6f-wV-mOT" kind="show" identifier="tousercenter" id="iiF-gV-LRk"/>
                         <segue destination="nM9-5u-WOR" kind="show" identifier="tomessage" id="P33-Ov-GnS"/>
-                        <segue destination="RBI-AH-DR6" kind="show" identifier="tofeedback" id="Q4i-Ap-R8a"/>
                         <segue destination="P06-IG-2pv" kind="show" identifier="tohelp" id="s02-eY-mvs"/>
                         <segue destination="Zpz-DP-Ijo" kind="show" identifier="topointshop" id="9hm-cD-mLB"/>
+                        <segue destination="OU7-oc-Seb" kind="show" identifier="feedback" id="rXk-Ix-nlq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WpE-A7-mw3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -282,24 +282,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pOn-wN-gLC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2403.5" y="-2263.5"/>
-        </scene>
-        <!--FeedbackVC-->
-        <scene sceneID="eWY-ac-RmA">
-            <objects>
-                <viewController id="RBI-AH-DR6" customClass="FeedbackVC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="QLI-Pm-d98"/>
-                        <viewControllerLayoutGuide type="bottom" id="08t-x5-3ta"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="h05-Lc-mwh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CH2-ZH-Zc9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1078" y="-567"/>
         </scene>
         <!--MessageVC-->
         <scene sceneID="K4J-qj-WEf">
@@ -1590,6 +1572,48 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="1734.5" y="-51.5"/>
+        </scene>
+        <!--意见反馈-->
+        <scene sceneID="ml1-7l-NNn">
+            <objects>
+                <viewController id="OU7-oc-Seb" userLabel="意见反馈" customClass="FeedBackVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mtS-6p-z3J"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gnv-zn-3MW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Do-Bb-Mfu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="line" placeholder="说说您的建议,我们会根据您的意见改进哦~" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RpA-RT-mqs">
+                                <rect key="frame" x="0.0" y="64" width="375" height="167"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RpA-RT-mqs" firstAttribute="top" secondItem="mtS-6p-z3J" secondAttribute="bottom" id="KpT-M7-bYU"/>
+                            <constraint firstItem="RpA-RT-mqs" firstAttribute="leading" secondItem="0Do-Bb-Mfu" secondAttribute="leading" id="Nfj-Kq-dqT"/>
+                            <constraint firstItem="RpA-RT-mqs" firstAttribute="height" secondItem="0Do-Bb-Mfu" secondAttribute="height" multiplier="1/4" id="Nzk-we-P5T"/>
+                            <constraint firstAttribute="trailing" secondItem="RpA-RT-mqs" secondAttribute="trailing" id="uhE-pS-3d8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="意见反馈" id="rLq-rW-Wbd">
+                        <barButtonItem key="rightBarButtonItem" title="发送" id="7od-nR-dbi">
+                            <connections>
+                                <action selector="onPressedBtn:" destination="OU7-oc-Seb" id="oIV-3B-QNJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="feedbackTF" destination="RpA-RT-mqs" id="vxz-Td-auq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gSU-ho-X4I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="951.5" y="-975.5"/>
         </scene>
     </scenes>
     <resources>

@@ -33,7 +33,6 @@
 		394C4A331B275B6B0002838B /* UserNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A321B275B6B0002838B /* UserNote.m */; };
 		395899191B2BD6710056B9A5 /* UserCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899181B2BD6710056B9A5 /* UserCenterVC.m */; };
 		3958991C1B2BD6800056B9A5 /* MessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3958991B1B2BD6800056B9A5 /* MessageVC.m */; };
-		3958991F1B2BD6990056B9A5 /* FeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3958991E1B2BD6990056B9A5 /* FeedbackVC.m */; };
 		395899221B2BD6AD0056B9A5 /* HelpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899211B2BD6AD0056B9A5 /* HelpVC.m */; };
 		395899251B2BD7960056B9A5 /* PointShopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899241B2BD7960056B9A5 /* PointShopVC.m */; };
 		395899281B2BEC6F0056B9A5 /* MessageVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899271B2BEC6F0056B9A5 /* MessageVO.m */; };
@@ -93,6 +92,7 @@
 		395899F41B31E0240056B9A5 /* SettingPanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899F31B31E0240056B9A5 /* SettingPanVC.m */; };
 		395899F71B31E09B0056B9A5 /* UIImage+tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899F61B31E09B0056B9A5 /* UIImage+tool.m */; };
 		395899FA1B31E6650056B9A5 /* UpdatePassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899F91B31E6650056B9A5 /* UpdatePassVC.m */; };
+		395899FD1B31E9A70056B9A5 /* FeedBackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899FC1B31E9A70056B9A5 /* FeedBackVC.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -202,8 +202,6 @@
 		395899181B2BD6710056B9A5 /* UserCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCenterVC.m; sourceTree = "<group>"; };
 		3958991A1B2BD6800056B9A5 /* MessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageVC.h; sourceTree = "<group>"; };
 		3958991B1B2BD6800056B9A5 /* MessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageVC.m; sourceTree = "<group>"; };
-		3958991D1B2BD6990056B9A5 /* FeedbackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackVC.h; sourceTree = "<group>"; };
-		3958991E1B2BD6990056B9A5 /* FeedbackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackVC.m; sourceTree = "<group>"; };
 		395899201B2BD6AD0056B9A5 /* HelpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpVC.h; sourceTree = "<group>"; };
 		395899211B2BD6AD0056B9A5 /* HelpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpVC.m; sourceTree = "<group>"; };
 		395899231B2BD7960056B9A5 /* PointShopVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointShopVC.h; sourceTree = "<group>"; };
@@ -324,6 +322,8 @@
 		395899F61B31E09B0056B9A5 /* UIImage+tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+tool.m"; sourceTree = "<group>"; };
 		395899F81B31E6650056B9A5 /* UpdatePassVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatePassVC.h; sourceTree = "<group>"; };
 		395899F91B31E6650056B9A5 /* UpdatePassVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatePassVC.m; sourceTree = "<group>"; };
+		395899FB1B31E9A70056B9A5 /* FeedBackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackVC.h; sourceTree = "<group>"; };
+		395899FC1B31E9A70056B9A5 /* FeedBackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackVC.m; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -910,6 +910,8 @@
 			children = (
 				39CD45F41B209A7E005320B5 /* MoreVC.h */,
 				39CD45F51B209A7E005320B5 /* MoreVC.m */,
+				395899FB1B31E9A70056B9A5 /* FeedBackVC.h */,
+				395899FC1B31E9A70056B9A5 /* FeedBackVC.m */,
 				395899F81B31E6650056B9A5 /* UpdatePassVC.h */,
 				395899F91B31E6650056B9A5 /* UpdatePassVC.m */,
 				3915499B1B21F1F500BF5BBF /* UpdataDbVC.h */,
@@ -922,8 +924,6 @@
 				3958991B1B2BD6800056B9A5 /* MessageVC.m */,
 				395899291B2C25F30056B9A5 /* MessageCell.h */,
 				3958992A1B2C25F30056B9A5 /* MessageCell.m */,
-				3958991D1B2BD6990056B9A5 /* FeedbackVC.h */,
-				3958991E1B2BD6990056B9A5 /* FeedbackVC.m */,
 				395899201B2BD6AD0056B9A5 /* HelpVC.h */,
 				395899211B2BD6AD0056B9A5 /* HelpVC.m */,
 				395899231B2BD7960056B9A5 /* PointShopVC.h */,
@@ -1283,6 +1283,7 @@
 				39CD45F91B209A8D005320B5 /* NoteVC.m in Sources */,
 				395899BF1B2DE2BE0056B9A5 /* NSDate+Extend.m in Sources */,
 				395899C91B2DE2BE0056B9A5 /* UIImage+Extend.m in Sources */,
+				395899FD1B31E9A70056B9A5 /* FeedBackVC.m in Sources */,
 				39CE4C8B1B1DFD2700DDAB01 /* ChoiceCell.m in Sources */,
 				395899C41B2DE2BE0056B9A5 /* UIColor+Extend.m in Sources */,
 				39CE4C941B1F3CB300DDAB01 /* QCollectionVC.m in Sources */,
@@ -1324,7 +1325,6 @@
 				395899281B2BEC6F0056B9A5 /* MessageVO.m in Sources */,
 				395899E21B3072B90056B9A5 /* InviteVC.m in Sources */,
 				39CE4C971B1F431300DDAB01 /* Question.m in Sources */,
-				3958991F1B2BD6990056B9A5 /* FeedbackVC.m in Sources */,
 				394C4A2D1B2750C80002838B /* NoteListVC.m in Sources */,
 				3915499D1B21F1F500BF5BBF /* UpdataDbVC.m in Sources */,
 				3958995D1B2DE2780056B9A5 /* NewFeatureModel.m in Sources */,

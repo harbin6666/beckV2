@@ -132,7 +132,7 @@
         }
     }else{
         if (indexPath.row==0) {
-            [self performSegueWithIdentifier:@"tofeedback" sender:self];
+            [self performSegueWithIdentifier:@"feedback" sender:self];
         }else{
             [self performSegueWithIdentifier:@"tohelp" sender:self];
         }
