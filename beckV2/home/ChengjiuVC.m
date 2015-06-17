@@ -47,11 +47,15 @@
     UIButton *b=[UIButton buttonWithType:UIButtonTypeCustom];
     b.frame=CGRectMake(10, 5, 100, 23);
     [b setBackgroundImage:[UIImage imageNamed:@"info"] forState:UIControlStateNormal];
+    [b addTarget:self action:@selector(rule) forControlEvents:UIControlEventTouchUpInside];
     [v addSubview:b];
     self.tableView.tableFooterView =v;
     self.tableView.allowsSelection=NO;
     [self.tableView reloadData];
 
+}
+-(void)rule{
+    [self performSegueWithIdentifier:@"torule" sender:self];
 }
 
 - (void)didReceiveMemoryWarning {

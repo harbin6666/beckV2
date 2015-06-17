@@ -88,6 +88,7 @@
 		395899E21B3072B90056B9A5 /* InviteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899E11B3072B90056B9A5 /* InviteVC.m */; };
 		395899E51B31C9A60056B9A5 /* CourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899E41B31C9A50056B9A5 /* CourseCell.m */; };
 		395899E81B31CC1F0056B9A5 /* PointRuleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899E71B31CC1F0056B9A5 /* PointRuleVC.m */; };
+		395899EF1B31DE970056B9A5 /* rule.html in Resources */ = {isa = PBXBuildFile; fileRef = 395899EE1B31DE970056B9A5 /* rule.html */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -311,6 +312,7 @@
 		395899E41B31C9A50056B9A5 /* CourseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseCell.m; sourceTree = "<group>"; };
 		395899E61B31CC1F0056B9A5 /* PointRuleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointRuleVC.h; sourceTree = "<group>"; };
 		395899E71B31CC1F0056B9A5 /* PointRuleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointRuleVC.m; sourceTree = "<group>"; };
+		395899EE1B31DE970056B9A5 /* rule.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = rule.html; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -547,6 +549,7 @@
 				39D780C71B138533009F5C8E /* HonorTVCell.m */,
 				395899E61B31CC1F0056B9A5 /* PointRuleVC.h */,
 				395899E71B31CC1F0056B9A5 /* PointRuleVC.m */,
+				395899EE1B31DE970056B9A5 /* rule.html */,
 				39CE4C721B1A245400DDAB01 /* TabbarVC.h */,
 				39CE4C731B1A245400DDAB01 /* TabbarVC.m */,
 			);
@@ -1148,6 +1151,7 @@
 				3919ABEC1B0647F200336E77 /* Main.storyboard in Resources */,
 				395899CF1B2DE2BE0056B9A5 /* Info.plist in Resources */,
 				395899391B2D3B790056B9A5 /* AlipaySDK.bundle in Resources */,
+				395899EF1B31DE970056B9A5 /* rule.html in Resources */,
 				3919ABF11B0647F200336E77 /* LaunchScreen.xib in Resources */,
 				39CE4C4F1B19575800DDAB01 /* WeiboSDK.bundle in Resources */,
 				39CE4C4B1B19575800DDAB01 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,

@@ -9,13 +9,15 @@
 #import "PointRuleVC.h"
 
 @interface PointRuleVC ()
-
+@property(nonatomic,weak)IBOutlet UIWebView *web;
 @end
 
 @implementation PointRuleVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSURL *url=[[NSBundle mainBundle] URLForResource:@"rule" withExtension:@"html"];
+    [self.web loadRequest:[NSURLRequest requestWithURL:url]];
     // Do any additional setup after loading the view.
 }
 

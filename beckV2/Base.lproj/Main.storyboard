@@ -309,11 +309,46 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tableView" destination="NeE-Ao-07l" id="k7y-so-8Sk"/>
+                        <segue destination="Bjf-YS-hoG" kind="show" identifier="torule" id="SgE-YM-7LM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ajs-AQ-Tla" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="141" y="-1383"/>
+        </scene>
+        <!--Point RuleVC-->
+        <scene sceneID="J0Q-5D-H7m">
+            <objects>
+                <viewController id="Bjf-YS-hoG" customClass="PointRuleVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zea-1r-L80"/>
+                        <viewControllerLayoutGuide type="bottom" id="vuG-mN-SXV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UEB-kU-oNA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cT7-Ad-rrL">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="cT7-Ad-rrL" secondAttribute="trailing" constant="-16" id="C86-bM-cuI"/>
+                            <constraint firstItem="cT7-Ad-rrL" firstAttribute="leading" secondItem="UEB-kU-oNA" secondAttribute="leadingMargin" constant="-16" id="gLG-5P-cHb"/>
+                            <constraint firstItem="cT7-Ad-rrL" firstAttribute="top" secondItem="zea-1r-L80" secondAttribute="bottom" constant="-20" id="lVp-YU-y2E"/>
+                            <constraint firstItem="vuG-mN-SXV" firstAttribute="top" secondItem="cT7-Ad-rrL" secondAttribute="bottom" id="snB-Rm-TR4"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="web" destination="cT7-Ad-rrL" id="sGc-6T-Ish"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bSk-Uv-1Wb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="609" y="-1354"/>
         </scene>
         <!--homeVC-->
         <scene sceneID="Rcr-zS-EwL">
