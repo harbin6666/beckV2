@@ -860,27 +860,40 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="10" reuseIdentifier="outlinecell" textLabel="SQL-AX-zam" detailTextLabel="q1t-uD-jvz" style="IBUITableViewCellStyleValue1" id="dHt-Vg-x94" customClass="OutlineCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="10" reuseIdentifier="outlinecell" id="dHt-Vg-x94" customClass="OutlineCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dHt-Vg-x94" id="9hq-iz-VJE">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SQL-AX-zam">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQe-xq-qTk">
+                                            <rect key="frame" x="8" y="0.0" width="284" height="44"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="q1t-uD-jvz">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300/300" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uKa-sd-ru9">
+                                            <rect key="frame" x="292" y="0.0" width="50" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="BlH-xz-v39"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="uKa-sd-ru9" firstAttribute="leading" secondItem="QQe-xq-qTk" secondAttribute="trailing" id="F0X-yy-Plf"/>
+                                        <constraint firstItem="uKa-sd-ru9" firstAttribute="baseline" secondItem="QQe-xq-qTk" secondAttribute="baseline" id="J3N-KZ-Jzm"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="QQe-xq-qTk" secondAttribute="bottom" constant="-8.5" id="Js1-Kw-jpX"/>
+                                        <constraint firstItem="uKa-sd-ru9" firstAttribute="trailing" secondItem="9hq-iz-VJE" secondAttribute="trailingMargin" constant="8" id="bpp-p6-p9p"/>
+                                        <constraint firstItem="QQe-xq-qTk" firstAttribute="leading" secondItem="9hq-iz-VJE" secondAttribute="leadingMargin" id="ed8-5L-9ZQ"/>
+                                        <constraint firstItem="QQe-xq-qTk" firstAttribute="top" secondItem="9hq-iz-VJE" secondAttribute="top" id="iOS-67-6gU"/>
+                                        <constraint firstItem="uKa-sd-ru9" firstAttribute="top" secondItem="QQe-xq-qTk" secondAttribute="top" id="jeD-t7-HBj"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="textlab" destination="SQL-AX-zam" id="SfH-ZU-HuQ"/>
+                                    <outlet property="detailLab" destination="uKa-sd-ru9" id="Ypd-If-h3J"/>
+                                    <outlet property="textlab" destination="QQe-xq-qTk" id="MvQ-sL-fQe"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -916,17 +929,47 @@
         <!--章节练习-->
         <scene sceneID="jBV-fK-Ls2">
             <objects>
-                <tableViewController title="章节练习" id="P5y-Ym-vDP" customClass="CourseVC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CourseVC" title="章节练习" id="P5y-Ym-vDP" customClass="CourseVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="iCi-Nd-ZR9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rcZ-HZ-Nih">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="newcell" id="rcZ-HZ-Nih" customClass="CourseCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rcZ-HZ-Nih" id="tBA-Cl-EB5">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aq8-A7-ZXu">
+                                            <rect key="frame" x="8" y="0.0" width="284" height="44"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200/200" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJv-Dv-egi">
+                                            <rect key="frame" x="292" y="0.0" width="50" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="ypk-12-KxS"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="iJv-Dv-egi" firstAttribute="bottom" secondItem="Aq8-A7-ZXu" secondAttribute="bottom" id="3Tw-Gp-WVT"/>
+                                        <constraint firstItem="iJv-Dv-egi" firstAttribute="top" secondItem="tBA-Cl-EB5" secondAttribute="top" id="69q-v4-jKJ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Aq8-A7-ZXu" secondAttribute="bottom" constant="-8.5" id="9JM-Vm-buu"/>
+                                        <constraint firstItem="Aq8-A7-ZXu" firstAttribute="top" secondItem="iJv-Dv-egi" secondAttribute="top" id="ANF-0A-S3l"/>
+                                        <constraint firstItem="iJv-Dv-egi" firstAttribute="trailing" secondItem="tBA-Cl-EB5" secondAttribute="trailingMargin" constant="8" id="cSK-QG-iAQ"/>
+                                        <constraint firstItem="iJv-Dv-egi" firstAttribute="leading" secondItem="Aq8-A7-ZXu" secondAttribute="trailing" id="fnm-cR-alJ"/>
+                                        <constraint firstItem="Aq8-A7-ZXu" firstAttribute="leading" secondItem="tBA-Cl-EB5" secondAttribute="leadingMargin" id="zTw-pM-ubh"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="detailLab" destination="iJv-Dv-egi" id="6a5-i5-2Wo"/>
+                                    <outlet property="textlab" destination="Aq8-A7-ZXu" id="GAo-5b-czu"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -936,7 +979,6 @@
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="table" destination="iCi-Nd-ZR9" id="NtE-Pn-Zn8"/>
                         <segue destination="pUw-SV-lWw" kind="show" id="Tba-nh-sKs"/>
                     </connections>
                 </tableViewController>
@@ -1501,6 +1543,6 @@
         <image name="zhenti3" width="90" height="90"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ssl-KP-cHU"/>
+        <segue reference="JSm-DH-hNJ"/>
     </inferredMetricsTieBreakers>
 </document>

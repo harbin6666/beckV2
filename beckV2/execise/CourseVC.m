@@ -9,8 +9,9 @@
 #import "CourseVC.h"
 #import "Outline.h"
 #import "PractiseVC.h"
-@interface CourseVC ()
-@property(nonatomic,weak)IBOutlet UITableView *table;
+#import "CourseCell.h"
+@interface CourseVC ()<UITableViewDataSource,UITableViewDelegate>
+
 @property(nonatomic,strong)NSArray *dataAr;
 @end
 
@@ -19,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataAr=[[SQLManager sharedSingle] getOutLineByParentId:self.parentid];
-    [self.table reloadData];
+    [self.tableView reloadData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -48,18 +49,16 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"course"];
-    if (cell==nil) {
-        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"course"];
-    }
+    CourseCell* cell=[tableView dequeueReusableCellWithIdentifier:@"newcell" forIndexPath:indexPath];
+//    if (cell==nil) {
+//        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"course"];
+//    }
     Outline *ol=self.dataAr[indexPath.row];
-    cell.textLabel.text=ol.courseName;
-    cell.textLabel.numberOfLines=2;
+    cell.textlab.text=ol.courseName;
     NSInteger done=[[SQLManager sharedSingle] countDoneByOutlineid:ol.outlineid];
     NSInteger total=[[SQLManager sharedSingle] countDownByOutlineid:ol.outlineid];
-    cell.detailTextLabel.text=[NSString stringWithFormat:@"%zd/%zd",done,total];
+    cell.detailLab.text=[NSString stringWithFormat:@"%zd/%zd",done,total];
 
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }

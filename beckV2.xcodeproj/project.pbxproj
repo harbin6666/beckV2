@@ -86,6 +86,8 @@
 		395899D91B2DE2BE0056B9A5 /* UIView+Masony.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899B91B2DE2BE0056B9A5 /* UIView+Masony.m */; };
 		395899DF1B2DF4680056B9A5 /* CachedAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899DE1B2DF4680056B9A5 /* CachedAnswer.m */; };
 		395899E21B3072B90056B9A5 /* InviteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899E11B3072B90056B9A5 /* InviteVC.m */; };
+		395899E51B31C9A60056B9A5 /* CourseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899E41B31C9A50056B9A5 /* CourseCell.m */; };
+		395899E81B31CC1F0056B9A5 /* PointRuleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899E71B31CC1F0056B9A5 /* PointRuleVC.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -305,6 +307,10 @@
 		395899DE1B2DF4680056B9A5 /* CachedAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CachedAnswer.m; sourceTree = "<group>"; };
 		395899E01B3072B90056B9A5 /* InviteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteVC.h; sourceTree = "<group>"; };
 		395899E11B3072B90056B9A5 /* InviteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteVC.m; sourceTree = "<group>"; };
+		395899E31B31C9A50056B9A5 /* CourseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseCell.h; sourceTree = "<group>"; };
+		395899E41B31C9A50056B9A5 /* CourseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseCell.m; sourceTree = "<group>"; };
+		395899E61B31CC1F0056B9A5 /* PointRuleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointRuleVC.h; sourceTree = "<group>"; };
+		395899E71B31CC1F0056B9A5 /* PointRuleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointRuleVC.m; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -539,6 +545,8 @@
 				39D780C41B138490009F5C8E /* ChengjiuVC.m */,
 				39D780C61B138533009F5C8E /* HonorTVCell.h */,
 				39D780C71B138533009F5C8E /* HonorTVCell.m */,
+				395899E61B31CC1F0056B9A5 /* PointRuleVC.h */,
+				395899E71B31CC1F0056B9A5 /* PointRuleVC.m */,
 				39CE4C721B1A245400DDAB01 /* TabbarVC.h */,
 				39CE4C731B1A245400DDAB01 /* TabbarVC.m */,
 			);
@@ -979,6 +987,8 @@
 				39CE4C701B19BE2A00DDAB01 /* OutlineCell.m */,
 				39CE4C751B1A433200DDAB01 /* CourseVC.h */,
 				39CE4C811B1CBAF400DDAB01 /* CourseVC.m */,
+				395899E31B31C9A50056B9A5 /* CourseCell.h */,
+				395899E41B31C9A50056B9A5 /* CourseCell.m */,
 				39CE4C891B1DFD2700DDAB01 /* ChoiceCell.h */,
 				39CE4C8A1B1DFD2700DDAB01 /* ChoiceCell.m */,
 				39CE4C8C1B1E044B00DDAB01 /* CompatyCell.h */,
@@ -1196,6 +1206,7 @@
 				395899D61B2DE2BE0056B9A5 /* NSArray+MASAdditions.m in Sources */,
 				39CE4C3E1B19574800DDAB01 /* UIView+create.m in Sources */,
 				395899C61B2DE2BE0056B9A5 /* UIFont+Extend.m in Sources */,
+				395899E81B31CC1F0056B9A5 /* PointRuleVC.m in Sources */,
 				39372E721B0A267000891F52 /* BaseViewController.m in Sources */,
 				395899D91B2DE2BE0056B9A5 /* UIView+Masony.m in Sources */,
 				394C4A211B25EC780002838B /* SeeNoteVC.m in Sources */,
@@ -1225,6 +1236,7 @@
 				395899D01B2DE2BE0056B9A5 /* MASCompositeConstraint.m in Sources */,
 				395899BA1B2DE2BE0056B9A5 /* NSString+File.m in Sources */,
 				395899DF1B2DF4680056B9A5 /* CachedAnswer.m in Sources */,
+				395899E51B31C9A60056B9A5 /* CourseCell.m in Sources */,
 				395899CA1B2DE2BE0056B9A5 /* UIImage+FixOrientation.m in Sources */,
 				394C4A331B275B6B0002838B /* UserNote.m in Sources */,
 				395899D41B2DE2BE0056B9A5 /* MASViewAttribute.m in Sources */,

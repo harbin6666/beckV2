@@ -10,6 +10,7 @@
 #import "Subject.h"
 #import "Outline.h"
 #import "CourseVC.h"
+#import "OutlineCell.h"
 @interface PractisHomeVC ()<UITableViewDataSource,UITableViewDelegate,UITabBarDelegate>
 @property(nonatomic,strong)NSArray *subjectIdList;
 @property(nonatomic,strong)NSArray *subjectList;
@@ -68,10 +69,10 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"outlinecell" forIndexPath:indexPath];
+    OutlineCell* cell=[tableView dequeueReusableCellWithIdentifier:@"outlinecell" forIndexPath:indexPath];
     NSArray *temp=self.dataAr[indexPath.section];
     Outline *ot=temp[indexPath.row];
-    cell.textLabel.text=ot.courseName;
+    cell.textlab.text=ot.courseName;
 //    NSInteger done=[[SQLManager sharedSingle] countDoneByOutlineid:ot.outlineid];
 //    NSInteger total=[[SQLManager sharedSingle] countDownByOutlineid:ot.outlineid];
 
@@ -83,15 +84,15 @@
         done+=[[SQLManager sharedSingle] countDoneByOutlineid:subOt.outlineid];
        total+=[[SQLManager sharedSingle] countDownByOutlineid:subOt.outlineid];
     }
-    cell.detailTextLabel.text=[NSString stringWithFormat:@"%ld/%ld",done,total];
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    cell.detailLab.text=[NSString stringWithFormat:@"%zd/%zd",done,total];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *temp=self.dataAr[indexPath.section];
     Outline *ot=temp[indexPath.row];
-    CourseVC*vc=[[CourseVC alloc] init];
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
+    CourseVC* vc=[sb instantiateViewControllerWithIdentifier:@"CourseVC"];
     vc.parentid=ot.outlineid;
     vc.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:vc animated:YES];

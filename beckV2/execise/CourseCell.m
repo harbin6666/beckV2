@@ -1,18 +1,17 @@
 //
-//  OutlineCell.m
+//  CourseCell.m
 //  beckV2
 //
-//  Created by yj on 15/5/30.
+//  Created by yj on 15/6/17.
 //  Copyright (c) 2015年 yj. All rights reserved.
 //
 
-#import "OutlineCell.h"
-@implementation OutlineCell
+#import "CourseCell.h"
 
+@implementation CourseCell
 
 - (void)awakeFromNib {
-// Initialization code
-
+    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
