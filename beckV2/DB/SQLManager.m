@@ -17,12 +17,55 @@
 #import "ExamPaper.h"
 #import "UserNote.h"
 #import "MessageVO.h"
+#import "Collection.h"
 @interface SQLManager()
 
 @end
 @implementation SQLManager
 
 singleton_implementation(SQLManager);
+-(NSArray*)findUserWrongByUserId:(NSString*)uid{
+    __block NSMutableArray*result=@[].mutableCopy;
+//    NSString *sql=[NSString stringWithFormat: @"select * from user_wrong_item where user_id==%@",[[Global sharedSingle].userBean valueForKey:@"userId"]];
+    NSString *sql=@"select * from user_wrong_item";
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            WrongItem *c=[WrongItem new];
+            c.item_id=row[1];
+            c.type_id=row[2];
+            c.add_time=row[5];
+            c.outline_id=row[7];
+            c.subject_id=row[8];
+            c.count=row[9];
+            [result addObject:c];
+        }
+    }];
+    return result;
+
+}
+
+-(NSArray*)findUserCollectByUserid:(NSString *)uid{
+    __block NSMutableArray*result=@[].mutableCopy;
+//    NSString *sql=[NSString stringWithFormat: @"select * from user_collection where user_id==%@",[[Global sharedSingle].userBean valueForKey:@"userId"]];
+    NSString *sql=@"select * from user_collection";
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            Collection *c=[Collection new];
+            c.item_id=row[1];
+            c.type_id=row[2];
+            c.add_time=row[5];
+            c.outline_id=row[7];
+            c.subject_id=row[8];
+            [result addObject:c];
+        }
+    }];
+    return result;
+
+}
 
 -(NSArray*)getExamByType:(NSString *)type{
     __block NSMutableArray*result=@[].mutableCopy;
@@ -230,7 +273,10 @@ singleton_implementation(SQLManager);
         }];
 
     }
-    return ar[0];
+    if (ar.count) {
+        return ar[0];
+    }
+    return nil;
 }
 
 -(NSArray*)getExamPaperContentByPaperid:(NSString*)paperid compid:(NSString*)compid{

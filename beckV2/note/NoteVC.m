@@ -8,6 +8,7 @@
 
 #import "NoteVC.h"
 #import "SeeNoteVC.h"
+#import "QuestionCollectionVC.h"
 @interface NoteVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,weak)IBOutlet UITableView*table;
 @end
@@ -91,7 +92,7 @@
         case 3:
         {
             UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
-            SeeNoteVC* vc=[sb instantiateViewControllerWithIdentifier:@"seecollect"];
+            QuestionCollectionVC* vc=[sb instantiateViewControllerWithIdentifier:@"seecollect"];
             vc.hidesBottomBarWhenPushed=YES;
             vc.type=indexPath.row-2;
             [self.navigationController pushViewController:vc animated:YES];

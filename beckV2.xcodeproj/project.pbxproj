@@ -94,6 +94,8 @@
 		395899FA1B31E6650056B9A5 /* UpdatePassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899F91B31E6650056B9A5 /* UpdatePassVC.m */; };
 		395899FD1B31E9A70056B9A5 /* FeedBackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899FC1B31E9A70056B9A5 /* FeedBackVC.m */; };
 		39589A001B3331430056B9A5 /* NoteListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899FF1B3331430056B9A5 /* NoteListCell.m */; };
+		39589A031B333E3E0056B9A5 /* QuestionCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39589A021B333E3E0056B9A5 /* QuestionCollectionVC.m */; };
+		39589A061B33446B0056B9A5 /* Collection.m in Sources */ = {isa = PBXBuildFile; fileRef = 39589A051B33446B0056B9A5 /* Collection.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -327,6 +329,10 @@
 		395899FC1B31E9A70056B9A5 /* FeedBackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackVC.m; sourceTree = "<group>"; };
 		395899FE1B3331430056B9A5 /* NoteListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteListCell.h; sourceTree = "<group>"; };
 		395899FF1B3331430056B9A5 /* NoteListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteListCell.m; sourceTree = "<group>"; };
+		39589A011B333E3E0056B9A5 /* QuestionCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionCollectionVC.h; sourceTree = "<group>"; };
+		39589A021B333E3E0056B9A5 /* QuestionCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionCollectionVC.m; sourceTree = "<group>"; };
+		39589A041B33446B0056B9A5 /* Collection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collection.h; sourceTree = "<group>"; };
+		39589A051B33446B0056B9A5 /* Collection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Collection.m; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -529,6 +535,8 @@
 				39372E7F1B0A2F1E00891F52 /* beck.db */,
 				39CE4C5C1B195A2800DDAB01 /* SQLManager.h */,
 				39CE4C5D1B195A2800DDAB01 /* SQLManager.m */,
+				39589A041B33446B0056B9A5 /* Collection.h */,
+				39589A051B33446B0056B9A5 /* Collection.m */,
 				395899261B2BEC6F0056B9A5 /* MessageVO.h */,
 				395899271B2BEC6F0056B9A5 /* MessageVO.m */,
 				394C4A311B275B6B0002838B /* UserNote.h */,
@@ -944,6 +952,8 @@
 			children = (
 				39CD45F71B209A8D005320B5 /* NoteVC.h */,
 				39CD45F81B209A8D005320B5 /* NoteVC.m */,
+				39589A011B333E3E0056B9A5 /* QuestionCollectionVC.h */,
+				39589A021B333E3E0056B9A5 /* QuestionCollectionVC.m */,
 				394C4A1F1B25EC780002838B /* SeeNoteVC.h */,
 				394C4A201B25EC780002838B /* SeeNoteVC.m */,
 				394C4A2B1B2750C80002838B /* NoteListVC.h */,
@@ -1299,6 +1309,7 @@
 				395899451B2D829C0056B9A5 /* TrainSelcetView.m in Sources */,
 				396AD3041B1772F6005F92B1 /* Position.m in Sources */,
 				394C4A2A1B274F8A0002838B /* PractisDetailVC.m in Sources */,
+				39589A061B33446B0056B9A5 /* Collection.m in Sources */,
 				395899BE1B2DE2BE0056B9A5 /* NSArray+Extend.m in Sources */,
 				39CE4C801B1CB1F800DDAB01 /* PractiseVC.m in Sources */,
 				395899191B2BD6710056B9A5 /* UserCenterVC.m in Sources */,
@@ -1313,6 +1324,7 @@
 				395899251B2BD7960056B9A5 /* PointShopVC.m in Sources */,
 				39CE4C611B196D8700DDAB01 /* NSString+NSdate.m in Sources */,
 				395899CE1B2DE2BE0056B9A5 /* UIWindow+Launch.m in Sources */,
+				39589A031B333E3E0056B9A5 /* QuestionCollectionVC.m in Sources */,
 				3958995C1B2DE2780056B9A5 /* CoreNewFeatureVC.m in Sources */,
 				39CE4C6C1B19B81B00DDAB01 /* Outline.m in Sources */,
 				39CE4C851B1CC47700DDAB01 /* ChoiceItem.m in Sources */,

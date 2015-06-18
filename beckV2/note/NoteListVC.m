@@ -111,9 +111,9 @@
         cell.timeLab.text=note.update_time;
         Question* q=[[SQLManager sharedSingle]getExamQuestionByItemId:note.item_id customid:note.type_id];
         if (note.type_id.integerValue==10||note.type_id.integerValue==11) {
-            cell.titLab.text=[(ChoiceQuestion*)q choice_content];
+            cell.titLab.text=[(CompatyInfo*)q title];
         }else{
-            cell.titLab.text=[(CompatyQuestion*)q choice_content];
+            cell.titLab.text=[(ChoiceQuestion*)q choice_content];
         }
         cell.noteLab.text=note.note;
         return cell;
@@ -142,10 +142,16 @@
         for (UserNote *n in self.notes) {
             if (n.item_id.integerValue==note.item_id.integerValue&&n.type_id.integerValue==note.type_id.integerValue) {
                 Question *q=[[SQLManager sharedSingle] getExamQuestionByItemId:note.item_id customid:note.type_id];
-                [ar addObject:q];
+                if (q!=nil) {
+                    [ar addObject:q];
+                }
             }
         }
         vc.questionsAr=ar;
+        if (ar.count==0) {
+            return;
+        }
+
     }
     [self.navigationController pushViewController:vc animated:YES];
 }

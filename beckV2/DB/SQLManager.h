@@ -72,6 +72,8 @@ singleton_interface(SQLManager);
 -(NSArray*)getExamByType:(NSString *)type;
 
 -(NSString *)findNoteByItemId:(NSString*)itemid customId:(NSString*)customId;
+-(NSArray*)findUserWrongByUserId:(NSString*)uid;
+-(NSArray*)findUserCollectByUserid:(NSString*)uid;
 -(void)openDB;
 
 @end

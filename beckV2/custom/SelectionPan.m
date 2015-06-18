@@ -19,7 +19,11 @@
     self.btnAr=[[NSMutableArray alloc] init];
     float width=self.frame.size.width/title.count;
     for (int i=0; i<title.count; i++) {
+        
         UIButton *bu=[UIButton buttonWithType:UIButtonTypeCustom];
+        if (i==0) {
+            bu.selected=YES;
+        }
         bu.frame=CGRectMake(width*i, 0, width, 50);
         [bu setTitle:title[i] forState:UIControlStateNormal];
         [bu setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -30,7 +34,7 @@
         [self.btnAr addObject:bu];
     }
     
-    [self click:self.btnAr[0]];
+//    [self click:self.btnAr[0]];
 }
 
 -(void)click:(UIButton*)btn{
