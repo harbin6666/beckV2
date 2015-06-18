@@ -24,6 +24,42 @@
 
 singleton_implementation(SQLManager);
 
+-(NSArray*)getExamByType:(NSString *)type{
+    __block NSMutableArray*result=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat: @"select * from exam_paper where title_id==%@ and type==%@",[[Global sharedSingle] getUserWithkey:@"titleid"],type];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            ExamPaper *paper=[ExamPaper new];
+            paper.paper_id=row[0];
+            paper.paper_name=row[1];
+            paper.publish_type=row[2];
+            paper.outline_id=row[3];
+            paper.type=row[4];
+            paper.fullmark=row[5];
+            paper.total_amount=row[6];
+            paper.answer_time=row[7];
+            paper.subject_id=row[8];
+            paper.lib_id=row[9];
+            paper.year=row[10];
+            paper.product_id=row[11];
+            paper.creator_id=row[12];
+            paper.create_time=row[13];
+            paper.is_pbulish=row[14];
+            paper.price=row[15];
+            paper.points=row[16];
+            paper.is_display=row[17];
+            paper.descript=row[18];
+            paper.memo=row[19];
+            paper.title_id=row[20];
+            paper.screening=row[21];
+            [result addObject:paper];
+        }
+    }];
+    return result;
+
+}
 -(NSArray*)getPoints{
     __block NSMutableArray *ar=@[].mutableCopy;
 //    NSString *sql=[NSString stringWithFormat: @"select * from point_transaction where user_id ==%@",[[Global sharedSingle].userBean valueForKey:@"userId"] ];

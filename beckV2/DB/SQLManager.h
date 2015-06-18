@@ -68,6 +68,9 @@ singleton_interface(SQLManager);
 
 
 -(NSArray*)getPoints;
+
+-(NSArray*)getExamByType:(NSString *)type;
+
 -(void)openDB;
 
 @end

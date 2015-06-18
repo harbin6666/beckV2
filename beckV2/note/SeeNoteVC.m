@@ -10,12 +10,15 @@
 #import "Subject.h"
 #import "Outline.h"
 #import "NoteListVC.h"
-
+#import "SelectionPan.h"
+#import "ExamPaper.h"
 @interface SeeNoteVC ()
 @property(nonatomic,strong)NSArray *subjectIdList;
 @property(nonatomic,strong)NSArray *subjectList;
 @property(nonatomic,strong)NSMutableArray *dataAr;;
-
+@property(nonatomic,strong) SelectionPan* pan;
+@property(nonatomic,assign)NSInteger titleSelect;
+@property(nonatomic,strong)NSArray *examArray;
 @end
 
 @implementation SeeNoteVC
@@ -30,11 +33,7 @@
     [super viewDidLoad];
     UIBarButtonItem*bar= self.navigationItem.rightBarButtonItem;
     [bar setTitle:[[Global sharedSingle] getUserWithkey:@"titleName"]];
-    if (self.type==0) {
-        self.title=@"查看笔记";
-    }else{
-        self.title=@"练习统计";
-    }
+   
 
     
     self.dataAr=[NSMutableArray array];
@@ -46,17 +45,38 @@
         NSArray *sbAr=[[SQLManager sharedSingle] getoutLineByid:sb.subjectid];
         [self.dataAr addObject:sbAr];
     }
-    
+    if (self.type==0) {
+        self.title=@"查看笔记";
+    }else{
+        self.title=@"练习统计";
+//        NSArray *moni=[[SQLManager sharedSingle] getExamByType:@"1"];
+//        NSArray *zhenti=[[SQLManager sharedSingle] getExamByType:@"2"];
+        NSArray *moni=@[@"场次一",@"场次二",@"场次三",@"场次四"];
+        self.examArray=@[moni,moni];
+
+        self.pan=[[SelectionPan alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+        [self.pan updatePanWithTitles:@[@"练习统计",@"考试统计"] selectBlock:^(NSInteger buttonIndex) {
+            self.titleSelect=buttonIndex;
+            [self.tableView reloadData];
+        }];
+        self.tableView.tableHeaderView=self.pan;
+    }
     [self.tableView reloadData];
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (self.titleSelect==1) {
+        return [(NSArray*)self.examArray[section] count];
+    }
     NSArray *temp=self.dataAr[section];
     return temp.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (self.titleSelect==1) {
+        return self.examArray.count;
+    }
     return self.subjectList.count;
 }
 
@@ -67,6 +87,13 @@
     //    NSArray *ar=[[SQLManager sharedSingle] getSubjectByid:self.subjectIdList];
     Subject *sb=self.subjectList[section];
     cell.textLabel.text=sb.subjectName;
+
+    if (self.titleSelect==1&&section==0) {
+        cell.textLabel.text= @"模拟考试";
+    }
+    if (self.titleSelect==1&&section==1) {
+        cell.textLabel.text= @"真题考试";
+    }
     
     return cell;
 }
@@ -79,21 +106,32 @@
     NSArray *temp=self.dataAr[indexPath.section];
     Outline *ot=temp[indexPath.row];
     cell.textLabel.text=ot.courseName;
+    if (self.titleSelect==1) {
+        NSArray * ar=self.examArray[indexPath.section];
+        NSString*p=ar[indexPath.row];
+        cell.textLabel.text=p;
+    }
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSArray *temp=self.dataAr[indexPath.section];
-    Outline *ot=temp[indexPath.row];
-    
-    UIStoryboard*sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
-    NoteListVC*vc=[sb instantiateViewControllerWithIdentifier:@"notelist"];
-    
-    vc.outlineid=ot.outlineid;
-    vc.hidesBottomBarWhenPushed=YES;
-    [self.navigationController pushViewController:vc animated:YES];
-    //    [self performSegueWithIdentifier:@"tocourse" sender:self];
+    if (self.titleSelect==1) {
+
+        
+        
+    }else{
+        NSArray *temp=self.dataAr[indexPath.section];
+        Outline *ot=temp[indexPath.row];
+        
+        UIStoryboard*sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
+        NoteListVC*vc=[sb instantiateViewControllerWithIdentifier:@"notelist"];
+        
+        vc.outlineid=ot.outlineid;
+        vc.hidesBottomBarWhenPushed=YES;
+        [self.navigationController pushViewController:vc animated:YES];
+
+    }
 }
 
 /*
