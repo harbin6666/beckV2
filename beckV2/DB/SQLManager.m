@@ -18,6 +18,7 @@
 #import "UserNote.h"
 #import "MessageVO.h"
 #import "Collection.h"
+#import "UserPractis.h"
 @interface SQLManager()
 
 @end
@@ -278,7 +279,24 @@ singleton_implementation(SQLManager);
     }
     return nil;
 }
+-(NSArray*)getPractisWithOutlineid:(NSString*)outlineid{
+    __block NSMutableArray*result=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat:@"select * from user_exercise where outline_id==%@ ",outlineid];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            UserPractis *paper=[UserPractis new];
+            paper.accurate_rate=row[8];
+            paper.amount=row[9];
+            paper.end_time=row[7];
+            paper.outlineId=row[5];
+            [result addObject:paper];
+        }
+    }];
+    return result;
 
+}
 -(NSArray*)getExamPaperContentByPaperid:(NSString*)paperid compid:(NSString*)compid{
     
     

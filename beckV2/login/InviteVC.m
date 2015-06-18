@@ -27,7 +27,15 @@
     if (self.tf.text==nil||self.tf.text.length==0) {
         [[OTSAlertView alertWithMessage:@"请输入邀请码" andCompleteBlock:nil] show];
     }else{
-        [self performSegueWithIdentifier:@"useinvite" sender:self];
+        
+        [self getValueWithBeckUrl:@"/front/userAct.htm" params:@{@"token":@"verification",@"verificationCode":self.tf.text} CompleteBlock:^(id aResponseObject, NSError *anError) {
+            if (anError==nil&&[aResponseObject[@"errorcode"] integerValue]==0) {
+                [self performSegueWithIdentifier:@"useinvite" sender:self];
+            }else{
+                [[OTSAlertView alertWithMessage:@"邀请码错误" andCompleteBlock:nil] show];
+            }
+        }];
+        
     }
 }
 

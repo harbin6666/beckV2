@@ -91,6 +91,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title=@"首页";
     NSString * str=@"2015-7-1";
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];

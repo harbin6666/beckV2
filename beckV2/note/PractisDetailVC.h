@@ -9,5 +9,6 @@
 #import "BaseViewController.h"
 
 @interface PractisDetailVC : BaseViewController
-
+@property(nonatomic,strong)NSArray *practisAr;
+@property(nonatomic,strong)NSString *outlineid;
 @end

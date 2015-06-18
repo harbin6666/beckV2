@@ -12,6 +12,7 @@
 #import "NoteListVC.h"
 #import "SelectionPan.h"
 #import "ExamPaper.h"
+#import "PractisDetailVC.h"
 @interface SeeNoteVC ()
 @property(nonatomic,strong)NSArray *subjectIdList;
 @property(nonatomic,strong)NSArray *subjectList;
@@ -61,6 +62,7 @@
         }];
         self.tableView.tableHeaderView=self.pan;
     }
+    self.tableView.tableFooterView=[[UIView alloc] init];
     [self.tableView reloadData];
 }
 
@@ -111,6 +113,15 @@
         NSString*p=ar[indexPath.row];
         cell.textLabel.text=p;
     }
+    if (self.type==1&&self.titleSelect==0) {
+        NSMutableArray * ar=[NSMutableArray array];
+        NSArray *outlinelist=[[SQLManager sharedSingle] getOutLineByParentId:ot.outlineid];
+        for (Outline *o in outlinelist) {
+            NSArray *temp=[[SQLManager sharedSingle] getPractisWithOutlineid:o.outlineid];
+            [ar addObjectsFromArray:temp];
+        }
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"%zd",ar.count];
+    }
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
@@ -119,17 +130,34 @@
     if (self.titleSelect==1) {
         
         
-        
     }else{
+       
         NSArray *temp=self.dataAr[indexPath.section];
         Outline *ot=temp[indexPath.row];
         
         UIStoryboard*sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
-        NoteListVC*vc=[sb instantiateViewControllerWithIdentifier:@"notelist"];
-        
-        vc.outlineid=ot.outlineid;
-        vc.hidesBottomBarWhenPushed=YES;
-        [self.navigationController pushViewController:vc animated:YES];
+        if (self.type==0) {
+            NoteListVC*vc=[sb instantiateViewControllerWithIdentifier:@"notelist"];
+            
+            vc.outlineid=ot.outlineid;
+            vc.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            NSMutableArray * ar=[NSMutableArray array];
+            NSArray *outlinelist=[[SQLManager sharedSingle] getOutLineByParentId:ot.outlineid];
+            for (Outline *o in outlinelist) {
+                NSArray *temp=[[SQLManager sharedSingle] getPractisWithOutlineid:o.outlineid];
+                [ar addObjectsFromArray:temp];
+            }
+
+            PractisDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"PractisDetailVC"];
+            
+            
+            vc.outlineid=ot.outlineid;
+            vc.practisAr=ar;
+            [self.navigationController pushViewController:vc animated:YES];
+
+        }
 
     }
 }

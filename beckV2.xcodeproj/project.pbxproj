@@ -96,6 +96,7 @@
 		39589A001B3331430056B9A5 /* NoteListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899FF1B3331430056B9A5 /* NoteListCell.m */; };
 		39589A031B333E3E0056B9A5 /* QuestionCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39589A021B333E3E0056B9A5 /* QuestionCollectionVC.m */; };
 		39589A061B33446B0056B9A5 /* Collection.m in Sources */ = {isa = PBXBuildFile; fileRef = 39589A051B33446B0056B9A5 /* Collection.m */; };
+		39589A091B33630F0056B9A5 /* UserPractis.m in Sources */ = {isa = PBXBuildFile; fileRef = 39589A081B33630F0056B9A5 /* UserPractis.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -333,6 +334,8 @@
 		39589A021B333E3E0056B9A5 /* QuestionCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionCollectionVC.m; sourceTree = "<group>"; };
 		39589A041B33446B0056B9A5 /* Collection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collection.h; sourceTree = "<group>"; };
 		39589A051B33446B0056B9A5 /* Collection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Collection.m; sourceTree = "<group>"; };
+		39589A071B33630F0056B9A5 /* UserPractis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPractis.h; sourceTree = "<group>"; };
+		39589A081B33630F0056B9A5 /* UserPractis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPractis.m; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -535,6 +538,8 @@
 				39372E7F1B0A2F1E00891F52 /* beck.db */,
 				39CE4C5C1B195A2800DDAB01 /* SQLManager.h */,
 				39CE4C5D1B195A2800DDAB01 /* SQLManager.m */,
+				39589A071B33630F0056B9A5 /* UserPractis.h */,
+				39589A081B33630F0056B9A5 /* UserPractis.m */,
 				39589A041B33446B0056B9A5 /* Collection.h */,
 				39589A051B33446B0056B9A5 /* Collection.m */,
 				395899261B2BEC6F0056B9A5 /* MessageVO.h */,
@@ -1270,6 +1275,7 @@
 				395899311B2CA5D90056B9A5 /* PointDetailCell.m in Sources */,
 				39D4BC271B0B6E4A00F5FABF /* LoginVC.m in Sources */,
 				394C4A271B274F460002838B /* NoteDetailVC.m in Sources */,
+				39589A091B33630F0056B9A5 /* UserPractis.m in Sources */,
 				39CE4C7D1B1A4CAC00DDAB01 /* CompatyQuestion.m in Sources */,
 				395899D01B2DE2BE0056B9A5 /* MASCompositeConstraint.m in Sources */,
 				395899BA1B2DE2BE0056B9A5 /* NSString+File.m in Sources */,
