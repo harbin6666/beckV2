@@ -30,6 +30,7 @@
 @property(nonatomic,assign)BOOL showAnswer;
 
 @property (nonatomic, strong) SettingPanVC *settingPanVC;
+@property(nonatomic,strong)NSString *currentNote;
 
 @end
 
@@ -98,13 +99,16 @@
     Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
     
     BOOL containAnswer=NO;
+    NSString *titid=nil;
+    if ([p isKindOfClass:[ChoiceQuestion class]]) {
+        titid=[(ChoiceQuestion*)p choice_id];
+    }else{
+        titid=[(CompatyInfo*)p info_id];
+    }
+    self.currentNote=[[SQLManager sharedSingle] findNoteByItemId:titid customId:p.custom_id];
+
     for (PractisAnswer* an in self.answerArray) {
-        NSString *titid=nil;
-        if ([p isKindOfClass:[ChoiceQuestion class]]) {
-            titid=[(ChoiceQuestion*)p choice_id];
-        }else{
-            titid=[(CompatyInfo*)p info_id];
-        }
+
         if (an.titleId.integerValue==titid.integerValue&&an.titleTypeId.integerValue==p.custom_id.integerValue) {
             self.answer=an;
             containAnswer=YES;
@@ -516,6 +520,10 @@
     }] ;
     alert.alertViewStyle=UIAlertViewStylePlainTextInput;
     [alert show];
+    if (self.currentNote!=nil&&self.currentNote.length>0) {
+        UITextField *tf=[alert textFieldAtIndex:0];
+        tf.text=self.currentNote;
+    }
 }
 
 -(void)showAnswer:(UITabBarItem *)item{

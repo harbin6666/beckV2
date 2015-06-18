@@ -6,8 +6,9 @@
 //  Copyright (c) 2015年 yj. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface NoteDetailVC : UITableViewController
-
+@interface NoteDetailVC : BaseViewController
+@property(nonatomic,strong)NSArray *questionsAr;
+@property(nonatomic,strong)NSString *outletid;
 @end

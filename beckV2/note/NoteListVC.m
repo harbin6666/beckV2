@@ -9,6 +9,11 @@
 #import "NoteListVC.h"
 #import "SelectionPan.h"
 #import "UserNote.h"
+#import "Question.h"
+#import "ChoiceQuestion.h"
+#import "CompatyQuestion.h"
+#import "NoteListCell.h"
+#import "NoteDetailVC.h"
 @interface NoteListVC ()
 @property(nonatomic)NSInteger panIndex;
 @property(nonatomic,strong)NSArray*notes;
@@ -26,15 +31,13 @@
 
     for (UserNote*un in self.notes) {
         [outlineids addObject:un.outline_id];
-        NSString*  time= un.update_time.length?un.update_time:un.add_time;
-        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        NSDate*d=[dateFormatter dateFromString: time];
-        
-        NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
-        [dateFormatter1 setDateFormat:@"yyyy-MM-dd"];
-        NSString *strDate = [dateFormatter1 stringFromDate:d];
+        if (un.update_time==nil||un.update_time.length==0) {
+            un.update_time=un.add_time;
+        }
+
+        NSString *strDate = [self transferTime:un.update_time];
         [times addObject:strDate];
+        un.update_time=strDate;
     }
 
     self.timeSet=[NSSet setWithArray:times];
@@ -47,6 +50,16 @@
     
 }
 
+-(NSString*)transferTime:(NSString*)time{
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate*d=[dateFormatter dateFromString: time];
+    
+    NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
+    [dateFormatter1 setDateFormat:@"yyyy-MM-dd"];
+    NSString *strDate = [dateFormatter1 stringFromDate:d];
+    return strDate;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -55,7 +68,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
     return 1;
 }
@@ -66,7 +79,7 @@
 
     // Return the number of rows in the section.
     if (self.panIndex==0) {
-        return self.timeSet.count;
+        return self.notes.count;
     }else if (self.panIndex==1){
         return self.outlineSet.count;
     }
@@ -84,20 +97,58 @@
     }
     return self.pan;
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.panIndex==0) {
-        cell.textLabel.text=self.timeSet.allObjects[indexPath.row];
+        return 50;
     }else{
+        return 44;
+    }
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.panIndex==0) {
+        UserNote *note=self.notes[indexPath.row];
+        NoteListCell*cell=[tableView dequeueReusableCellWithIdentifier:@"timecell" forIndexPath:indexPath];
+        cell.timeLab.text=note.update_time;
+        Question* q=[[SQLManager sharedSingle]getExamQuestionByItemId:note.item_id customid:note.type_id];
+        if (note.type_id.integerValue==10||note.type_id.integerValue==11) {
+            cell.titLab.text=[(ChoiceQuestion*)q choice_content];
+        }else{
+            cell.titLab.text=[(CompatyQuestion*)q choice_content];
+        }
+        cell.noteLab.text=note.note;
+        return cell;
+
+    }else{
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+
         cell.textLabel.text=[[SQLManager sharedSingle] getcourseNameByOutlineId:self.outlineSet.allObjects[indexPath.row] ];
+        return cell;
     }
     
     
-    return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UserNote *note=self.notes[indexPath.row];
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"pan" bundle:[NSBundle mainBundle]];
+    NoteDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"notedetail"];
+    vc.outletid=note.outline_id;
 
+    if (self.panIndex==0) {
+        Question *q=[[SQLManager sharedSingle] getExamQuestionByItemId:note.item_id customid:note.type_id];
+        vc.questionsAr=@[q];
+    }else{
+        NSMutableArray *ar=[[NSMutableArray alloc] init];
+        for (UserNote *n in self.notes) {
+            if (n.item_id.integerValue==note.item_id.integerValue&&n.type_id.integerValue==note.type_id.integerValue) {
+                Question *q=[[SQLManager sharedSingle] getExamQuestionByItemId:note.item_id customid:note.type_id];
+                [ar addObject:q];
+            }
+        }
+        vc.questionsAr=ar;
+    }
+    [self.navigationController pushViewController:vc animated:YES];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

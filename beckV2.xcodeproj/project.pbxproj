@@ -93,6 +93,7 @@
 		395899F71B31E09B0056B9A5 /* UIImage+tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899F61B31E09B0056B9A5 /* UIImage+tool.m */; };
 		395899FA1B31E6650056B9A5 /* UpdatePassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899F91B31E6650056B9A5 /* UpdatePassVC.m */; };
 		395899FD1B31E9A70056B9A5 /* FeedBackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899FC1B31E9A70056B9A5 /* FeedBackVC.m */; };
+		39589A001B3331430056B9A5 /* NoteListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 395899FF1B3331430056B9A5 /* NoteListCell.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -324,6 +325,8 @@
 		395899F91B31E6650056B9A5 /* UpdatePassVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatePassVC.m; sourceTree = "<group>"; };
 		395899FB1B31E9A70056B9A5 /* FeedBackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackVC.h; sourceTree = "<group>"; };
 		395899FC1B31E9A70056B9A5 /* FeedBackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackVC.m; sourceTree = "<group>"; };
+		395899FE1B3331430056B9A5 /* NoteListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteListCell.h; sourceTree = "<group>"; };
+		395899FF1B3331430056B9A5 /* NoteListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteListCell.m; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -945,6 +948,8 @@
 				394C4A201B25EC780002838B /* SeeNoteVC.m */,
 				394C4A2B1B2750C80002838B /* NoteListVC.h */,
 				394C4A2C1B2750C80002838B /* NoteListVC.m */,
+				395899FE1B3331430056B9A5 /* NoteListCell.h */,
+				395899FF1B3331430056B9A5 /* NoteListCell.m */,
 				394C4A251B274F460002838B /* NoteDetailVC.h */,
 				394C4A261B274F460002838B /* NoteDetailVC.m */,
 				394C4A281B274F8A0002838B /* PractisDetailVC.h */,
@@ -1284,6 +1289,7 @@
 				395899BF1B2DE2BE0056B9A5 /* NSDate+Extend.m in Sources */,
 				395899C91B2DE2BE0056B9A5 /* UIImage+Extend.m in Sources */,
 				395899FD1B31E9A70056B9A5 /* FeedBackVC.m in Sources */,
+				39589A001B3331430056B9A5 /* NoteListCell.m in Sources */,
 				39CE4C8B1B1DFD2700DDAB01 /* ChoiceCell.m in Sources */,
 				395899C41B2DE2BE0056B9A5 /* UIColor+Extend.m in Sources */,
 				39CE4C941B1F3CB300DDAB01 /* QCollectionVC.m in Sources */,

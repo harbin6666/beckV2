@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Question.h"
 @interface SQLManager : NSObject
 singleton_interface(SQLManager);
 
@@ -55,7 +55,7 @@ singleton_interface(SQLManager);
 
 -(NSArray*)getExamPaperContentByPaperid:(NSString*)paperid compid:(NSString*)compid;
 
--(id)getExamQuestionByItemId:(NSString*)qid customid:(NSString*)customid;
+-(Question*)getExamQuestionByItemId:(NSString*)qid customid:(NSString*)customid;
 
 
 -(NSMutableArray*)getUserNoteByOutlineId:(NSString*)outlineid;
@@ -71,6 +71,7 @@ singleton_interface(SQLManager);
 
 -(NSArray*)getExamByType:(NSString *)type;
 
+-(NSString *)findNoteByItemId:(NSString*)itemid customId:(NSString*)customId;
 -(void)openDB;
 
 @end

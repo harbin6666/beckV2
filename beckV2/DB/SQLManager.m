@@ -108,7 +108,18 @@ singleton_implementation(SQLManager);
     }];
     return st;
 }
-
+-(NSString *)findNoteByItemId:(NSString*)itemid customId:(NSString*)customId{
+    __block NSString*note=@"";
+    NSString *sql=[NSString stringWithFormat:@"select note from user_note where item_id==%@ and type_id==%@",itemid,customId];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            note=row[0];
+        }
+    }];
+    return note;
+}
 -(NSMutableArray*)getUserNoteByOutlineId:(NSString*)outlineid{
     __block NSMutableArray*result=@[].mutableCopy;
 
@@ -116,7 +127,7 @@ singleton_implementation(SQLManager);
     NSArray* ar=[self getOutLineByParentId:outlineid];
     for (int i=0; i<ar.count; i++) {
         Outline*o=ar[i];
-        NSString *sql=[NSString stringWithFormat:@"select * from user_note where outline_id==%@ ORDER BY add_time asc",o.outlineid];
+        NSString *sql=[NSString stringWithFormat:@"select * from user_note where outline_id==%@",o.outlineid];
         [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
             if (finished) {
                 
@@ -162,7 +173,7 @@ singleton_implementation(SQLManager);
 }
 
 
--(id)getExamQuestionByItemId:(NSString*)qid customid:(NSString*)customid{
+-(Question*)getExamQuestionByItemId:(NSString*)qid customid:(NSString*)customid{
     __block NSMutableArray *ar=[NSMutableArray array];
 
     //到配伍题表找

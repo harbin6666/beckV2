@@ -575,9 +575,57 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="nnn-xv-ndo">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="timecell" rowHeight="50" id="nnn-xv-ndo" customClass="NoteListCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nnn-xv-ndo" id="O99-NJ-J9r">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2014-06-19" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLs-ln-SSj">
+                                            <rect key="frame" x="1" y="8" width="59" height="28"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="59" id="EhX-fM-Cre"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sY-wg-xyt">
+                                            <rect key="frame" x="68" y="0.0" width="219" height="36"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDB-Kn-mNO">
+                                            <rect key="frame" x="68" y="28" width="219" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="EDB-Kn-mNO" firstAttribute="top" secondItem="O99-NJ-J9r" secondAttribute="topMargin" constant="20" id="A4L-NP-qcL"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="EDB-Kn-mNO" secondAttribute="bottom" constant="-7.5" id="E3H-BG-zd1"/>
+                                        <constraint firstItem="FLs-ln-SSj" firstAttribute="baseline" secondItem="7sY-wg-xyt" secondAttribute="baseline" id="K5X-ac-f2Q"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="FLs-ln-SSj" secondAttribute="bottom" constant="5.5" id="Twg-KF-lsG"/>
+                                        <constraint firstItem="7sY-wg-xyt" firstAttribute="leading" secondItem="FLs-ln-SSj" secondAttribute="trailing" constant="8" symbolic="YES" id="ar0-iA-CEx"/>
+                                        <constraint firstItem="7sY-wg-xyt" firstAttribute="leading" secondItem="EDB-Kn-mNO" secondAttribute="leading" id="eIA-M9-xPq"/>
+                                        <constraint firstItem="7sY-wg-xyt" firstAttribute="top" secondItem="O99-NJ-J9r" secondAttribute="top" id="h6n-lw-eEK"/>
+                                        <constraint firstItem="FLs-ln-SSj" firstAttribute="top" secondItem="O99-NJ-J9r" secondAttribute="topMargin" id="iVy-Ok-Y5x"/>
+                                        <constraint firstItem="FLs-ln-SSj" firstAttribute="leading" secondItem="O99-NJ-J9r" secondAttribute="leadingMargin" constant="-7" id="pAu-Ry-rNH"/>
+                                        <constraint firstItem="7sY-wg-xyt" firstAttribute="trailing" secondItem="EDB-Kn-mNO" secondAttribute="trailing" id="qQE-Nd-7iR"/>
+                                        <constraint firstAttribute="trailing" secondItem="7sY-wg-xyt" secondAttribute="trailing" id="uAH-kN-5Z1"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="noteLab" destination="EDB-Kn-mNO" id="Ri5-cv-NM9"/>
+                                    <outlet property="timeLab" destination="FLs-ln-SSj" id="hzs-hq-4WY"/>
+                                    <outlet property="titLab" destination="7sY-wg-xyt" id="8Gy-sH-f9o"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="2O9-yI-Mc8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2O9-yI-Mc8" id="qdm-BK-7s6">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1659,6 +1707,6 @@
         <image name="zhenti3" width="90" height="90"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ssl-KP-cHU"/>
+        <segue reference="JSm-DH-hNJ"/>
     </inferredMetricsTieBreakers>
 </document>
