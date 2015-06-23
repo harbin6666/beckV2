@@ -8,8 +8,8 @@
 
 #import "PointShopVC.h"
 #import "BaseViewController.h"
-#import <AlipaySDK/AlipaySDK.h>
 #import "WechatObj.h"
+#import "AlipayObj.h"
 @interface PointShopVC ()
 @property(nonatomic,strong)NSArray *pointAr;
 @property(nonatomic,strong)NSDictionary *selectP;
@@ -146,6 +146,22 @@ static NSString *publicKey=@"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4ALzpzgxlXwU
                     }];
 
                 }else{
+                    
+                    [[AlipayObj sharedSingle] sendPayProduct:product price:[NSString stringWithFormat:@"%@",money] orderNum:code Block:^(NSDictionary *aResponseDic) {
+                        NSNumber *paystatus=aResponseDic[@"resultStatus"];
+                        if (paystatus.integerValue==9000) {
+                            [[OTSAlertView alertWithMessage:@"支付成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+                            }] show];
+                        }else if (paystatus.integerValue==6001){
+                            
+                        }else{
+                            [[OTSAlertView alertWithMessage:aResponseDic[@"memo"] andCompleteBlock:nil] show];
+                        }
+                        
+                    }];
+                    
+
+                    /*
                     NSString *paystr=[NSString stringWithFormat:@"partner=\"%@\"&seller_id=\"%@\"&out_trade_no=\"%@\"&subject=\"%@\"&body=\"%@\"&total_fee=\"%@\"&notify_url=\"%@\"&service=\"mobile.securitypay.pay\"&payment_type=\"1\"&_input_charset=\"utf-8\"&it_b_pay=\"30m\"&show_url=\"m.alipay.com\"&sign=\"%@\"&sign_type=RSA",partid,seller,code,@"医百分",product,money,@"http://www.zhongxinlan.com/beck/front/notifyUrlAct.htm",privatekey];
                     [[AlipaySDK defaultService] payOrder:paystr fromScheme:@"beck" callback:^(NSDictionary *resultDic) {
                         
@@ -158,7 +174,7 @@ static NSString *publicKey=@"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4ALzpzgxlXwU
                             [[OTSAlertView alertWithMessage:resultDic[@"memo"] andCompleteBlock:nil] show];
                         }
                     }];
-
+*/
                 }
             }else{
                 [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];

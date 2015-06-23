@@ -10,10 +10,11 @@
 #import "Position.h"
 #import "WeiboSDK.h"
 #import <TencentOpenAPI/TencentOAuth.h>
-#import "WXApi.h"
+#import "AlipayObj.h"
 #import "CoreNewFeatureVC.h"
 #import "CALayer+Transition.h"
 #import "WechatObj.h"
+
 //#import <RennSDK/RennSDK.h>
 
 @interface AppDelegate ()<WXApiDelegate>
@@ -75,6 +76,17 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
+    
+    if ([url.host isEqualToString:@"safepay"]) {
+        [[AlipaySDK defaultService]
+         processOrderWithPaymentResult:url
+         standbyCallback:^(NSDictionary *resultDic) {
+             NSLog(@"result = %@", resultDic);
+             [AlipayObj sharedSingle].block(resultDic);
+             
+         }];
+    }
+
     if ([TencentOAuth CanHandleOpenURL:url]) {
         return [TencentOAuth HandleOpenURL:url];
     }

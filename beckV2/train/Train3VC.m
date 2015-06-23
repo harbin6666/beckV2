@@ -9,8 +9,8 @@
 #import "Train3VC.h"
 #import "SelectionPan.h"
 #import "DXPopover.h"
-#import <AlipaySDK/AlipaySDK.h>
-#import "WXApi.h"
+//#import <AlipaySDK/AlipaySDK.h>
+#import "AlipayObj.h"
 #import "payRequsestHandler.h"
 #import "WechatObj.h"
 @interface Train3VC ()<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,WXApiDelegate>
@@ -177,21 +177,21 @@ static NSString *privatekey=@"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL
         [self hideLoading];
         if (anError==nil) {
             NSString *code=aResponseObject[@"orderSn"];//orderSn值传给支付宝 out_trade_no这个字段  支付宝异步url：/front/notifyUrlAct.htm
-            NSString *paystr=[NSString stringWithFormat:@"partner=\"%@\"&seller_id=\"%@\"&out_trade_no=\"%@\"&subject=\"%@\"&body=\"%@\"&total_fee=\"%@\"&notify_url=\"%@\"&service=\"mobile.securitypay.pay\"&payment_type=\"1\"&_input_charset=\"utf-8\"&it_b_pay=\"30m\"&show_url=\"m.alipay.com\"&sign=\"%@\"&sign_type=RSA",partid,seller,code,@"医百分",[NSString stringWithFormat:@"%@积分",self.selectDic[@"course"]],self.selectDic[@"money"],@"http://www.zhongxinlan.com/beck/front/notifyUrlAct.htm",privatekey];
-            [[AlipaySDK defaultService] payOrder:paystr fromScheme:@"beck" callback:^(NSDictionary *resultDic) {
-                
-                NSNumber *paystatus=resultDic[@"resultStatus"];
-                if (paystatus.integerValue==9000) {
-                    [[OTSAlertView alertWithMessage:@"支付成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
-                        [self back];
-                    }] show];
-                }else if (paystatus.integerValue==6001){
-                    
-                }else{
-                    [[OTSAlertView alertWithMessage:resultDic[@"memo"] andCompleteBlock:nil] show];
-                }
+          [[AlipayObj sharedSingle] sendPayProduct:self.selectDic[@"course"] price:[NSString stringWithFormat:@"%@",self.selectDic[@"money"]] orderNum:code Block:^(NSDictionary *aResponseDic) {
+                    NSNumber *paystatus=aResponseDic[@"resultStatus"];
+                    if (paystatus.integerValue==9000) {
+                        [[OTSAlertView alertWithMessage:@"支付成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+                            [self back];
+                        }] show];
+                    }else if (paystatus.integerValue==6001){
+    
+                    }else{
+                        [[OTSAlertView alertWithMessage:aResponseDic[@"memo"] andCompleteBlock:nil] show];
+                    }
+
             }];
-            
+        
+        
         }
     }];
 }

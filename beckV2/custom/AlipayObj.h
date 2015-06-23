@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AlipaySDK/AlipaySDK.h>
+
+typedef void(^alipayCompletionBlock)(NSDictionary* aResponseDic);
 
 @interface AlipayObj : NSObject
-
+singleton_interface(AlipayObj)
+@property(nonatomic,copy)alipayCompletionBlock block;
+-(void)sendPayProduct:(NSString*)orderName price:(NSString *)price orderNum:(NSString*)num Block:(alipayCompletionBlock)block;
 @end
