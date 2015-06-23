@@ -385,12 +385,16 @@
             
             Question *q=[self.questionsAr objectAtIndex:self.currentQIndex];
             //尼玛的又成了题目id，晕菜
+            NSString*titid=nil;
+
             if ([q isKindOfClass:[ChoiceQuestion class]]) {
                 ChoiceQuestion *p=(ChoiceQuestion*)q;
+                titid=p.choice_id;
                 json[@"titleId"]=@([p choice_id].intValue);
             }else{
                 CompatyQuestion *c=(CompatyQuestion*)q;
                 json[@"titleId"]=@(c.compatibility_id.intValue);
+                titid=c.compatibility_id;
             }
             json[@"typeId"]=@([q custom_id].intValue);
             json[@"loginName"] = [Global sharedSingle].loginName;
@@ -411,7 +415,9 @@
                 if (anError==nil) {
                     if ([aResponseObject[@"errorcode"] integerValue]==0) {
                         [self showLoadingWithMessage:@"添加成功" hideAfter:2];
-                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDB" object:nil];
+                        self.currentNote=[[SQLManager sharedSingle] findNoteByItemId:titid customId:q.custom_id];
+
                     }else{
                         [self showLoadingWithMessage:@"添加失败" hideAfter:2];
                         

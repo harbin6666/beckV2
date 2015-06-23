@@ -10,5 +10,5 @@
 
 @interface HomeVC : BaseViewController
 @property(nonatomic,assign)BOOL logined;
-
+-(void)updateDB;
 @end

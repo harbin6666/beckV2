@@ -107,7 +107,7 @@
         self.trainbtn.hidden=NO;
     }
     [self configTabbar];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDB) name:@"updateDB" object:nil];
 
 }
 

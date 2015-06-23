@@ -483,6 +483,13 @@
 
             Question *q=[self.questionsAr objectAtIndex:self.currentQIndex];
             //尼玛的又成了题目id，晕菜
+            NSString *titid=nil;
+            if ([q isKindOfClass:[ChoiceQuestion class]]) {
+                titid=[(ChoiceQuestion*)q choice_id];
+            }else{
+                titid=[(CompatyInfo*)q info_id];
+            }
+
             if ([q isKindOfClass:[ChoiceQuestion class]]) {
                 ChoiceQuestion *p=(ChoiceQuestion*)q;
                 json[@"titleId"]=@([p choice_id].intValue);
@@ -495,17 +502,27 @@
             json[@"subjectId"] = @([[self.questionsAr objectAtIndex:self.currentQIndex] subject_id].intValue);
             json[@"outlineId"] =@( self.outletid.intValue);
             json[@"note"]=tf.text;
-            json[@"type"]=@0;//0：添加 1：更新
+            
+            
+            self.currentNote=[[SQLManager sharedSingle] findNoteByItemId:titid customId:q.custom_id];
+
+            if (self.currentNote!=nil&&self.currentNote.length) {
+                json[@"type"]=@1;//0：添加 1：更新
+            }else{
+                json[@"type"]=@0;//0：添加 1：更新
+            }
             
             NSData*d=[NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
             NSString *s=[[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
             WEAK_SELF;
-#warning bug
+
             [self getValueWithBeckUrl:@"/front/userNoteAct.htm" params:@{@"token":@"addUpdate",@"json":s} CompleteBlock:^(id aResponseObject, NSError *anError) {
                 STRONG_SELF;
                 if (anError==nil) {
                     if ([aResponseObject[@"errorcode"] integerValue]==0) {
                         [self showLoadingWithMessage:@"添加成功" hideAfter:2];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDB" object:nil];
+                        self.currentNote=[[SQLManager sharedSingle] findNoteByItemId:titid customId:q.custom_id];
 
                     }else{
                         [self showLoadingWithMessage:@"添加失败" hideAfter:2];
