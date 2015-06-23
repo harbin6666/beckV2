@@ -614,7 +614,7 @@ singleton_implementation(SQLManager);
 
 -(NSArray *)getOutLineByParentId:(NSString*)parentid{
     __block NSMutableArray* outlineList=@[].mutableCopy;
-    NSString *sql=[NSString stringWithFormat:@"select * from exam_outline where parent_id==%@",parentid];
+    NSString *sql=[NSString stringWithFormat:@"select * from exam_outline where parent_id==%@ or outline_id==%@",parentid,parentid];
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             

@@ -122,15 +122,17 @@
             }
         }
         cell.detailTextLabel.text=[NSString stringWithFormat:@"%zd",recodes.count];
-    }
-    if (self.type==1&&self.titleSelect==0) {
-        NSMutableArray * ar=[NSMutableArray array];
-        NSArray *outlinelist=[[SQLManager sharedSingle] getOutLineByParentId:ot.outlineid];
-        for (Outline *o in outlinelist) {
-            NSArray *temp=[[SQLManager sharedSingle] getPractisWithOutlineid:o.outlineid];
-            [ar addObjectsFromArray:temp];
-        }
-        cell.detailTextLabel.text=[NSString stringWithFormat:@"%zd",ar.count];
+    }else{
+       
+            NSMutableArray * ar=[NSMutableArray array];
+            NSArray *outlinelist=[[SQLManager sharedSingle] getOutLineByParentId:ot.outlineid];
+            for (Outline *o in outlinelist) {
+                NSLog(@"%@",o.outlineid);
+                NSArray *temp=[[SQLManager sharedSingle] getUserNoteByOutlineId:o.outlineid];
+                [ar addObjectsFromArray:temp];
+            }
+            cell.detailTextLabel.text=[NSString stringWithFormat:@"%zd",ar.count];
+        
     }
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     return cell;
