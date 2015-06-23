@@ -120,6 +120,7 @@
 		397DDAD61B14B64C00E8F73B /* VerifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD51B14B64C00E8F73B /* VerifyVC.m */; };
 		397DDAD91B14C3D000E8F73B /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD81B14C3D000E8F73B /* SetPasswordVC.m */; };
 		397DDADC1B14C9F800E8F73B /* FindPassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDADB1B14C9F800E8F73B /* FindPassVC.m */; };
+		397F897F1B39FA2700C2409D /* QQObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 397F897E1B39FA2700C2409D /* QQObj.m */; };
 		39CD45F61B209A7E005320B5 /* MoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CD45F51B209A7E005320B5 /* MoreVC.m */; };
 		39CD45F91B209A8D005320B5 /* NoteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CD45F81B209A8D005320B5 /* NoteVC.m */; };
 		39CD45FC1B209B19005320B5 /* ExamHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CD45FB1B209B19005320B5 /* ExamHomeVC.m */; };
@@ -473,6 +474,8 @@
 		397DDAD81B14C3D000E8F73B /* SetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPasswordVC.m; sourceTree = "<group>"; };
 		397DDADA1B14C9F800E8F73B /* FindPassVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPassVC.h; sourceTree = "<group>"; };
 		397DDADB1B14C9F800E8F73B /* FindPassVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPassVC.m; sourceTree = "<group>"; };
+		397F897D1B39FA2700C2409D /* QQObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQObj.h; sourceTree = "<group>"; };
+		397F897E1B39FA2700C2409D /* QQObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQObj.m; sourceTree = "<group>"; };
 		39CD45F41B209A7E005320B5 /* MoreVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreVC.h; sourceTree = "<group>"; };
 		39CD45F51B209A7E005320B5 /* MoreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreVC.m; sourceTree = "<group>"; };
 		39CD45F71B209A8D005320B5 /* NoteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteVC.h; sourceTree = "<group>"; };
@@ -1331,6 +1334,8 @@
 				394C4A2F1B2752350002838B /* SelectionPan.m */,
 				39589A2D1B398A840056B9A5 /* WechatObj.h */,
 				39589A2E1B398A840056B9A5 /* WechatObj.m */,
+				397F897D1B39FA2700C2409D /* QQObj.h */,
+				397F897E1B39FA2700C2409D /* QQObj.m */,
 			);
 			path = custom;
 			sourceTree = "<group>";
@@ -1505,6 +1510,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				397F897F1B39FA2700C2409D /* QQObj.m in Sources */,
 				39589B001B39C5470056B9A5 /* base64.m in Sources */,
 				395899D61B2DE2BE0056B9A5 /* NSArray+MASAdditions.m in Sources */,
 				39CE4C3E1B19574800DDAB01 /* UIView+create.m in Sources */,

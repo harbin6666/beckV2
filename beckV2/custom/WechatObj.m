@@ -123,5 +123,19 @@ singleton_implementation(Global)
     });
 }
 
+-(void)sendShare:(int)type Block:(WechatCompletionBlock)block{
+    self.block=block;
+
+    SendMessageToWXReq*req=[SendMessageToWXReq new];
+    req.bText=NO;
+    req.scene=type;
+    req.message=[WXMediaMessage message];
+   WXWebpageObject*obj= [WXWebpageObject object];
+    obj.webpageUrl=@"http://www.zhongxinlan.com/beck/front/shareAct.htm?operate=share";
+    req.message.mediaObject=obj;
+    req.message.title=@"医百分";
+    [req.message setThumbImage:[UIImage imageNamed:@"AppIcon"]];
+    [WXApi sendReq:req];
+}
 
 @end

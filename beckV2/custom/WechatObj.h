@@ -14,4 +14,5 @@ singleton_interface(WechatObj)
 @property(nonatomic,strong)NSString*accessToken;
 -(void)sendPayProduct:(NSString*)orderName price:(NSString *)price orderNum:(NSString*)num Block:(WechatCompletionBlock)block;
 -(void)sendLoginBlock:(WechatCompletionBlock)block;
+-(void)sendShare:(int)type Block:(WechatCompletionBlock)block;
 @end

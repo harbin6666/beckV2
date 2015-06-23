@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "Global.h"
 #import "WechatObj.h"
+#import "QQObj.h"
 @interface LoginVC ()<TencentLoginDelegate,TencentSessionDelegate,UITextFieldDelegate,WBHttpRequestDelegate>
 @property(nonatomic,weak)IBOutlet UITextField* usrName;
 @property(nonatomic,weak)IBOutlet UITextField* passw;
@@ -48,19 +49,24 @@
         self.remenber.selected=YES;
     }
     // Do any additional setup after loading the view.
-    self.tencentOAuth = [[TencentOAuth alloc] initWithAppId:kOpenQQAppKey andDelegate:self];
+//    self.tencentOAuth = [[TencentOAuth alloc] initWithAppId:kOpenQQAppKey andDelegate:self];
     
     
     [self setNavigationBarButtonName:@"" width:0 isLeft:YES];
 }
 
 - (IBAction)onPressedQQ:(id)sender {
-    if ([TencentOAuth iphoneQQSupportSSOLogin]) {
-        NSArray *permissions = @[kOPEN_PERMISSION_GET_USER_INFO,
-                                 kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,
-                                 kOPEN_PERMISSION_GET_INFO];
-        [self.tencentOAuth authorize:permissions];
-    }
+    [[QQObj sharedSingle] loginWithBlock:^(id aResponseObject) {
+        self.accessToken=aResponseObject[@"qqopenid"];
+        [self unoinLogin];
+    }];
+    return;
+//    if ([TencentOAuth iphoneQQSupportSSOLogin]) {
+//        NSArray *permissions = @[kOPEN_PERMISSION_GET_USER_INFO,
+//                                 kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,
+//                                 kOPEN_PERMISSION_GET_INFO];
+//        [self.tencentOAuth authorize:permissions];
+//    }
     //    else {
     //        [[OTSAlertView alertWithMessage:@"您没有安装QQ,不能登录" andCompleteBlock:nil] show];
     //    }
@@ -121,6 +127,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+/*
 #pragma mark -wechat
 -(void) onResp:(BaseResp*)resp{
     SendAuthResp*auth=(SendAuthResp*)resp;
@@ -174,6 +181,9 @@
              
             });    
 }
+
+
+
 #pragma mark - <TencentLoginDelegate>
 - (void)tencentDidLogin
 {
@@ -196,6 +206,7 @@
     [Global sharedSingle].nickName=response.jsonResponse[@"nickname"];
     [self unoinLogin];
 }
+  */
 #pragma mark - <WeiboSDKDelegate>
 
 - (void)didReceiveWeiboRequest:(WBBaseRequest *)request
