@@ -85,6 +85,7 @@
              [AlipayObj sharedSingle].block(resultDic);
              
          }];
+        return YES;
     }
 
     if ([TencentOAuth CanHandleOpenURL:url]) {

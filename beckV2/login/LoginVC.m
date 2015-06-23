@@ -78,10 +78,13 @@
 }
 
 - (IBAction)onPressedwechat:(id)sender {
-    SendAuthReq*req=[SendAuthReq new];
-    req.scope = @"snsapi_userinfo" ;
-    req.state = @"beck" ;
-    [WXApi sendReq:req];
+    [[WechatObj sharedSingle] sendLoginBlock:^(id aResponseObject) {
+        if ([aResponseObject isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dic=(NSDictionary*)aResponseObject;
+            self.accessToken=dic[@"wxopenid"];
+        }
+        [self unoinLogin];
+    }];
 }
 
 

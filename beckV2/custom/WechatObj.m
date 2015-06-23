@@ -15,7 +15,8 @@
 @implementation WechatObj
 singleton_implementation(Global)
 
--(void)sendLogin{
+-(void)sendLoginBlock:(WechatCompletionBlock)block{
+    self.block=block;
     SendAuthReq*req=[SendAuthReq new];
     req.scope = @"snsapi_userinfo" ;
     req.state = @"beck" ;
@@ -82,7 +83,6 @@ singleton_implementation(Global)
 
 -(void)getAccess_token:(NSString*)code
 {
-    //https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
     
     NSString *url =[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",kWXAPP_ID,kWXAPP_SECRET,code];
     
@@ -94,7 +94,7 @@ singleton_implementation(Global)
             if (data) {
                 NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                 [self getUserInfo:dic[@"access_token"] openid:dic[@"openid"]];
-                self.accessToken=dic[@"openid"];
+//                self.accessToken=dic[@"openid"];
             }
         });
     });
@@ -115,7 +115,7 @@ singleton_implementation(Global)
                 NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                 [Global sharedSingle].nickName=dic[@"nickname"];
 //                [self. unoinLogin];
-                self.block(@"login");
+                self.block(@{@"wxopenid":openid});
                 
             }
         });
