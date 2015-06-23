@@ -125,13 +125,13 @@
     }else{
        
             NSMutableArray * ar=[NSMutableArray array];
-            NSArray *outlinelist=[[SQLManager sharedSingle] getOutLineByParentId:ot.outlineid];
-            for (Outline *o in outlinelist) {
-                NSLog(@"%@",o.outlineid);
-                NSArray *temp=[[SQLManager sharedSingle] getUserNoteByOutlineId:o.outlineid];
-                [ar addObjectsFromArray:temp];
-            }
-            cell.detailTextLabel.text=[NSString stringWithFormat:@"%zd",ar.count];
+//            NSArray *outlinelist=[[SQLManager sharedSingle] getOutLineByParentId:ot.outlineid];
+//            for (Outline *o in outlinelist) {
+//                NSLog(@"%@",o.outlineid);
+                NSArray *temp=[[SQLManager sharedSingle] getUserNoteByOutlineId:ot.outlineid];
+//                [ar addObjectsFromArray:temp];
+//            }
+            cell.detailTextLabel.text=[NSString stringWithFormat:@"%zd",temp.count];
         
     }
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
