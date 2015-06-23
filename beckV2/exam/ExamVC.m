@@ -228,15 +228,15 @@
     
 }
 
--(NSDictionary *)formatSubmitArg{
-    
-    NSMutableDictionary *json = @{}.mutableCopy;
-    json[@"loginName"] = [Global sharedSingle].loginName;
-    json[@"paperId"] = self.examComp.paper_id;
-    json[@"beginTime"] = [NSString stringWithFormat:@"%@",self.beginTime];
-    json[@"endTime"]=[NSString stringWithFormat:@"%@",[NSDate date]];
-    return [self addAccurateRateList:json];
-}
+//-(NSDictionary *)formatSubmitArg{
+//    
+//    NSMutableDictionary *json = @{}.mutableCopy;
+//    json[@"loginName"] = [Global sharedSingle].loginName;
+//    json[@"paperId"] = self.examComp.paper_id;
+//    json[@"beginTime"] = [NSString stringWithFormat:@"%@",self.beginTime];
+//    json[@"endTime"]=[NSString stringWithFormat:@"%@",[NSDate date]];
+//    return [self addAccurateRateList:json];
+//}
 
 -(NSDictionary*)addAccurateRateList:(NSMutableDictionary *)olderDic{
     
@@ -385,32 +385,58 @@
     NSMutableDictionary *params = @{}.mutableCopy;
     params[@"token"] = @"add";
     
+    NSMutableDictionary *dic=@{}.mutableCopy;
+    dic[@"loginName"] = [Global sharedSingle].loginName;
+    dic[@"paperId"] = self.examComp.paper_id;
+    dic[@"beginTime"] = [NSString stringWithFormat:@"%@",self.beginTime];
+    dic[@"endTime"]=[NSString stringWithFormat:@"%@",[NSDate date]];
+    NSInteger count=0;
+    NSInteger wrongCount=0;
+    NSInteger score=0;
+    NSMutableArray *ar=[NSMutableArray array];
+    for (PractisAnswer*an in self.answerArray) {
+        if ([an.isRight isEqualToString:@"true"]) {
+            count++;
+            Question*q=self.questionsAr[an.priority.integerValue];
+            score+=q.examScore.integerValue;
+        }else{
+            wrongCount++;
+        }
+        [ar addObject:[an toExamJson]];
+    }
+    dic[@"rightAmount"]=[NSString stringWithFormat:@"%zd",count];
+    dic[@"wrongAmount"]=[NSString stringWithFormat:@"%zd",wrongCount];
+    dic[@"score"]=[NSString stringWithFormat:@"%zd",score];
+
     NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[self formatSubmitArg] options:kNilOptions error:&error];
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:ar options:kNilOptions error:&error];
+    NSString *answerString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    dic[@"userAnswer"]=answerString;
+
+    NSData *jsonData1 = [NSJSONSerialization dataWithJSONObject:dic options:kNilOptions error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData1 encoding:NSUTF8StringEncoding];
+
     params[@"json"] = jsonString;
     
     WEAK_SELF;
     [self showLoading];
     [self getValueWithBeckUrl:@"/front/userExamAct.htm" params:params CompleteBlock:^(id aResponseObject, NSError *anError) {
         STRONG_SELF;
-        [self hideLoading];
         if (!anError) {
             NSNumber *errorcode = aResponseObject[@"errorcode"];
             if (errorcode.integerValue!=0) {
                 [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
             }
             else {
-                if (aResponseObject[@"sql"]) {
-                    [[SQLManager sharedSingle] excuseSql:aResponseObject[@"sql"]];
+                if (aResponseObject[@"examSql"]) {
+                    [[SQLManager sharedSingle] excuseSql:aResponseObject[@"examSql"]];
                 }
-                NSArray *sqlAr=aResponseObject[@"list"];
-                if (sqlAr.count>0) {
-                    for (int i=0; i<sqlAr.count; i++) {
-                        [[SQLManager sharedSingle] excuseSql:sqlAr[i]];
-                    }
-                }
+//                NSArray *sqlAr=aResponseObject[@"list"];
+//                if (sqlAr.count>0) {
+//                    for (int i=0; i<sqlAr.count; i++) {
+//                        [[SQLManager sharedSingle] excuseSql:sqlAr[i]];
+//                    }
+//                }
                 [[OTSAlertView alertWithMessage:@"提交成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
                     [self.navigationController popViewControllerAnimated:YES];
                 }] show];
@@ -419,6 +445,7 @@
         else {
             [[OTSAlertView alertWithMessage:@"提交失败" andCompleteBlock:nil] show];
         }
+        [self hideLoading];
     }];
     
 }
