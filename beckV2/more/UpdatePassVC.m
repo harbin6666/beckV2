@@ -7,7 +7,7 @@
 //
 
 #import "UpdatePassVC.h"
-
+#import "AppDelegate.h"
 @interface UpdatePassVC ()<UITextFieldDelegate>
 @property(nonatomic,weak)IBOutlet UITextField *tf1,*tf2,*tf3;
 @end
@@ -24,7 +24,17 @@
             if (anError==nil) {
                 [[OTSAlertView alertWithMessage:aResponseObject[@"token"] andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
                     if ([aResponseObject[@"errorcode"] integerValue]==0) {
-                        [self.navigationController popViewControllerAnimated:YES];
+                        [Global sharedSingle].userBean=nil;
+                        [Global sharedSingle].logined=NO;
+                        [Global sharedSingle].loginName=nil;
+                        [Global sharedSingle].nickName=nil;
+                        [[Global sharedSingle] setUserValue:@0 Key:@"logined"];
+                        [[Global sharedSingle] setUserValue:nil Key:@"loginName"];
+                        [[Global sharedSingle] setUserValue:nil Key:@"passWord"];
+                        [[Global sharedSingle] setUserValue:nil Key:@"userBean"];
+                        
+                        AppDelegate *app=[UIApplication sharedApplication].delegate;
+                        [(UINavigationController*)app.window.rootViewController popToRootViewControllerAnimated:YES];
                     }
                 }] show];
                 
