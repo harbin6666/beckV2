@@ -37,7 +37,7 @@
     UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 80)];
     
     UIButton *bu=[UIButton buttonWithType:UIButtonTypeCustom];
-    bu.backgroundColor=[UIColor redColor];
+    bu.backgroundColor=BeckRed;
     [bu setTitle:@"退出当前账号" forState:UIControlStateNormal] ;
     [bu setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     bu.frame=CGRectMake(0, 0, 280, 40);
@@ -76,7 +76,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
-    return 5;
+    return 4;
 }
 
 
@@ -92,16 +92,16 @@
             str=@"我的邀请码";
             cell.detailTextLabel.text=[[Global sharedSingle].userBean valueForKey:@"verificationCode"];
             break;
-
-        case 3:
+//        case 2:
+//            str=@"支付信息";
+//            cell.detailTextLabel.text=@"";
+//            break;
+//
+        case 2:
             str=@"修改密码";
             cell.detailTextLabel.text=@"";
             break;
-        case 2:
-            str=@"支付信息";
-            cell.detailTextLabel.text=@"";
-            break;
-        case 4:
+        case 3:
             str=@"参加培训";
             cell.detailTextLabel.text=@"";
             break;
@@ -119,16 +119,18 @@
         PointDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"pointdetail"];
         vc.type=0;
         [self.navigationController pushViewController:vc animated:YES];
-    }else if (indexPath.row==3){
+    }
+//    else if (indexPath.row==2){
+//        UIStoryboard*sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
+//        PointDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"pointdetail"];
+//        vc.type=1;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+    else if (indexPath.row==2){
         [self performSegueWithIdentifier:@"toupdatepass" sender:self];
-    }else if (indexPath.row==2){
-        UIStoryboard*sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
-        PointDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"pointdetail"];
-        vc.type=1;
-        [self.navigationController pushViewController:vc animated:YES];
-    }else if (indexPath.row==4){
+    }else if (indexPath.row==3){
         UIStoryboard*sb=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        PointDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"train"];
+        UIViewController *vc=[sb instantiateViewControllerWithIdentifier:@"train"];
         [self presentViewController:vc animated:YES completion:^{
             
         }];

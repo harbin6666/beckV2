@@ -52,7 +52,7 @@ static NSString *privatekey=@"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL
     
     UILabel *lab=[[UILabel alloc] initWithFrame:CGRectMake((w-254)/2, 220, 100, 20)];
     lab.text=@"在线报名";
-    lab.textColor=[UIColor redColor];
+    lab.textColor=BeckRed;
     lab.font=[UIFont boldSystemFontOfSize:18];
     [scroll addSubview:lab];
     
@@ -86,7 +86,7 @@ static NSString *privatekey=@"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL
     
     UILabel *lab2=[[UILabel alloc] initWithFrame:CGRectMake((w-254)/2, 370, 100, 20)];
     lab2.text=@"选择科目";
-    lab2.textColor=[UIColor redColor];
+    lab2.textColor=BeckRed;
     lab2.font=[UIFont boldSystemFontOfSize:18];
     [scroll addSubview:lab2];
     scroll.contentSize=CGSizeMake(self.view.frame.size.width, 1000);

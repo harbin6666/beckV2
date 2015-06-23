@@ -78,7 +78,7 @@ static NSString *publicKey=@"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4ALzpzgxlXwU
     lab.text=@"选择购买类型";
     lab.textColor=[UIColor whiteColor];
     [v addSubview:lab];
-    v.backgroundColor=[UIColor redColor];
+    v.backgroundColor=BeckRed;
     return v;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -302,9 +302,9 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dlu-EP-Y1c" id="882-8J-uYf">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpe-oa-Vlw">
-                                            <rect key="frame" x="173" y="8" width="201" height="28"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="qpe-oa-Vlw">
+                                            <rect key="frame" x="173" y="8" width="201" height="35.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -320,7 +320,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="qpe-oa-Vlw" firstAttribute="leading" secondItem="8dx-jY-Pow" secondAttribute="trailing" id="ELl-jd-1aZ"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="qpe-oa-Vlw" secondAttribute="bottom" constant="-0.5" id="PsJ-fD-xbn"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="qpe-oa-Vlw" secondAttribute="bottom" constant="-8" id="PsJ-fD-xbn"/>
                                         <constraint firstItem="8dx-jY-Pow" firstAttribute="top" secondItem="882-8J-uYf" secondAttribute="topMargin" constant="-1" id="UQi-uX-Njp"/>
                                         <constraint firstItem="qpe-oa-Vlw" firstAttribute="top" secondItem="882-8J-uYf" secondAttribute="topMargin" id="aY0-u8-rNZ"/>
                                         <constraint firstItem="8dx-jY-Pow" firstAttribute="leading" secondItem="882-8J-uYf" secondAttribute="leadingMargin" constant="40" id="iYp-T7-JdA"/>

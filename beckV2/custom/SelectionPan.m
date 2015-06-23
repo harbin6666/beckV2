@@ -27,7 +27,7 @@
         bu.frame=CGRectMake(width*i, 0, width, 50);
         [bu setTitle:title[i] forState:UIControlStateNormal];
         [bu setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [bu setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+        [bu setTitleColor:BeckRed forState:UIControlStateSelected];
         [bu addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
         bu.tag=i;
         [self addSubview:bu];

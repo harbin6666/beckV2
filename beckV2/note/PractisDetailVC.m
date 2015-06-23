@@ -140,7 +140,7 @@
                 break;
             case 3:
                 la.text=@"查看";
-                la.textColor=[UIColor redColor];
+                la.textColor=BeckRed;
                 break;
             default:
                 break;

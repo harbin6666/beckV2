@@ -96,7 +96,7 @@
 {
     UILabel *lbl = [UILabel viewWithFrame:CGRectMake(10, 0, 300, 30)];
     lbl.backgroundColor = [UIColor whiteColor];
-    lbl.textColor = [UIColor redColor];
+    lbl.textColor = BeckRed;
     lbl.text = self.sectionNames[section];
     return lbl;
 }

@@ -106,8 +106,8 @@ singleton_implementation(SQLManager);
 }
 -(NSArray*)getPoints{
     __block NSMutableArray *ar=@[].mutableCopy;
-//    NSString *sql=[NSString stringWithFormat: @"select * from point_transaction where user_id ==%@",[[Global sharedSingle].userBean valueForKey:@"userId"] ];
-    NSString *sql=@"select * from point_transaction";
+    NSString *sql=[NSString stringWithFormat: @"select * from point_transaction where user_id ==%@",[[Global sharedSingle].userBean valueForKey:@"userId"] ];
+//    NSString *sql=@"select * from point_transaction";
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             

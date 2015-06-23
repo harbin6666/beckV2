@@ -32,10 +32,10 @@
         if (anError==nil) {
             if ([aResponseObject[@"errorcode"] integerValue]==0) {
                 if (self.type==0) {
-//                    NSArray *ar=aResponseObject[@"list"];
-//                    for (NSString *sql in ar) {
-//                        [[SQLManager sharedSingle] excuseSql:sql];
-//                    }
+                    NSArray *ar=aResponseObject[@"list"];
+                    for (NSString *sql in ar) {
+                        [[SQLManager sharedSingle] excuseSql:sql];
+                    }
                     
                     self.buylist=[[SQLManager sharedSingle] getPoints];
                     [self.tableView reloadData];
@@ -73,11 +73,12 @@
 
     if (indexPath.row==0) {
         cell.imageView.image=[UIImage imageNamed:@"zhifu"];
-        cell.backgroundColor=[UIColor redColor];
+        cell.backgroundColor=BeckRed;
         cell.ttlab.text=@"积分";
         cell.ttlab.textColor=[UIColor whiteColor];
         cell.dlab.textColor=[UIColor whiteColor];
         cell.dlab.text=dic[@"description"];
+//        cell.dlab.numberOfLines=2;
 
     }else if (indexPath.row==1){
         cell.imageView.image=[UIImage imageNamed:@"zhifu"];

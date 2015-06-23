@@ -8,7 +8,7 @@
 
 #ifndef beckV2_PrefixHeader_pch
 #define beckV2_PrefixHeader_pch
-
+#define BeckRed [UIColor colorWithRed:228/255.0 green:35/255.0 blue:42/255.0 alpha:1]
 #import "UIView+create.h"
 
 #import <AFNetworkReachabilityManager.h>
