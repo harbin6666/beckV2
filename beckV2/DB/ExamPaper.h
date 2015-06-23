@@ -59,3 +59,24 @@
 
 
 @end
+
+@interface UserExam : NSObject
+@property(nonatomic,strong)NSString *paper_id;
+@property(nonatomic,strong)NSString *type;
+@property(nonatomic,strong)NSString *user_id;
+@property(nonatomic,strong)NSString *subject_id;
+@property(nonatomic,strong)NSString *lib_id;
+@property(nonatomic,strong)NSString *product_id;
+
+@property(nonatomic,strong)NSString *begin_time;
+@property(nonatomic,strong)NSString *end_time;
+@property(nonatomic,strong)NSString *score;
+
+@property(nonatomic,strong)NSString *user_answer;
+
+@property(nonatomic,strong)NSString *right_amount;
+@property(nonatomic,strong)NSString *wrong_amount;
+@property(nonatomic,strong)NSString *descript;
+@property(nonatomic,strong)NSString *memo;
+
+@end

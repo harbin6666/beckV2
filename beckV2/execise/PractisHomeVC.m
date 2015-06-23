@@ -24,10 +24,35 @@
     
 }
 
-
+-(void)rightBtnClick:(UIButton *)sender{
+    if (sender.selected==NO) {
+        sender.selected=YES;
+        [self showPositionPan];
+    }else{
+        sender.selected=NO;
+        
+    }
+}
+-(void)selectedPostion{
+    self.dataAr=[NSMutableArray array];
+    self.subjectIdList=[[SQLManager sharedSingle] getSubjectIdArrayByid:[[Global sharedSingle] getUserWithkey:@"titleid"]];
+    self.subjectList=[[SQLManager sharedSingle] getSubjectByid:self.subjectIdList];
+    
+    for (int i=0; i<self.subjectList.count; i++) {
+        Subject*sb=self.subjectList[i];
+        NSArray *sbAr=[[SQLManager sharedSingle] getoutLineByid:sb.subjectid];
+        [self.dataAr addObject:sbAr];
+    }
+    
+    [self.table reloadData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSMutableString *str=[NSMutableString stringWithString:[[Global sharedSingle] getUserWithkey:@"titleName"]];
+    [str appendString:@" ▼"];
+    [self setNavigationBarButtonName:str width:80 isLeft:NO];
+
 
     self.dataAr=[NSMutableArray array];
     self.subjectIdList=[[SQLManager sharedSingle] getSubjectIdArrayByid:[[Global sharedSingle] getUserWithkey:@"titleid"]];

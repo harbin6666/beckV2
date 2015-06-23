@@ -10,6 +10,8 @@
 #import "UserPractis.h"
 #import "PractiseVC.h"
 #import "Outline.h"
+#import "ExamPaper.h"
+#import "ExamVC.h"
 @interface PractisDetailVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,weak)IBOutlet UILabel *lab1,*lab2,*lab3,*lab4,*lab5,*lab6,*lab7;
 @property(nonatomic,weak)IBOutlet UITableView *table;
@@ -20,32 +22,45 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"练习详情";
-    self.ar=@[@"测试时间",@"答对题数",@"答错提数",@"详情"];
-    self.lab1.text=[NSString stringWithFormat:@"您总共进行了%zd次模拟练习",self.practisAr.count];
     NSInteger totalr=0;
     NSInteger totalwrong=0;
     NSInteger totaldone=0;
-    for (UserPractis*p in self.practisAr) {
-        NSInteger r=(NSInteger)p.amount.integerValue*p.accurate_rate.floatValue;
-        NSInteger wrong=p.amount.integerValue-r;
-        totalr+=r;
-        totalwrong+=wrong;
-        totaldone+=p.amount.integerValue;
-    }
-    NSArray*tempTotal=[[SQLManager sharedSingle] getOutLineByParentId:self.outlineid];
     NSMutableArray *totalAr=[NSMutableArray array];
-    for (Outline *o in tempTotal) {
-        [totalAr addObjectsFromArray:[[SQLManager sharedSingle] getQuestionByOutlineId:o.outlineid] ];
+    self.ar=@[@"测试时间",@"答对题数",@"答错提数",@"详情"];
+    if (self.type==0) {
+        self.title=@"练习详情";
+        self.lab1.text=[NSString stringWithFormat:@"您总共进行了%zd次模拟练习",self.practisAr.count];
+        for (UserPractis*p in self.practisAr) {
+            NSInteger r=(NSInteger)p.amount.integerValue*p.accurate_rate.floatValue;
+            NSInteger wrong=p.amount.integerValue-r;
+            totalr+=r;
+            totalwrong+=wrong;
+            totaldone+=p.amount.integerValue;
+        }
+        NSArray*tempTotal=[[SQLManager sharedSingle] getOutLineByParentId:self.outlineid];
+        for (Outline *o in tempTotal) {
+            [totalAr addObjectsFromArray:[[SQLManager sharedSingle] getQuestionByOutlineId:o.outlineid] ];
+        }
+
+    }else{
+        self.title=@"考试详情";
+        self.lab1.text=[NSString stringWithFormat:@"您总共进行了%zd次考试",self.examAr.count];
+        for (UserExam *ue in self.examAr) {
+            NSArray *temp=[[SQLManager sharedSingle] getExamPaperContentByPaperid:ue.paper_id];
+            [totalAr addObjectsFromArray:temp];//所有题目
+            totalr+=ue.right_amount.integerValue;
+            totalwrong+=ue.wrong_amount.integerValue;
+        }
+        totaldone=totalr+totalwrong;
     }
     
     self.table.tableFooterView=[[UIView alloc] init];
     self.lab2.text=[NSString stringWithFormat:@"%zd",totalAr.count];
-    self.lab3.text=[NSString stringWithFormat:@"%.2f",(float)totalr/totalAr.count];
-    self.lab4.text=[NSString stringWithFormat:@"%zd*100％",totaldone];
+    self.lab3.text=[NSString stringWithFormat:@"%d％",(int)(100*totalr/totalAr.count)];
+    self.lab4.text=[NSString stringWithFormat:@"%zd",totalAr.count];
     self.lab5.text=[NSString stringWithFormat:@"%zd",totalr];
     self.lab6.text=[NSString stringWithFormat:@"%zd",totalwrong];
-    self.lab7.text=[NSString stringWithFormat:@"%.2f*100％",(float)totaldone/totalAr.count];
+    self.lab7.text=[NSString stringWithFormat:@"%d％",(int)(totaldone/totalAr.count)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,7 +69,12 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.practisAr.count;
+    if (self.type==0) {
+        return self.practisAr.count;
+    }else{
+        return self.examAr.count;
+
+    }
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -89,16 +109,27 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     float w=self.view.frame.size.width;
-    UserPractis *p=self.practisAr[indexPath.row];
-    NSInteger r=(NSInteger)p.amount.integerValue*p.accurate_rate.floatValue;
-    NSInteger wrong=p.amount.integerValue-r;
+    NSInteger r=0;
+    NSInteger wrong=0;
+    NSString *end=@"";
+    if (self.type==1) {
+        UserExam *p=self.examAr[indexPath.row];
+        r=p.right_amount.integerValue;
+        wrong=p.wrong_amount.integerValue;
+        end=p.end_time;
+    }else{
+        UserPractis *p=self.practisAr[indexPath.row];
+        r=(NSInteger)p.amount.integerValue*p.accurate_rate.floatValue;
+        wrong=p.amount.integerValue-r;
+        end=p.end_time;
+    }
     for (int i=0; i<4; i++) {
         UILabel *la=[[UILabel alloc] initWithFrame:CGRectMake(i*w/4, 0, w/4, 30)];
         la.textColor=[UIColor blackColor];
         la.textAlignment=NSTextAlignmentCenter;
         switch (i) {
             case 0:
-                la.text=[self transferTime:p.end_time];
+                la.text=[self transferTime:end];
                 break;
             case 1:
                 la.text=[NSString stringWithFormat:@"%zd",r];
@@ -108,7 +139,7 @@
                 la.textColor=[UIColor greenColor];
                 break;
             case 3:
-                la.text=@"详情";
+                la.text=@"查看";
                 la.textColor=[UIColor redColor];
                 break;
             default:
@@ -121,11 +152,28 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
-    PractiseVC *vc=[sb instantiateViewControllerWithIdentifier:@"practise"];
-    UserPractis *p=self.practisAr[indexPath.row];
+    if (self.type==0) {
+        UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
+        PractiseVC *vc=[sb instantiateViewControllerWithIdentifier:@"practise"];
+        UserPractis *p=self.practisAr[indexPath.row];
+        
+        vc.outletid=p.outlineId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        ExamVC* vc=[[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"exam"];
+        UserExam *p=self.examAr[indexPath.row];
+        NSMutableArray *ar=[NSMutableArray array];
+        NSArray *temp=[[SQLManager sharedSingle] getExamPaperContentByPaperid:p.paper_id];
+        for (int i=0; i<temp.count; i++) {
+            ExamPaper_Content *cont=temp[i];
+            Question *q=[[SQLManager sharedSingle] getExamQuestionByItemId:cont.item_id customid:cont.custom_id];
+            [ar addObject:q];
+        }
+        vc.questionsAr=ar;
+        vc.examComp=self.examPapers[indexPath.row];
+        [self.navigationController pushViewController:vc animated:YES];
 
-    vc.outletid=p.outlineId;
-    [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 @end

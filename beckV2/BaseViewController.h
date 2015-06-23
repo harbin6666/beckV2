@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 typedef void(^BeckCompletionBlock)(id aResponseObject, NSError* anError);
 
 @interface BaseViewController : UIViewController
@@ -21,7 +22,7 @@ typedef void(^BeckCompletionBlock)(id aResponseObject, NSError* anError);
 - (IBAction)rightBtnClick:(UIButton *)sender;
 
 - (void)setNavigationBarButtonName:(NSString *)aName width:(CGFloat)aWidth isLeft:(BOOL)left;
-
+- (void)showPositionPan;
 @end
 
 @interface UIViewController (Net)

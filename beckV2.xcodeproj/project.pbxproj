@@ -97,6 +97,10 @@
 		39589A031B333E3E0056B9A5 /* QuestionCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39589A021B333E3E0056B9A5 /* QuestionCollectionVC.m */; };
 		39589A061B33446B0056B9A5 /* Collection.m in Sources */ = {isa = PBXBuildFile; fileRef = 39589A051B33446B0056B9A5 /* Collection.m */; };
 		39589A091B33630F0056B9A5 /* UserPractis.m in Sources */ = {isa = PBXBuildFile; fileRef = 39589A081B33630F0056B9A5 /* UserPractis.m */; };
+		39589A1A1B3480FA0056B9A5 /* PositionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39589A191B3480FA0056B9A5 /* PositionVC.m */; };
+		39589A2A1B36A7030056B9A5 /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = 39589A251B36A7030056B9A5 /* ApiXml.mm */; };
+		39589A2B1B36A7030056B9A5 /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 39589A271B36A7030056B9A5 /* payRequsestHandler.mm */; };
+		39589A2C1B36A7030056B9A5 /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 39589A291B36A7030056B9A5 /* WXUtil.mm */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -336,6 +340,14 @@
 		39589A051B33446B0056B9A5 /* Collection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Collection.m; sourceTree = "<group>"; };
 		39589A071B33630F0056B9A5 /* UserPractis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPractis.h; sourceTree = "<group>"; };
 		39589A081B33630F0056B9A5 /* UserPractis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPractis.m; sourceTree = "<group>"; };
+		39589A181B3480FA0056B9A5 /* PositionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionVC.h; sourceTree = "<group>"; };
+		39589A191B3480FA0056B9A5 /* PositionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionVC.m; sourceTree = "<group>"; };
+		39589A241B36A7030056B9A5 /* ApiXml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiXml.h; sourceTree = "<group>"; };
+		39589A251B36A7030056B9A5 /* ApiXml.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApiXml.mm; sourceTree = "<group>"; };
+		39589A261B36A7030056B9A5 /* payRequsestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = payRequsestHandler.h; sourceTree = "<group>"; };
+		39589A271B36A7030056B9A5 /* payRequsestHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = payRequsestHandler.mm; sourceTree = "<group>"; };
+		39589A281B36A7030056B9A5 /* WXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUtil.h; sourceTree = "<group>"; };
+		39589A291B36A7030056B9A5 /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -573,6 +585,8 @@
 			children = (
 				39372E851B0A559400891F52 /* HomeVC.h */,
 				39372E861B0A559400891F52 /* HomeVC.m */,
+				39589A181B3480FA0056B9A5 /* PositionVC.h */,
+				39589A191B3480FA0056B9A5 /* PositionVC.m */,
 				39372E8B1B0A5EF600891F52 /* ConditionContainerVC.h */,
 				39372E8C1B0A5EF600891F52 /* ConditionContainerVC.m */,
 				39D780C31B138490009F5C8E /* ChengjiuVC.h */,
@@ -908,6 +922,19 @@
 			path = Masonry;
 			sourceTree = "<group>";
 		};
+		39589A231B36A7030056B9A5 /* wxpay */ = {
+			isa = PBXGroup;
+			children = (
+				39589A241B36A7030056B9A5 /* ApiXml.h */,
+				39589A251B36A7030056B9A5 /* ApiXml.mm */,
+				39589A261B36A7030056B9A5 /* payRequsestHandler.h */,
+				39589A271B36A7030056B9A5 /* payRequsestHandler.mm */,
+				39589A281B36A7030056B9A5 /* WXUtil.h */,
+				39589A291B36A7030056B9A5 /* WXUtil.mm */,
+			);
+			path = wxpay;
+			sourceTree = "<group>";
+		};
 		396AD2FE1B176C4A005F92B1 /* category */ = {
 			isa = PBXGroup;
 			children = (
@@ -978,6 +1005,7 @@
 		39CE4C3F1B19575800DDAB01 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				39589A231B36A7030056B9A5 /* wxpay */,
 				3958994C1B2DE2780056B9A5 /* CoreNewFeatureVC */,
 				395899321B2D3B790056B9A5 /* alipay */,
 				395899351B2D3B790056B9A5 /* wechat */,
@@ -1265,6 +1293,7 @@
 				397DDAD91B14C3D000E8F73B /* SetPasswordVC.m in Sources */,
 				394C4A241B274AA00002838B /* CollectVC.m in Sources */,
 				39D780BF1B13644E009F5C8E /* DismissSegue.m in Sources */,
+				39589A2B1B36A7030056B9A5 /* payRequsestHandler.mm in Sources */,
 				39D780C21B136E93009F5C8E /* Global.m in Sources */,
 				395899C01B2DE2BE0056B9A5 /* NSObject+Extend.m in Sources */,
 				39CE4C711B19BE2A00DDAB01 /* OutlineCell.m in Sources */,
@@ -1278,6 +1307,7 @@
 				39589A091B33630F0056B9A5 /* UserPractis.m in Sources */,
 				39CE4C7D1B1A4CAC00DDAB01 /* CompatyQuestion.m in Sources */,
 				395899D01B2DE2BE0056B9A5 /* MASCompositeConstraint.m in Sources */,
+				39589A1A1B3480FA0056B9A5 /* PositionVC.m in Sources */,
 				395899BA1B2DE2BE0056B9A5 /* NSString+File.m in Sources */,
 				395899DF1B2DF4680056B9A5 /* CachedAnswer.m in Sources */,
 				395899E51B31C9A60056B9A5 /* CourseCell.m in Sources */,
@@ -1305,10 +1335,12 @@
 				395899BF1B2DE2BE0056B9A5 /* NSDate+Extend.m in Sources */,
 				395899C91B2DE2BE0056B9A5 /* UIImage+Extend.m in Sources */,
 				395899FD1B31E9A70056B9A5 /* FeedBackVC.m in Sources */,
+				39589A2A1B36A7030056B9A5 /* ApiXml.mm in Sources */,
 				39589A001B3331430056B9A5 /* NoteListCell.m in Sources */,
 				39CE4C8B1B1DFD2700DDAB01 /* ChoiceCell.m in Sources */,
 				395899C41B2DE2BE0056B9A5 /* UIColor+Extend.m in Sources */,
 				39CE4C941B1F3CB300DDAB01 /* QCollectionVC.m in Sources */,
+				39589A2C1B36A7030056B9A5 /* WXUtil.mm in Sources */,
 				394C4A301B2752350002838B /* SelectionPan.m in Sources */,
 				395899D11B2DE2BE0056B9A5 /* MASConstraint.m in Sources */,
 				39CD45FC1B209B19005320B5 /* ExamHomeVC.m in Sources */,

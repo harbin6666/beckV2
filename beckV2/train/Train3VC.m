@@ -10,8 +10,9 @@
 #import "SelectionPan.h"
 #import "DXPopover.h"
 #import <AlipaySDK/AlipaySDK.h>
-
-@interface Train3VC ()<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
+#import "WXApi.h"
+#import "payRequsestHandler.h"
+@interface Train3VC ()<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 @property(nonatomic,strong)NSArray *citys;//{"city": "武汉市","id": 172},
 @property(nonatomic,strong)NSArray *list;
 @property(nonatomic,strong)NSDictionary *currentDic;
@@ -162,6 +163,113 @@ static NSString *privatekey=@"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL
 
     [self.popover dismiss];
 }
+
+
+
+-(void)payWithAlipay{
+    [self showLoading];
+    NSString *courseid=self.selectDic[@"training_course_id"];
+    [self getValueWithBeckUrl:@"/front/orderTrainingAct.htm" params:@{@"token":@"add",@"loginName":[Global sharedSingle].loginName,@"trainingCourseId":courseid,@"userName":self.tf1.text,@"userPhone":self.tf2.text,@"cityId":self.selectCity[@"id"]} CompleteBlock:^(id aResponseObject, NSError *anError) {
+        [self hideLoading];
+        if (anError==nil) {
+            NSString *code=aResponseObject[@"orderSn"];//orderSn值传给支付宝 out_trade_no这个字段  支付宝异步url：/front/notifyUrlAct.htm
+            NSString *paystr=[NSString stringWithFormat:@"partner=\"%@\"&seller_id=\"%@\"&out_trade_no=\"%@\"&subject=\"%@\"&body=\"%@\"&total_fee=\"%@\"&notify_url=\"%@\"&service=\"mobile.securitypay.pay\"&payment_type=\"1\"&_input_charset=\"utf-8\"&it_b_pay=\"30m\"&show_url=\"m.alipay.com\"&sign=\"%@\"&sign_type=RSA",partid,seller,code,@"医百分",[NSString stringWithFormat:@"%@积分",self.selectDic[@"course"]],self.selectDic[@"money"],@"http://www.zhongxinlan.com/beck/front/notifyUrlAct.htm",privatekey];
+            [[AlipaySDK defaultService] payOrder:paystr fromScheme:@"beck" callback:^(NSDictionary *resultDic) {
+                
+                NSNumber *paystatus=resultDic[@"resultStatus"];
+                if (paystatus.integerValue==9000) {
+                    [[OTSAlertView alertWithMessage:@"支付成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+                        [self back];
+                    }] show];
+                }else if (paystatus.integerValue==6001){
+                    
+                }else{
+                    [[OTSAlertView alertWithMessage:resultDic[@"memo"] andCompleteBlock:nil] show];
+                }
+            }];
+            
+        }
+    }];
+}
+-(void)payWx{
+    self.selectDic;
+    NSString *ORDER_NAME    = [NSString stringWithFormat:@"%@ %@",self.selectDic[@"course"],self.selectDic[@"describe"]];
+    //订单金额，单位（元）
+    NSString *ORDER_PRICE   = [NSString stringWithFormat:@"%@",self.selectDic[@"money"]];
+    
+
+//    NSString *urlString = [NSString stringWithFormat:@"%@?plat=ios&order_no=%@&product_name=%@&order_price=%@",
+//                           SP_URL,
+//                           [[NSString stringWithFormat:@"%ld",time(0)] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                           [ORDER_NAME stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+//                           ORDER_PRICE];
+//    
+//    //解析服务端返回json数据
+//    NSError *error;
+//    //加载一个NSURL对象
+//    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+//    //将请求的url数据放到NSData对象中
+//    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+//    if ( response != nil) {
+//        NSMutableDictionary *dict = NULL;
+//        //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
+//        dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&error];
+//        
+//        NSLog(@"url:%@",urlString);
+//        if(dict != nil){
+//            NSMutableString *retcode = [dict objectForKey:@"retcode"];
+//            if (retcode.intValue == 0){
+//                NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
+//                
+//                //调起微信支付
+//                PayReq* req             = [[PayReq alloc] init];
+//                req.openID              = [dict objectForKey:@"appid"];
+//                req.partnerId           = [dict objectForKey:@"partnerid"];
+//                req.prepayId            = [dict objectForKey:@"prepayid"];
+//                req.nonceStr            = [dict objectForKey:@"noncestr"];
+//                req.timeStamp           = stamp.intValue;
+//                req.package             = [dict objectForKey:@"package"];
+//                req.sign                = [dict objectForKey:@"sign"];
+//                [WXApi sendReq:req];
+//                //日志输出
+//                NSLog(@"appid=%@\npartid=%@\nprepayid=%@\nnoncestr=%@\ntimestamp=%ld\npackage=%@\nsign=%@",req.openID,req.partnerId,req.prepayId,req.nonceStr,(long)req.timeStamp,req.package,req.sign );
+//            }else{
+//                [self alert:@"提示信息" msg:[dict objectForKey:@"retmsg"]];
+//            }
+//        }else{
+//            [self alert:@"提示信息" msg:@"服务器返回错误，未获取到json对象"];
+//        }
+//    }else{
+//        [self alert:@"提示信息" msg:@"服务器返回错误"];
+//    }
+    
+    
+    
+    
+    PayReq *request = [[PayReq alloc] init];
+
+    request.partnerId = @"1248784301";//[resultDic objectForKey:@"partnerid"];
+    request.prepayId= @"1101000000140429eb40476f8896f4c9";
+    request.package = @"Sign=WXpay";
+    request.nonceStr= [NSString stringWithFormat:@"%d", arc4random() % 10000];
+    request.timeStamp =[[NSDate date] timeIntervalSince1970];
+    request.sign= @"bkyy2015BKYY2015yibaifen19900722";//[resultDic objectForKey:@"sign"];
+    [WXApi sendReq:request];
+}
+- (void)alert:(NSString *)title msg:(NSString *)msg
+{
+    UIAlertView *alter = [[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    [alter show];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==0) {
+        [self payWithAlipay];
+    }else{
+        [self payWx];
+    }
+}
 -(void)click{
     if (self.selectCity==nil) {
         [[OTSAlertView alertWithMessage:@"请选择校区" andCompleteBlock:nil] show];
@@ -175,31 +283,13 @@ static NSString *privatekey=@"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL
             [[OTSAlertView alertWithMessage:@"请输入姓名及电话" andCompleteBlock:nil] show];
             return;
         }
-        [self showLoading];
-        NSString *courseid=self.selectDic[@"training_course_id"];
-        [self getValueWithBeckUrl:@"/front/orderTrainingAct.htm" params:@{@"token":@"add",@"loginName":[Global sharedSingle].loginName,@"trainingCourseId":courseid,@"userName":self.tf1.text,@"userPhone":self.tf2.text,@"cityId":self.selectCity[@"id"]} CompleteBlock:^(id aResponseObject, NSError *anError) {
-            if (anError==nil) {
-                NSString *code=aResponseObject[@"orderSn"];//orderSn值传给支付宝 out_trade_no这个字段  支付宝异步url：/front/notifyUrlAct.htm
-                NSString *paystr=[NSString stringWithFormat:@"partner=\"%@\"&seller_id=\"%@\"&out_trade_no=\"%@\"&subject=\"%@\"&body=\"%@\"&total_fee=\"%@\"&notify_url=\"%@\"&service=\"mobile.securitypay.pay\"&payment_type=\"1\"&_input_charset=\"utf-8\"&it_b_pay=\"30m\"&show_url=\"m.alipay.com\"&sign=\"%@\"&sign_type=RSA",partid,seller,code,@"医百分",[NSString stringWithFormat:@"%@积分",self.selectDic[@"course"]],self.selectDic[@"money"],@"http://www.zhongxinlan.com/beck/front/notifyUrlAct.htm",privatekey];
-                [[AlipaySDK defaultService] payOrder:paystr fromScheme:@"beck" callback:^(NSDictionary *resultDic) {
-                    
-                    NSNumber *paystatus=resultDic[@"resultStatus"];
-                    if (paystatus.integerValue==9000) {
-                        [[OTSAlertView alertWithMessage:@"支付成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
-                            [self back];
-                        }] show];
-                    }else if (paystatus.integerValue==6001){
-                        
-                    }else{
-                        [[OTSAlertView alertWithMessage:resultDic[@"memo"] andCompleteBlock:nil] show];
-                    }
-                }];
-
-            }
-        }];
+        UIActionSheet *sheet=[[UIActionSheet alloc] initWithTitle:@"请选择支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝支付",@"微信支付", nil];
+        [sheet showInView:self.view];
     }
     
 }
+
+
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }

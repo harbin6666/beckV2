@@ -11,12 +11,13 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "AppDelegate.h"
 #import "Global.h"
-@interface LoginVC ()<TencentLoginDelegate,TencentSessionDelegate,UITextFieldDelegate>
+@interface LoginVC ()<TencentLoginDelegate,TencentSessionDelegate,UITextFieldDelegate,WBHttpRequestDelegate>
 @property(nonatomic,weak)IBOutlet UITextField* usrName;
 @property(nonatomic,weak)IBOutlet UITextField* passw;
 @property (nonatomic, strong) TencentOAuth *tencentOAuth;
 @property(nonatomic,strong)NSString*accessToken;
 @property(nonatomic,weak) IBOutlet UIButton* remenber;
+@property(nonatomic,strong)NSString *nickName;
 
 @end
 
@@ -26,6 +27,16 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    if ([Global sharedSingle].passWord) {
+        self.usrName.text=[Global sharedSingle].loginName;
+        self.passw.text=[Global sharedSingle].passWord;
+        if (self.usrName.text.length&&self.passw.text.length) {
+            [self loginPress:nil];
+        }
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,25 +49,10 @@
     // Do any additional setup after loading the view.
     self.tencentOAuth = [[TencentOAuth alloc] initWithAppId:kOpenQQAppKey andDelegate:self];
     
-    [WeiboSDK registerApp:kSinaAppKey];
-    
-    [WXApi registerApp:kWXAPP_ID];
     
     [self setNavigationBarButtonName:@"" width:0 isLeft:YES];
 }
-- (void)getUserInfoResponse:(APIResponse*) response{
-    
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-#pragma mark -wechat
--(void) onResp:(BaseResp*)resp{
-    SendAuthResp*auth=(SendAuthResp*)resp;
-    
-}
-#pragma mark - <TencentLoginDelegate>
+
 - (IBAction)onPressedQQ:(id)sender {
     if ([TencentOAuth iphoneQQSupportSSOLogin]) {
         NSArray *permissions = @[kOPEN_PERMISSION_GET_USER_INFO,
@@ -64,9 +60,9 @@
                                  kOPEN_PERMISSION_GET_INFO];
         [self.tencentOAuth authorize:permissions];
     }
-//    else {
-//        [[OTSAlertView alertWithMessage:@"您没有安装QQ,不能登录" andCompleteBlock:nil] show];
-//    }
+    //    else {
+    //        [[OTSAlertView alertWithMessage:@"您没有安装QQ,不能登录" andCompleteBlock:nil] show];
+    //    }
 }
 
 - (IBAction)onPressedSina:(id)sender {
@@ -89,7 +85,6 @@
 
 
 -(void)unoinLogin{
-    [self showLoading];
     
     
     [self showLoading];
@@ -97,15 +92,17 @@
     [self getValueWithBeckUrl:@"/front/userAct.htm" params:@{@"token":@"twoThreeLogin",@"loginName":self.accessToken,@"passWord":self.accessToken} CompleteBlock:^(id aResponseObject, NSError *anError) {
         STRONG_SELF;
         [self hideLoading];
-        if (!anError) {
+        if (anError==nil) {
             NSNumber *errorcode = aResponseObject[@"errorcode"];
             if (errorcode.intValue!=0) {
-                [[OTSAlertView alertWithMessage:aResponseObject[@"token"] andCompleteBlock:nil] show];
+                [[OTSAlertView alertWithMessage:@"登录失败" andCompleteBlock:nil] show];
             }
             else {
                 NSDictionary *user=aResponseObject[@"userBean"];
                 [Global sharedSingle].loginName=user[@"loginName"];
-                [Global sharedSingle].userBean=user;
+                if (user!=nil) {
+                    [Global sharedSingle].userBean=user;
+                }
                 [Global sharedSingle].logined=YES;
                 [self performSegueWithIdentifier:@"tohome" sender:self];
             }
@@ -115,12 +112,72 @@
         }
     }];
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+#pragma mark -wechat
+-(void) onResp:(BaseResp*)resp{
+    SendAuthResp*auth=(SendAuthResp*)resp;
+    if(auth.errCode== 0) {
+        NSString *code = auth.code;
+        [self showLoading];
+        [self getAccess_token:code];
+    }
+
+}
+
+-(void)getAccess_token:(NSString*)code
+{
+        //https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
+             
+        NSString *url =[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",kWXAPP_ID,kWXAPP_SECRET,code];
+             
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSURL *zoneUrl = [NSURL URLWithString:url];
+                NSString *zoneStr = [NSString stringWithContentsOfURL:zoneUrl encoding:NSUTF8StringEncoding error:nil];
+                NSData *data = [zoneStr dataUsingEncoding:NSUTF8StringEncoding];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                        if (data) {
+                                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                            [self getUserInfo:dic[@"access_token"] openid:dic[@"openid"]];
+                            self.accessToken=dic[@"openid"];
+                            }
+                    });    
+            });    
+}
+
+-(void)getUserInfo:(NSString*)accessToken openid:(NSString*)openid
+{
+       // https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID
+             
+        NSString *url =[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@",accessToken,openid];
+             
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSURL *zoneUrl = [NSURL URLWithString:url];
+                NSString *zoneStr = [NSString stringWithContentsOfURL:zoneUrl encoding:NSUTF8StringEncoding error:nil];
+                NSData *data = [zoneStr dataUsingEncoding:NSUTF8StringEncoding];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                        if (data) {
+                                NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                                [Global sharedSingle].nickName=dic[@"nickname"];
+                                [self unoinLogin];
+
+                     
+                            }
+                    });    
+             
+            });    
+}
+#pragma mark - <TencentLoginDelegate>
 - (void)tencentDidLogin
 {
     NSLog(@"QQ 登录成功");
     NSLog(@"openid = %@, accessToken = %@", self.tencentOAuth.openId, self.tencentOAuth.accessToken);
     self.accessToken=self.tencentOAuth.openId;
-    [self unoinLogin];
+    [self showLoading];
+    [self.tencentOAuth getUserInfo];
 
 }
 
@@ -131,12 +188,29 @@
 - (void)tencentDidNotNetWork {
 
 }
-
+- (void)getUserInfoResponse:(APIResponse*) response{
+    [Global sharedSingle].nickName=response.jsonResponse[@"nickname"];
+    [self unoinLogin];
+}
 #pragma mark - <WeiboSDKDelegate>
 
 - (void)didReceiveWeiboRequest:(WBBaseRequest *)request
 {
 
+}
+- (void)request:(WBHttpRequest *)request didReceiveResponse:(NSURLResponse *)response{
+    
+}
+
+- (void)request:(WBHttpRequest *)request didFailWithError:(NSError *)error{
+    
+}
+
+- (void)request:(WBHttpRequest *)request didFinishLoadingWithResult:(NSString *)result{
+    
+}
+
+- (void)request:(WBHttpRequest *)request didFinishLoadingWithDataResult:(NSData *)data{
 }
 
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response
@@ -146,18 +220,23 @@
         //(int)response.statusCode = 0 is ok
         if ([(WBAuthorizeResponse *)response userID]) {
             NSLog(@"Sina 登录成功");
+
+            self.accessToken=[(WBAuthorizeResponse *)response userID];
             [self unoinLogin];
+
+//            [WBHttpRequest requestWithURL:@"users/show.json" httpMethod:@"POST" params:[NSMutableDictionary dictionaryWithObject:self.accessToken forKey:@"uid"] delegate:self withTag:0];
+//            [WBHttpRequest requestWithURL:@"users/show.json" params:[NSMutableDictionary dictionaryWithObject:self.accessToken forKey:@"uid"] httpMethod:@"GET" delegate:self];
+
         }
-        NSLog(@"userID = %@, accessToken = %@", [(WBAuthorizeResponse *)response userID], [(WBAuthorizeResponse *)response accessToken]);
-//        NSString *title = @"认证结果";
-//        NSString *message = [NSString stringWithFormat:@"响应状态: %d\nresponse.userId: %@\nresponse.accessToken: %@\n响应UserInfo数据: %@\n原请求UserInfo数据: %@",(int)response.statusCode,[(WBAuthorizeResponse *)response userID], [(WBAuthorizeResponse *)response accessToken], response.userInfo, response.requestUserInfo];
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-//                                                        message:message
-//                                                       delegate:nil
-//                                              cancelButtonTitle:@"确定"
-//                                              otherButtonTitles:nil];
-//        [alert show];
-    }
+//            [WBHttpRequest requestForUserProfile:[(WBAuthorizeResponse *)response userID] withAccessToken:[(WBAuthorizeResponse *)response accessToken] andOtherProperties:nil queue:nil withCompletionHandler:^(WBHttpRequest *httpRequest, id result, NSError *error) {
+//                [self unoinLogin];
+//                
+//            }];
+
+        
+        
+        }
+    
 }
 
 //#pragma mark - <RennLoginDelegate>
@@ -194,7 +273,7 @@
         if (!anError) {
             NSNumber *errorcode = aResponseObject[@"errorcode"];
             if (errorcode.intValue!=0) {
-                [[OTSAlertView alertWithMessage:aResponseObject[@"token"] andCompleteBlock:nil] show];
+                [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
             }
             else {
                 NSDictionary *user=aResponseObject[@"userBean"];

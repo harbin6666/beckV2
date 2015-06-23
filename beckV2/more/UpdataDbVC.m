@@ -88,7 +88,7 @@
                     }
                 }
             }else{
-                [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
+                [[OTSAlertView alertWithMessage:@"当前无更新数据" andCompleteBlock:nil] show];
             }
         }else{
             [[OTSAlertView alertWithMessage:@"当前无更新数据" andCompleteBlock:nil] show];
@@ -121,7 +121,7 @@
                     }
                 }
             }else{
-                [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
+                [[OTSAlertView alertWithMessage:@"当前无更新数据" andCompleteBlock:nil] show];
             }
         }else{
             [[OTSAlertView alertWithMessage:@"当前无更新数据" andCompleteBlock:nil] show];

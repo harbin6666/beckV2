@@ -54,10 +54,10 @@
 //        NSArray *zhenti=[[SQLManager sharedSingle] getExamByType:@"2"];
         NSArray *moni=@[@"场次一",@"场次二",@"场次三",@"场次四"];
         self.examArray=@[moni,moni];
-
         self.pan=[[SelectionPan alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
         [self.pan updatePanWithTitles:@[@"练习统计",@"考试统计"] selectBlock:^(NSInteger buttonIndex) {
             self.titleSelect=buttonIndex;
+            self.title=@[@"练习统计",@"考试统计"][buttonIndex];
             [self.tableView reloadData];
         }];
         self.tableView.tableHeaderView=self.pan;
@@ -112,6 +112,16 @@
         NSArray * ar=self.examArray[indexPath.section];
         NSString*p=ar[indexPath.row];
         cell.textLabel.text=p;
+        //该场次下所有考试1，2，3，4
+        NSArray *arr=[[SQLManager sharedSingle]getExamPaperType:[NSString stringWithFormat:@"%zd",indexPath.section+1] screen:[NSString stringWithFormat:@"%zd",indexPath.row+1]];
+        NSMutableArray *recodes=[NSMutableArray array];
+        for (ExamPaper *p in arr) {
+            NSArray *temp=[[SQLManager sharedSingle] getUserExamByPaperId:p.paper_id];
+            if (temp!=nil&&temp.count) {
+                [recodes addObjectsFromArray:temp];
+            }
+        }
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"%zd",recodes.count];
     }
     if (self.type==1&&self.titleSelect==0) {
         NSMutableArray * ar=[NSMutableArray array];
@@ -127,15 +137,30 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIStoryboard*sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
+
     if (self.titleSelect==1) {
-        
+        NSInteger r=(indexPath.row+1);
+        NSArray *arr=[[SQLManager sharedSingle]getExamPaperType:[NSString stringWithFormat:@"%zd",indexPath.section+1] screen:[NSString stringWithFormat:@"%zd",r]];
+        NSMutableArray *recodes=[NSMutableArray array];
+        for (ExamPaper *p in arr) {
+            NSArray *temp=[[SQLManager sharedSingle] getUserExamByPaperId:p.paper_id];
+            if (temp!=nil&&temp.count) {
+                [recodes addObjectsFromArray:temp];
+            }
+        }
+        PractisDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"PractisDetailVC"];
+        vc.examPapers=arr;
+        vc.type=1;
+        vc.examAr=recodes;
+        [self.navigationController pushViewController:vc animated:YES];
+
         
     }else{
        
         NSArray *temp=self.dataAr[indexPath.section];
         Outline *ot=temp[indexPath.row];
         
-        UIStoryboard*sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
         if (self.type==0) {
             NoteListVC*vc=[sb instantiateViewControllerWithIdentifier:@"notelist"];
             
@@ -152,7 +177,7 @@
 
             PractisDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"PractisDetailVC"];
             
-            
+            vc.type=0;
             vc.outlineid=ot.outlineid;
             vc.practisAr=ar;
             [self.navigationController pushViewController:vc animated:YES];

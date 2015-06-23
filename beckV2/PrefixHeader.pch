@@ -17,8 +17,9 @@
 
 #define kOpenQQAppKey       @"1104313746"
 #define  kWXAPP_ID          @"wxe9546a8b8614b7c6"
+#define  kWXAPP_SECRET      @"12aac28f91bac5a6f36fb21809066906"
 #define kSinaAppKey         @"1145181677"
-#define kSinaRedirectURI    @"http://www.weibo.com"
+#define kSinaRedirectURI    @"https://openapi.baidu.com/social/oauth/2.0/receiver"
 
 #define kRenRenAppId        @"473852"
 #define kRenRenAppKey       @"50047f5dfd9d468bbf58caf6580a8f07"

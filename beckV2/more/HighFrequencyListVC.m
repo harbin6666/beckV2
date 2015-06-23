@@ -28,7 +28,7 @@
                 [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
             }
         }else{
-            [[OTSAlertView alertWithMessage:@"暂无数据" andCompleteBlock:nil] show];
+            [[OTSAlertView alertWithMessage:@"当前无更新数据" andCompleteBlock:nil] show];
         }
     }];
     // Do any additional setup after loading the view.

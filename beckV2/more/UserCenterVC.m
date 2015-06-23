@@ -21,8 +21,13 @@
     self.title=@"个人档案";
     UIImageView *imv=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     UILabel *l=[[UILabel alloc] initWithFrame:imv.bounds];
-    
-    l.text=[NSString stringWithFormat:@"      %@ 欢迎你",[[Global sharedSingle].userBean valueForKey:@"loginName"]];
+    NSString *nick=nil;
+    if ([Global sharedSingle].nickName!=nil) {
+        nick=[Global sharedSingle].nickName;
+    }else{
+        nick=[[Global sharedSingle].userBean valueForKey:@"loginName"];
+    }
+    l.text=[NSString stringWithFormat:@"      %@ ,欢迎你",nick];
     l.textAlignment=NSTextAlignmentLeft;
     imv.image=[[UIImage imageNamed:@"personalbg"] stretchableImageWithLeftCapWidth:5 topCapHeight:2];
     
@@ -45,8 +50,10 @@
     [Global sharedSingle].userBean=nil;
     [Global sharedSingle].logined=NO;
     [Global sharedSingle].loginName=nil;
+    [Global sharedSingle].nickName=nil;
     [[Global sharedSingle] setUserValue:@0 Key:@"logined"];
     [[Global sharedSingle] setUserValue:nil Key:@"loginName"];
+    [[Global sharedSingle] setUserValue:nil Key:@"passWord"];
     [[Global sharedSingle] setUserValue:nil Key:@"userBean"];
 
     AppDelegate *app=[UIApplication sharedApplication].delegate;

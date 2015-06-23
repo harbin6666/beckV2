@@ -11,4 +11,7 @@
 @interface PractisDetailVC : BaseViewController
 @property(nonatomic,strong)NSArray *practisAr;
 @property(nonatomic,strong)NSString *outlineid;
+@property(nonatomic)NSInteger type;
+@property(nonatomic,strong)NSArray *examAr;
+@property(nonatomic,strong)NSArray *examPapers;
 @end

@@ -8,6 +8,8 @@
 
 #import "MoreVC.h"
 #import "HighFrequencyListVC.h"
+//#import"ShareToolViewController.h"
+#import "WXApi.h"
 @interface MoreVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,weak)IBOutlet UITableView*table;
 @end
@@ -112,7 +114,29 @@
     cell.textLabel.text=text;
     return cell;
 }
+-(void)share{
 
+    
+}
+- (void)sharedByWeChatWithImage:(NSString *)imageName sceneType:(int)sceneType
+{
+    WXMediaMessage *message = [WXMediaMessage message];
+    [message setThumbImage:[UIImage imageNamed:imageName]];
+    
+    WXImageObject *ext = [WXImageObject object];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:imageName ofType:@"png"];
+    ext.imageData  = [NSData dataWithContentsOfFile:filePath];
+    UIImage *image = [UIImage imageWithData:ext.imageData];
+    ext.imageData  = UIImagePNGRepresentation(image);
+    
+    message.mediaObject = ext;
+    
+    SendMessageToWXReq *req = [[SendMessageToWXReq alloc] init];
+    req.bText   = NO;
+    req.message = message;
+    req.scene   = sceneType;
+    [WXApi sendReq:req];
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
         if (indexPath.row==0) {
@@ -128,7 +152,7 @@
         }else if (indexPath.row==1){
             [self performSegueWithIdentifier:@"tomessage" sender:self];
         }else{
-            
+            [self share];
         }
     }else{
         if (indexPath.row==0) {

@@ -9,9 +9,7 @@
 #import "BaseViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 
-
 @implementation UIViewController (Beck)
-
 - (void)configNavibar
 {
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_0) {
@@ -22,6 +20,7 @@
 - (void)setNavigationBarButtonName:(NSString *)aName width:(CGFloat)aWidth isLeft:(BOOL)left
 {
     UIButton *btn = [UIButton viewWithFrame:CGRectMake(0, 0, aWidth, 44)];
+    btn.titleLabel.font=[UIFont systemFontOfSize:14];
     [btn setTitle:aName forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     UIBarButtonItem *btnItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
@@ -58,6 +57,12 @@
     [self configNavibar];
 //    self.view.backgroundColor=[UIColor colorWithRed:234/255.0 green:234/255.0 blue:234/255.0 alpha:1];
 }
+//- (void)showPositionPan{
+//    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+//    self.postionPan=[sb instantiateViewControllerWithIdentifier:@"PositionVC"];
+//    self.postionPan.delegate=self;
+//    [self.view addSubview:self.postionPan.view];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

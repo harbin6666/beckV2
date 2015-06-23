@@ -17,3 +17,5 @@
 @implementation ExamPaper_Content
 
 @end
+@implementation UserExam
+@end

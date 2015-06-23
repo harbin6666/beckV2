@@ -297,6 +297,32 @@ singleton_implementation(SQLManager);
     return result;
 
 }
+
+-(NSArray*)getExamPaperContentByPaperid:(NSString*)paperid{
+    
+    
+    __block NSMutableArray*result=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat:@"select * from exam_paper_content where paper_id==%@ ORDER BY priority asc",paperid];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            ExamPaper_Content *paper=[ExamPaper_Content new];
+            paper.content_id=row[0];
+            paper.paper_id=row[2];
+            paper.comp_id=row[1];
+            paper.item_id=row[3];
+            paper.priority=row[4];
+            paper.score=row[5];
+            paper.custom_id=row[6];
+            paper.descript=row[7];
+            paper.memo=row[8];
+            [result addObject:paper];
+        }
+    }];
+    return result;
+}
+
 -(NSArray*)getExamPaperContentByPaperid:(NSString*)paperid compid:(NSString*)compid{
     
     
@@ -346,7 +372,6 @@ singleton_implementation(SQLManager);
     }];
     return result;
 }
-
 -(NSArray*)getExamPaperType:(NSString*)type screen:(NSString *)screenid{
     __block NSMutableArray*result=@[].mutableCopy;
 //    NSString *subjectid=[self getSubjectidByTitleId:[[Global sharedSingle] getUserWithkey:@"titleid"]];
@@ -385,6 +410,34 @@ singleton_implementation(SQLManager);
     }];
     return result;
 
+    
+}
+-(NSArray*)getUserExamByPaperId:(NSString *)pId{
+    __block NSMutableArray*result=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat: @"select * from user_exam where user_id==%@ and paper_id==%@",[Global sharedSingle].userBean[@"userId"] ,pId];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            UserExam *paper=[UserExam new];
+            paper.paper_id=row[1];
+            paper.type=row[2];
+            paper.user_id=row[3];
+            paper.product_id=row[4];
+            paper.subject_id=row[5];
+            paper.lib_id=row[6];
+            paper.begin_time=row[7];
+            paper.end_time=row[8];
+            paper.score=row[9];
+            paper.user_answer=row[10];
+            paper.right_amount=row[11];
+            paper.wrong_amount=row[12];
+            paper.descript=row[13];
+            paper.memo=row[14];
+            [result addObject:paper];
+        }
+    }];
+    return result;
     
 }
 
@@ -753,7 +806,7 @@ singleton_implementation(SQLManager);
         }
     }];
     
-    NSString *userExerciseId = @"select max(id) from user_exam_subject";
+    NSString *userExerciseId = @"select max(id) from user_exercise";
     [[AFSQLManager sharedManager] performQuery:userExerciseId withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             

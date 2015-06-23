@@ -54,7 +54,7 @@ singleton_interface(SQLManager);
 -(NSArray*)getExamPaperCompositonByPaperId:(NSString*)paperid;
 
 -(NSArray*)getExamPaperContentByPaperid:(NSString*)paperid compid:(NSString*)compid;
-
+-(NSArray*)getExamPaperContentByPaperid:(NSString*)paperid;
 -(Question*)getExamQuestionByItemId:(NSString*)qid customid:(NSString*)customid;
 
 
@@ -74,6 +74,8 @@ singleton_interface(SQLManager);
 -(NSString *)findNoteByItemId:(NSString*)itemid customId:(NSString*)customId;
 -(NSArray*)findUserWrongByUserId:(NSString*)uid;
 -(NSArray*)findUserCollectByUserid:(NSString*)uid;
+
+-(NSArray*)getUserExamByPaperId:(NSString *)pId;
 -(void)openDB;
 
 @end

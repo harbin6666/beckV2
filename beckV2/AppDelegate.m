@@ -26,6 +26,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[SQLManager sharedSingle] openDB];
+    [WeiboSDK registerApp:kSinaAppKey];
+    [WeiboSDK enableDebugMode:YES];
+    
+    [WXApi registerApp:kWXAPP_ID];
+
     NSString * titleid=[[Global sharedSingle] getUserWithkey:@"titleid"];
     if (titleid==nil) {
         NSArray *tts=[[SQLManager sharedSingle] getTitles];

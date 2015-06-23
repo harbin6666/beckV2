@@ -68,6 +68,8 @@
                     NSMutableDictionary *loginParam=@{@"token":@"twoLogin",@"loginName":self.phoneNum,@"passWord":self.pass.text}.mutableCopy;
                     [self getValueWithBeckUrl:@"/front/userAct.htm" params:loginParam CompleteBlock:^(id aResponseObject, NSError *anError) {
                         if ([aResponseObject[@"errorcode"] intValue]==0) {
+                            [Global sharedSingle].loginName=self.phoneNum;
+                            [Global sharedSingle].passWord=self.pass.text;
                             [self performSegueWithIdentifier:@"tohome" sender:self];
                         }else{
                             [self.navigationController popToRootViewControllerAnimated:YES];
@@ -79,14 +81,14 @@
         }];
     }
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
+    
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end
