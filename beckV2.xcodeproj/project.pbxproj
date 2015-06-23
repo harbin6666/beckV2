@@ -101,6 +101,7 @@
 		39589A2A1B36A7030056B9A5 /* ApiXml.mm in Sources */ = {isa = PBXBuildFile; fileRef = 39589A251B36A7030056B9A5 /* ApiXml.mm */; };
 		39589A2B1B36A7030056B9A5 /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 39589A271B36A7030056B9A5 /* payRequsestHandler.mm */; };
 		39589A2C1B36A7030056B9A5 /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 39589A291B36A7030056B9A5 /* WXUtil.mm */; };
+		39589A2F1B398A840056B9A5 /* WechatObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 39589A2E1B398A840056B9A5 /* WechatObj.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -348,6 +349,8 @@
 		39589A271B36A7030056B9A5 /* payRequsestHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = payRequsestHandler.mm; sourceTree = "<group>"; };
 		39589A281B36A7030056B9A5 /* WXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUtil.h; sourceTree = "<group>"; };
 		39589A291B36A7030056B9A5 /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
+		39589A2D1B398A840056B9A5 /* WechatObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatObj.h; sourceTree = "<group>"; };
+		39589A2E1B398A840056B9A5 /* WechatObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatObj.m; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -1102,6 +1105,8 @@
 				39D780CC1B1386C9009F5C8E /* OTSAlertView.m */,
 				394C4A2E1B2752350002838B /* SelectionPan.h */,
 				394C4A2F1B2752350002838B /* SelectionPan.m */,
+				39589A2D1B398A840056B9A5 /* WechatObj.h */,
+				39589A2E1B398A840056B9A5 /* WechatObj.m */,
 			);
 			path = custom;
 			sourceTree = "<group>";
@@ -1370,6 +1375,7 @@
 				395899BC1B2DE2BE0056B9A5 /* CALayer+Anim.m in Sources */,
 				395899F71B31E09B0056B9A5 /* UIImage+tool.m in Sources */,
 				39D780C81B138533009F5C8E /* HonorTVCell.m in Sources */,
+				39589A2F1B398A840056B9A5 /* WechatObj.m in Sources */,
 				395899C51B2DE2BE0056B9A5 /* UIDevice+Extend.m in Sources */,
 				39372E8D1B0A5EF600891F52 /* ConditionContainerVC.m in Sources */,
 				39CD45F61B209A7E005320B5 /* MoreVC.m in Sources */,

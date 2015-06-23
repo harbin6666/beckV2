@@ -11,6 +11,7 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "AppDelegate.h"
 #import "Global.h"
+#import "WechatObj.h"
 @interface LoginVC ()<TencentLoginDelegate,TencentSessionDelegate,UITextFieldDelegate,WBHttpRequestDelegate>
 @property(nonatomic,weak)IBOutlet UITextField* usrName;
 @property(nonatomic,weak)IBOutlet UITextField* passw;

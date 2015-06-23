@@ -13,10 +13,10 @@
 #import "WXApi.h"
 #import "CoreNewFeatureVC.h"
 #import "CALayer+Transition.h"
-
+#import "WechatObj.h"
 //#import <RennSDK/RennSDK.h>
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WXApiDelegate>
 
 @end
 
@@ -29,7 +29,7 @@
     [WeiboSDK registerApp:kSinaAppKey];
     [WeiboSDK enableDebugMode:YES];
     
-    [WXApi registerApp:kWXAPP_ID];
+    [WXApi registerApp:kWXAPP_ID withDescription:@"beck"];
 
     NSString * titleid=[[Global sharedSingle] getUserWithkey:@"titleid"];
     if (titleid==nil) {
@@ -82,13 +82,14 @@
        return [WeiboSDK handleOpenURL:url delegate:self.loginVC];
     }
     else  {
-        return [ WXApi handleOpenURL:url delegate:self.loginVC];
+        return [ WXApi handleOpenURL:url delegate:[WechatObj sharedSingle]];
     }
 
     return YES;
 }
+
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-    return [ WXApi handleOpenURL:url delegate:self.loginVC];
+    return [ WXApi handleOpenURL:url delegate:[WechatObj sharedSingle]];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
