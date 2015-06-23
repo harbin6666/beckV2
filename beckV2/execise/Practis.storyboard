@@ -1933,8 +1933,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="line" placeholder="说说您的建议,我们会根据您的意见改进哦~" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RpA-RT-mqs">
-                                <rect key="frame" x="0.0" y="64" width="375" height="167"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="说说您的建议,我们会根据您的意见改进哦~" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RpA-RT-mqs">
+                                <rect key="frame" x="10" y="74" width="355" height="237"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1942,10 +1942,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="RpA-RT-mqs" firstAttribute="top" secondItem="mtS-6p-z3J" secondAttribute="bottom" id="KpT-M7-bYU"/>
-                            <constraint firstItem="RpA-RT-mqs" firstAttribute="leading" secondItem="0Do-Bb-Mfu" secondAttribute="leading" id="Nfj-Kq-dqT"/>
-                            <constraint firstItem="RpA-RT-mqs" firstAttribute="height" secondItem="0Do-Bb-Mfu" secondAttribute="height" multiplier="1/4" id="Nzk-we-P5T"/>
-                            <constraint firstAttribute="trailing" secondItem="RpA-RT-mqs" secondAttribute="trailing" id="uhE-pS-3d8"/>
+                            <constraint firstItem="RpA-RT-mqs" firstAttribute="top" secondItem="mtS-6p-z3J" secondAttribute="bottom" constant="10" id="KpT-M7-bYU"/>
+                            <constraint firstItem="RpA-RT-mqs" firstAttribute="leading" secondItem="0Do-Bb-Mfu" secondAttribute="leading" constant="10" id="Nfj-Kq-dqT"/>
+                            <constraint firstItem="RpA-RT-mqs" firstAttribute="height" secondItem="0Do-Bb-Mfu" secondAttribute="height" multiplier="1/4" constant="70" id="Nzk-we-P5T"/>
+                            <constraint firstAttribute="trailing" secondItem="RpA-RT-mqs" secondAttribute="trailing" constant="10" id="uhE-pS-3d8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="意见反馈" id="rLq-rW-Wbd">
