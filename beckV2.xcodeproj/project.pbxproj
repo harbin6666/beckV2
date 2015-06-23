@@ -102,6 +102,7 @@
 		39589A2B1B36A7030056B9A5 /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 39589A271B36A7030056B9A5 /* payRequsestHandler.mm */; };
 		39589A2C1B36A7030056B9A5 /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 39589A291B36A7030056B9A5 /* WXUtil.mm */; };
 		39589A2F1B398A840056B9A5 /* WechatObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 39589A2E1B398A840056B9A5 /* WechatObj.m */; };
+		39589A9E1B39C3EF0056B9A5 /* AlipayObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 39589A9D1B39C3EF0056B9A5 /* AlipayObj.m */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
@@ -351,6 +352,8 @@
 		39589A291B36A7030056B9A5 /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
 		39589A2D1B398A840056B9A5 /* WechatObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatObj.h; sourceTree = "<group>"; };
 		39589A2E1B398A840056B9A5 /* WechatObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatObj.m; sourceTree = "<group>"; };
+		39589A9C1B39C3EF0056B9A5 /* AlipayObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlipayObj.h; sourceTree = "<group>"; };
+		39589A9D1B39C3EF0056B9A5 /* AlipayObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlipayObj.m; sourceTree = "<group>"; };
 		396AD2FF1B176CB5005F92B1 /* NSArray+fecth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+fecth.h"; sourceTree = "<group>"; };
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
@@ -1101,6 +1104,8 @@
 		39D780CA1B1386AF009F5C8E /* custom */ = {
 			isa = PBXGroup;
 			children = (
+				39589A9C1B39C3EF0056B9A5 /* AlipayObj.h */,
+				39589A9D1B39C3EF0056B9A5 /* AlipayObj.m */,
 				39D780CB1B1386C9009F5C8E /* OTSAlertView.h */,
 				39D780CC1B1386C9009F5C8E /* OTSAlertView.m */,
 				394C4A2E1B2752350002838B /* SelectionPan.h */,
@@ -1300,6 +1305,7 @@
 				39D780BF1B13644E009F5C8E /* DismissSegue.m in Sources */,
 				39589A2B1B36A7030056B9A5 /* payRequsestHandler.mm in Sources */,
 				39D780C21B136E93009F5C8E /* Global.m in Sources */,
+				39589A9E1B39C3EF0056B9A5 /* AlipayObj.m in Sources */,
 				395899C01B2DE2BE0056B9A5 /* NSObject+Extend.m in Sources */,
 				39CE4C711B19BE2A00DDAB01 /* OutlineCell.m in Sources */,
 				39CE4C741B1A245400DDAB01 /* TabbarVC.m in Sources */,
