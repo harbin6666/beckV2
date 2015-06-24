@@ -131,7 +131,7 @@
     b.frame=CGRectMake((w-63)/2, self.bb.frame.size.height-100, 63, 63);
     b.tag=1;
     [b addTarget:self action:@selector(shareclick:) forControlEvents:UIControlEventTouchUpInside];
-    [b setBackgroundImage:[UIImage imageNamed:@"qq"] forState:UIControlStateNormal];
+    [b setBackgroundImage:[UIImage imageNamed:@"wechatf"] forState:UIControlStateNormal];
     [self.bb addSubview:b];
     
     UIButton *b1=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -139,7 +139,7 @@
     b1.tag=0;
     [b1 addTarget:self action:@selector(shareclick:) forControlEvents:UIControlEventTouchUpInside];
 
-    [b1 setBackgroundImage:[UIImage imageNamed:@"sina"] forState:UIControlStateNormal];
+    [b1 setBackgroundImage:[UIImage imageNamed:@"wechat"] forState:UIControlStateNormal];
     [self.bb addSubview:b1];
     
     UIButton *b2=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -147,7 +147,7 @@
     b2.tag=2;
     [b2 addTarget:self action:@selector(shareclick:) forControlEvents:UIControlEventTouchUpInside];
 
-    [b2 setBackgroundImage:[UIImage imageNamed:@"renren"] forState:UIControlStateNormal];
+    [b2 setBackgroundImage:[UIImage imageNamed:@"qq"] forState:UIControlStateNormal];
     [self.bb addSubview:b2];
     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismssShare)];
     [self.bb addGestureRecognizer:tap];
