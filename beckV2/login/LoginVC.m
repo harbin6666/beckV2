@@ -222,10 +222,16 @@
 }
 
 - (void)request:(WBHttpRequest *)request didFinishLoadingWithResult:(NSString *)result{
-    
 }
 
 - (void)request:(WBHttpRequest *)request didFinishLoadingWithDataResult:(NSData *)data{
+//    NSString *string=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    [Global sharedSingle].nickName=dic[@"screen_name"];
+    self.accessToken=dic[@"idstr"];
+
+    [self unoinLogin];
+    
 }
 
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response
@@ -235,22 +241,19 @@
         //(int)response.statusCode = 0 is ok
         if ([(WBAuthorizeResponse *)response userID]) {
             NSLog(@"Sina 登录成功");
-
-            self.accessToken=[(WBAuthorizeResponse *)response userID];
-            [self unoinLogin];
-
-//            [WBHttpRequest requestWithURL:@"users/show.json" httpMethod:@"POST" params:[NSMutableDictionary dictionaryWithObject:self.accessToken forKey:@"uid"] delegate:self withTag:0];
-//            [WBHttpRequest requestWithURL:@"users/show.json" params:[NSMutableDictionary dictionaryWithObject:self.accessToken forKey:@"uid"] httpMethod:@"GET" delegate:self];
-
-        }
-//            [WBHttpRequest requestForUserProfile:[(WBAuthorizeResponse *)response userID] withAccessToken:[(WBAuthorizeResponse *)response accessToken] andOtherProperties:nil queue:nil withCompletionHandler:^(WBHttpRequest *httpRequest, id result, NSError *error) {
-//                [self unoinLogin];
-//                
-//            }];
-
+            NSString *uid=[(WBAuthorizeResponse *)response userID];
+            NSString *accesstoken=[(WBAuthorizeResponse *)response accessToken];
+            
+            NSMutableDictionary *dic=[NSMutableDictionary dictionary];
+            [dic setObject:uid forKey:@"uid"];
+            [dic setObject:accesstoken forKey:@"access_token"];
+            [WBHttpRequest requestWithURL:@"https://api.weibo.com/2/users/show.json" httpMethod:@"GET" params:dic  delegate:self withTag:@"1"];
         
         
+        }else{
+            [[OTSAlertView alertWithMessage:@"登录失败" andCompleteBlock:nil] show];
         }
+    }
     
 }
 

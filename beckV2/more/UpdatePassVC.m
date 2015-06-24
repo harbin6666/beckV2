@@ -28,6 +28,7 @@
                         [Global sharedSingle].logined=NO;
                         [Global sharedSingle].loginName=nil;
                         [Global sharedSingle].nickName=nil;
+                        [Global sharedSingle].passWord=nil;
                         [[Global sharedSingle] setUserValue:@0 Key:@"logined"];
                         [[Global sharedSingle] setUserValue:nil Key:@"loginName"];
                         [[Global sharedSingle] setUserValue:nil Key:@"passWord"];

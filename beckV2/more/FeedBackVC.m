@@ -49,11 +49,13 @@
         [self hideLoading];
         if (!anError) {
             NSNumber *errorcode = aResponseObject[@"errorcode"];
-            if (errorcode.boolValue) {
+            if (errorcode.integerValue!=0) {
                 [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
             }
             else {
-                [self.navigationController popViewControllerAnimated:YES];
+                [[OTSAlertView alertWithMessage:@"提交成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex){
+                    [self.navigationController popViewControllerAnimated:YES];
+                }] show];
             }
         }
         else {
