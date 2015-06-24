@@ -45,7 +45,7 @@ singleton_implementation(QQObj)
 
 //    QQApiURLObject*url=[QQApiURLObject objectWithURL:[NSURL URLWithString:@"http://www.zhongxinlan.com/beck/front/shareAct.htm?operate=share"] title:@"医百分" description:@"执业医师考试大全" previewImageData:UIImagePNGRepresentation(img) targetContentType:QQApiURLTargetTypeNotSpecified];
     
-    QQApiNewsObject* mes=[QQApiNewsObject objectWithURL:[NSURL URLWithString:@"http://www.zhongxinlan.com/beck/front/shareAct.htm?operate=share"] title:@"医百分" description:@"执业医师考试大全" previewImageData:UIImagePNGRepresentation(img)];
+    QQApiNewsObject* mes=[QQApiNewsObject objectWithURL:[NSURL URLWithString:@"http://www.zhongxinlan.com/beck/front/shareAct.htm?operate=share"] title:@"医百分" description:@"权威的执业药师、执业医师考试辅导软件，软件题库紧扣考试大纲，并保持实时更新，设置的错题重做、统计分析、模拟考试、个人成就等多个功能模块全方位满足考生的需求。" previewImageData:UIImagePNGRepresentation(img)];
     SendMessageToQQReq *req=[SendMessageToQQReq reqWithContent:mes];
    QQApiSendResultCode code= [QQApiInterface sendReq:req];
     //qqzone
