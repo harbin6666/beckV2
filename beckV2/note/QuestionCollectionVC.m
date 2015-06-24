@@ -148,8 +148,8 @@
     }else{
         NSMutableArray *ar=[[NSMutableArray alloc] init];
         for (Collection *n in self.dataAr) {
-            if (n.item_id.integerValue==note.item_id.integerValue&&n.type_id.integerValue==note.type_id.integerValue) {
-                Question *q=[[SQLManager sharedSingle] getExamQuestionByItemId:note.item_id customid:note.type_id];
+            if (n.outline_id.integerValue==note.outline_id.integerValue&&n.type_id.integerValue==note.type_id.integerValue) {
+                Question *q=[[SQLManager sharedSingle] getExamQuestionByItemId:n.item_id customid:n.type_id];
                 if (q!=nil) {
                     [ar addObject:q];
                 }

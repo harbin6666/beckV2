@@ -65,7 +65,12 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     Outline *ol=self.dataAr[indexPath.row];
+    NSInteger total=[[SQLManager sharedSingle] countDownByOutlineid:ol.outlineid];
+    if (total==0) {
+        return;
+    }
     UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
     PractiseVC *vc = [mainStoryboard instantiateViewControllerWithIdentifier:@"practise"];
 

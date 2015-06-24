@@ -520,6 +520,9 @@
                 STRONG_SELF;
                 if (anError==nil) {
                     if ([aResponseObject[@"errorcode"] integerValue]==0) {
+                        for (NSString *sql in aResponseObject[@"list"]) {
+                            [[SQLManager sharedSingle] excuseSql:sql];
+                        }
                         [self showLoadingWithMessage:@"添加成功" hideAfter:2];
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDB" object:nil];
                         self.currentNote=[[SQLManager sharedSingle] findNoteByItemId:titid customId:q.custom_id];
@@ -537,6 +540,7 @@
     }] ;
     alert.alertViewStyle=UIAlertViewStylePlainTextInput;
     [alert show];
+    
     if (self.currentNote!=nil&&self.currentNote.length>0) {
         UITextField *tf=[alert textFieldAtIndex:0];
         tf.text=self.currentNote;
