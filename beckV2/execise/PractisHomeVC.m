@@ -24,15 +24,16 @@
     
 }
 
--(void)rightBtnClick:(UIButton *)sender{
-    if (sender.selected==NO) {
-        sender.selected=YES;
-        [self showPositionPan];
-    }else{
-        sender.selected=NO;
-        
-    }
-}
+//-(void)rightBtnClick:(UIButton *)sender{
+//    if (sender.selected==NO) {
+//        sender.selected=YES;
+//        [self showPositionPan];
+//    }else{
+//        sender.selected=NO;
+//        
+//    }
+//}
+
 -(void)selectedPostion{
     self.dataAr=[NSMutableArray array];
     self.subjectIdList=[[SQLManager sharedSingle] getSubjectIdArrayByid:[[Global sharedSingle] getUserWithkey:@"titleid"]];
@@ -49,9 +50,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSMutableString *str=[NSMutableString stringWithString:[[Global sharedSingle] getUserWithkey:@"titleName"]];
-    [str appendString:@" ▼"];
-    [self setNavigationBarButtonName:str width:80 isLeft:NO];
+//    NSMutableString *str=[NSMutableString stringWithString:[[Global sharedSingle] getUserWithkey:@"titleName"]];
+//    [str appendString:@" ▼"];
+//    [self setNavigationBarButtonName:str width:80 isLeft:NO];
 
 
     self.dataAr=[NSMutableArray array];

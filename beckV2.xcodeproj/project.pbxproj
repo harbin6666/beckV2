@@ -121,6 +121,7 @@
 		397DDAD91B14C3D000E8F73B /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD81B14C3D000E8F73B /* SetPasswordVC.m */; };
 		397DDADC1B14C9F800E8F73B /* FindPassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDADB1B14C9F800E8F73B /* FindPassVC.m */; };
 		397F897F1B39FA2700C2409D /* QQObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 397F897E1B39FA2700C2409D /* QQObj.m */; };
+		397F89821B3B266500C2409D /* ExamDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397F89811B3B266500C2409D /* ExamDetailVC.m */; };
 		39CD45F61B209A7E005320B5 /* MoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CD45F51B209A7E005320B5 /* MoreVC.m */; };
 		39CD45F91B209A8D005320B5 /* NoteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CD45F81B209A8D005320B5 /* NoteVC.m */; };
 		39CD45FC1B209B19005320B5 /* ExamHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CD45FB1B209B19005320B5 /* ExamHomeVC.m */; };
@@ -476,6 +477,8 @@
 		397DDADB1B14C9F800E8F73B /* FindPassVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPassVC.m; sourceTree = "<group>"; };
 		397F897D1B39FA2700C2409D /* QQObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQObj.h; sourceTree = "<group>"; };
 		397F897E1B39FA2700C2409D /* QQObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQObj.m; sourceTree = "<group>"; };
+		397F89801B3B266500C2409D /* ExamDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamDetailVC.h; sourceTree = "<group>"; };
+		397F89811B3B266500C2409D /* ExamDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamDetailVC.m; sourceTree = "<group>"; };
 		39CD45F41B209A7E005320B5 /* MoreVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreVC.h; sourceTree = "<group>"; };
 		39CD45F51B209A7E005320B5 /* MoreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreVC.m; sourceTree = "<group>"; };
 		39CD45F71B209A8D005320B5 /* NoteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteVC.h; sourceTree = "<group>"; };
@@ -1222,6 +1225,8 @@
 				395899FF1B3331430056B9A5 /* NoteListCell.m */,
 				394C4A251B274F460002838B /* NoteDetailVC.h */,
 				394C4A261B274F460002838B /* NoteDetailVC.m */,
+				397F89801B3B266500C2409D /* ExamDetailVC.h */,
+				397F89811B3B266500C2409D /* ExamDetailVC.m */,
 				394C4A281B274F8A0002838B /* PractisDetailVC.h */,
 				394C4A291B274F8A0002838B /* PractisDetailVC.m */,
 				394C4A221B274AA00002838B /* CollectVC.h */,
@@ -1558,6 +1563,7 @@
 				395899D41B2DE2BE0056B9A5 /* MASViewAttribute.m in Sources */,
 				396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */,
 				395899CD1B2DE2BE0056B9A5 /* UIView+Extend.m in Sources */,
+				397F89821B3B266500C2409D /* ExamDetailVC.m in Sources */,
 				397DDAD61B14B64C00E8F73B /* VerifyVC.m in Sources */,
 				395899FA1B31E6650056B9A5 /* UpdatePassVC.m in Sources */,
 				39CE4C8E1B1E044B00DDAB01 /* CompatyCell.m in Sources */,

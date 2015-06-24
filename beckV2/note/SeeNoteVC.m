@@ -13,6 +13,7 @@
 #import "SelectionPan.h"
 #import "ExamPaper.h"
 #import "PractisDetailVC.h"
+#import "ExamDetailVC.h"
 @interface SeeNoteVC ()
 @property(nonatomic,strong)NSArray *subjectIdList;
 @property(nonatomic,strong)NSArray *subjectList;
@@ -123,16 +124,19 @@
         }
         cell.detailTextLabel.text=[NSString stringWithFormat:@"%zd",recodes.count];
     }else{
-       
-            NSMutableArray * ar=[NSMutableArray array];
-//            NSArray *outlinelist=[[SQLManager sharedSingle] getOutLineByParentId:ot.outlineid];
-//            for (Outline *o in outlinelist) {
-//                NSLog(@"%@",o.outlineid);
-                NSArray *temp=[[SQLManager sharedSingle] getUserNoteByOutlineId:ot.outlineid];
-//                [ar addObjectsFromArray:temp];
-//            }
+        if (self.type==0) {
+            NSArray *temp=[[SQLManager sharedSingle] getUserNoteByOutlineId:ot.outlineid];
             cell.detailTextLabel.text=[NSString stringWithFormat:@"%zd",temp.count];
-        
+        }else{
+            NSMutableArray * ar=[NSMutableArray array];
+            NSArray *outlinelist=[[SQLManager sharedSingle] getOutLineByParentId:ot.outlineid];
+            for (Outline *o in outlinelist) {
+                NSArray *temp=[[SQLManager sharedSingle] getPractisWithOutlineid:o.outlineid];
+                [ar addObjectsFromArray:temp];
+            }
+            
+            cell.detailTextLabel.text=[NSString stringWithFormat:@"%zd",ar.count];
+        }
     }
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     return cell;
@@ -151,7 +155,7 @@
                 [recodes addObjectsFromArray:temp];
             }
         }
-        PractisDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"PractisDetailVC"];
+        ExamDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"ExamDetailVC"];
         vc.examPapers=arr;
         vc.type=1;
         vc.examAr=recodes;

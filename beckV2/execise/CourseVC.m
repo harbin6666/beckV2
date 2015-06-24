@@ -9,6 +9,7 @@
 #import "CourseVC.h"
 #import "Outline.h"
 #import "PractiseVC.h"
+#import "CachedAnswer.h"
 #import "CourseCell.h"
 @interface CourseVC ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -16,6 +17,10 @@
 @end
 
 @implementation CourseVC
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,7 +60,8 @@
 //    }
     Outline *ol=self.dataAr[indexPath.row];
     cell.textlab.text=ol.courseName;
-    NSInteger done=[[SQLManager sharedSingle] countDoneByOutlineid:ol.outlineid];
+//    NSInteger done=[[SQLManager sharedSingle] countDoneByOutlineid:ol.outlineid];
+    NSInteger done=[[CachedAnswer new] getCacheByOutlineid:ol.outlineid].count;
     NSInteger total=[[SQLManager sharedSingle] countDownByOutlineid:ol.outlineid];
     cell.detailLab.text=[NSString stringWithFormat:@"%zd/%zd",done,total];
 
