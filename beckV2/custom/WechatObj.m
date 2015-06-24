@@ -130,6 +130,8 @@ singleton_implementation(Global)
     req.bText=NO;
     req.scene=type;
     req.message=[WXMediaMessage message];
+    UIImage *img=[UIImage imageNamed:@"shareIcon"];
+    req.message.thumbData=UIImagePNGRepresentation(img);
    WXWebpageObject*obj= [WXWebpageObject object];
     obj.webpageUrl=@"http://www.zhongxinlan.com/beck/front/shareAct.htm?operate=share";
     req.message.mediaObject=obj;
