@@ -45,7 +45,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
     ExamPaper*p=[self.papers objectAtIndex:indexPath.row];
+    if (p.type.integerValue==2) {
+        cell.accessoryView=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pointbuy"]];
+    }
     cell.textLabel.text=p.paper_name;
     
     return cell;
@@ -56,6 +60,23 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    self.currentPaper=self.papers[indexPath.row];
+
+    if (self.currentPaper.type.integerValue==2) {
+        NSString *point=self.currentPaper.points;
+        [[OTSAlertView alertWithTitle:@"解锁提示" message:[NSString stringWithFormat:@"%@积分解锁该题目",point] leftBtn:@"取消" rightBtn:@"解锁" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex==1) {
+                [self goExamVC];
+            }else{
+                
+            }
+        }] show];
+    }else{
+        [self goExamVC];
+    }
+
+}
+
+-(void)goExamVC{
     NSArray *examcompose=[[SQLManager sharedSingle] getExamPaperCompositonByPaperId:self.currentPaper.paper_id];
     NSMutableArray *quest=[[NSMutableArray alloc] init];
     for (int i=0; i<examcompose.count; i++) {
@@ -75,8 +96,8 @@
     vc.questionsAr=self.qAr;
     vc.examComp=self.currentPaper;
     [self.navigationController pushViewController:vc animated:YES];
-}
 
+}
 
 
 

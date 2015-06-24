@@ -81,7 +81,7 @@
 //        cell.dlab.numberOfLines=2;
 
     }else if (indexPath.row==1){
-        cell.imageView.image=[UIImage imageNamed:@"zhifu"];
+        cell.imageView.image=[UIImage imageNamed:@"zhifu1"];
         cell.ttlab.text=@"类型";
 
         cell.dlab.text=dic[@"description"];
@@ -89,14 +89,14 @@
         cell.dlab.textColor=[UIColor lightGrayColor];
 
     }else if (indexPath.row==2){
-        cell.imageView.image=[UIImage imageNamed:@"zhifu"];
+        cell.imageView.image=[UIImage imageNamed:@"zhifu2"];
         cell.ttlab.text=@"数量";
         cell.ttlab.textColor=[UIColor lightGrayColor];
         cell.dlab.textColor=[UIColor lightGrayColor];
         cell.dlab.text=[dic[@"moeny"] stringValue];
 
     }else {
-        cell.imageView.image=[UIImage imageNamed:@"zhifu"];
+        cell.imageView.image=[UIImage imageNamed:@"zhifu3"];
         cell.dlab.text=dic[@"payDate"];
         cell.ttlab.textColor=[UIColor lightGrayColor];
         cell.dlab.textColor=[UIColor lightGrayColor];

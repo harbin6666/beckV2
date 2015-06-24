@@ -122,6 +122,8 @@
 		397DDADC1B14C9F800E8F73B /* FindPassVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDADB1B14C9F800E8F73B /* FindPassVC.m */; };
 		397F897F1B39FA2700C2409D /* QQObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 397F897E1B39FA2700C2409D /* QQObj.m */; };
 		397F89821B3B266500C2409D /* ExamDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397F89811B3B266500C2409D /* ExamDetailVC.m */; };
+		397F89851B3B3B9000C2409D /* BuyExamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397F89841B3B3B9000C2409D /* BuyExamVC.m */; };
+		397F89881B3B3BC300C2409D /* FinishExamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397F89871B3B3BC300C2409D /* FinishExamVC.m */; };
 		39CD45F61B209A7E005320B5 /* MoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CD45F51B209A7E005320B5 /* MoreVC.m */; };
 		39CD45F91B209A8D005320B5 /* NoteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CD45F81B209A8D005320B5 /* NoteVC.m */; };
 		39CD45FC1B209B19005320B5 /* ExamHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CD45FB1B209B19005320B5 /* ExamHomeVC.m */; };
@@ -479,6 +481,10 @@
 		397F897E1B39FA2700C2409D /* QQObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQObj.m; sourceTree = "<group>"; };
 		397F89801B3B266500C2409D /* ExamDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamDetailVC.h; sourceTree = "<group>"; };
 		397F89811B3B266500C2409D /* ExamDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamDetailVC.m; sourceTree = "<group>"; };
+		397F89831B3B3B9000C2409D /* BuyExamVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyExamVC.h; sourceTree = "<group>"; };
+		397F89841B3B3B9000C2409D /* BuyExamVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyExamVC.m; sourceTree = "<group>"; };
+		397F89861B3B3BC300C2409D /* FinishExamVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishExamVC.h; sourceTree = "<group>"; };
+		397F89871B3B3BC300C2409D /* FinishExamVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinishExamVC.m; sourceTree = "<group>"; };
 		39CD45F41B209A7E005320B5 /* MoreVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreVC.h; sourceTree = "<group>"; };
 		39CD45F51B209A7E005320B5 /* MoreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreVC.m; sourceTree = "<group>"; };
 		39CD45F71B209A8D005320B5 /* NoteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteVC.h; sourceTree = "<group>"; };
@@ -1274,6 +1280,10 @@
 				39CD45FB1B209B19005320B5 /* ExamHomeVC.m */,
 				394C4A191B24B4D60002838B /* ExamScreenVC.h */,
 				394C4A1A1B24B4D60002838B /* ExamScreenVC.m */,
+				397F89831B3B3B9000C2409D /* BuyExamVC.h */,
+				397F89841B3B3B9000C2409D /* BuyExamVC.m */,
+				397F89861B3B3BC300C2409D /* FinishExamVC.h */,
+				397F89871B3B3BC300C2409D /* FinishExamVC.m */,
 				394C4A1C1B24BE900002838B /* ExamVC.h */,
 				394C4A1D1B24BE900002838B /* ExamVC.m */,
 			);
@@ -1577,6 +1587,7 @@
 				395899CC1B2DE2BE0056B9A5 /* UITableViewCell+Extend.m in Sources */,
 				39D780CD1B1386C9009F5C8E /* OTSAlertView.m in Sources */,
 				39CE4C821B1CBAF400DDAB01 /* CourseVC.m in Sources */,
+				397F89851B3B3B9000C2409D /* BuyExamVC.m in Sources */,
 				395899421B2D5DFC0056B9A5 /* Train3VC.m in Sources */,
 				3958991C1B2BD6800056B9A5 /* MessageVC.m in Sources */,
 				39CD45F91B209A8D005320B5 /* NoteVC.m in Sources */,
@@ -1596,6 +1607,7 @@
 				395899451B2D829C0056B9A5 /* TrainSelcetView.m in Sources */,
 				396AD3041B1772F6005F92B1 /* Position.m in Sources */,
 				394C4A2A1B274F8A0002838B /* PractisDetailVC.m in Sources */,
+				397F89881B3B3BC300C2409D /* FinishExamVC.m in Sources */,
 				39589A061B33446B0056B9A5 /* Collection.m in Sources */,
 				395899BE1B2DE2BE0056B9A5 /* NSArray+Extend.m in Sources */,
 				39CE4C801B1CB1F800DDAB01 /* PractiseVC.m in Sources */,

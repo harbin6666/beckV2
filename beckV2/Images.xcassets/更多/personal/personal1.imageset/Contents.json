@@ -7,17 +7,16 @@
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "navigation_person.png"
+      "filename" : "practicecount.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "navigation_person-1.png"
+      "filename" : "practicecount-1.png"
     }
   ],
   "info" : {
     "version" : 1,
-    "author" : "xcode",
-    "template-rendering-intent" : "original"
+    "author" : "xcode"
   }
 }

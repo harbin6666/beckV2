@@ -2149,11 +2149,11 @@
         <image name="next" width="24" height="21"/>
         <image name="radio" width="19" height="19"/>
         <image name="radio_sel" width="19" height="19"/>
-        <image name="setting" width="23" height="23"/>
+        <image name="setting" width="27" height="24"/>
         <image name="submit" width="24" height="21"/>
         <image name="tab1" width="33" height="29"/>
         <image name="tab2" width="33" height="29"/>
-        <image name="tab3" width="33" height="29"/>
+        <image name="tab3" width="37" height="33"/>
         <image name="tab4" width="33" height="29"/>
         <image name="weizuo" width="24" height="21"/>
         <image name="zhenti0" width="90" height="90"/>
@@ -2162,6 +2162,6 @@
         <image name="zhenti3" width="90" height="90"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JSm-DH-hNJ"/>
+        <segue reference="Ssl-KP-cHU"/>
     </inferredMetricsTieBreakers>
 </document>
