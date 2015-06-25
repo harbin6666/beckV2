@@ -288,6 +288,20 @@ singleton_implementation(SQLManager);
     }
     return nil;
 }
+
+-(NSString *)getExchangePaperStatus:(NSString*)paperid{
+    __block NSString*result=@"";
+    NSString *sql=[NSString stringWithFormat:@"select exchange_status from exchange_paper where paper_id==%@ and user_id==%@",paperid,[Global sharedSingle].userBean[@"userId"]];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            result=row[0];
+        }
+    }];
+    return result;
+
+}
 -(NSArray*)getPractisWithOutlineid:(NSString*)outlineid{
     __block NSMutableArray*result=@[].mutableCopy;
     NSString *sql=[NSString stringWithFormat:@"select * from user_exercise where outline_id==%@ and where user_id==%@",outlineid,[Global sharedSingle].userBean[@"userId"]];

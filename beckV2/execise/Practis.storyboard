@@ -417,7 +417,7 @@
         <!--Point ShopVC-->
         <scene sceneID="dkf-pG-SIc">
             <objects>
-                <tableViewController id="Zpz-DP-Ijo" customClass="PointShopVC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PointShopVC" id="Zpz-DP-Ijo" customClass="PointShopVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kAn-M9-AUj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

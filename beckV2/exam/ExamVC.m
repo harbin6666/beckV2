@@ -168,8 +168,8 @@
     UITabBarItem*item4= [self.tabbar.items objectAtIndex:3];
     
     
-    [item4 setImage:[[UIImage imageNamed:@"favorate"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    [item4 setSelectedImage:[[UIImage imageNamed:@"favorate"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [item4 setImage:[[UIImage imageNamed:@"submit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [item4 setSelectedImage:[[UIImage imageNamed:@"submit_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [item4 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
     [item4 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateSelected];
     
@@ -471,6 +471,9 @@
             else {
                 if (aResponseObject[@"examSql"]) {
                     [[SQLManager sharedSingle] excuseSql:aResponseObject[@"examSql"]];
+                }
+                if (aResponseObject[@"sql"]) {
+                    [[SQLManager sharedSingle] excuseSql:aResponseObject[@"sql"]];
                 }
 //                NSArray *sqlAr=aResponseObject[@"list"];
 //                if (sqlAr.count>0) {

@@ -10,6 +10,7 @@
 #import "ExamPaper.h"
 #import "Question.h"
 #import "ExamVC.h"
+#import "PointShopVC.h"
 @interface ExamScreenVC ()
 @property(nonatomic,strong)NSMutableArray *qAr;
 @property(nonatomic,strong)ExamPaper*currentPaper;
@@ -17,6 +18,10 @@
 
 @implementation ExamScreenVC
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -47,8 +52,14 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     ExamPaper*p=[self.papers objectAtIndex:indexPath.row];
+
     if (p.type.integerValue==2) {
-        cell.accessoryView=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pointbuy"]];
+        NSString *status=[[SQLManager sharedSingle] getExchangePaperStatus:p.paper_id];
+        if (status.integerValue==0) {
+            cell.accessoryView=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pointbuy"]];
+        }else{
+            cell.accessoryView=nil;
+        }
     }
     cell.textLabel.text=p.paper_name;
     
@@ -60,12 +71,49 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    self.currentPaper=self.papers[indexPath.row];
+    
+    if (self.currentPaper.points.integerValue>[[Global sharedSingle].userBean[@"currentPoints"] integerValue]) {
+        NSString *mess=[NSString stringWithFormat:@"购买试卷需要%@积分，您当前积分%@,不足购买此试卷是否前往购买",self.currentPaper.points,[Global sharedSingle].userBean[@"currentPoints"]];
+        [OTSAlertView alertWithTitle:@"提示" message:mess leftBtn:@"取消" rightBtn:@"购买" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex==1) {
+                UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
+               PointShopVC*vc =[sb instantiateViewControllerWithIdentifier:@"PointShopVC"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }];
+        return;
+    }
+    
+    NSString *status=[[SQLManager sharedSingle] getExchangePaperStatus:self.currentPaper.paper_id];
 
-    if (self.currentPaper.type.integerValue==2) {
+    if (self.currentPaper.type.integerValue==2&&status.integerValue==0) {
+        
         NSString *point=self.currentPaper.points;
         [[OTSAlertView alertWithTitle:@"解锁提示" message:[NSString stringWithFormat:@"%@积分解锁该题目",point] leftBtn:@"取消" rightBtn:@"解锁" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex==1) {
-                [self goExamVC];
+                NSDictionary *param=@{@"token":@"add",@"loginName":[Global sharedSingle].loginName,@"examPaperId":self.currentPaper.paper_id};
+                [self showLoading];
+                WEAK_SELF;
+                [self getValueWithBeckUrl:@"/front/exchangePaperAct.htm" params:param CompleteBlock:^(id aResponseObject, NSError *anError) {
+                    STRONG_SELF;
+                    [self hideLoading];
+                    if (anError==nil) {
+                        if ([aResponseObject[@"errorcode"] integerValue]==0) {
+                            [[OTSAlertView alertWithMessage:@"购买成功" andCompleteBlock:nil] show];
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDB" object:nil];
+                            [self.tableView reloadData];
+                            NSArray *list=aResponseObject[@"list"];
+                            for (int i=0; i<list.count; i++) {
+                                [[SQLManager sharedSingle] excuseSql:list[i]];
+                            }
+
+                        }else{
+                            [[OTSAlertView alertWithMessage:@"购买失败" andCompleteBlock:nil] show];
+                        }
+                    }else{
+                        [[OTSAlertView alertWithMessage:@"购买失败" andCompleteBlock:nil] show];
+                    }
+                }];
             }else{
                 
             }

@@ -71,7 +71,7 @@ singleton_interface(SQLManager);
 -(NSArray*)getPoints;
 
 -(NSArray*)getExamByType:(NSString *)type;
-
+-(NSString *)getExchangePaperStatus:(NSString*)paperid;
 -(UserNote *)findNoteByItemId:(NSString*)itemid customId:(NSString*)customId;
 -(NSArray*)findUserWrongByUserId:(NSString*)uid;
 -(NSArray*)findUserCollectByUserid:(NSString*)uid;
