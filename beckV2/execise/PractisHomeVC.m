@@ -11,6 +11,7 @@
 #import "Outline.h"
 #import "CourseVC.h"
 #import "OutlineCell.h"
+#import "CachedAnswer.h"
 @interface PractisHomeVC ()<UITableViewDataSource,UITableViewDelegate,UITabBarDelegate>
 @property(nonatomic,strong)NSArray *subjectIdList;
 @property(nonatomic,strong)NSArray *subjectList;
@@ -21,7 +22,7 @@
 @implementation PractisHomeVC
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    [self.table reloadData];
 }
 
 //-(void)rightBtnClick:(UIButton *)sender{
@@ -47,6 +48,7 @@
     
     [self.table reloadData];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -107,7 +109,8 @@
     NSArray *ar=[[SQLManager sharedSingle] getOutLineByParentId:ot.outlineid];
     NSInteger total=0;
     for (Outline *subOt in ar) {
-        done+=[[SQLManager sharedSingle] countDoneByOutlineid:subOt.outlineid];
+//        done+=[[SQLManager sharedSingle] countDoneByOutlineid:subOt.outlineid];
+        done+=[[CachedAnswer new] getCacheByOutlineid:subOt.outlineid].count;
        total+=[[SQLManager sharedSingle] countDownByOutlineid:subOt.outlineid];
     }
     cell.detailLab.text=[NSString stringWithFormat:@"%zd/%zd",done,total];
