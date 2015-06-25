@@ -54,27 +54,39 @@
 
     self.currentQIndex=0;
 
-    self.answerArray=[[CachedAnswer new] getCacheByOutlineid:self.outletid];
-    if (self.answerArray==nil) {
+    NSArray *cachedAr=[[CachedAnswer new] getCacheByOutlineid:self.outletid];
+    if (cachedAr==nil) {
         self.answerArray=[[NSMutableArray alloc] init];
     }else{
-        self.answerArray=[[CachedAnswer new] getCacheByOutlineid:self.outletid];
        __block PractisAnswer *temp=nil;
-        [self.answerArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [cachedAr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             PractisAnswer *an=(PractisAnswer *)obj;
             if (an.priority.integerValue>temp.priority.integerValue) {
                 temp=an;
             }
+
         }];
         NSString *s=[NSString stringWithFormat:@"上次练习到%@题，是否继续",temp.priority];
         [[OTSAlertView alertWithTitle:@"" message:s leftBtn:@"取消" rightBtn:@"继续" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex==0) {
-                
+                self.answerArray=[NSMutableArray array];
             }else{
                 self.currentQIndex=temp.priority.integerValue-1;
-                [self freshView];
+                self.answerArray=[NSMutableArray arrayWithArray:cachedAr];
+                [self.answerArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    PractisAnswer *an=(PractisAnswer *)obj;
+                    Question* q=self.questionsAr[an.priority.integerValue-1];
+                    if ([an.isRight isEqualToString:@"true"]) {
+                        q.answerType=answeredRight;
+                    }else if ([an.isRight isEqualToString:@"false"]){
+                        q.answerType=answeredwrong;
+                    }else{
+                        q.answerType=answeredNone;
+                    }
+                }];
             }
-            
+            [self freshView];
+
         }] show];
     }
     [self freshView];
