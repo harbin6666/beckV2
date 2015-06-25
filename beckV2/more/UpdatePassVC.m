@@ -18,9 +18,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+
 -(IBAction)pressed:(id)sender{
     if ([self.tf2.text isEqualToString:self.tf3.text]&&self.tf3.text.length>0) {
+        [self showLoading];
+        WEAK_SELF;
         [self getValueWithBeckUrl:@"/front/userAct.htm" params:@{@"token":@"updtePassWord",@"loginName":[Global sharedSingle].loginName,@"passWord":self.tf1.text,@"newPassWord":self.tf2.text} CompleteBlock:^(id aResponseObject, NSError *anError) {
+            STRONG_SELF;
+            [self hideLoading];
             if (anError==nil) {
                 [[OTSAlertView alertWithMessage:aResponseObject[@"token"] andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
                     if ([aResponseObject[@"errorcode"] integerValue]==0) {

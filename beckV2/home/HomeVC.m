@@ -127,6 +127,9 @@
 //        b.layer.borderWidth=1;
 //        b.layer.borderColor=[UIColor blackColor].CGColor;
         [b setTitle:p.titleName forState:UIControlStateNormal];
+        [b setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [b setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+
         if ([p.titleName isEqualToString:[[Global sharedSingle] getUserWithkey:@"titleName"]]) {
             b.selected=YES;
         }else{
@@ -143,6 +146,8 @@
         [b setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [b setBackgroundImage:[UIImage imageNamed:@"position_sel"] forState:UIControlStateSelected];
         [b setBackgroundImage:[UIImage imageNamed:@"position"] forState:UIControlStateNormal];
+        [b setBackgroundImage:[UIImage imageNamed:@"position_dis"] forState:UIControlStateDisabled];
+
         int y=(int)(i/3);
         int x=i%3;
         b.tag=i+10;

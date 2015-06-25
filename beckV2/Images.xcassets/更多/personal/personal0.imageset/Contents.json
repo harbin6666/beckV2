@@ -7,12 +7,12 @@
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "1@2x.png"
+      "filename" : "personscore.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "1@3x.png"
+      "filename" : "personscore-1.png"
     }
   ],
   "info" : {

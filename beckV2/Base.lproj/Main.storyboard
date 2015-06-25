@@ -1418,7 +1418,7 @@
         <image name="sina" width="96" height="96"/>
         <image name="tab1" width="33" height="29"/>
         <image name="tab2" width="33" height="29"/>
-        <image name="tab3" width="33" height="29"/>
+        <image name="tab3" width="37" height="33"/>
         <image name="tab4" width="33" height="29"/>
         <image name="train1" width="540" height="960"/>
         <image name="uncheckbox" width="24" height="24"/>
@@ -1432,9 +1432,9 @@
         <image name="xunzhang4_red" width="96" height="112"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MWS-GT-JBi"/>
-        <segue reference="vAU-pr-r13"/>
+        <segue reference="U3g-eM-tF2"/>
         <segue reference="npZ-RJ-fqi"/>
+        <segue reference="MWS-GT-JBi"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
