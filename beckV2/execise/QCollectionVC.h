@@ -16,4 +16,5 @@
 @interface QCollectionVC : UICollectionViewController
 @property (nonatomic, strong) NSArray *questions;//<questions>
 @property (nonatomic, weak) id <QCollectionVCDelegate> vcDelegate;
+@property (nonatomic)BOOL fromExam;
 @end

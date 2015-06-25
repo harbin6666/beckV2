@@ -1768,7 +1768,7 @@
         <!--CollectionVC-->
         <scene sceneID="XLw-gc-eEd">
             <objects>
-                <collectionViewController id="l6f-U3-HDh" customClass="QCollectionVC" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="QCollectionVC" id="l6f-U3-HDh" customClass="QCollectionVC" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="jnp-v2-zll">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

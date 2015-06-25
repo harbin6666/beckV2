@@ -60,17 +60,23 @@ static NSString * const reuseIdentifier = @"Cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     AnswerCVCCell *cell;
     Question* q = self.questions[indexPath.row];
-    if ([q answerType]==answeredRight) {
-         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"rightcell" forIndexPath:indexPath];
-    
-    }
-    else if([q answerType]==answeredwrong){
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"wrongcell" forIndexPath:indexPath];
-
+    if (self.fromExam) {
+        if (q.answerType==answereddone) {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"rightcell" forIndexPath:indexPath];
+        }else{
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"normalcell" forIndexPath:indexPath];
+        }
     }else{
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"normalcell" forIndexPath:indexPath];
-
+        if ([q answerType]==answeredRight) {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"rightcell" forIndexPath:indexPath];
+        }
+        else if([q answerType]==answeredwrong){
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"wrongcell" forIndexPath:indexPath];
+        }else{
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"normalcell" forIndexPath:indexPath];
+        }
     }
+
     [cell updateWithIndex:indexPath.row];
     return cell;
     

@@ -179,10 +179,10 @@
             </objects>
             <point key="canvasLocation" x="-488" y="1266"/>
         </scene>
-        <!--ShareVC-->
+        <!--Finish ExamVC-->
         <scene sceneID="cgO-kW-Qs6">
             <objects>
-                <viewController storyboardIdentifier="ShareVC" id="7S2-eK-Z5L" customClass="ShareVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FinishExamVC" id="7S2-eK-Z5L" customClass="FinishExamVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tpc-lq-niy"/>
                         <viewControllerLayoutGuide type="bottom" id="3J7-Ms-Hyu"/>
@@ -203,6 +203,9 @@
                                         <state key="normal" backgroundImage="qq">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sharing:" destination="7S2-eK-Z5L" eventType="touchUpInside" id="g15-FP-iKR"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iX2-nJ-b8t">
                                         <rect key="frame" x="268" y="28" width="63" height="63"/>
@@ -213,6 +216,9 @@
                                         <state key="normal" backgroundImage="sina">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sharing:" destination="7S2-eK-Z5L" eventType="touchUpInside" id="UKZ-fy-2h8"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUs-RZ-YXE">
                                         <rect key="frame" x="348" y="28" width="63" height="63"/>
@@ -223,6 +229,9 @@
                                         <state key="normal" backgroundImage="renren">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sharing:" destination="7S2-eK-Z5L" eventType="touchUpInside" id="7ga-t3-FcM"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -231,36 +240,35 @@
                                     <constraint firstItem="iX2-nJ-b8t" firstAttribute="centerY" secondItem="vgj-Eq-daL" secondAttribute="centerY" id="PAM-Sl-rXm"/>
                                     <constraint firstItem="iX2-nJ-b8t" firstAttribute="centerX" secondItem="vgj-Eq-daL" secondAttribute="centerX" constant="80" id="Qgj-2P-u47"/>
                                     <constraint firstAttribute="centerY" secondItem="iX2-nJ-b8t" secondAttribute="centerY" constant="0.5" id="Snw-Jc-ycH"/>
+                                    <constraint firstAttribute="centerY" secondItem="iX2-nJ-b8t" secondAttribute="centerY" constant="0.5" id="TPO-f6-dJR"/>
                                     <constraint firstItem="iX2-nJ-b8t" firstAttribute="centerY" secondItem="LUs-RZ-YXE" secondAttribute="centerY" id="uM6-8I-LpR"/>
                                     <constraint firstAttribute="centerX" secondItem="iX2-nJ-b8t" secondAttribute="centerX" id="whJ-0l-UoS"/>
                                     <constraint firstItem="iX2-nJ-b8t" firstAttribute="centerX" secondItem="LUs-RZ-YXE" secondAttribute="centerX" constant="-80" id="xp2-VW-gi7"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Snw-Jc-ycH"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="3J7-Ms-Hyu" firstAttribute="top" secondItem="xQW-zE-BKo" secondAttribute="bottom" id="5Oh-cS-0XB"/>
                             <constraint firstItem="xQW-zE-BKo" firstAttribute="leading" secondItem="RA5-0k-m0h" secondAttribute="leadingMargin" constant="-16" id="93e-Jc-2n2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xQW-zE-BKo" secondAttribute="trailing" constant="-16" id="LH0-QF-vNZ"/>
+                            <constraint firstItem="3J7-Ms-Hyu" firstAttribute="top" secondItem="xQW-zE-BKo" secondAttribute="bottom" id="qap-E5-CP3"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="9ey-LR-kDc" appends="YES" id="gay-8A-l6E"/>
-                        </connections>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="5Oh-cS-0XB"/>
+                            </mask>
+                        </variation>
                     </view>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="qqF" destination="LUs-RZ-YXE" id="6vQ-mu-lH2"/>
-                        <outlet property="wechat" destination="vgj-Eq-daL" id="t0k-VJ-7PM"/>
-                        <outlet property="wechatF" destination="iX2-nJ-b8t" id="GGK-MD-GBF"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHM-6y-QfK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="9ey-LR-kDc">
-                    <connections>
-                        <action selector="onPressedCancel:" destination="7S2-eK-Z5L" id="2P1-5R-CD4"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-38" y="478"/>
         </scene>

@@ -12,10 +12,10 @@
 #import "ChoiceCell.h"
 #import "CompatyCell.h"
 #import "QCollectionVC.h"
-
+#import "FinishExamVC.h"
 #import "PractisAnswer.h"
 #import "SettingPanVC.h"
-@interface ExamVC ()
+@interface ExamVC ()<QCollectionVCDelegate>
 @property(nonatomic,weak)IBOutlet UILabel *timeLab;
 @property(nonatomic,weak) IBOutlet UILabel *testLab;
 @property(nonatomic,assign)NSInteger currentQIndex;
@@ -365,7 +365,7 @@
             p.answerType=answeredRight;
             
         }
-        
+        p.answerType=answereddone;
         
         if ([p custom_id].intValue!=12) {
             [self.answer.userAnswer removeAllObjects];
@@ -402,7 +402,7 @@
             [self showSetting:item];
             break;
         case 3:
-            [self addFaver:item];
+            [self submit:item];
             break;
         case 4:
             [self forwardPress:item];
@@ -417,9 +417,15 @@
 }
 
 -(void)showAnswer:(UITabBarItem *)item{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
+    QCollectionVC*vc=[sb instantiateViewControllerWithIdentifier:@"QCollectionVC"];
+    vc.vcDelegate=self;
+    vc.questions=self.questionsAr;
+    vc.fromExam=YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void)addFaver:(UITabBarItem *)item{
+-(void)submit:(UITabBarItem *)item{
     
     
     [self showLoading];
@@ -482,7 +488,10 @@
 //                    }
 //                }
                 [[OTSAlertView alertWithMessage:@"提交成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
-                    [self.navigationController popViewControllerAnimated:YES];
+                    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"pan" bundle:[NSBundle mainBundle]];
+                    FinishExamVC*vc=[sb instantiateViewControllerWithIdentifier:@"FinishExamVC"];
+                    [self presentViewController:vc animated:YES completion:nil];
+//                    [self.navigationController popViewControllerAnimated:YES];
                 }] show];
             }
         }

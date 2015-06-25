@@ -10,7 +10,8 @@
 typedef NS_ENUM(int, Answertype){
     answeredNone=0,
     answeredRight=1,
-    answeredwrong=2
+    answeredwrong=2,
+    answereddone=3
 };
 
 @interface Question : NSObject
