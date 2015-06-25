@@ -34,6 +34,8 @@
 @property (nonatomic, strong) SettingPanVC *settingPanVC;
 
 @property(nonatomic,strong)NSDate *beginTime;
+@property(nonatomic,strong)NSString *questionDes;
+
 @end
 
 @implementation ExamVC
@@ -114,7 +116,7 @@
     if ([p isKindOfClass:[ChoiceQuestion class]]) {
         self.table.allowsSelection=YES;
         ChoiceQuestion* q=(ChoiceQuestion*)p;
-        self.testLab.text= q.choice_content;
+        self.questionDes= q.choice_content;
         if (q.custom_id.intValue==12) {
             self.table.allowsMultipleSelection=YES;
         }else{
@@ -142,6 +144,9 @@
         }
         CompatyQuestion* q=self.compatibilyArray[0];
         NSMutableString *str=comp.title.mutableCopy;
+        if (comp.custom_id.integerValue==11) {
+            str=@"".mutableCopy;
+        }
         if (comp.custom_id.intValue!=11) {
             for (int i=0; i<q.items.count; i++) {
                 CompatyItem* it=q.items[i];
@@ -149,11 +154,11 @@
             }
             
         }
-        self.testLab.text=str;
-        self.testLab.textAlignment=NSTextAlignmentLeft;
-        
+        self.questionDes=str;
     }
-    
+    self.testLab.text=[[SQLManager sharedSingle] getQuestionTypeWithCustomId:p.custom_id];
+    self.testLab.textAlignment=NSTextAlignmentCenter;
+
     [self.table reloadData];
     
     UITabBarItem*item5= [self.tabbar.items lastObject];
@@ -262,6 +267,42 @@
     
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
+    if (p.custom_id.integerValue==11) {
+        return 0;
+    }
+    CGSize size =[self.questionDes sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(self.view.frame.size.width-20, 1000)];
+    float h=0;
+    if (size.height<50) {
+        h=50;
+    }else {
+        h=size.height;
+    }
+    
+    return h+15;
+    
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    CGSize size =[self.questionDes sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(self.view.frame.size.width-20, 1000)];
+    float h=0;
+    if (size.height<50) {
+        h=50;
+    }else {
+        h=size.height;
+    }
+    UILabel *la=[[UILabel alloc] initWithFrame:CGRectMake(0, 5, self.view.frame.size.width, h)];
+    la.backgroundColor=[UIColor yellowColor];
+    la.textAlignment=NSTextAlignmentCenter;
+    la.numberOfLines=0;
+    la.font=[UIFont systemFontOfSize:14];
+    la.text=self.questionDes;
+    UIView* v=[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, h+15)];
+    v.backgroundColor=[UIColor lightGrayColor];
+    [v addSubview:la];
+    return v;
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     id p=[self.questionsAr objectAtIndex:self.currentQIndex];

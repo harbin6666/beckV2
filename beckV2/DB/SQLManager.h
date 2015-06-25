@@ -76,6 +76,7 @@ singleton_interface(SQLManager);
 -(NSArray*)findUserCollectByUserid:(NSString*)uid;
 
 -(NSArray*)getUserExamByPaperId:(NSString *)pId;
+-(NSString *)getQuestionTypeWithCustomId:(NSString*)customid;
 -(void)openDB;
 
 @end

@@ -530,7 +530,19 @@ singleton_implementation(SQLManager);
     }];
     return result;
 }
+-(NSString *)getQuestionTypeWithCustomId:(NSString*)customid{
+    __block NSString *str=@"";
+    NSString *sql=[NSString stringWithFormat:@"select custom_name from custom_question_type where custom_id==%@",customid];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            str=row[0];
+        }
 
+    }];
+    return str;
+}
 //已经做过的题目
 -(NSInteger)countDoneByOutlineid:(NSString*)outlineid{
     __block NSInteger total=0;

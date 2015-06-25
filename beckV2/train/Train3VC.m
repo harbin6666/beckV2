@@ -137,6 +137,8 @@ static NSString *privatekey=@"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL
                         self.currentDic=self.list[buttonIndex];
                         [self.table reloadData];
                     }];
+                self.currentDic=self.list[0];
+                [self.table reloadData];
 
             }
         }
