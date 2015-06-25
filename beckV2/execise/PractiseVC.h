@@ -10,4 +10,5 @@
 
 @interface PractiseVC : BaseViewController
 @property(nonatomic,strong)NSString *outletid;
+@property(nonatomic)NSInteger fromPractisDetail;
 @end

@@ -156,7 +156,7 @@
         UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
         PractiseVC *vc=[sb instantiateViewControllerWithIdentifier:@"practise"];
         UserPractis *p=self.practisAr[indexPath.row];
-        
+        vc.fromPractisDetail=YES;
         vc.outletid=p.outlineId;
         [self.navigationController pushViewController:vc animated:YES];
     }else{

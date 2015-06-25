@@ -15,6 +15,7 @@
 #import "CachedAnswer.h"
 #import "PractisAnswer.h"
 #import "SettingPanVC.h"
+#import "UserNote.h"
 @interface PractiseVC ()<UITabBarDelegate,UITableViewDataSource,UITableViewDelegate,QCollectionVCDelegate>
 @property(nonatomic,strong)NSArray *questionsAr;
 @property(nonatomic,weak) IBOutlet UILabel *testLab;
@@ -30,7 +31,7 @@
 @property(nonatomic,assign)BOOL showAnswer;
 
 @property (nonatomic, strong) SettingPanVC *settingPanVC;
-@property(nonatomic,strong)NSString *currentNote;
+@property(nonatomic,strong) UserNote*currentNote;
 @property(nonatomic,strong)NSString *questionDes;
 @end
 
@@ -58,43 +59,67 @@
     if (cachedAr==nil) {
         self.answerArray=[[NSMutableArray alloc] init];
     }else{
-       __block PractisAnswer *temp=nil;
-        [cachedAr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            PractisAnswer *an=(PractisAnswer *)obj;
-            if (an.priority.integerValue>temp.priority.integerValue) {
-                temp=an;
-            }
+        
+        
+        if (self.fromPractisDetail) {
+            NSArray *done=[[SQLManager sharedSingle] getDonePractis:self.outletid];
+            self.navigationItem.rightBarButtonItem=nil;
+            self.answerArray=[NSMutableArray arrayWithArray:done];
+            [self.answerArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                PractisAnswer *an=(PractisAnswer *)obj;
+                Question* q=self.questionsAr[an.priority.integerValue-1];
+                if ([an.isRight isEqualToString:@"true"]) {
+                    q.answerType=answeredRight;
+                }else if ([an.isRight isEqualToString:@"false"]){
+                    q.answerType=answeredwrong;
+                }else{
+                    q.answerType=answeredNone;
+                }
+            }];
 
-        }];
-        NSString *s=[NSString stringWithFormat:@"上次练习到%@题，是否继续",temp.priority];
-        [[OTSAlertView alertWithTitle:@"" message:s leftBtn:@"取消" rightBtn:@"继续" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
-            if (buttonIndex==0) {
-                self.answerArray=[NSMutableArray array];
-            }else{
-                self.currentQIndex=temp.priority.integerValue-1;
-                self.answerArray=[NSMutableArray arrayWithArray:cachedAr];
-                [self.answerArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                    PractisAnswer *an=(PractisAnswer *)obj;
-                    Question* q=self.questionsAr[an.priority.integerValue-1];
-                    if ([an.isRight isEqualToString:@"true"]) {
-                        q.answerType=answeredRight;
-                    }else if ([an.isRight isEqualToString:@"false"]){
-                        q.answerType=answeredwrong;
-                    }else{
-                        q.answerType=answeredNone;
-                    }
-                }];
-            }
-            [self freshView];
-
-        }] show];
+        }else{
+            __block PractisAnswer *temp=nil;
+            [cachedAr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                PractisAnswer *an=(PractisAnswer *)obj;
+                if (an.priority.integerValue>temp.priority.integerValue) {
+                    temp=an;
+                }
+                
+            }];
+            NSString *s=[NSString stringWithFormat:@"上次练习到%@题，是否继续",temp.priority];
+            [[OTSAlertView alertWithTitle:@"" message:s leftBtn:@"取消" rightBtn:@"继续" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+                if (buttonIndex==0) {
+                    self.answerArray=[NSMutableArray array];
+                }else{
+                    self.currentQIndex=temp.priority.integerValue-1;
+                    self.answerArray=[NSMutableArray arrayWithArray:cachedAr];
+                    [self.answerArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                        PractisAnswer *an=(PractisAnswer *)obj;
+                        Question* q=self.questionsAr[an.priority.integerValue-1];
+                        if ([an.isRight isEqualToString:@"true"]) {
+                            q.answerType=answeredRight;
+                        }else if ([an.isRight isEqualToString:@"false"]){
+                            q.answerType=answeredwrong;
+                        }else{
+                            q.answerType=answeredNone;
+                        }
+                    }];
+                }
+                [self freshView];
+                
+            }] show];
+        }
+        
     }
     [self freshView];
 
 }
 
 -(void)leftBtnClick:(UIButton *)sender{
-    
+    if (self.fromPractisDetail) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
     [[OTSAlertView alertWithTitle:@"提示" message:@"是否保存练习" leftBtn:@"取消" rightBtn:@"保存" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex==0) {
             
@@ -562,7 +587,7 @@
             
             self.currentNote=[[SQLManager sharedSingle] findNoteByItemId:titid customId:q.custom_id];
 
-            if (self.currentNote!=nil&&self.currentNote.length) {
+            if (self.currentNote!=nil&&self.currentNote.note.length) {
                 json[@"type"]=@1;//0：添加 1：更新
             }else{
                 json[@"type"]=@0;//0：添加 1：更新
@@ -571,16 +596,22 @@
             NSData*d=[NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
             NSString *s=[[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
             WEAK_SELF;
-
+            [self showLoading];
             [self getValueWithBeckUrl:@"/front/userNoteAct.htm" params:@{@"token":@"addUpdate",@"json":s} CompleteBlock:^(id aResponseObject, NSError *anError) {
                 STRONG_SELF;
+                [self hideLoading];
                 if (anError==nil) {
                     if ([aResponseObject[@"errorcode"] integerValue]==0) {
                         for (NSString *sql in aResponseObject[@"list"]) {
                             [[SQLManager sharedSingle] excuseSql:sql];
                         }
                         [self showLoadingWithMessage:@"添加成功" hideAfter:2];
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDB" object:nil];
+                        if ([json[@"type"] integerValue]==0) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDB" object:nil];
+                        }else{
+                            NSString *sql=[NSString stringWithFormat:@"UPDATE user_note SET note ==\'%@\' WHERE item_id ==%@ and user_id==%@",tf.text,self.currentNote.item_id,[Global sharedSingle].userBean[@"userId"]];
+                            [[SQLManager sharedSingle] excuseSql:sql];
+                        }
                         self.currentNote=[[SQLManager sharedSingle] findNoteByItemId:titid customId:q.custom_id];
 
                     }else{
@@ -597,9 +628,9 @@
     alert.alertViewStyle=UIAlertViewStylePlainTextInput;
     [alert show];
     
-    if (self.currentNote!=nil&&self.currentNote.length>0) {
+    if (self.currentNote!=nil&&self.currentNote.note.length>0) {
         UITextField *tf=[alert textFieldAtIndex:0];
-        tf.text=self.currentNote;
+        tf.text=self.currentNote.note;
     }
 }
 

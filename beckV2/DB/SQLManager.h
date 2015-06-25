@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Question.h"
+#import "UserNote.h"
 @interface SQLManager : NSObject
 singleton_interface(SQLManager);
 
@@ -71,12 +72,13 @@ singleton_interface(SQLManager);
 
 -(NSArray*)getExamByType:(NSString *)type;
 
--(NSString *)findNoteByItemId:(NSString*)itemid customId:(NSString*)customId;
+-(UserNote *)findNoteByItemId:(NSString*)itemid customId:(NSString*)customId;
 -(NSArray*)findUserWrongByUserId:(NSString*)uid;
 -(NSArray*)findUserCollectByUserid:(NSString*)uid;
 
 -(NSArray*)getUserExamByPaperId:(NSString *)pId;
 -(NSString *)getQuestionTypeWithCustomId:(NSString*)customid;
+-(NSArray*)getDonePractis:(NSString*)outlineid;
 -(void)openDB;
 
 @end

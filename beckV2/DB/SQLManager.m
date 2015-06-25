@@ -15,10 +15,11 @@
 #import "CompatyQuestion.h"
 #import "ChoiceItem.h"
 #import "ExamPaper.h"
-#import "UserNote.h"
+
 #import "MessageVO.h"
 #import "Collection.h"
 #import "UserPractis.h"
+#import "PractisAnswer.h"
 @interface SQLManager()
 
 @end
@@ -152,14 +153,22 @@ singleton_implementation(SQLManager);
     }];
     return st;
 }
--(NSString *)findNoteByItemId:(NSString*)itemid customId:(NSString*)customId{
-    __block NSString*note=@"";
-    NSString *sql=[NSString stringWithFormat:@"select note from user_note where item_id==%@ and type_id==%@",itemid,customId];
+-(UserNote *)findNoteByItemId:(NSString*)itemid customId:(NSString*)customId{
+    __block UserNote *note=[UserNote new];
+    NSString *sql=[NSString stringWithFormat:@"select * from user_note where item_id==%@ and type_id==%@",itemid,customId];
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
         }else{
-            note=row[0];
+            
+            note.item_id=row[1];
+            note.type_id=row[2];
+            note.user_id=row[3];
+            note.add_time=row[5];
+            note.update_time=row[6];
+            note.outline_id=row[8];
+            note.subject_id=row[9];
+            note.note=row[10];
         }
     }];
     return note;
@@ -508,6 +517,25 @@ singleton_implementation(SQLManager);
     return result;
 
 }
+-(ChoiceItem *)getChoiceItemById:(NSString*)nid{
+   __block ChoiceItem* item=[ChoiceItem new];;
+    NSString *sql=[NSString stringWithFormat:@"select * from choice_items where id==%@",nid];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            item.nid=row[0];
+            item.choice_id=row[1];
+            item.item_number=row[2];
+            item.item_content=row[3];
+            item.is_img=row[4];
+            item.is_answer=row[5];
+            item.memo=row[6];
+            item.img_content=row[7];
+        }
+    }];
+    return item;
+}
 
 -(NSArray*)getChoiceItemByChoiceId:(NSString*)choiceid{
     __block NSMutableArray*result=@[].mutableCopy;
@@ -542,6 +570,40 @@ singleton_implementation(SQLManager);
 
     }];
     return str;
+}
+
+-(NSArray*)getDonePractis:(NSString*)outlineid{
+    __block NSMutableArray *total=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat:@"select * from user_exercise_ext where outline_id==%@ and user_id==%@",outlineid,[Global sharedSingle].userBean[@"userId"]];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            PractisAnswer *an=[PractisAnswer new];
+            NSString *s=row[10];
+            if (s.integerValue==1) {
+                an.isRight=@"true";
+            }else if (s.integerValue==0){
+                an.isRight=@"false";
+            }
+            an.priority=row[11];
+            an.titleId=row[7];
+            an.titleTypeId=row[8];
+            
+            NSString *answer=row[9];
+            NSArray *ar=[NSJSONSerialization JSONObjectWithData:[answer dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+            if (an.titleTypeId.integerValue!=10&&an.titleTypeId.integerValue!=11) {
+                an.userAnswer=[NSMutableArray array];
+                for (NSString *s in ar) {
+                    ChoiceItem *item=[self getChoiceItemById:s];
+                    [an.userAnswer addObject:item];
+                }
+            }
+            
+            [total addObject:an];
+        }
+    }];
+    return total;
 }
 //已经做过的题目
 -(NSInteger)countDoneByOutlineid:(NSString*)outlineid{
