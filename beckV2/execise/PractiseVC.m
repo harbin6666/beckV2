@@ -356,7 +356,7 @@
         h=size.height;
     }
     UILabel *la=[[UILabel alloc] initWithFrame:CGRectMake(0, 5, self.view.frame.size.width, h)];
-    la.backgroundColor=[UIColor yellowColor];
+
     la.textAlignment=NSTextAlignmentCenter;
     la.numberOfLines=0;
     la.font=[UIFont systemFontOfSize:14];
