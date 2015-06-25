@@ -180,7 +180,7 @@ singleton_implementation(SQLManager);
     NSArray* ar=[self getOutLineByParentId:outlineid];
     for (int i=0; i<ar.count; i++) {
         Outline*o=ar[i];
-        NSString *sql=[NSString stringWithFormat:@"select * from user_note where outline_id==%@",o.outlineid];
+        NSString *sql=[NSString stringWithFormat:@"select * from user_note where outline_id==%@ and where user_id==%@",o.outlineid,[Global sharedSingle].userBean[@"userId"]];
         [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
             if (finished) {
                 
@@ -290,7 +290,7 @@ singleton_implementation(SQLManager);
 }
 -(NSArray*)getPractisWithOutlineid:(NSString*)outlineid{
     __block NSMutableArray*result=@[].mutableCopy;
-    NSString *sql=[NSString stringWithFormat:@"select * from user_exercise where outline_id==%@ ",outlineid];
+    NSString *sql=[NSString stringWithFormat:@"select * from user_exercise where outline_id==%@ and where user_id==%@",outlineid,[Global sharedSingle].userBean[@"userId"]];
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
