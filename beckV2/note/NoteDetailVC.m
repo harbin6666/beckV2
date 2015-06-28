@@ -14,7 +14,7 @@
 #import "QCollectionVC.h"
 #import "PractisAnswer.h"
 #import "SettingPanVC.h"
-
+#import "UserNote.h"
 @interface NoteDetailVC ()
 @property(nonatomic,weak) IBOutlet UILabel *testLab;
 @property(nonatomic,assign)NSInteger currentQIndex;
@@ -26,7 +26,7 @@
 @property(nonatomic,strong)NSMutableArray *answerArray;
 @property(nonatomic,strong)PractisAnswer* answer;
 @property(nonatomic,assign)BOOL showAnswer;
-@property(nonatomic,strong)NSString *currentNote;
+@property(nonatomic,strong)UserNote *currentNote;
 @property (nonatomic, strong) SettingPanVC *settingPanVC;
 @property(nonatomic,strong)NSString *questionDes;
 
@@ -441,7 +441,7 @@
             json[@"subjectId"] = @([[self.questionsAr objectAtIndex:self.currentQIndex] subject_id].intValue);
             json[@"outlineId"] =@( self.outletid.intValue);
             json[@"note"]=tf.text;
-            if (self.currentNote!=nil&&self.currentNote.length) {
+            if (self.currentNote!=nil&&self.currentNote.note.length) {
                 json[@"type"]=@1;//0：添加 1：更新
             }else{
                 json[@"type"]=@0;//0：添加 1：更新
@@ -471,9 +471,9 @@
     }] ;
     alert.alertViewStyle=UIAlertViewStylePlainTextInput;
     [alert show];
-    if (self.currentNote!=nil&&self.currentNote.length>0) {
+    if (self.currentNote!=nil&&self.currentNote.note.length>0) {
         UITextField *tf=[alert textFieldAtIndex:0];
-        tf.text=self.currentNote;
+        tf.text=self.currentNote.note;
     }
 }
 

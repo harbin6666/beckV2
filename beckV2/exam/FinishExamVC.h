@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface FinishExamVC : BaseViewController
-
+@property(nonatomic,strong)NSString *examTitle,*right,*wrong,*cost,*point,*time,*paperid;
 @end

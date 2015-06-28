@@ -22,6 +22,15 @@
 @implementation PractisHomeVC
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.dataAr=[NSMutableArray array];
+    self.subjectIdList=[[SQLManager sharedSingle] getSubjectIdArrayByid:[[Global sharedSingle] getUserWithkey:@"titleid"]];
+    self.subjectList=[[SQLManager sharedSingle] getSubjectByid:self.subjectIdList];
+    
+    for (int i=0; i<self.subjectList.count; i++) {
+        Subject*sb=self.subjectList[i];
+        NSArray *sbAr=[[SQLManager sharedSingle] getoutLineByid:sb.subjectid];
+        [self.dataAr addObject:sbAr];
+    }
     [self.table reloadData];
 }
 
@@ -57,17 +66,17 @@
 //    [self setNavigationBarButtonName:str width:80 isLeft:NO];
 
 
-    self.dataAr=[NSMutableArray array];
-    self.subjectIdList=[[SQLManager sharedSingle] getSubjectIdArrayByid:[[Global sharedSingle] getUserWithkey:@"titleid"]];
-    self.subjectList=[[SQLManager sharedSingle] getSubjectByid:self.subjectIdList];
-
-    for (int i=0; i<self.subjectList.count; i++) {
-        Subject*sb=self.subjectList[i];
-        NSArray *sbAr=[[SQLManager sharedSingle] getoutLineByid:sb.subjectid];
-        [self.dataAr addObject:sbAr];
-    }
-
-    [self.table reloadData];
+//    self.dataAr=[NSMutableArray array];
+//    self.subjectIdList=[[SQLManager sharedSingle] getSubjectIdArrayByid:[[Global sharedSingle] getUserWithkey:@"titleid"]];
+//    self.subjectList=[[SQLManager sharedSingle] getSubjectByid:self.subjectIdList];
+//
+//    for (int i=0; i<self.subjectList.count; i++) {
+//        Subject*sb=self.subjectList[i];
+//        NSArray *sbAr=[[SQLManager sharedSingle] getoutLineByid:sb.subjectid];
+//        [self.dataAr addObject:sbAr];
+//    }
+//
+//    [self.table reloadData];
 }
 
 -(IBAction)homeClick:(UIButton *)sender{

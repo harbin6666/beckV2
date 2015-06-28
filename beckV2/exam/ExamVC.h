@@ -11,4 +11,6 @@
 @interface ExamVC : BaseViewController
 @property(nonatomic,strong)NSArray *questionsAr;
 @property(nonatomic,strong)ExamPaper *examComp;
+@property(nonatomic)BOOL fromDB;
+@property(nonatomic,strong)NSString *paperid;
 @end

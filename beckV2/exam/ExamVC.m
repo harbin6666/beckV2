@@ -62,14 +62,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.beginTime=[NSDate date];
-    self.seconds=self.examComp.answer_time.integerValue*60;
-    NSInteger h=(NSInteger)self.seconds/60;
-    NSInteger s=self.seconds%60;
-    self.timeLab.text=[NSString stringWithFormat:@"%zd:%zd",h,s];
-
-    self.timer=[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
     self.answerArray=[[NSMutableArray alloc] init];
+
+    if (!self.fromDB) {
+        self.beginTime=[NSDate date];
+        self.seconds=self.examComp.answer_time.integerValue*60;
+        NSInteger h=(NSInteger)self.seconds/60;
+        NSInteger s=self.seconds%60;
+        self.timeLab.text=[NSString stringWithFormat:@"%zd:%zd",h,s];
+        self.timer=[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
+    }else{
+        UserExam *ue=[[[SQLManager sharedSingle] getUserExamByPaperId:self.paperid] lastObject];
+        NSArray *d=[NSJSONSerialization JSONObjectWithData:[ue.user_answer dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+        self.answerArray=[NSMutableArray arrayWithArray:d];
+    }
 
     self.currentQIndex=0;
     [self freshView];
@@ -436,6 +442,7 @@
     dic[@"loginName"] = [Global sharedSingle].loginName;
     dic[@"paperId"] = self.examComp.paper_id;
     dic[@"beginTime"] = [NSString stringWithFormat:@"%@",self.beginTime];
+    NSDate *finishDate=[NSDate date];
     dic[@"endTime"]=[NSString stringWithFormat:@"%@",[NSDate date]];
     NSInteger count=0;
     NSInteger wrongCount=0;
@@ -481,15 +488,17 @@
                 if (aResponseObject[@"sql"]) {
                     [[SQLManager sharedSingle] excuseSql:aResponseObject[@"sql"]];
                 }
-//                NSArray *sqlAr=aResponseObject[@"list"];
-//                if (sqlAr.count>0) {
-//                    for (int i=0; i<sqlAr.count; i++) {
-//                        [[SQLManager sharedSingle] excuseSql:sqlAr[i]];
-//                    }
-//                }
+
                 [[OTSAlertView alertWithMessage:@"提交成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
                     UIStoryboard *sb=[UIStoryboard storyboardWithName:@"pan" bundle:[NSBundle mainBundle]];
                     FinishExamVC*vc=[sb instantiateViewControllerWithIdentifier:@"FinishExamVC"];
+                    vc.examTitle=self.examComp.paper_name;
+                    vc.wrong=[NSString stringWithFormat:@"%zd",wrongCount];
+                    vc.right=[NSString stringWithFormat:@"%zd",score];
+                    vc.time=self.examComp.answer_time;
+                    vc.cost=[NSString stringWithFormat:@"%zd",(int)[finishDate timeIntervalSinceDate:self.beginTime]/60000];
+                    vc.point=[NSString stringWithFormat:@"%@",aResponseObject[@"num"]];
+                    vc.paperid=self.paperid;
                     [self presentViewController:vc animated:YES completion:nil];
 //                    [self.navigationController popViewControllerAnimated:YES];
                 }] show];

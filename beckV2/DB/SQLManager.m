@@ -304,7 +304,7 @@ singleton_implementation(SQLManager);
 }
 -(NSArray*)getPractisWithOutlineid:(NSString*)outlineid{
     __block NSMutableArray*result=@[].mutableCopy;
-    NSString *sql=[NSString stringWithFormat:@"select * from user_exercise where outline_id==%@ and where user_id==%@",outlineid,[Global sharedSingle].userBean[@"userId"]];
+    NSString *sql=[NSString stringWithFormat:@"select * from user_exercise where outline_id==%@ and user_id==%@",outlineid,[Global sharedSingle].userBean[@"userId"]];
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             

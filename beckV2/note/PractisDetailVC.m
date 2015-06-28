@@ -12,6 +12,7 @@
 #import "Outline.h"
 #import "ExamPaper.h"
 #import "ExamVC.h"
+#import "CompatyQuestion.h"
 @interface PractisDetailVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,weak)IBOutlet UILabel *lab1,*lab2,*lab3,*lab4,*lab5,*lab6,*lab7;
 @property(nonatomic,weak)IBOutlet UITableView *table;
@@ -25,6 +26,7 @@
     NSInteger totalr=0;
     NSInteger totalwrong=0;
     NSInteger totaldone=0;
+    NSInteger sqlCount=0;
     NSMutableArray *totalAr=[NSMutableArray array];
     self.ar=@[@"测试时间",@"答对题数",@"答错提数",@"详情"];
     if (self.type==0) {
@@ -41,6 +43,16 @@
         for (Outline *o in tempTotal) {
             [totalAr addObjectsFromArray:[[SQLManager sharedSingle] getQuestionByOutlineId:o.outlineid] ];
         }
+        
+        for (Question *q in totalAr) {
+            if (q.custom_id.integerValue==10||q.custom_id.integerValue==11) {
+                CompatyInfo *com=(CompatyInfo*)q;
+                NSArray *miniQuestion=[[SQLManager sharedSingle] getCompatyQuestionsByinfoId:com.info_id];
+                sqlCount+=miniQuestion.count;
+            }else{
+                sqlCount++;
+            }
+        }
 
     }else{
         self.title=@"考试详情";
@@ -55,7 +67,7 @@
     }
     
     self.table.tableFooterView=[[UIView alloc] init];
-    self.lab2.text=[NSString stringWithFormat:@"%zd",totalAr.count];
+    self.lab2.text=[NSString stringWithFormat:@"%zd",sqlCount];
     self.lab3.text=[NSString stringWithFormat:@"%d％",(int)(100*totalr/totalAr.count)];
     self.lab4.text=[NSString stringWithFormat:@"%zd",totalAr.count];
     self.lab5.text=[NSString stringWithFormat:@"%zd",totalr];

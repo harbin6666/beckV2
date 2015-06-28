@@ -8,6 +8,7 @@
 
 #import "ExamDetailVC.h"
 #import "ExamPaper.h"
+#import "ExamVC.h"
 @interface ExamDetailVC ()
 @property(nonatomic,weak)IBOutlet UILabel *datelab,*rightLab,*wrongLab,*rateLab;
 @property(nonatomic,weak)IBOutlet UIButton *scoreBtn,*toExamBtn;
@@ -35,13 +36,18 @@
     NSInteger totalwrong=ue.wrong_amount.integerValue;
     NSInteger totaldone=totalr+totalwrong;
     
-    self.rateLab.text=[NSString stringWithFormat:@"%.0f",(float)100*totalr/totaldone];
+    self.rateLab.text=[NSString stringWithFormat:@"正确率%.0f％",(float)100*totalr/totaldone];
     
     [self.toExamBtn addTarget:self action:@selector(seeExam) forControlEvents:UIControlEventTouchUpInside];
 }
 
--(void)seeExam{
-    
+-(IBAction)seeExam{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
+   ExamVC*vc =[sb instantiateViewControllerWithIdentifier:@"exam"];
+    vc.fromDB=YES;
+    UserExam *ue=[self.examAr lastObject];
+    vc.paperid=ue.paper_id;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

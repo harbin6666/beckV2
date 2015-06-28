@@ -30,7 +30,36 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    self.dataAr=[NSMutableArray array];
+    self.subjectIdList=[[SQLManager sharedSingle] getSubjectIdArrayByid:[[Global sharedSingle] getUserWithkey:@"titleid"]];
+    self.subjectList=[[SQLManager sharedSingle] getSubjectByid:self.subjectIdList];
+    
+    for (int i=0; i<self.subjectList.count; i++) {
+        Subject*sb=self.subjectList[i];
+        NSArray *sbAr=[[SQLManager sharedSingle] getoutLineByid:sb.subjectid];
+        [self.dataAr addObject:sbAr];
+    }
+    if (self.type==0) {
+        self.title=@"查看笔记";
+    }else{
+        self.title=@"练习统计";
+        //        NSArray *moni=[[SQLManager sharedSingle] getExamByType:@"1"];
+        //        NSArray *zhenti=[[SQLManager sharedSingle] getExamByType:@"2"];
+        NSArray *moni=@[@"场次一",@"场次二",@"场次三",@"场次四"];
+        self.examArray=@[moni,moni];
+        self.pan=[[SelectionPan alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+        [self.pan updatePanWithTitles:@[@"练习统计",@"考试统计"] selectBlock:^(NSInteger buttonIndex) {
+            self.titleSelect=buttonIndex;
+            self.title=@[@"练习统计",@"考试统计"][buttonIndex];
+            [self.tableView reloadData];
+        }];
+        self.tableView.tableHeaderView=self.pan;
+    }
+    self.tableView.tableFooterView=[[UIView alloc] init];
+    [self.tableView reloadData];
 
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIBarButtonItem*bar= self.navigationItem.rightBarButtonItem;

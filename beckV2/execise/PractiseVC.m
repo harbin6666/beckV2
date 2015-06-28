@@ -355,6 +355,7 @@
                         [[SQLManager sharedSingle] excuseSql:sqlAr[i]];
                     }
                 }
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDB" object:nil];
                 [[OTSAlertView alertWithMessage:@"提交成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
                     [self.navigationController popViewControllerAnimated:YES];
                 }] show];

@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "beckV2/execise/PractiseVC.m"
-            timestampString = "456948472.045557"
+            timestampString = "457161739.370744"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "600"
-            endingLineNumber = "600"
+            startingLineNumber = "601"
+            endingLineNumber = "601"
             landmarkName = "-notePress"
             landmarkType = "5">
             <Locations>
@@ -202,11 +202,11 @@
                   moduleName = "beckV2"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yj/beckv2/beckV2/execise/PractiseVC.m"
-                  timestampString = "456950105.433592"
+                  timestampString = "457170206.229391"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "600"
-                  endingLineNumber = "600"
+                  startingLineNumber = "601"
+                  endingLineNumber = "601"
                   offsetFromSymbolStart = "3275">
                </Location>
                <Location
@@ -217,11 +217,11 @@
                   moduleName = "beckV2"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yj/beckv2/beckV2/execise/PractiseVC.m"
-                  timestampString = "456950105.433695"
+                  timestampString = "457170206.229532"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "600"
-                  endingLineNumber = "600"
+                  startingLineNumber = "601"
+                  endingLineNumber = "601"
                   offsetFromSymbolStart = "103">
                </Location>
             </Locations>
@@ -233,14 +233,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "beckV2/exam/ExamVC.m"
-            timestampString = "456950105.401569"
+            filePath = "beckV2/DB/SQLManager.m"
+            timestampString = "457170154.687146"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "370"
-            endingLineNumber = "370"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
+            landmarkName = "-getPractisWithOutlineid:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SQLManager getPractisWithOutlineid:]"
+                  moduleName = "beckV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yj/beckv2/beckV2/DB/SQLManager.m"
+                  timestampString = "457170206.23075"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "308"
+                  endingLineNumber = "308"
+                  offsetFromSymbolStart = "549">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[SQLManager getPractisWithOutlineid:]_block_invoke"
+                  moduleName = "beckV2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yj/beckv2/beckV2/DB/SQLManager.m"
+                  timestampString = "457170206.230872"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "308"
+                  endingLineNumber = "308"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
