@@ -256,7 +256,8 @@ static NSString *privatekey=@"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return [self.currentDic[@"list"] count];
+    NSArray *ar=self.currentDic[@"list"];
+    return ar.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
