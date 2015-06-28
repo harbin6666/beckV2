@@ -8,7 +8,7 @@
 
 #import "CourseVC.h"
 #import "Outline.h"
-#import "PractiseVC.h"
+#import "QuestionVC.h"
 #import "CachedAnswer.h"
 #import "CourseCell.h"
 @interface CourseVC ()<UITableViewDataSource,UITableViewDelegate>
@@ -77,9 +77,9 @@
     if (total==0) {
         return;
     }
-    UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
-    PractiseVC *vc = [mainStoryboard instantiateViewControllerWithIdentifier:@"practise"];
-
+    UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"question" bundle:[NSBundle mainBundle]];
+    QuestionVC *vc = [mainStoryboard instantiateViewControllerWithIdentifier:@"QuestionVC"];
+    vc.practisMode=YES;
     vc.outletid=ol.outlineid;
     [self.navigationController pushViewController:vc animated:YES];
 }

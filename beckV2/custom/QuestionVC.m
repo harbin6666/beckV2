@@ -71,9 +71,34 @@
             [temp addObject:q];
         }
         self.questionsAr=temp;
+        if (self.fromDetail) {
+            UserExam *ue=[[[SQLManager sharedSingle] getUserExamByPaperId:self.paperid]lastObject];
+            
+            NSArray * ar=[NSJSONSerialization JSONObjectWithData:[ue.user_answer dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+
+            for (NSDictionary *anDic in ar) {
+                switch ([anDic[@"customId"] integerValue]) {
+                    case 10:{
+                        QuestionAnswerB* ab=[[QuestionAnswerB alloc] initWithDictionary:anDic error:nil];
+                        [self.answerArray addObject:ab];
+                    }
+                        break;
+                    case 11:{
+                        QuestionAnswerC* ab=[[QuestionAnswerC alloc] initWithDictionary:anDic error:nil];
+                        [self.answerArray addObject:ab];
+                    }
+                        break;
+ 
+                    default:{
+                        QuestionAnswerA* ab=[[QuestionAnswerA alloc] initWithDictionary:anDic error:nil];
+                        [self.answerArray addObject:ab];
+                    }
+                        break;
+                }
+            }
+        }
     }
     
-    self.answerArray=[[NSMutableArray alloc] init];
 }
 
 -(void)updateTime{
@@ -85,6 +110,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (self.answerArray==nil) {
+        self.answerArray=[[NSMutableArray alloc] init];
+    }
     self.navigationController.navigationBarHidden=NO;
     if (self.showTimer) {
         self.timeLab=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
@@ -104,6 +132,8 @@
     if (self.outletid) {
         [item4 setTitle:@"收藏"];
         [self setNavigationBarButtonName:@"提交" width:40 isLeft:NO];
+        [self setNavigationBarButtonName:@"返回" width:40 isLeft:YES];
+
     }
     if (self.paperid) {
         [item4 setTitle:@"提交"];
@@ -113,62 +143,48 @@
     
     self.currentQIndex=0;
     
-////    NSArray *cachedAr=[[CachedAnswer new] getCacheByOutlineid:self.outletid];
-//    if (cachedAr==nil) {
-//        self.answerArray=[[NSMutableArray alloc] init];
-//    }else{
-//        
-//        
-//        if (self.fromPractisDetail) {
-//            NSArray *done=[[SQLManager sharedSingle] getDonePractis:self.outletid];
-//            self.navigationItem.rightBarButtonItem=nil;
-//            self.answerArray=[NSMutableArray arrayWithArray:done];
-//            [self.answerArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//                AnswerObj *an=(AnswerObj *)obj;
-//                Question* q=self.questionsAr[an.priority.integerValue-1];
-////                if ([an.isRight isEqualToString:@"true"]) {
-////                    q.answerType=answeredRight;
-////                }else if ([an.isRight isEqualToString:@"false"]){
-////                    q.answerType=answeredwrong;
-////                }else{
-////                    q.answerType=answeredNone;
-////                }
-//            }];
-//            
-//        }else{
-//            __block AnswerObj *temp=nil;
-//            [cachedAr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//                AnswerObj *an=(AnswerObj *)obj;
-//                if (an.priority.integerValue>temp.priority.integerValue) {
-//                    temp=an;
-//                }
-//                
-//            }];
-//            NSString *s=[NSString stringWithFormat:@"上次练习到%@题，是否继续",temp.priority];
-//            [[OTSAlertView alertWithTitle:@"" message:s leftBtn:@"取消" rightBtn:@"继续" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
-//                if (buttonIndex==0) {
-//                    self.answerArray=[NSMutableArray array];
-//                }else{
-//                    self.currentQIndex=temp.priority.integerValue-1;
-//                    self.answerArray=[NSMutableArray arrayWithArray:cachedAr];
-//                    [self.answerArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//                        AnswerObj *an=(AnswerObj *)obj;
-//                        Question* q=self.questionsAr[an.priority.integerValue-1];
-////                        if ([an.isRight isEqualToString:@"true"]) {
-////                            q.answerType=answeredRight;
-////                        }else if ([an.isRight isEqualToString:@"false"]){
-////                            q.answerType=answeredwrong;
-////                        }else{
-////                            q.answerType=answeredNone;
-////                        }
-//                    }];
-//                }
-//                [self freshView];
-//                
-//            }] show];
-//        }
-//        
-//    }
+    
+    if (self.practisMode) {
+        
+    }
+    
+    if (self.practisMode) {
+        if (self.fromDetail) {
+            self.answerArray=[[CachedAnswer new] getCacheByOutlineid:self.outletid];
+        }else{
+            NSArray *cachedAr=[[CachedAnswer new] getCacheByOutlineid:self.outletid];
+            if (cachedAr!=nil) {
+                __block AnswerObj *temp=nil;
+                [cachedAr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    AnswerObj *an=(AnswerObj *)obj;
+                    if (an.priority.integerValue>temp.priority.integerValue) {
+                        temp=an;
+                    }
+                    
+                }];
+                NSString *s=[NSString stringWithFormat:@"上次练习到%@题，是否继续",temp.priority];
+                [[OTSAlertView alertWithTitle:@"" message:s leftBtn:@"取消" rightBtn:@"继续" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+                    if (buttonIndex==1) {
+                        self.currentQIndex=temp.priority.integerValue-1;
+                        self.answerArray=[NSMutableArray arrayWithArray:cachedAr];
+                        for (AnswerObj*an in self.answerArray) {
+                            Question* question=self.questionsAr[an.priority.integerValue-1];
+                            if (an.AnswerState.integerValue==1) {
+                                question.answerType=answeredRight;
+                            }else if (an.AnswerState.integerValue==0){
+                                question.answerType=answeredwrong;
+                            }else{
+                                question.answerType=answeredNone;
+                            }
+                        }
+                    }
+                    [self freshView];
+                }] show];
+
+            }
+            
+        }
+    }
     [self freshView];
     
 }
@@ -284,15 +300,22 @@
     
     UITabBarItem*item5= [self.tabbar.items lastObject];
     UITabBarItem*item1= [self.tabbar.items firstObject];
-    
+    UITabBarItem*item2= [self.tabbar.items objectAtIndex:1];
     UITabBarItem*item3= [self.tabbar.items objectAtIndex:2];
     UITabBarItem*item4= [self.tabbar.items objectAtIndex:3];
+    
     
     [item4 setImage:[[UIImage imageNamed:@"favorate"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [item4 setSelectedImage:[[UIImage imageNamed:@"favorate"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     if (self.paperid) {
         [item4 setImage:[[UIImage imageNamed:@"submit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [item4 setSelectedImage:[[UIImage imageNamed:@"submit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [item2 setImage:[[UIImage imageNamed:@"weizuo"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [item2 setSelectedImage:[[UIImage imageNamed:@"weizuo"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        item2.title=@"查看未作";
+        [item2 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
+        [item2 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateSelected];
+
     }
 
     [item4 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
@@ -378,22 +401,19 @@
     json[@"amount"] = @(self.answerArray.count).stringValue;
     
     return [self addAccurateRateList:json];
-    //    json[@"accurateRate"] = [self getAccurateRate];
-    //    json[@"list"] = self.answerArray;
-    //    return json;
 }
 
 -(NSDictionary*)addAccurateRateList:(NSMutableDictionary *)olderDic{
     
     NSInteger count=0;
     NSMutableArray *ar=[NSMutableArray array];
-//    for (AnswerObj*an in self.answerArray) {
-//        if ([an.isRight isEqualToString:@"true"]) {
-//            count++;
-//        }
-//        [ar addObject:[an toJson]];
-//    }
-    float rate=(float)count/self.answerArray.count;
+    for (AnswerObj*an in self.answerArray) {
+        if (an.AnswerState.integerValue==1) {
+            count++;
+        }
+        [ar addObject:[an toPracitsJson]];
+    }
+    float rate=(float)count/self.questionsAr.count;
     olderDic[@"accurateRate"]=[NSString stringWithFormat:@"%.2f",rate];
     olderDic[@"list"]=ar;
     return olderDic;
@@ -568,11 +588,27 @@
             CompatyQuestion *q=self.compatibilyArray[indexPath.row];
             AnswerObj*a =(QuestionAnswerA*)[self findDoneAnswerWithid:[info info_id]];
             [cell updateCompatyCell:q customid:p.custom_id AnswerObj:a showAnswer:self.showAnswer selectedBlock:^(BOOL right, CompatyItem *answer) {
+                a.priority=@(self.currentQIndex+1).stringValue;
                 if (right) {
                     p.answerType=answeredRight;
+                    if (p.custom_id.integerValue==10) {
+                        QuestionAnswerB *anb=(QuestionAnswerB*)a;
+                        anb.AnswerState=@"1";
+                    }else{
+                        QuestionAnswerC *anb=(QuestionAnswerC*)a;
+                        anb.AnswerState=@"1";
+                    }
                 }else{
                     p.answerType=answeredwrong;
+                    if (p.custom_id.integerValue==10) {
+                        QuestionAnswerB *anb=(QuestionAnswerB*)a;
+                        anb.AnswerState=@"0";
+                    }else{
+                        QuestionAnswerC *anb=(QuestionAnswerC*)a;
+                        anb.AnswerState=@"0";
+                    }
                 }
+                
                 [tableView reloadData];
 
             }];
@@ -598,7 +634,7 @@
         ChoiceQuestion *q=(ChoiceQuestion*)p;
         ChoiceItem *item=q.choiceItems[indexPath.row];
         QuestionAnswerA*choiceAnswer=(QuestionAnswerA*)[self findDoneAnswerWithid:q.choice_id];
-        //        self.answer.priority=@(self.currentQIndex+1).stringValue;
+        choiceAnswer.priority=@(self.currentQIndex+1).stringValue;
         
 
       
@@ -631,9 +667,13 @@
         }
         if (rightMount==righttotal) {
             p.answerType=answeredRight;
+            choiceAnswer.AnswerState=@"1";
         }else{
             p.answerType=answeredwrong;
+            choiceAnswer.AnswerState=@"0";
         }
+        
+
         
     }
     [tableView reloadData];
@@ -750,18 +790,21 @@
 
 -(void)showAnswer:(UITabBarItem *)item{
     //    self.answerCell.textLabel.hidden=!self.answerCell.textLabel.hidden;
-    self.showAnswer=!self.showAnswer;
-    if (!self.showAnswer) {
-        [item setImage:[[UIImage imageNamed:@"answer"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [item setSelectedImage:[[UIImage imageNamed:@"answer"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateSelected];
+    if (self.practisMode) {
+        self.showAnswer=!self.showAnswer;
+        if (!self.showAnswer) {
+            [item setImage:[[UIImage imageNamed:@"answer"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+            [item setSelectedImage:[[UIImage imageNamed:@"answer"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+            [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
+            [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateSelected];
+        }else{
+            [item setImage:[[UIImage imageNamed:@"answer_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+            [item setSelectedImage:[[UIImage imageNamed:@"answer_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+            [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
+            [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
+        }
     }else{
-        [item setImage:[[UIImage imageNamed:@"answer_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [item setSelectedImage:[[UIImage imageNamed:@"answer_sel"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
-        
+        [self progressPress:nil];
     }
     [self.table reloadData];
 }
@@ -948,6 +991,9 @@
     QCollectionVC *vc=[sb instantiateViewControllerWithIdentifier:@"QCollectionVC"];
     vc.vcDelegate=self;
     vc.questions=self.questionsAr;
+    if (!self.practisMode) {
+        vc.fromExam=YES;
+    }
     [self.navigationController pushViewController:vc
                                          animated:YES];
 }

@@ -19,7 +19,10 @@
                                                        @"id": @"nid"
                                                        }];
 }
-
+-(NSDictionary *)toPracitsJson{
+    
+    return nil;
+}
 @end
 @implementation QuestionAnswerA
 -(id)init{
@@ -28,6 +31,13 @@
     }
     return self;
 }
+-(NSDictionary *)toPracitsJson{
+        NSData*data=[NSJSONSerialization dataWithJSONObject:self.myAnswer options:0 error:nil];
+        NSString *str=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSDictionary *dic=@{@"isRight":self.AnswerState,@"priority":self.priority,@"titleId":self.nid,@"userAnswer":str,@"titleTypeId":self.customId};
+    return dic;
+}
+
 -(NSMutableArray*)myAnswer{
     if (_myAnswer) {
         return _myAnswer;
@@ -43,6 +53,17 @@
     }
     return self;
 }
+-(NSDictionary *)toPracitsJson{
+    NSMutableArray *ar=[NSMutableArray array];
+    for (QuestionItemB*itemb in self.questionItemBs) {
+        NSDictionary *dic=[NSDictionary dictionaryWithObject:itemb.myAnswer forKey:itemb.questionId];
+        [ar addObject:dic];
+    }
+    NSData*data=[NSJSONSerialization dataWithJSONObject:ar options:0 error:nil];
+    NSString *str=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSDictionary *dic=@{@"isRight":self.AnswerState,@"priority":self.priority,@"titleId":self.nid,@"userAnswer":str,@"titleTypeId":self.customId};
+    return dic;
+}
 
 @end
 @implementation QuestionItemB
@@ -53,6 +74,17 @@
         _questionCItems=[[NSMutableArray alloc] init];
     }
     return self;
+}
+-(NSDictionary *)toPracitsJson{
+    NSMutableArray *ar=[NSMutableArray array];
+    for (QuestionItemC*itemb in self.questionCItems) {
+        NSDictionary *dic=[NSDictionary dictionaryWithObject:itemb.myAnswer forKey:itemb.questionId];
+        [ar addObject:dic];
+    }
+    NSData*data=[NSJSONSerialization dataWithJSONObject:ar options:0 error:nil];
+    NSString *str=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSDictionary *dic=@{@"isRight":self.AnswerState,@"priority":self.priority,@"titleId":self.nid,@"userAnswer":str,@"titleTypeId":self.customId};
+    return dic;
 }
 
 @end

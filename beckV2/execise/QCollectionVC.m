@@ -61,7 +61,7 @@ static NSString * const reuseIdentifier = @"Cell";
     AnswerCVCCell *cell;
     Question* q = self.questions[indexPath.row];
     if (self.fromExam) {
-        if (q.answerType==answereddone) {
+        if (q.answerType==answeredRight||q.answerType==answeredwrong) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"rightcell" forIndexPath:indexPath];
         }else{
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"normalcell" forIndexPath:indexPath];

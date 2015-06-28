@@ -14,11 +14,13 @@
 @property(nonatomic,strong)NSString *nid;
 @property(nonatomic,strong)NSString *outletId;
 @property(nonatomic,strong)NSString *subjectId;
-
+@property(nonatomic,strong)NSString *AnswerState;
+-(NSDictionary*)toPracitsJson;
 @end
+
+
 @interface QuestionAnswerA : AnswerObj//选择
 @property(nonatomic,strong)NSMutableArray *myAnswer;
-@property(nonatomic,strong)NSString *AnswerState;
 @property(nonatomic)BOOL isAnswerShow;
 @property(nonatomic)BOOL isCollect;
 @property(nonatomic)BOOL isImg;
@@ -37,9 +39,6 @@
 
 @interface QuestionAnswerB : AnswerObj//综合
 @property(nonatomic,strong)NSMutableArray <QuestionItemB>*questionItemBs;
-
-
-@property(nonatomic,strong)NSString *AnswerState;
 @property(nonatomic)BOOL isCollect;
 @property(nonatomic)BOOL isAnswerShow;
 @property(nonatomic)BOOL isImg;
@@ -58,8 +57,6 @@
 
 @interface QuestionAnswerC : AnswerObj//配伍
 @property(nonatomic,strong)NSMutableArray <QuestionItemC>*questionCItems;
-
-@property(nonatomic,strong)NSString *AnswerState;
 @property(nonatomic)BOOL isCollect;
 @property(nonatomic)BOOL isAnswerShow;
 @property(nonatomic)BOOL isImg;

@@ -165,10 +165,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.type==0) {
-        UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
-        PractiseVC *vc=[sb instantiateViewControllerWithIdentifier:@"practise"];
+        UIStoryboard *sb=[UIStoryboard storyboardWithName:@"question" bundle:[NSBundle mainBundle]];
+        QuestionVC *vc=[sb instantiateViewControllerWithIdentifier:@"QuestionVC"];
         UserPractis *p=self.practisAr[indexPath.row];
-        vc.fromPractisDetail=YES;
+        vc.fromDetail=YES;
+        vc.showAnswer=YES;
         vc.outletid=p.outlineId;
         [self.navigationController pushViewController:vc animated:YES];
     }else{

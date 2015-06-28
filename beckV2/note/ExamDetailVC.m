@@ -45,6 +45,7 @@
     UIStoryboard *sb=[UIStoryboard storyboardWithName:@"question" bundle:[NSBundle mainBundle]];
    QuestionVC*vc =[sb instantiateViewControllerWithIdentifier:@"QuestionVC"];
     vc.showTimer=NO;
+    vc.fromDetail=YES;
     UserExam *ue=[self.examAr lastObject];
     vc.paperid=ue.paper_id;
     vc.showAnswer=YES;

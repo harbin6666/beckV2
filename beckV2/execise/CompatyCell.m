@@ -274,11 +274,8 @@
 
     if ([item.answerid isEqualToString:self.question.answer_id]) {
         self.block(YES,item);
-//        self.answ.isRight=@"true";
-
     }else{
         self.block(NO,item);
-//        self.answ.isRight=@"false";
     }
 
     
