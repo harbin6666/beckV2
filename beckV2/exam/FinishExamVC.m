@@ -10,13 +10,18 @@
 #import "WechatObj.h"
 #import "QQObj.h"
 #import "AppDelegate.h"
-#import "ExamVC.h"
+#import "QuestionVC.h"
 @interface FinishExamVC ()
 @property(nonatomic,weak)IBOutlet UIButton *wechat,*wechatF,*qqF;
 @property(nonatomic,weak)IBOutlet UILabel *nameL,*pointlb,*examTimelb,*coslb,*rightlb,*wronglb,*ratelb;
 @end
 
 @implementation FinishExamVC
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.barTintColor=BeckRed;
+    self.navigationController.navigationBarHidden=YES;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,7 +34,7 @@
     self.coslb.text=[NSString stringWithFormat:@"做题时间    ：%@分钟",self.cost];
     self.rightlb.text=[NSString stringWithFormat:@"答对题数    ：%@题",self.right];
     self.wronglb.text=[NSString stringWithFormat:@"答错题数    ：%@题",self.wrong];
-    self.ratelb.text=[NSString stringWithFormat:@"   正确率    ：%.2f％",self.right.floatValue/(self.wrong.floatValue+self.right.floatValue)];
+    self.ratelb.text=[NSString stringWithFormat:@"   正确率    ：%.2f％",100*self.right.floatValue/(self.wrong.floatValue+self.right.floatValue)];
 }
 -(IBAction)dissmiss:(id)sender{
     [self dismissViewControllerAnimated:YES completion:^{
@@ -39,9 +44,10 @@
 }
 
 -(IBAction)seeExam{
-    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
-    ExamVC*vc =[sb instantiateViewControllerWithIdentifier:@"exam"];
-    vc.fromDB=YES;
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"question" bundle:[NSBundle mainBundle]];
+    QuestionVC*vc =[sb instantiateViewControllerWithIdentifier:@"QuestionVC"];
+    vc.showAnswer=YES;
+    vc.showTimer=NO;
     vc.paperid=self.paperid;
     [self.navigationController pushViewController:vc animated:YES];
 

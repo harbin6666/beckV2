@@ -202,7 +202,7 @@
                   moduleName = "beckV2"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yj/beckv2/beckV2/execise/PractiseVC.m"
-                  timestampString = "457170206.229391"
+                  timestampString = "457196659.092822"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "601"
@@ -217,7 +217,7 @@
                   moduleName = "beckV2"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yj/beckv2/beckV2/execise/PractiseVC.m"
-                  timestampString = "457170206.229532"
+                  timestampString = "457196659.092939"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "601"
@@ -233,46 +233,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "beckV2/DB/SQLManager.m"
-            timestampString = "457170154.687146"
+            filePath = "beckV2/custom/QuestionVC.m"
+            timestampString = "457196658.725476"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
-            landmarkName = "-getPractisWithOutlineid:"
+            startingLineNumber = "411"
+            endingLineNumber = "411"
+            landmarkName = "-rightBtnClick:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SQLManager getPractisWithOutlineid:]"
-                  moduleName = "beckV2"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yj/beckv2/beckV2/DB/SQLManager.m"
-                  timestampString = "457170206.23075"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "308"
-                  endingLineNumber = "308"
-                  offsetFromSymbolStart = "549">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__38-[SQLManager getPractisWithOutlineid:]_block_invoke"
-                  moduleName = "beckV2"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yj/beckv2/beckV2/DB/SQLManager.m"
-                  timestampString = "457170206.230872"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "308"
-                  endingLineNumber = "308"
-                  offsetFromSymbolStart = "80">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

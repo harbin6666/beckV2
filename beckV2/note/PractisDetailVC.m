@@ -11,7 +11,7 @@
 #import "PractiseVC.h"
 #import "Outline.h"
 #import "ExamPaper.h"
-#import "ExamVC.h"
+#import "QuestionVC.h"
 #import "CompatyQuestion.h"
 @interface PractisDetailVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,weak)IBOutlet UILabel *lab1,*lab2,*lab3,*lab4,*lab5,*lab6,*lab7;
@@ -172,16 +172,19 @@
         vc.outletid=p.outlineId;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
-        ExamVC* vc=[[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"exam"];
+        QuestionVC* vc=[[UIStoryboard storyboardWithName:@"question" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"QuestionVC"];
+        
         UserExam *p=self.examAr[indexPath.row];
-        NSMutableArray *ar=[NSMutableArray array];
-        NSArray *temp=[[SQLManager sharedSingle] getExamPaperContentByPaperid:p.paper_id];
-        for (int i=0; i<temp.count; i++) {
-            ExamPaper_Content *cont=temp[i];
-            Question *q=[[SQLManager sharedSingle] getExamQuestionByItemId:cont.item_id customid:cont.custom_id];
-            [ar addObject:q];
-        }
-        vc.questionsAr=ar;
+//        NSMutableArray *ar=[NSMutableArray array];
+//        NSArray *temp=[[SQLManager sharedSingle] getExamPaperContentByPaperid:p.paper_id];
+//        for (int i=0; i<temp.count; i++) {
+//            ExamPaper_Content *cont=temp[i];
+//            Question *q=[[SQLManager sharedSingle] getExamQuestionByItemId:cont.item_id customid:cont.custom_id];
+//            [ar addObject:q];
+//        }
+        vc.paperid=p.paper_id;
+        vc.showTimer=NO;
+        vc.showAnswer=YES;
         vc.examComp=self.examPapers[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
 

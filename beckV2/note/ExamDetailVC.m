@@ -8,7 +8,7 @@
 
 #import "ExamDetailVC.h"
 #import "ExamPaper.h"
-#import "ExamVC.h"
+#import "QuestionVC.h"
 @interface ExamDetailVC ()
 @property(nonatomic,weak)IBOutlet UILabel *datelab,*rightLab,*wrongLab,*rateLab;
 @property(nonatomic,weak)IBOutlet UIButton *scoreBtn,*toExamBtn;
@@ -42,11 +42,12 @@
 }
 
 -(IBAction)seeExam{
-    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
-   ExamVC*vc =[sb instantiateViewControllerWithIdentifier:@"exam"];
-    vc.fromDB=YES;
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"question" bundle:[NSBundle mainBundle]];
+   QuestionVC*vc =[sb instantiateViewControllerWithIdentifier:@"QuestionVC"];
+    vc.showTimer=NO;
     UserExam *ue=[self.examAr lastObject];
     vc.paperid=ue.paper_id;
+    vc.showAnswer=YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)didReceiveMemoryWarning {

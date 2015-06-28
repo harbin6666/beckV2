@@ -124,6 +124,9 @@
 		397F89821B3B266500C2409D /* ExamDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397F89811B3B266500C2409D /* ExamDetailVC.m */; };
 		397F89851B3B3B9000C2409D /* BuyExamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397F89841B3B3B9000C2409D /* BuyExamVC.m */; };
 		397F89881B3B3BC300C2409D /* FinishExamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397F89871B3B3BC300C2409D /* FinishExamVC.m */; };
+		397F898B1B3FE5B000C2409D /* AnswerObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 397F898A1B3FE5B000C2409D /* AnswerObj.m */; };
+		397F898E1B3FED7C00C2409D /* QuestionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397F898D1B3FED7C00C2409D /* QuestionVC.m */; };
+		397F89901B3FF77E00C2409D /* question.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 397F898F1B3FF77E00C2409D /* question.storyboard */; };
 		39CD45F61B209A7E005320B5 /* MoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CD45F51B209A7E005320B5 /* MoreVC.m */; };
 		39CD45F91B209A8D005320B5 /* NoteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CD45F81B209A8D005320B5 /* NoteVC.m */; };
 		39CD45FC1B209B19005320B5 /* ExamHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CD45FB1B209B19005320B5 /* ExamHomeVC.m */; };
@@ -485,6 +488,11 @@
 		397F89841B3B3B9000C2409D /* BuyExamVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyExamVC.m; sourceTree = "<group>"; };
 		397F89861B3B3BC300C2409D /* FinishExamVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishExamVC.h; sourceTree = "<group>"; };
 		397F89871B3B3BC300C2409D /* FinishExamVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinishExamVC.m; sourceTree = "<group>"; };
+		397F89891B3FE5B000C2409D /* AnswerObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerObj.h; sourceTree = "<group>"; };
+		397F898A1B3FE5B000C2409D /* AnswerObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerObj.m; sourceTree = "<group>"; };
+		397F898C1B3FED7C00C2409D /* QuestionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionVC.h; sourceTree = "<group>"; };
+		397F898D1B3FED7C00C2409D /* QuestionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionVC.m; sourceTree = "<group>"; };
+		397F898F1B3FF77E00C2409D /* question.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = question.storyboard; sourceTree = "<group>"; };
 		39CD45F41B209A7E005320B5 /* MoreVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreVC.h; sourceTree = "<group>"; };
 		39CD45F51B209A7E005320B5 /* MoreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreVC.m; sourceTree = "<group>"; };
 		39CD45F71B209A8D005320B5 /* NoteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteVC.h; sourceTree = "<group>"; };
@@ -634,6 +642,7 @@
 				395899F21B31E0240056B9A5 /* SettingPanVC.h */,
 				395899F31B31E0240056B9A5 /* SettingPanVC.m */,
 				395899F01B31DFFC0056B9A5 /* pan.storyboard */,
+				397F898F1B3FF77E00C2409D /* question.storyboard */,
 				39CE4C6D1B19BCB200DDAB01 /* Practis.storyboard */,
 				3919ABEA1B0647F200336E77 /* Main.storyboard */,
 				3919ABED1B0647F200336E77 /* Images.xcassets */,
@@ -1351,6 +1360,10 @@
 				39589A2E1B398A840056B9A5 /* WechatObj.m */,
 				397F897D1B39FA2700C2409D /* QQObj.h */,
 				397F897E1B39FA2700C2409D /* QQObj.m */,
+				397F89891B3FE5B000C2409D /* AnswerObj.h */,
+				397F898A1B3FE5B000C2409D /* AnswerObj.m */,
+				397F898C1B3FED7C00C2409D /* QuestionVC.h */,
+				397F898D1B3FED7C00C2409D /* QuestionVC.m */,
 			);
 			path = custom;
 			sourceTree = "<group>";
@@ -1470,6 +1483,7 @@
 				395899391B2D3B790056B9A5 /* AlipaySDK.bundle in Resources */,
 				395899EF1B31DE970056B9A5 /* rule.html in Resources */,
 				3919ABF11B0647F200336E77 /* LaunchScreen.xib in Resources */,
+				397F89901B3FF77E00C2409D /* question.storyboard in Resources */,
 				39CE4C4F1B19575800DDAB01 /* WeiboSDK.bundle in Resources */,
 				39CE4C4B1B19575800DDAB01 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				3919ABEE1B0647F200336E77 /* Images.xcassets in Resources */,
@@ -1608,6 +1622,7 @@
 				396AD3041B1772F6005F92B1 /* Position.m in Sources */,
 				394C4A2A1B274F8A0002838B /* PractisDetailVC.m in Sources */,
 				397F89881B3B3BC300C2409D /* FinishExamVC.m in Sources */,
+				397F898E1B3FED7C00C2409D /* QuestionVC.m in Sources */,
 				39589A061B33446B0056B9A5 /* Collection.m in Sources */,
 				395899BE1B2DE2BE0056B9A5 /* NSArray+Extend.m in Sources */,
 				39CE4C801B1CB1F800DDAB01 /* PractiseVC.m in Sources */,
@@ -1630,6 +1645,7 @@
 				3958995C1B2DE2780056B9A5 /* CoreNewFeatureVC.m in Sources */,
 				39CE4C6C1B19B81B00DDAB01 /* Outline.m in Sources */,
 				39CE4C851B1CC47700DDAB01 /* ChoiceItem.m in Sources */,
+				397F898B1B3FE5B000C2409D /* AnswerObj.m in Sources */,
 				3958995F1B2DE2780056B9A5 /* NewFeatureScrollView.m in Sources */,
 				395899BC1B2DE2BE0056B9A5 /* CALayer+Anim.m in Sources */,
 				395899F71B31E09B0056B9A5 /* UIImage+tool.m in Sources */,

@@ -160,7 +160,7 @@
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="rEV-l9-jF1"/>
             </objects>
-            <point key="canvasLocation" x="1087" y="980"/>
+            <point key="canvasLocation" x="1899" y="980"/>
         </scene>
         <!--Buy ExamVC-->
         <scene sceneID="dib-MN-HAf">
@@ -192,7 +192,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="finish_head" translatesAutoresizingMaskIntoConstraints="NO" id="kNk-za-cD0">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="finish_head" translatesAutoresizingMaskIntoConstraints="NO" id="kNk-za-cD0">
                                 <rect key="frame" x="0.0" y="20" width="320" height="236"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="kNk-za-cD0" secondAttribute="height" multiplier="160:118" id="8ZY-Vn-Tnp"/>
@@ -348,7 +348,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7w-IT-ogK">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7w-IT-ogK">
                                 <rect key="frame" x="16" y="20" width="40" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Wm1-4K-k2w"/>
@@ -391,6 +391,7 @@
                             <constraint firstAttribute="centerY" secondItem="BIv-1u-TSC" secondAttribute="centerY" constant="-18" id="wUk-dy-fbO"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="7Xk-8O-Fc7"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="coslb" destination="tcz-Xf-0yk" id="Wa2-b5-fUj"/>
@@ -404,7 +405,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHM-6y-QfK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-242" y="438"/>
+            <point key="canvasLocation" x="570" y="438"/>
         </scene>
         <!--Finish ExamVC-->
         <scene sceneID="AzE-i3-A47">
@@ -611,7 +612,25 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="663.5" y="353.5"/>
+            <point key="canvasLocation" x="1475.5" y="353.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mc0-zh-ZaD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="amX-Kj-Hg7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KEs-dS-Zsn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7S2-eK-Z5L" kind="relationship" relationship="rootViewController" id="Rdh-t2-eLn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mqT-Aa-T02" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-242" y="438"/>
         </scene>
     </scenes>
     <resources>

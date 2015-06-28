@@ -27,7 +27,39 @@
 //    }    
 }
 
+-(void)updateWithChoice:(ChoiceItem*)item questionAnswerA:(QuestionAnswerA*)answer showAnswer:(BOOL)b{
+    NSArray*ar=answer.myAnswer;
+    self.radio.image=[UIImage imageNamed:@"radio"];
+    
+    for (NSString * it in ar) {
+        if (item.nid.integerValue==it.integerValue) {
+            self.radio.image=[UIImage imageNamed:@"radio_sel"];
+        }
+//        else{
+//            self.radio.image=[UIImage imageNamed:@"radio"];
+//        }
+    }
+    if (b) {
+            if (item.is_answer.integerValue==1) {
+                self.mark.image=[UIImage imageNamed:@"choiceRight"];
+            }else{
+                self.mark.image=[UIImage imageNamed:@"choiceWrong"];
+            }
+        
+    }
+    
+    
+    self.item=item;
+    self.lab.text=[NSString stringWithFormat:@"%@ %@",item.item_number,item.item_content];
+    self.lab.numberOfLines=2;
+    
+    self.selectedBackgroundView=[[UIView alloc] init];
+
+}
 -(void)updateWithChoice:(ChoiceItem*)item answer:(PractisAnswer*)answer showAnswer:(BOOL)b{
+    if (b) {
+        
+    }
     NSMutableArray*ar=answer.userAnswer;
     self.radio.image=[UIImage imageNamed:@"radio"];
 

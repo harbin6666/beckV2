@@ -11,6 +11,7 @@
 #import "Question.h"
 #import "ExamVC.h"
 #import "PointShopVC.h"
+#import "QuestionVC.h"
 @interface ExamScreenVC ()
 @property(nonatomic,strong)NSMutableArray *qAr;
 @property(nonatomic,strong)ExamPaper*currentPaper;
@@ -125,25 +126,33 @@
 }
 
 -(void)goExamVC{
-    NSArray *examcompose=[[SQLManager sharedSingle] getExamPaperCompositonByPaperId:self.currentPaper.paper_id];
-    NSMutableArray *quest=[[NSMutableArray alloc] init];
-    for (int i=0; i<examcompose.count; i++) {
-        ExamPaperComposition*comp=examcompose[i];
-        NSArray* questions=[[SQLManager sharedSingle] getExamPaperContentByPaperid:comp.paper_id compid:comp.comp_id];
-        [quest addObjectsFromArray:questions];
-    }
-    
-    self.qAr=[[NSMutableArray alloc] init];
-    for (int i=0; i<quest.count; i++) {
-        ExamPaper_Content *con=quest[i];
-        Question* q=[[SQLManager sharedSingle] getExamQuestionByItemId:con.item_id customid:con.custom_id];
-        q.examScore=con.score;
-        [self.qAr addObject:q];
-    }
-    ExamVC* vc=[[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"exam"];
-    vc.questionsAr=self.qAr;
+
+    QuestionVC* vc=[[UIStoryboard storyboardWithName:@"question" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"QuestionVC"];
+    vc.paperid=self.currentPaper.paper_id;
     vc.examComp=self.currentPaper;
+    vc.showTimer=YES;
     [self.navigationController pushViewController:vc animated:YES];
+
+    
+    //    NSArray *examcompose=[[SQLManager sharedSingle] getExamPaperCompositonByPaperId:self.currentPaper.paper_id];
+//    NSMutableArray *quest=[[NSMutableArray alloc] init];
+//    for (int i=0; i<examcompose.count; i++) {
+//        ExamPaperComposition*comp=examcompose[i];
+//        NSArray* questions=[[SQLManager sharedSingle] getExamPaperContentByPaperid:comp.paper_id compid:comp.comp_id];
+//        [quest addObjectsFromArray:questions];
+//    }
+//    
+//    self.qAr=[[NSMutableArray alloc] init];
+//    for (int i=0; i<quest.count; i++) {
+//        ExamPaper_Content *con=quest[i];
+//        Question* q=[[SQLManager sharedSingle] getExamQuestionByItemId:con.item_id customid:con.custom_id];
+//        q.examScore=con.score;
+//        [self.qAr addObject:q];
+//    }
+//    ExamVC* vc=[[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"exam"];
+//    vc.questionsAr=self.qAr;
+//    vc.examComp=self.currentPaper;
+//    [self.navigationController pushViewController:vc animated:YES];
 
 }
 
