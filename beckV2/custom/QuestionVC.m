@@ -869,7 +869,8 @@
         }
     }
     dic[@"rightAmount"]=[NSString stringWithFormat:@"%zd",count];
-    dic[@"wrongAmount"]=[NSString stringWithFormat:@"%zd",wrongCount];
+    ExamPaper*paper= [[SQLManager sharedSingle] getExamPaperByPaperid:self.paperid];
+    dic[@"wrongAmount"]=[NSString stringWithFormat:@"%zd",paper.total_amount.integerValue-count];
     dic[@"score"]=[NSString stringWithFormat:@"%zd",score];
     
     NSError *error;

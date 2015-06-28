@@ -25,7 +25,7 @@
 //    for (UserExam *ue in self.examAr) {
         UserExam *ue=[self.examAr lastObject];
     self.datelab.text=ue.end_time;
-//    NSArray*totalQuestions=[[SQLManager sharedSingle] getExamPaperContentByPaperid:ue.paper_id];
+    ExamPaper*paper=[[SQLManager sharedSingle] getExamPaperByPaperid:ue.paper_id];
     //所有题目
     self.rightLab.text=ue.right_amount;
     self.wrongLab.text=ue.wrong_amount;
@@ -33,10 +33,10 @@
     
 //    }
     NSInteger totalr=ue.right_amount.integerValue;
-    NSInteger totalwrong=ue.wrong_amount.integerValue;
-    NSInteger totaldone=totalr+totalwrong;
+
+    NSInteger total=paper.total_amount.integerValue;
     
-    self.rateLab.text=[NSString stringWithFormat:@"正确率%.0f％",(float)100*totalr/totaldone];
+    self.rateLab.text=[NSString stringWithFormat:@"正确率%.0f％",(float)100*totalr/total];
     
     [self.toExamBtn addTarget:self action:@selector(seeExam) forControlEvents:UIControlEventTouchUpInside];
 }

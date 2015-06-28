@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Question.h"
+#import "ExamPaper.h"
 #import "UserNote.h"
 @interface SQLManager : NSObject
 singleton_interface(SQLManager);
@@ -45,6 +46,8 @@ singleton_interface(SQLManager);
 -(NSArray*)getChoiceItemByChoiceId:(NSString*)choiceid;
 
 -(NSArray*)getCompatyQuestionsByinfoId:(NSString*)infoId;
+
+-(ExamPaper*)getExamPaperByPaperid:(NSString*)paperid;
 
 -(NSArray*)getCompatyItemByCompid:(NSString*)compatyid;
 
