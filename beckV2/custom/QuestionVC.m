@@ -454,7 +454,18 @@
                         [[SQLManager sharedSingle] excuseSql:sqlAr[i]];
                     }
                 }
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDB" object:nil];
+                NSString *maxid=[[SQLManager sharedSingle] getMaxidWithTableName:@"user_wrong_item" colName:@"id"];
+                for (int i=maxid.intValue ;i<self.answerArray.count;i++) {
+                    AnswerObj*an = self.answerArray[i];
+                    if (an.AnswerState.integerValue==0) {
+                        NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
+                        [dateFormatter1 setDateFormat:@"yyyy-MM-dd"];
+                        NSString *strDate = [dateFormatter1 stringFromDate:[NSDate date]];
+
+                        NSString *wrongSql=[NSString stringWithFormat:@"INSERT INTO \'user_wrong_item\'(\'id\',\'item_id\',\'type_id\',\'user_id\',\'product_id\',\'add_time\',\'update_time\',\'cancel_time\',\'outline_id\',\'subject_id\',\'count\',\'is_valid\',\'description\',\'memo\') VALUES (%@,%@,%@,%@,%@,\'%@\',%@,%@,%@,%@,%@,%@,%@,%@);",@(i+1),an.nid,an.customId,[Global sharedSingle].userId,@1,strDate,@"NULL",@"NULL",an.outletId,an.subjectId,@1,@1,@"NULL",@"NULL"];
+                        [[SQLManager sharedSingle] excuseSql:wrongSql];
+                    }
+                }
                 [[OTSAlertView alertWithMessage:@"提交成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
                     [self.navigationController popViewControllerAnimated:YES];
                 }] show];

@@ -20,4 +20,8 @@ singleton_implementation(Global)
 -(id)getUserWithkey:(NSString*)key{
     return [[NSUserDefaults standardUserDefaults] valueForKey:key];
 }
+
+-(NSString *)userId{
+    return self.userBean[@"userId"];
+}
 @end

@@ -38,9 +38,9 @@ singleton_implementation(SQLManager);
             c.item_id=row[1];
             c.type_id=row[2];
             c.add_time=row[5];
-            c.outline_id=row[7];
-            c.subject_id=row[8];
-            c.count=row[9];
+            c.outline_id=row[8];
+            c.subject_id=row[9];
+            c.count=row[10];
             [result addObject:c];
         }
     }];

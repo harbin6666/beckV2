@@ -61,7 +61,9 @@
 
     for (Collection*un in self.dataAr) {
         [outlineids addObject:un.outline_id];
-        un.add_time=[self transferTime:un.add_time];
+        if (self.type==0) {
+            un.add_time=[self transferTime:un.add_time];
+        }
     }
     self.outlineSet=[NSSet setWithArray:outlineids];
 
