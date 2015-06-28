@@ -33,6 +33,9 @@
     [WXApi registerApp:kWXAPP_ID withDescription:@"beck"];
 
     NSString * titleid=[[Global sharedSingle] getUserWithkey:@"titleid"];
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"fontValue"]==0) {
+        [[NSUserDefaults standardUserDefaults] setInteger:14 forKey:@"fontValue"];
+    }
     if (titleid==nil) {
         NSArray *tts=[[SQLManager sharedSingle] getTitles];
         Position *select=[tts lastObject];

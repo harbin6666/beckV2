@@ -36,7 +36,7 @@
 @property(nonatomic,strong) UILabel *timeLab;
 @property(nonatomic,strong)NSTimer* timer;
 @property(nonatomic,assign)NSInteger seconds;
-
+@property(nonatomic)NSInteger font;
 @end
 
 @implementation QuestionVC
@@ -108,8 +108,16 @@
     self.timeLab.text=[NSString stringWithFormat:@"%zd:%zd",h,s];
 }
 
+-(void)updateFont{
+    self.font=[[NSUserDefaults standardUserDefaults] integerForKey:@"fontValue"];
+    [self.table reloadData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFont) name:@"updatefont" object:nil];
+    self.font=[[NSUserDefaults standardUserDefaults] integerForKey:@"fontValue"];
+    
+    
     if (self.answerArray==nil) {
         self.answerArray=[[NSMutableArray alloc] init];
     }
@@ -507,7 +515,7 @@
     
     la.textAlignment=NSTextAlignmentCenter;
     la.numberOfLines=0;
-    la.font=[UIFont systemFontOfSize:14];
+    la.font=[UIFont systemFontOfSize:self.font];
     la.text=self.questionDes;
     UIView* v=[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, h+15)];
     v.backgroundColor=[UIColor lightGrayColor];
@@ -555,6 +563,7 @@
             cell=[tableView dequeueReusableCellWithIdentifier:@"answercell" forIndexPath:indexPath];
             self.answerCell=cell;
             cell.textLabel.text=[c choice_parse];
+            cell.textLabel.font=[UIFont systemFontOfSize:self.font];
             cell.textLabel.hidden=YES;
             if (self.showAnswer) {
                 cell.textLabel.hidden=NO;
@@ -565,7 +574,7 @@
         }else{
             ChoiceCell* cell=(ChoiceCell*)[tableView dequeueReusableCellWithIdentifier:@"choicecell" forIndexPath:indexPath];
             cell.mark.image=nil;
-            
+            cell.lab.font=[UIFont systemFontOfSize:self.font];
             QuestionAnswerA*a =(QuestionAnswerA*)[self findDoneAnswerWithid:c.choice_id];
             [cell updateWithChoice:self.choiceArray[indexPath.row] questionAnswerA:a showAnswer:self.showAnswer];
             return cell;
@@ -581,6 +590,7 @@
                 [answer appendFormat:@"%d.%@",i+1,q.choice_parse];
             }
             cell.textLabel.text=answer;
+            cell.textLabel.font=[UIFont systemFontOfSize:self.font];
             cell.textLabel.hidden=YES;
             if (self.showAnswer) {
                 cell.textLabel.hidden=NO;
@@ -598,6 +608,7 @@
             cell.customid=info.custom_id.integerValue;
             CompatyQuestion *q=self.compatibilyArray[indexPath.row];
             AnswerObj*a =(QuestionAnswerA*)[self findDoneAnswerWithid:[info info_id]];
+            cell.lab.font=[UIFont systemFontOfSize:self.font];
             [cell updateCompatyCell:q customid:p.custom_id AnswerObj:a showAnswer:self.showAnswer selectedBlock:^(BOOL right, CompatyItem *answer) {
                 a.priority=@(self.currentQIndex+1).stringValue;
                 if (right) {
