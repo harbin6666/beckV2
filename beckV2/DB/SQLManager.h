@@ -49,7 +49,10 @@ singleton_interface(SQLManager);
 
 -(ExamPaper*)getExamPaperByPaperid:(NSString*)paperid;
 
+-(NSArray*)hadDonePractisOutlineid:(NSString*)outlineid itemid:(NSString*)itemid typeid:(NSString*)type_id;
+
 -(NSArray*)getCompatyItemByCompid:(NSString*)compatyid;
+
 
 -(NSArray*)getCompatyItemByCompid:(NSString *)compatyid memo:(NSString*)memo;
 

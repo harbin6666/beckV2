@@ -15,4 +15,5 @@
 @property(nonatomic)BOOL showAnswer,showTimer;//显示倒计时否
 @property(nonatomic)BOOL practisMode,fromDetail,fromPractisDetail;
 @property(nonatomic)BOOL fromExamFinish;
+@property(nonatomic,strong)NSMutableArray *answerArray;
 @end

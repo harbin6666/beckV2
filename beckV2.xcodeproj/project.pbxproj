@@ -15,6 +15,7 @@
 		3919ABF11B0647F200336E77 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3919ABEF1B0647F200336E77 /* LaunchScreen.xib */; };
 		3919ABFD1B0647F200336E77 /* beckV2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3919ABFC1B0647F200336E77 /* beckV2Tests.m */; };
 		393316FA1B4191CE005F817F /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 393316F71B4191CE005F817F /* libMobClickLibrary.a */; };
+		393316FD1B41BFDA005F817F /* UserPractisExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 393316FC1B41BFDA005F817F /* UserPractisExt.m */; };
 		39372E721B0A267000891F52 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39372E711B0A267000891F52 /* BaseViewController.m */; };
 		39372E781B0A2A3000891F52 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39372E771B0A2A3000891F52 /* libsqlite3.dylib */; };
 		39372E7B1B0A2C0500891F52 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 39372E791B0A2C0500891F52 /* Model.xcdatamodeld */; };
@@ -198,6 +199,8 @@
 		393316F71B4191CE005F817F /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		393316F81B4191CE005F817F /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		393316F91B4191CE005F817F /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
+		393316FB1B41BFDA005F817F /* UserPractisExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPractisExt.h; sourceTree = "<group>"; };
+		393316FC1B41BFDA005F817F /* UserPractisExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPractisExt.m; sourceTree = "<group>"; };
 		39372E701B0A267000891F52 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		39372E711B0A267000891F52 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		39372E761B0A285200891F52 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -695,6 +698,8 @@
 				39372E7F1B0A2F1E00891F52 /* beck.db */,
 				39CE4C5C1B195A2800DDAB01 /* SQLManager.h */,
 				39CE4C5D1B195A2800DDAB01 /* SQLManager.m */,
+				393316FB1B41BFDA005F817F /* UserPractisExt.h */,
+				393316FC1B41BFDA005F817F /* UserPractisExt.m */,
 				39589A071B33630F0056B9A5 /* UserPractis.h */,
 				39589A081B33630F0056B9A5 /* UserPractis.m */,
 				39589A041B33446B0056B9A5 /* Collection.h */,
@@ -1594,6 +1599,7 @@
 				394C4A331B275B6B0002838B /* UserNote.m in Sources */,
 				395899D41B2DE2BE0056B9A5 /* MASViewAttribute.m in Sources */,
 				396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */,
+				393316FD1B41BFDA005F817F /* UserPractisExt.m in Sources */,
 				395899CD1B2DE2BE0056B9A5 /* UIView+Extend.m in Sources */,
 				397F89821B3B266500C2409D /* ExamDetailVC.m in Sources */,
 				397DDAD61B14B64C00E8F73B /* VerifyVC.m in Sources */,

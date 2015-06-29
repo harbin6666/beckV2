@@ -31,7 +31,6 @@
 @property(nonatomic,assign)NSInteger currentQIndex;
 @property(nonatomic,weak) IBOutlet UITableView *table;
 @property(nonatomic,strong)NSArray *questionsAr;
-@property(nonatomic,strong)NSMutableArray *answerArray;
 @property(nonatomic,strong)NSDate *beginTime;
 @property(nonatomic,strong) UILabel *timeLab;
 @property(nonatomic,strong)NSTimer* timer;
@@ -164,7 +163,7 @@
     
     if (self.practisMode) {
         if (self.fromDetail) {
-            self.answerArray=[[CachedAnswer new] getCacheByOutlineid:self.outletid];
+//            self.answerArray=[[CachedAnswer new] getCacheByOutlineid:self.outletid];
         }else{
             NSArray *cachedAr=[[CachedAnswer new] getCacheByOutlineid:self.outletid];
             if (cachedAr!=nil) {
@@ -254,6 +253,7 @@
             a.subjectId=p.subject_id;
             a.nid=q.choice_id;
             a.outletId=q.outlet_id;
+            a.priority=@(self.currentQIndex+1).stringValue;
             [self addAnswer:a];
         }
         
@@ -285,6 +285,7 @@
                 a.subjectId=p.subject_id;
                 a.nid=comp.info_id;
                 a.outletId=comp.outlet_id;
+                a.priority=@(self.currentQIndex+1).stringValue;
                 [self addAnswer:a];
             }
         }
@@ -300,6 +301,7 @@
                 a.subjectId=p.subject_id;
                 a.nid=comp.info_id;
                 a.outletId=comp.outlet_id;
+                a.priority=@(self.currentQIndex+1).stringValue;
                 [self addAnswer:a];
             }
 

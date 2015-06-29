@@ -13,4 +13,5 @@
 @property(nonatomic,strong)NSString *amount;
 @property(nonatomic,strong)NSString *end_time;
 @property(nonatomic,strong)NSString *outlineId;
+@property(nonatomic,strong)NSString *exerciseid;
 @end

@@ -13,10 +13,13 @@
 #import "ExamPaper.h"
 #import "QuestionVC.h"
 #import "CompatyQuestion.h"
+#import "ChoiceQuestion.h"
+#import "UserPractisExt.h"
+#import "AnswerObj.h"
 @interface PractisDetailVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,weak)IBOutlet UILabel *lab1,*lab2,*lab3,*lab4,*lab5,*lab6,*lab7;
 @property(nonatomic,weak)IBOutlet UITableView *table;
-@property(nonatomic,strong)NSArray *ar;
+@property(nonatomic,strong)NSArray *ar,*exerAr;
 @end
 
 @implementation PractisDetailVC
@@ -28,51 +31,49 @@
     NSInteger totaldone=0;
     NSInteger sqlCount=0;
     NSMutableArray *totalAr=[NSMutableArray array];
-    self.ar=@[@"测试时间",@"答对题数",@"答错提数",@"详情"];
-    if (self.type==0) {
-        self.title=@"练习详情";
+    self.ar=@[@"测试时间",@"答对题数",@"答错题数",@"详情"];
+
+    self.title=@"练习详情";
         self.lab1.text=[NSString stringWithFormat:@"您总共进行了%zd次模拟练习",self.practisAr.count];
         for (UserPractis*p in self.practisAr) {
             NSInteger r=(NSInteger)p.amount.integerValue*p.accurate_rate.floatValue;
             NSInteger wrong=p.amount.integerValue-r;
             totalr+=r;
             totalwrong+=wrong;
-            totaldone+=p.amount.integerValue;
+//            totaldone+=p.amount.integerValue;
         }
+        //所有题目
         NSArray*tempTotal=[[SQLManager sharedSingle] getOutLineByParentId:self.outlineid];
         for (Outline *o in tempTotal) {
             [totalAr addObjectsFromArray:[[SQLManager sharedSingle] getQuestionByOutlineId:o.outlineid] ];
         }
-        
+        NSMutableArray*doneAr=@[].mutableCopy;
         for (Question *q in totalAr) {
             if (q.custom_id.integerValue==10||q.custom_id.integerValue==11) {
                 CompatyInfo *com=(CompatyInfo*)q;
                 NSArray *miniQuestion=[[SQLManager sharedSingle] getCompatyQuestionsByinfoId:com.info_id];
+                NSArray*temp=[[SQLManager sharedSingle] hadDonePractisOutlineid:com.outlet_id itemid:com.info_id typeid:q.custom_id];
+                [doneAr addObjectsFromArray:temp];
+                
                 sqlCount+=miniQuestion.count;
             }else{
                 sqlCount++;
+                ChoiceQuestion *choice=(ChoiceQuestion*)q;
+                NSArray* temp=[[SQLManager sharedSingle] hadDonePractisOutlineid:choice.outlet_id itemid:choice.choice_id typeid:q.custom_id];
+                [doneAr addObjectsFromArray:temp];
+
             }
         }
-
-    }else{
-        self.title=@"考试详情";
-        self.lab1.text=[NSString stringWithFormat:@"您总共进行了%zd次考试",self.examAr.count];
-        for (UserExam *ue in self.examAr) {
-            NSArray *temp=[[SQLManager sharedSingle] getExamPaperContentByPaperid:ue.paper_id];
-            [totalAr addObjectsFromArray:temp];//所有题目
-            totalr+=ue.right_amount.integerValue;
-            totalwrong+=ue.wrong_amount.integerValue;
-        }
-        totaldone=totalr+totalwrong;
-    }
+        totaldone=doneAr.count;
+    self.exerAr=doneAr;
     
     self.table.tableFooterView=[[UIView alloc] init];
     self.lab2.text=[NSString stringWithFormat:@"%zd",sqlCount];
     self.lab3.text=[NSString stringWithFormat:@"%d％",(int)(100*totalr/totalAr.count)];
-    self.lab4.text=[NSString stringWithFormat:@"%zd",totalAr.count];
+    self.lab4.text=[NSString stringWithFormat:@"%zd",totaldone];
     self.lab5.text=[NSString stringWithFormat:@"%zd",totalr];
     self.lab6.text=[NSString stringWithFormat:@"%zd",totalwrong];
-    self.lab7.text=[NSString stringWithFormat:@"%d％",(int)(totaldone/totalAr.count)];
+    self.lab7.text=[NSString stringWithFormat:@"%d％",(int)(totaldone*100/sqlCount)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -173,6 +174,58 @@
         vc.fromDetail=YES;
         vc.showAnswer=NO;
         vc.outletid=p.outlineId;
+        NSMutableArray *temp=@[].mutableCopy;
+        for (UserPractisExt* upe in self.exerAr) {
+            NSMutableArray *userAnswer=(NSMutableArray*)[NSJSONSerialization JSONObjectWithData:[upe.userAnswer dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+           
+
+            if (upe.customid.integerValue==10) {
+                QuestionAnswerB*ab=[QuestionAnswerB new];
+                NSMutableArray *tt=[NSMutableArray array];
+                for (NSDictionary *dic in userAnswer) {
+                    NSString *quetionid=[dic allKeys][0];
+                    NSString *itemid=[dic allValues][0];
+                    QuestionItemB *qb=[QuestionItemB new];
+                    qb.questionId=quetionid;
+                    qb.myAnswer=itemid;
+                    [tt addObject:qb];
+                }
+                ab.questionItemBs=(NSArray*)tt;
+                ab.customId=upe.customid;
+                ab.nid=upe.itemid;
+                ab.outletId=upe.outlineid;
+                ab.priority=upe.priority;
+                [temp addObject:ab];
+            }else if (upe.customid.integerValue==11){
+                QuestionAnswerC*ac=[QuestionAnswerC new];
+                NSMutableArray *tt=[NSMutableArray array];
+                for (NSDictionary *dic in userAnswer) {
+                    NSString *quetionid=[dic allKeys][0];
+                    NSString *itemid=[dic allValues][0];
+                    QuestionItemC *qb=[QuestionItemC new];
+                    qb.questionId=quetionid;
+                    qb.myAnswer=itemid;
+                    [tt addObject:qb];
+                }
+                ac.customId=upe.customid;
+                ac.nid=upe.itemid;
+                ac.outletId=upe.outlineid;
+                ac.priority=upe.priority;
+                ac.questionCItems=(NSArray*)tt;
+                [temp addObject:ac];
+            }else{
+                QuestionAnswerA *aa=[QuestionAnswerA new];
+                aa.customId=upe.customid;
+                aa.nid=upe.itemid;
+                aa.outletId=upe.outlineid;
+                aa.priority=upe.priority;
+                aa.myAnswer=userAnswer;
+                [temp addObject:aa];
+            }
+
+        }
+        
+        vc.answerArray=temp;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
         QuestionVC* vc=[[UIStoryboard storyboardWithName:@"question" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"QuestionVC"];

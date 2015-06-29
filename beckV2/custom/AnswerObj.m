@@ -34,6 +34,10 @@
 -(NSDictionary *)toPracitsJson{
         NSData*data=[NSJSONSerialization dataWithJSONObject:self.myAnswer options:0 error:nil];
         NSString *str=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if (!self.AnswerState) {
+        self.AnswerState=@"2";
+    }
+    
         NSDictionary *dic=@{@"isRight":self.AnswerState,@"priority":self.priority,@"titleId":self.nid,@"userAnswer":str,@"titleTypeId":self.customId};
     return dic;
 }

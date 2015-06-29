@@ -20,6 +20,7 @@
 #import "Collection.h"
 #import "UserPractis.h"
 #import "PractisAnswer.h"
+#import "UserPractisExt.h"
 @interface SQLManager()
 
 @end
@@ -350,6 +351,7 @@ singleton_implementation(SQLManager);
             paper.amount=row[9];
             paper.end_time=row[7];
             paper.outlineId=row[5];
+            paper.exerciseid=row[0];
             [result addObject:paper];
         }
     }];
@@ -608,6 +610,7 @@ singleton_implementation(SQLManager);
     }];
     return result;
 }
+
 -(NSString *)getQuestionTypeWithCustomId:(NSString*)customid{
     __block NSString *str=@"";
     NSString *sql=[NSString stringWithFormat:@"select custom_name from custom_question_type where custom_id==%@",customid];
@@ -654,6 +657,27 @@ singleton_implementation(SQLManager);
         }
     }];
     return total;
+}
+
+-(NSArray*)hadDonePractisOutlineid:(NSString*)outlineid itemid:(NSString*)itemid typeid:(NSString*)type_id{
+    __block NSMutableArray *donePractis=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat:@"select * from user_exercise_ext where outline_id==%@ and item_id==%@ and type_id==%@ and user_id==%@",outlineid,itemid,type_id,[Global sharedSingle].userId];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            UserPractisExt*up=[UserPractisExt new];
+            up.itemid=row[7];
+            up.customid=row[8];
+            up.userAnswer=row[9];
+            up.isright=row[10];
+            up.priority=row[11];
+            up.outlineid=row[5];
+            [donePractis addObject:up];
+        }
+    }];
+    
+    return donePractis;
 }
 //已经做过的题目
 -(NSInteger)countDoneByOutlineid:(NSString*)outlineid{
