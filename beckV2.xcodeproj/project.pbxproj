@@ -14,6 +14,7 @@
 		3919ABEE1B0647F200336E77 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3919ABED1B0647F200336E77 /* Images.xcassets */; };
 		3919ABF11B0647F200336E77 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3919ABEF1B0647F200336E77 /* LaunchScreen.xib */; };
 		3919ABFD1B0647F200336E77 /* beckV2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3919ABFC1B0647F200336E77 /* beckV2Tests.m */; };
+		393316FA1B4191CE005F817F /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 393316F71B4191CE005F817F /* libMobClickLibrary.a */; };
 		39372E721B0A267000891F52 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39372E711B0A267000891F52 /* BaseViewController.m */; };
 		39372E781B0A2A3000891F52 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39372E771B0A2A3000891F52 /* libsqlite3.dylib */; };
 		39372E7B1B0A2C0500891F52 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 39372E791B0A2C0500891F52 /* Model.xcdatamodeld */; };
@@ -194,6 +195,9 @@
 		3919ABF61B0647F200336E77 /* beckV2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = beckV2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3919ABFB1B0647F200336E77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3919ABFC1B0647F200336E77 /* beckV2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = beckV2Tests.m; sourceTree = "<group>"; };
+		393316F71B4191CE005F817F /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		393316F81B4191CE005F817F /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		393316F91B4191CE005F817F /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		39372E701B0A267000891F52 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		39372E711B0A267000891F52 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		39372E761B0A285200891F52 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -579,6 +583,7 @@
 				39CE4C551B19589200DDAB01 /* SystemConfiguration.framework in Frameworks */,
 				39CE4C531B19588700DDAB01 /* libiconv.dylib in Frameworks */,
 				3958993A1B2D3B790056B9A5 /* AlipaySDK.framework in Frameworks */,
+				393316FA1B4191CE005F817F /* libMobClickLibrary.a in Frameworks */,
 				39CE4C511B19578300DDAB01 /* CoreTelephony.framework in Frameworks */,
 				39CE4C4E1B19575800DDAB01 /* libWeiboSDK.a in Frameworks */,
 				39589B0A1B39C80D0056B9A5 /* libcrypto.a in Frameworks */,
@@ -1253,6 +1258,9 @@
 		39CE4C3F1B19575800DDAB01 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				393316F71B4191CE005F817F /* libMobClickLibrary.a */,
+				393316F81B4191CE005F817F /* MobClick.h */,
+				393316F91B4191CE005F817F /* MobClickSocialAnalytics.h */,
 				39589A231B36A7030056B9A5 /* wxpay */,
 				3958994C1B2DE2780056B9A5 /* CoreNewFeatureVC */,
 				395899321B2D3B790056B9A5 /* alipay */,
@@ -1828,6 +1836,7 @@
 					"$(PROJECT_DIR)/beckV2/ThirdParty/wechat",
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)",
+					"$(PROJECT_DIR)/beckV2/ThirdParty",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1869,6 +1878,7 @@
 					"$(PROJECT_DIR)/beckV2/ThirdParty/wechat",
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)",
+					"$(PROJECT_DIR)/beckV2/ThirdParty",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e8adef6d-5156-4f2f-ab5e-25f83137a17b";

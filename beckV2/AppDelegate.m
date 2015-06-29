@@ -14,8 +14,8 @@
 #import "CoreNewFeatureVC.h"
 #import "CALayer+Transition.h"
 #import "WechatObj.h"
+#import "MobClick.h"
 
-//#import <RennSDK/RennSDK.h>
 
 @interface AppDelegate ()<WXApiDelegate>
 
@@ -29,7 +29,7 @@
     [[SQLManager sharedSingle] openDB];
     [WeiboSDK registerApp:kSinaAppKey];
     [WeiboSDK enableDebugMode:YES];
-    
+    [MobClick startWithAppkey:@"559159f867e58e93a2004063" reportPolicy:BATCH   channelId:nil];
     [WXApi registerApp:kWXAPP_ID withDescription:@"beck"];
 
     NSString * titleid=[[Global sharedSingle] getUserWithkey:@"titleid"];
