@@ -148,9 +148,10 @@
         Question *q=[[SQLManager sharedSingle] getExamQuestionByItemId:note.item_id customid:note.type_id];
         vc.questionsAr=@[q];
     }else{
+        NSString *oulineid=self.outlineSet.allObjects[indexPath.row];
         NSMutableArray *ar=[[NSMutableArray alloc] init];
         for (Collection *n in self.dataAr) {
-            if (n.outline_id.integerValue==note.outline_id.integerValue&&n.type_id.integerValue==note.type_id.integerValue) {
+            if (n.outline_id.integerValue==oulineid.integerValue) {
                 Question *q=[[SQLManager sharedSingle] getExamQuestionByItemId:n.item_id customid:n.type_id];
                 if (q!=nil) {
                     [ar addObject:q];
