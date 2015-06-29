@@ -73,22 +73,21 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    self.currentPaper=self.papers[indexPath.row];
     
-    if (self.currentPaper.points.integerValue>[[Global sharedSingle].userBean[@"currentPoints"] integerValue]) {
-        NSString *mess=[NSString stringWithFormat:@"购买试卷需要%@积分，您当前积分%@,不足购买此试卷是否前往购买",self.currentPaper.points,[Global sharedSingle].userBean[@"currentPoints"]];
-        [OTSAlertView alertWithTitle:@"提示" message:mess leftBtn:@"取消" rightBtn:@"购买" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
-            if (buttonIndex==1) {
-                UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
-               PointShopVC*vc =[sb instantiateViewControllerWithIdentifier:@"PointShopVC"];
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-        }];
-        return;
-    }
     
     NSString *status=[[SQLManager sharedSingle] getExchangePaperStatus:self.currentPaper.paper_id];
 
     if (self.currentPaper.type.integerValue==2&&status.integerValue==0) {
-        
+        if (self.currentPaper.points.integerValue>[[Global sharedSingle].userBean[@"currentPoints"] integerValue]) {
+            NSString *mess=[NSString stringWithFormat:@"购买试卷需要%@积分，您当前积分%@,不足购买此试卷是否前往购买",self.currentPaper.points,[Global sharedSingle].userBean[@"currentPoints"]];
+            [OTSAlertView alertWithTitle:@"提示" message:mess leftBtn:@"取消" rightBtn:@"购买" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+                if (buttonIndex==1) {
+                    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
+                    PointShopVC*vc =[sb instantiateViewControllerWithIdentifier:@"PointShopVC"];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+            }];
+            return;
+        }
         NSString *point=self.currentPaper.points;
         [[OTSAlertView alertWithTitle:@"解锁提示" message:[NSString stringWithFormat:@"%@积分解锁该题目",point] leftBtn:@"取消" rightBtn:@"解锁" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex==1) {

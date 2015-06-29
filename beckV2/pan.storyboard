@@ -192,6 +192,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sN8-Id-o03">
+                                <rect key="frame" x="139" y="230" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="finish_head" translatesAutoresizingMaskIntoConstraints="NO" id="kNk-za-cD0">
                                 <rect key="frame" x="0.0" y="20" width="320" height="236"/>
                                 <constraints>
@@ -204,7 +210,7 @@
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="finish_bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Yl2-5v-9UC">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                     </imageView>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgj-Eq-daL">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgj-Eq-daL">
                                         <rect key="frame" x="48" y="18" width="63" height="63"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="63" id="KSD-kC-5qu"/>
@@ -217,7 +223,7 @@
                                             <action selector="sharing:" destination="7S2-eK-Z5L" eventType="touchUpInside" id="g15-FP-iKR"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iX2-nJ-b8t">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iX2-nJ-b8t">
                                         <rect key="frame" x="128" y="18" width="63" height="63"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="63" id="GlY-Rm-Pa6"/>
@@ -361,6 +367,17 @@
                                     <action selector="dissmiss:" destination="7S2-eK-Z5L" eventType="touchUpInside" id="MaQ-Gh-bZU"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="120" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Slj-Az-e1V">
+                                <rect key="frame" x="139" y="173" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Slj-Az-e1V" secondAttribute="height" multiplier="2:1" id="Boz-PI-fDu"/>
+                                    <constraint firstAttribute="width" constant="42" id="XDr-U9-Fqz"/>
+                                    <constraint firstAttribute="height" constant="21" id="tAX-ZO-N2f"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
@@ -376,8 +393,11 @@
                             <constraint firstAttribute="centerY" secondItem="enQ-QM-gS4" secondAttribute="centerY" constant="0.5" id="NJK-m4-lhJ"/>
                             <constraint firstAttribute="centerY" secondItem="DhS-bM-G6e" secondAttribute="centerY" constant="-64" id="Nuj-iA-tEA"/>
                             <constraint firstAttribute="centerX" secondItem="OBC-cp-q3p" secondAttribute="centerX" id="Ul6-B6-uM8"/>
+                            <constraint firstItem="kNk-za-cD0" firstAttribute="centerX" secondItem="Slj-Az-e1V" secondAttribute="centerX" id="YI0-ny-0xX"/>
                             <constraint firstAttribute="centerX" secondItem="DhS-bM-G6e" secondAttribute="centerX" id="ZVS-sg-E1a"/>
+                            <constraint firstItem="kNk-za-cD0" firstAttribute="centerY" secondItem="Slj-Az-e1V" secondAttribute="centerY" constant="-45.5" id="a3P-Bq-jRf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kNk-za-cD0" secondAttribute="trailing" constant="-16" id="ba1-VV-XIZ"/>
+                            <constraint firstItem="Slj-Az-e1V" firstAttribute="top" secondItem="tpc-lq-niy" secondAttribute="bottom" constant="109" id="cSr-eA-i4l"/>
                             <constraint firstAttribute="centerY" secondItem="a52-Ro-SJy" secondAttribute="centerY" constant="22.5" id="cjN-aJ-yON"/>
                             <constraint firstAttribute="centerY" secondItem="tcz-Xf-0yk" secondAttribute="centerY" constant="-33" id="e7u-s1-d21"/>
                             <constraint firstAttribute="centerX" secondItem="BIv-1u-TSC" secondAttribute="centerX" id="fUe-iv-cnh"/>
@@ -390,12 +410,18 @@
                             <constraint firstAttribute="centerX" secondItem="tcz-Xf-0yk" secondAttribute="centerX" id="vSS-u2-Y03"/>
                             <constraint firstAttribute="centerY" secondItem="BIv-1u-TSC" secondAttribute="centerY" constant="-18" id="wUk-dy-fbO"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="cSr-eA-i4l"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="7Xk-8O-Fc7"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="coslb" destination="tcz-Xf-0yk" id="Wa2-b5-fUj"/>
                         <outlet property="examTimelb" destination="BIv-1u-TSC" id="5HK-Kc-TaX"/>
+                        <outlet property="head" destination="kNk-za-cD0" id="HOu-1g-NFM"/>
                         <outlet property="nameL" destination="a52-Ro-SJy" id="Y4J-Sq-u1d"/>
                         <outlet property="pointlb" destination="enQ-QM-gS4" id="Ww4-O5-8oD"/>
                         <outlet property="ratelb" destination="OBC-cp-q3p" id="SKk-He-K5z"/>

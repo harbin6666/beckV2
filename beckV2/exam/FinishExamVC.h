@@ -10,4 +10,5 @@
 
 @interface FinishExamVC : BaseViewController
 @property(nonatomic,strong)NSString *examTitle,*right,*wrong,*cost,*point,*time,*paperid;
+@property(nonatomic,strong)ExamPaper*paper;
 @end

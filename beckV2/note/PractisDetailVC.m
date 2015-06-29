@@ -135,6 +135,8 @@
         wrong=p.amount.integerValue-r;
         end=p.end_time;
     }
+    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
     for (int i=0; i<4; i++) {
         UILabel *la=[[UILabel alloc] initWithFrame:CGRectMake(i*w/4, 0, w/4, 30)];
         la.textColor=[UIColor blackColor];

@@ -492,6 +492,7 @@
                 [[OTSAlertView alertWithMessage:@"提交成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
                     UIStoryboard *sb=[UIStoryboard storyboardWithName:@"pan" bundle:[NSBundle mainBundle]];
                     FinishExamVC*vc=[sb instantiateViewControllerWithIdentifier:@"FinishExamVC"];
+                    vc.paper=self.examComp;
                     vc.examTitle=self.examComp.paper_name;
                     vc.wrong=[NSString stringWithFormat:@"%zd",wrongCount];
                     vc.right=[NSString stringWithFormat:@"%zd",score];

@@ -13,7 +13,8 @@
 #import "QuestionVC.h"
 @interface FinishExamVC ()
 @property(nonatomic,weak)IBOutlet UIButton *wechat,*wechatF,*qqF;
-@property(nonatomic,weak)IBOutlet UILabel *nameL,*pointlb,*examTimelb,*coslb,*rightlb,*wronglb,*ratelb;
+@property(nonatomic,weak)IBOutlet UILabel *nameL,*pointlb,*examTimelb,*coslb,*rightlb,*wronglb,*ratelb,*bigLab;
+@property(nonatomic,weak)IBOutlet UIImageView *head;
 @end
 
 @implementation FinishExamVC
@@ -21,6 +22,7 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.barTintColor=BeckRed;
     self.navigationController.navigationBarHidden=YES;
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
 }
 
 - (void)viewDidLoad {
@@ -34,7 +36,8 @@
     self.coslb.text=[NSString stringWithFormat:@"做题时间    ：%@分钟",self.cost];
     self.rightlb.text=[NSString stringWithFormat:@"答对题数    ：%@题",self.right];
     self.wronglb.text=[NSString stringWithFormat:@"答错题数    ：%@题",self.wrong];
-    self.ratelb.text=[NSString stringWithFormat:@"   正确率    ：%.2f％",100*self.right.floatValue/(self.wrong.floatValue+self.right.floatValue)];
+    self.ratelb.text=[NSString stringWithFormat:@"   正确率    ：%.2f％",100*self.right.floatValue/(self.paper.total_amount.floatValue)];
+    self.bigLab.text=[NSString stringWithFormat:@"%@",self.right];
 }
 -(IBAction)dissmiss:(id)sender{
     [self dismissViewControllerAnimated:YES completion:^{
@@ -46,8 +49,9 @@
 -(IBAction)seeExam{
     UIStoryboard *sb=[UIStoryboard storyboardWithName:@"question" bundle:[NSBundle mainBundle]];
     QuestionVC*vc =[sb instantiateViewControllerWithIdentifier:@"QuestionVC"];
-    vc.showAnswer=YES;
+    vc.showAnswer=NO;
     vc.showTimer=NO;
+    vc.fromDetail=YES;
     vc.paperid=self.paperid;
     [self.navigationController pushViewController:vc animated:YES];
 

@@ -144,6 +144,9 @@
 
     }
     if (self.paperid) {
+        if (self.fromDetail) {
+            [self setNavigationBarButtonName:@"返回" width:40 isLeft:YES];
+        }
         [item4 setTitle:@"提交"];
         self.questionBtn.hidden=YES;
     }
@@ -152,9 +155,6 @@
     self.currentQIndex=0;
     
     
-    if (self.practisMode) {
-        
-    }
     
     if (self.practisMode) {
         if (self.fromDetail) {
@@ -715,10 +715,14 @@
             break;
         case 3:
             if (self.paperid) {
-                [self submit:item];
+                if (!self.fromDetail) {
+                    [self submit:item];
+                }
             }
             if (self.outletid) {
-                [self addFaver:item];
+                if (!self.fromDetail) {
+                    [self addFaver:item];
+                }
             }
             break;
         case 4:
@@ -826,7 +830,9 @@
             [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
         }
     }else{
-        [self progressPress:nil];
+        if (!self.fromDetail) {
+            [self progressPress:nil];
+        }
     }
     [self.table reloadData];
 }
@@ -903,8 +909,9 @@
                 [[OTSAlertView alertWithMessage:@"提交成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
                     UIStoryboard *sb=[UIStoryboard storyboardWithName:@"pan" bundle:[NSBundle mainBundle]];
                     FinishExamVC*vc=[sb instantiateViewControllerWithIdentifier:@"FinishExamVC"];
+                    vc.paper=self.examComp;
                     vc.examTitle=self.examComp.paper_name;
-                    vc.wrong=[NSString stringWithFormat:@"%zd",wrongCount];
+                    vc.wrong=[NSString stringWithFormat:@"%zd",self.examComp.total_amount.integerValue-score];
                     vc.right=[NSString stringWithFormat:@"%zd",score];
                     vc.time=self.examComp.answer_time;
                     int t=(int)[finishDate timeIntervalSinceDate:self.beginTime]/60000;
