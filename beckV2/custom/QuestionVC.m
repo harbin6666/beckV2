@@ -152,6 +152,7 @@
     }else{
         if (self.fromDetail) {
             self.questionBtn.hidden=YES;
+            self.navigationItem.rightBarButtonItem=nil;
         }
     }
     
