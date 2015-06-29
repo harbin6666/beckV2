@@ -100,13 +100,15 @@
                     if (anError==nil) {
                         if ([aResponseObject[@"errorcode"] integerValue]==0) {
                             [[OTSAlertView alertWithMessage:@"购买成功" andCompleteBlock:nil] show];
-                            [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDB" object:nil];
-                            [self.tableView reloadData];
+                            
+                            NSNumber *nowpoint=@([[Global sharedSingle].userBean[@"currentPoints"] integerValue]-point.integerValue);
+                            [Global sharedSingle].userBean[@"currentPoints"]=nowpoint;
                             NSArray *list=aResponseObject[@"list"];
                             for (int i=0; i<list.count; i++) {
                                 [[SQLManager sharedSingle] excuseSql:list[i]];
                             }
-
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDB" object:nil];
+                            [self.tableView reloadData];
                         }else{
                             [[OTSAlertView alertWithMessage:@"购买失败" andCompleteBlock:nil] show];
                         }

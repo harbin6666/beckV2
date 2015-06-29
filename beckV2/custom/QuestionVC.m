@@ -149,7 +149,12 @@
         }
         [item4 setTitle:@"提交"];
         self.questionBtn.hidden=YES;
+    }else{
+        if (self.fromDetail) {
+            self.questionBtn.hidden=YES;
+        }
     }
+    
     [self findQuestions];
     
     self.currentQIndex=0;

@@ -171,7 +171,7 @@
         QuestionVC *vc=[sb instantiateViewControllerWithIdentifier:@"QuestionVC"];
         UserPractis *p=self.practisAr[indexPath.row];
         vc.fromDetail=YES;
-        vc.showAnswer=YES;
+        vc.showAnswer=NO;
         vc.outletid=p.outlineId;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
