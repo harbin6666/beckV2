@@ -52,7 +52,7 @@ singleton_interface(SQLManager);
 -(NSArray*)hadDonePractisOutlineid:(NSString*)outlineid itemid:(NSString*)itemid typeid:(NSString*)type_id;
 
 -(NSArray*)getCompatyItemByCompid:(NSString*)compatyid;
-
+-(NSArray*)hadDonePractisexerciseId:(NSString *)exerciseId;
 
 -(NSArray*)getCompatyItemByCompid:(NSString *)compatyid memo:(NSString*)memo;
 

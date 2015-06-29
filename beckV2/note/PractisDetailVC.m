@@ -35,13 +35,15 @@
 
     self.title=@"练习详情";
         self.lab1.text=[NSString stringWithFormat:@"您总共进行了%zd次模拟练习",self.practisAr.count];
-        for (UserPractis*p in self.practisAr) {
-            NSInteger r=(NSInteger)p.amount.integerValue*p.accurate_rate.floatValue;
-            NSInteger wrong=p.amount.integerValue-r;
-            totalr+=r;
-            totalwrong+=wrong;
-//            totaldone+=p.amount.integerValue;
-        }
+    
+//        for (UserPractis*p in self.practisAr) {
+//            
+//            NSInteger r=(NSInteger)p.amount.integerValue*p.accurate_rate.floatValue;
+//            NSInteger wrong=p.amount.integerValue-r;
+//            totalr+=r;
+//            totalwrong+=wrong;
+////            totaldone+=p.amount.integerValue;
+//        }
         //所有题目
         NSArray*tempTotal=[[SQLManager sharedSingle] getOutLineByParentId:self.outlineid];
         for (Outline *o in tempTotal) {
@@ -66,7 +68,13 @@
         }
         totaldone=doneAr.count;
     self.exerAr=doneAr;
-    
+    for (UserPractisExt*upe in doneAr) {
+        if (upe.isright.integerValue==1) {
+            totalr++;
+        }else{
+            totalwrong++;
+        }
+    }
     self.table.tableFooterView=[[UIView alloc] init];
     self.lab2.text=[NSString stringWithFormat:@"%zd",sqlCount];
     self.lab3.text=[NSString stringWithFormat:@"%d％",(int)(100*totalr/totalAr.count)];
@@ -125,17 +133,25 @@
     NSInteger r=0;
     NSInteger wrong=0;
     NSString *end=@"";
-    if (self.type==1) {
-        UserExam *p=self.examAr[indexPath.row];
-        r=p.right_amount.integerValue;
-        wrong=p.wrong_amount.integerValue;
-        end=p.end_time;
-    }else{
+//    if (self.type==1) {
+//        UserExam *p=self.examAr[indexPath.row];
+//        r=p.right_amount.integerValue;
+//        wrong=p.wrong_amount.integerValue;
+//        end=p.end_time;
+//    }else{
         UserPractis *p=self.practisAr[indexPath.row];
-        r=(NSInteger)p.amount.integerValue*p.accurate_rate.floatValue;
-        wrong=p.amount.integerValue-r;
+//        r=(NSInteger)p.amount.integerValue*p.accurate_rate.floatValue;
+//        wrong=p.amount.integerValue-r;
         end=p.end_time;
-    }
+        NSArray *doneAr=[[SQLManager sharedSingle] hadDonePractisexerciseId:p.exerciseid];
+        for (UserPractisExt *p in doneAr) {
+            if (p.isright.integerValue==1) {
+                r++;
+            }else{
+                wrong++;
+            }
+        }
+//    }
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     for (int i=0; i<4; i++) {

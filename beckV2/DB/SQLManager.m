@@ -625,6 +625,7 @@ singleton_implementation(SQLManager);
     return str;
 }
 
+
 -(NSArray*)getDonePractis:(NSString*)outlineid{
     __block NSMutableArray *total=@[].mutableCopy;
     NSString *sql=[NSString stringWithFormat:@"select * from user_exercise_ext where outline_id==%@ and user_id==%@",outlineid,[Global sharedSingle].userBean[@"userId"]];
@@ -657,6 +658,28 @@ singleton_implementation(SQLManager);
         }
     }];
     return total;
+}
+
+
+-(NSArray*)hadDonePractisexerciseId:(NSString *)exerciseId{
+    __block NSMutableArray *donePractis=@[].mutableCopy;
+    NSString *sql=[NSString stringWithFormat:@"select * from user_exercise_ext where exercise_id==%@ and user_id==%@",exerciseId,[Global sharedSingle].userId];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            UserPractisExt*up=[UserPractisExt new];
+            up.itemid=row[7];
+            up.customid=row[8];
+            up.userAnswer=row[9];
+            up.isright=row[10];
+            up.priority=row[11];
+            up.outlineid=row[5];
+            [donePractis addObject:up];
+        }
+    }];
+    
+    return donePractis;
 }
 
 -(NSArray*)hadDonePractisOutlineid:(NSString*)outlineid itemid:(NSString*)itemid typeid:(NSString*)type_id{
