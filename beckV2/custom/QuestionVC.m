@@ -853,9 +853,18 @@
     NSMutableDictionary *dic=@{}.mutableCopy;
     dic[@"loginName"] = [Global sharedSingle].loginName;
     dic[@"paperId"] = self.paperid;
-    dic[@"beginTime"] = [NSString stringWithFormat:@"%@",self.beginTime];
+
+    NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
+    [dateFormatter1 setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter1 setTimeZone:[NSTimeZone systemTimeZone]];
+    NSString *strDate1 = [dateFormatter1 stringFromDate:self.beginTime];
+    dic[@"beginTime"] = strDate1;
+    
     NSDate *finishDate=[NSDate date];
-    dic[@"endTime"]=[NSString stringWithFormat:@"%@",[NSDate date]];
+    NSString *strDate = [dateFormatter1 stringFromDate:finishDate];
+    dic[@"endTime"]=strDate;
+
+    
     NSInteger count=0;
     NSInteger wrongCount=0;
     NSInteger score=0;

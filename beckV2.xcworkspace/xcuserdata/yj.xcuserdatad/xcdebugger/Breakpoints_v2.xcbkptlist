@@ -186,7 +186,7 @@
                   moduleName = "beckV2"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yj/beckv2/beckV2/execise/PractiseVC.m"
-                  timestampString = "457288348.234824"
+                  timestampString = "457291219.655745"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "601"
@@ -201,7 +201,7 @@
                   moduleName = "beckV2"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yj/beckv2/beckV2/execise/PractiseVC.m"
-                  timestampString = "457288348.234984"
+                  timestampString = "457291219.655937"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "601"
@@ -224,22 +224,6 @@
             startingLineNumber = "40"
             endingLineNumber = "40"
             landmarkName = "-leftBtnClick:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "beckV2/custom/QuestionVC.m"
-            timestampString = "457286818.946287"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "474"
-            endingLineNumber = "474"
-            landmarkName = "-rightBtnClick:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

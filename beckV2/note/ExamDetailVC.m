@@ -16,6 +16,7 @@
 
 @implementation ExamDetailVC
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -28,7 +29,7 @@
     ExamPaper*paper=[[SQLManager sharedSingle] getExamPaperByPaperid:ue.paper_id];
     //所有题目
     self.rightLab.text=ue.right_amount;
-    self.wrongLab.text=ue.wrong_amount;
+    self.wrongLab.text=[NSString stringWithFormat:@"%zd",paper.total_amount.integerValue-ue.right_amount.integerValue];
     [self.scoreBtn setTitle:[NSString stringWithFormat:@"成绩%d分",ue.score.intValue] forState:UIControlStateNormal];
     
 //    }
@@ -36,7 +37,7 @@
 
     NSInteger total=paper.total_amount.integerValue;
     
-    self.rateLab.text=[NSString stringWithFormat:@"正确率%.0f％",(float)100*totalr/total];
+    self.rateLab.text=[NSString stringWithFormat:@"正确率  %.0f％",(float)100*totalr/total];
     
     [self.toExamBtn addTarget:self action:@selector(seeExam) forControlEvents:UIControlEventTouchUpInside];
 }

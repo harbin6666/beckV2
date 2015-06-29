@@ -76,7 +76,7 @@ singleton_implementation(SQLManager);
         if (finished) {
             
         }else{
-            ExamPaper *paper=[ExamPaper new];
+            paper=[ExamPaper new];
             paper.paper_id=row[0];
             paper.paper_name=row[1];
             paper.publish_type=row[2];
