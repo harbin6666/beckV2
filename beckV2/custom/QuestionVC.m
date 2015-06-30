@@ -745,6 +745,13 @@
 }
 
 -(IBAction)notePress{
+   __block NSString *titid=nil;
+   __block Question *q=[self.questionsAr objectAtIndex:self.currentQIndex];
+    if ([q isKindOfClass:[ChoiceQuestion class]]) {
+        titid=[(ChoiceQuestion*)q choice_id];
+    }else{
+        titid=[(CompatyInfo*)q info_id];
+    }
     OTSAlertView*alert=[OTSAlertView alertWithTitle:@"添加笔记" message:nil leftBtn:@"取消" rightBtn:@"添加" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex==1) {
             UITextField *tf=[alertView textFieldAtIndex:0];
@@ -753,14 +760,7 @@
             }
             NSMutableDictionary *json = @{}.mutableCopy;
             
-            Question *q=[self.questionsAr objectAtIndex:self.currentQIndex];
             //尼玛的又成了题目id，晕菜
-            NSString *titid=nil;
-            if ([q isKindOfClass:[ChoiceQuestion class]]) {
-                titid=[(ChoiceQuestion*)q choice_id];
-            }else{
-                titid=[(CompatyInfo*)q info_id];
-            }
             
             if ([q isKindOfClass:[ChoiceQuestion class]]) {
                 ChoiceQuestion *p=(ChoiceQuestion*)q;
@@ -819,6 +819,7 @@
     alert.alertViewStyle=UIAlertViewStylePlainTextInput;
     [alert show];
     
+    self.currentNote=[[SQLManager sharedSingle] findNoteByItemId:titid customId:q.custom_id];
     if (self.currentNote!=nil&&self.currentNote.note.length>0) {
         UITextField *tf=[alert textFieldAtIndex:0];
         tf.text=self.currentNote.note;
