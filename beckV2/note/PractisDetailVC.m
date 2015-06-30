@@ -63,7 +63,6 @@
                 ChoiceQuestion *choice=(ChoiceQuestion*)q;
                 NSArray* temp=[[SQLManager sharedSingle] hadDonePractisOutlineid:choice.outlet_id itemid:choice.choice_id typeid:q.custom_id];
                 [doneAr addObjectsFromArray:temp];
-
             }
         }
         totaldone=doneAr.count;

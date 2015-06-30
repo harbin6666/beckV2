@@ -339,6 +339,30 @@ singleton_implementation(SQLManager);
     return result;
 
 }
+-(NSArray*)getPractisWithOutlineidList:(NSArray*)outlineidlist{
+    __block NSMutableArray*result=@[].mutableCopy;
+    NSMutableString *list=@"(".mutableCopy;
+    for (Outline *outline in outlineidlist) {
+        [list appendFormat:@" outline_id==%@ or",outline.outlineid];
+    }
+    list=(NSMutableString*)[list substringToIndex:list.length-3];
+        NSString *sql=[NSString stringWithFormat:@"select * from user_exercise where  user_id==%@ and %@) ORDER BY end_time asc",[Global sharedSingle].userId,list];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            UserPractis *paper=[UserPractis new];
+            paper.accurate_rate=row[8];
+            paper.amount=row[9];
+            paper.end_time=row[7];
+            paper.outlineId=row[5];
+            paper.exerciseid=row[0];
+            [result addObject:paper];
+        }
+    }];
+    return result;
+
+}
 -(NSArray*)getPractisWithOutlineid:(NSString*)outlineid{
     __block NSMutableArray*result=@[].mutableCopy;
     NSString *sql=[NSString stringWithFormat:@"select * from user_exercise where outline_id==%@ and user_id==%@",outlineid,[Global sharedSingle].userBean[@"userId"]];
@@ -684,7 +708,7 @@ singleton_implementation(SQLManager);
 
 -(NSArray*)hadDonePractisOutlineid:(NSString*)outlineid itemid:(NSString*)itemid typeid:(NSString*)type_id{
     __block NSMutableArray *donePractis=@[].mutableCopy;
-    NSString *sql=[NSString stringWithFormat:@"select * from user_exercise_ext where outline_id==%@ and item_id==%@ and type_id==%@ and user_id==%@",outlineid,itemid,type_id,[Global sharedSingle].userId];
+    NSString *sql=[NSString stringWithFormat:@"select * from user_exercise_ext where id in (select max(id) from user_exercise_ext where (outline_id==%@ and item_id==%@ and type_id==%@ and user_id==%@) group by user_id)",outlineid,itemid,type_id,[Global sharedSingle].userId];
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             

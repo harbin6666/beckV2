@@ -20,4 +20,9 @@
     NSMutableArray *ar= [NSKeyedUnarchiver unarchiveObjectWithData:data];
    return ar;
 }
+
+-(void)deleteCacheOutlineid:(NSString*)outlineid{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:outlineid];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 @end

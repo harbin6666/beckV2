@@ -464,6 +464,9 @@
                 if (aResponseObject[@"sql"]) {
                     [[SQLManager sharedSingle] excuseSql:aResponseObject[@"sql"]];
                 }
+                
+                [[CachedAnswer new] deleteCacheOutlineid:self.outletid];//清缓存
+                
                 NSArray *sqlAr=aResponseObject[@"list"];
                 if (sqlAr.count>0) {
                     for (int i=0; i<sqlAr.count; i++) {
@@ -931,7 +934,8 @@
                     vc.wrong=[NSString stringWithFormat:@"%zd",self.examComp.total_amount.integerValue-score];
                     vc.right=[NSString stringWithFormat:@"%zd",score];
                     vc.time=self.examComp.answer_time;
-                    int t=(int)[finishDate timeIntervalSinceDate:self.beginTime]/60000;
+                    
+                    int t=(int)ceil([finishDate timeIntervalSinceDate:self.beginTime]/60);
                     vc.cost=[NSString stringWithFormat:@"%d",t];
                     vc.point=[NSString stringWithFormat:@"%@",aResponseObject[@"num"]];
                     vc.paperid=self.paperid;

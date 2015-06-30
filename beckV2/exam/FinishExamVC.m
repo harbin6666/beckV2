@@ -38,6 +38,7 @@
     self.wronglb.text=[NSString stringWithFormat:@"答错题数    ：%@题",self.wrong];
     self.ratelb.text=[NSString stringWithFormat:@"   正确率    ：%.2f％",100*self.right.floatValue/(self.paper.total_amount.floatValue)];
     self.bigLab.text=[NSString stringWithFormat:@"%@",self.right];
+    self.bigLab.font=[UIFont boldSystemFontOfSize:25];
 }
 -(IBAction)dissmiss:(id)sender{
     [self dismissViewControllerAnimated:YES completion:^{

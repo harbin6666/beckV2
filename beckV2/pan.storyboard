@@ -355,12 +355,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7w-IT-ogK">
-                                <rect key="frame" x="36" y="84" width="20" height="23"/>
+                                <rect key="frame" x="26" y="84" width="37" height="33"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="23" id="Wm1-4K-k2w"/>
-                                    <constraint firstAttribute="width" constant="20" id="cPU-eq-Yw9"/>
+                                    <constraint firstAttribute="height" constant="33" id="Wm1-4K-k2w"/>
+                                    <constraint firstAttribute="width" constant="37" id="cPU-eq-Yw9"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="backhome">
+                                <state key="normal" backgroundImage="navhome">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -374,7 +374,7 @@
                                     <constraint firstAttribute="width" constant="42" id="XDr-U9-Fqz"/>
                                     <constraint firstAttribute="height" constant="21" id="tAX-ZO-N2f"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -386,7 +386,7 @@
                             <constraint firstItem="xQW-zE-BKo" firstAttribute="leading" secondItem="RA5-0k-m0h" secondAttribute="leadingMargin" constant="-16" id="93e-Jc-2n2"/>
                             <constraint firstAttribute="centerY" secondItem="XNd-MX-Nsg" secondAttribute="centerY" constant="-48" id="BSP-Rf-Yw6"/>
                             <constraint firstAttribute="centerX" secondItem="XNd-MX-Nsg" secondAttribute="centerX" id="C8F-4j-5Kd"/>
-                            <constraint firstItem="b7w-IT-ogK" firstAttribute="leading" secondItem="RA5-0k-m0h" secondAttribute="leadingMargin" constant="20" id="EVK-ur-e4e"/>
+                            <constraint firstItem="b7w-IT-ogK" firstAttribute="leading" secondItem="RA5-0k-m0h" secondAttribute="leadingMargin" constant="10" id="EVK-ur-e4e"/>
                             <constraint firstItem="b7w-IT-ogK" firstAttribute="top" secondItem="kNk-za-cD0" secondAttribute="top" constant="20" id="IYT-8Q-9gc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xQW-zE-BKo" secondAttribute="trailing" constant="-16" id="LH0-QF-vNZ"/>
                             <constraint firstItem="kNk-za-cD0" firstAttribute="top" secondItem="tpc-lq-niy" secondAttribute="bottom" id="Mab-9I-5pU"/>
@@ -419,6 +419,7 @@
                     <navigationItem key="navigationItem" id="7Xk-8O-Fc7"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="bigLab" destination="Slj-Az-e1V" id="Nl4-I6-g4M"/>
                         <outlet property="coslb" destination="tcz-Xf-0yk" id="Wa2-b5-fUj"/>
                         <outlet property="examTimelb" destination="BIv-1u-TSC" id="5HK-Kc-TaX"/>
                         <outlet property="head" destination="kNk-za-cD0" id="HOu-1g-NFM"/>
@@ -432,25 +433,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHM-6y-QfK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="570" y="438"/>
-        </scene>
-        <!--Finish ExamVC-->
-        <scene sceneID="AzE-i3-A47">
-            <objects>
-                <viewController id="sz8-D5-yXt" customClass="FinishExamVC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="RGx-vk-Udl"/>
-                        <viewControllerLayoutGuide type="bottom" id="gax-EF-wiX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hyx-va-g97">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IxJ-dH-2gu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="195" y="1207"/>
         </scene>
         <!--100/100-->
         <scene sceneID="xe3-Rt-ofj">
@@ -661,12 +643,12 @@
     </scenes>
     <resources>
         <image name="answer" width="24" height="21"/>
-        <image name="backhome" width="20" height="22"/>
         <image name="biji" width="57" height="23"/>
         <image name="favorate" width="24" height="21"/>
         <image name="finish_Btn" width="174" height="42"/>
         <image name="finish_bottom" width="320" height="50"/>
         <image name="finish_head" width="320" height="226"/>
+        <image name="navhome" width="37" height="33"/>
         <image name="qq" width="96" height="96"/>
         <image name="radio" width="19" height="19"/>
         <image name="setting" width="27" height="24"/>

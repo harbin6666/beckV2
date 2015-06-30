@@ -184,6 +184,9 @@
                 [recodes addObjectsFromArray:temp];
             }
         }
+        if (recodes.count==0) {
+            return;
+        }
         ExamDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"ExamDetailVC"];
         vc.examPapers=arr;
         vc.type=1;
@@ -205,11 +208,11 @@
         }else{
             NSMutableArray * ar=[NSMutableArray array];
             NSArray *outlinelist=[[SQLManager sharedSingle] getOutLineByParentId:ot.outlineid];
-            for (Outline *o in outlinelist) {
-                NSArray *temp=[[SQLManager sharedSingle] getPractisWithOutlineid:o.outlineid];
-                [ar addObjectsFromArray:temp];
-            }
-
+//            for (Outline *o in outlinelist) {
+//                NSArray *temp=[[SQLManager sharedSingle] getPractisWithOutlineid:o.outlineid];
+//                [ar addObjectsFromArray:temp];
+//            }
+            ar=(NSMutableArray*)[[SQLManager sharedSingle] getPractisWithOutlineidList:outlinelist];
             PractisDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"PractisDetailVC"];
             
             vc.type=0;

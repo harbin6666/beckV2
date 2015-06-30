@@ -57,7 +57,10 @@
 
 - (IBAction)onPressedQQ:(id)sender {
     [[QQObj sharedSingle] loginWithBlock:^(id aResponseObject) {
-        self.accessToken=aResponseObject[@"qqopenid"];
+        NSString *openid=aResponseObject[@"qqopenid"];
+        
+        self.accessToken=[NSString stringWithFormat:@"qq%@",openid];
+    
         [self unoinLogin];
     }];
     return;
@@ -87,7 +90,9 @@
     [[WechatObj sharedSingle] sendLoginBlock:^(id aResponseObject) {
         if ([aResponseObject isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dic=(NSDictionary*)aResponseObject;
-            self.accessToken=dic[@"wxopenid"];
+            NSString *openid=aResponseObject[@"wxopenid"];
+
+            self.accessToken=[NSString stringWithFormat:@"wx%@",openid];
         }
         [self unoinLogin];
     }];
@@ -225,10 +230,11 @@
 }
 
 - (void)request:(WBHttpRequest *)request didFinishLoadingWithDataResult:(NSData *)data{
-//    NSString *string=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     [Global sharedSingle].nickName=dic[@"screen_name"];
-    self.accessToken=dic[@"idstr"];
+    NSString *openid=dic[@"idstr"];
+    self.accessToken=[NSString stringWithFormat:@"sina%@",openid];
 
     [self unoinLogin];
     

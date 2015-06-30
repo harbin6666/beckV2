@@ -11,4 +11,5 @@
 @interface CachedAnswer : NSObject
 -(void)saveCache:(id)answer outlineid:(NSString*)outlineid;
 -(NSMutableArray*)getCacheByOutlineid:(NSString *)outlineid;
+-(void)deleteCacheOutlineid:(NSString*)outlineid;
 @end
