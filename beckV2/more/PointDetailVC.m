@@ -22,10 +22,11 @@
     if (self.type==0) {
         url=@"/front/pointTransAct.htm";
         self.title=@"我的积分";
-    }else{
-        url=@"/front/orderAct.htm";
-        self.title=@"支付信息";
     }
+//    else{
+//        url=@"/front/orderAct.htm";
+//        self.title=@"支付信息";
+//    }
     [self showLoading];
     [self getValueWithBeckUrl:url params:@{@"token":@"list",@"loginName":[Global sharedSingle].loginName} CompleteBlock:^(id aResponseObject, NSError *anError) {
         [self hideLoading];
@@ -37,13 +38,14 @@
                         [[SQLManager sharedSingle] excuseSql:sql];
                     }
                     
-                    self.buylist=[[SQLManager sharedSingle] getPoints];
-                    [self.tableView reloadData];
-                }else{
-                    self.buylist=aResponseObject[@"list"];
-                    [self.tableView reloadData];
                 }
+//                else{
+//                    self.buylist=aResponseObject[@"list"];
+//                    [self.tableView reloadData];
+//                }
             }
+            self.buylist=[[SQLManager sharedSingle] getPoints];
+            [self.tableView reloadData];
         }
     }];
 }
