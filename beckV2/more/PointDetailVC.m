@@ -18,17 +18,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *url=@"";
-    if (self.type==0) {
-        url=@"/front/pointTransAct.htm";
-        self.title=@"我的积分";
-    }
-//    else{
-//        url=@"/front/orderAct.htm";
-//        self.title=@"支付信息";
-//    }
+    self.title=@"我的积分";
+
     [self showLoading];
-    [self getValueWithBeckUrl:url params:@{@"token":@"list",@"loginName":[Global sharedSingle].loginName} CompleteBlock:^(id aResponseObject, NSError *anError) {
+    [self getValueWithBeckUrl:@"/front/pointTransAct.htm" params:@{@"token":@"list",@"loginName":[Global sharedSingle].loginName} CompleteBlock:^(id aResponseObject, NSError *anError) {
         [self hideLoading];
         if (anError==nil) {
             if ([aResponseObject[@"errorcode"] integerValue]==0) {

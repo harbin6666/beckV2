@@ -485,6 +485,19 @@
                         [[SQLManager sharedSingle] excuseSql:wrongSql];
                     }
                 }
+                [self getValueWithBeckUrl:@"/front/pointTransAct.htm" params:@{@"token":@"list",@"loginName":[Global sharedSingle].loginName} CompleteBlock:^(id aResponseObject, NSError *anError) {
+                    STRONG_SELF;
+                    [self hideLoading];
+                    if (anError==nil) {
+                        if ([aResponseObject[@"errorcode"] integerValue]==0) {
+                                NSArray *ar=aResponseObject[@"list"];
+                                for (NSString *sql in ar) {
+                                    [[SQLManager sharedSingle] excuseSql:sql];
+                                }
+                        }
+                    }
+                }];
+
                 [[OTSAlertView alertWithMessage:@"提交成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
                     [self.navigationController popViewControllerAnimated:YES];
                 }] show];

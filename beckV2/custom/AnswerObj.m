@@ -37,8 +37,13 @@
     if (!self.AnswerState) {
         self.AnswerState=@"2";
     }
-    
-        NSDictionary *dic=@{@"isRight":self.AnswerState,@"priority":self.priority,@"titleId":self.nid,@"userAnswer":str,@"titleTypeId":self.customId};
+        NSMutableDictionary *dic=@{@"isRight":self.AnswerState,@"priority":self.priority,@"titleId":self.nid,@"userAnswer":str,@"titleTypeId":self.customId}.mutableCopy;
+    if (self.AnswerState.integerValue==1) {
+        [dic setValue:@"true" forKey:@"isRight"];
+    }else{
+        [dic setValue:@"false" forKey:@"isRight"];
+    }
+
     return dic;
 }
 
@@ -65,7 +70,12 @@
     }
     NSData*data=[NSJSONSerialization dataWithJSONObject:ar options:0 error:nil];
     NSString *str=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSDictionary *dic=@{@"isRight":self.AnswerState,@"priority":self.priority,@"titleId":self.nid,@"userAnswer":str,@"titleTypeId":self.customId};
+    NSMutableDictionary *dic=@{@"isRight":self.AnswerState,@"priority":self.priority,@"titleId":self.nid,@"userAnswer":str,@"titleTypeId":self.customId}.mutableCopy;
+    if (self.AnswerState.integerValue==1) {
+        [dic setValue:@"true" forKey:@"isRight"];
+    }else{
+        [dic setValue:@"false" forKey:@"isRight"];
+    }
     return dic;
 }
 
@@ -87,7 +97,12 @@
     }
     NSData*data=[NSJSONSerialization dataWithJSONObject:ar options:0 error:nil];
     NSString *str=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSDictionary *dic=@{@"isRight":self.AnswerState,@"priority":self.priority,@"titleId":self.nid,@"userAnswer":str,@"titleTypeId":self.customId};
+    NSMutableDictionary *dic=@{@"isRight":self.AnswerState,@"priority":self.priority,@"titleId":self.nid,@"userAnswer":str,@"titleTypeId":self.customId}.mutableCopy;
+    if (self.AnswerState.integerValue==1) {
+        [dic setValue:@"true" forKey:@"isRight"];
+    }else{
+        [dic setValue:@"false" forKey:@"isRight"];
+    }
     return dic;
 }
 

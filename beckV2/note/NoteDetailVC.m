@@ -415,6 +415,13 @@
 }
 
 -(IBAction)notePress{
+    __block NSString *titid=nil;
+    __block Question *q=[self.questionsAr objectAtIndex:self.currentQIndex];
+    if ([q isKindOfClass:[ChoiceQuestion class]]) {
+        titid=[(ChoiceQuestion*)q choice_id];
+    }else{
+        titid=[(CompatyInfo*)q info_id];
+    }
     OTSAlertView*alert=[OTSAlertView alertWithTitle:@"添加笔记" message:nil leftBtn:@"取消" rightBtn:@"添加" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex==1) {
             UITextField *tf=[alertView textFieldAtIndex:0];
@@ -423,24 +430,24 @@
             }
             NSMutableDictionary *json = @{}.mutableCopy;
             
-            Question *q=[self.questionsAr objectAtIndex:self.currentQIndex];
             //尼玛的又成了题目id，晕菜
-            NSString*titid=nil;
-
+            
             if ([q isKindOfClass:[ChoiceQuestion class]]) {
                 ChoiceQuestion *p=(ChoiceQuestion*)q;
-                titid=p.choice_id;
                 json[@"titleId"]=@([p choice_id].intValue);
             }else{
                 CompatyQuestion *c=(CompatyQuestion*)q;
                 json[@"titleId"]=@(c.compatibility_id.intValue);
-                titid=c.compatibility_id;
             }
             json[@"typeId"]=@([q custom_id].intValue);
             json[@"loginName"] = [Global sharedSingle].loginName;
             json[@"subjectId"] = @([[self.questionsAr objectAtIndex:self.currentQIndex] subject_id].intValue);
             json[@"outlineId"] =@( self.outletid.intValue);
             json[@"note"]=tf.text;
+            
+            
+            self.currentNote=[[SQLManager sharedSingle] findNoteByItemId:titid customId:q.custom_id];
+            
             if (self.currentNote!=nil&&self.currentNote.note.length) {
                 json[@"type"]=@1;//0：添加 1：更新
             }else{
@@ -450,14 +457,24 @@
             NSData*d=[NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
             NSString *s=[[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
             WEAK_SELF;
+            [self showLoading];
             [self getValueWithBeckUrl:@"/front/userNoteAct.htm" params:@{@"token":@"addUpdate",@"json":s} CompleteBlock:^(id aResponseObject, NSError *anError) {
                 STRONG_SELF;
+                [self hideLoading];
                 if (anError==nil) {
                     if ([aResponseObject[@"errorcode"] integerValue]==0) {
+                        for (NSString *sql in aResponseObject[@"list"]) {
+                            [[SQLManager sharedSingle] excuseSql:sql];
+                        }
                         [self showLoadingWithMessage:@"添加成功" hideAfter:2];
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDB" object:nil];
+                        if ([json[@"type"] integerValue]==0) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDB" object:nil];
+                        }else{
+                            NSString *sql=[NSString stringWithFormat:@"UPDATE user_note SET note ==\'%@\' WHERE item_id ==%@ and user_id==%@",tf.text,self.currentNote.item_id,[Global sharedSingle].userBean[@"userId"]];
+                            [[SQLManager sharedSingle] excuseSql:sql];
+                        }
                         self.currentNote=[[SQLManager sharedSingle] findNoteByItemId:titid customId:q.custom_id];
-
+                        
                     }else{
                         [self showLoadingWithMessage:@"添加失败" hideAfter:2];
                         
@@ -471,6 +488,8 @@
     }] ;
     alert.alertViewStyle=UIAlertViewStylePlainTextInput;
     [alert show];
+    
+    self.currentNote=[[SQLManager sharedSingle] findNoteByItemId:titid customId:q.custom_id];
     if (self.currentNote!=nil&&self.currentNote.note.length>0) {
         UITextField *tf=[alert textFieldAtIndex:0];
         tf.text=self.currentNote.note;
