@@ -187,7 +187,7 @@
         QuestionVC *vc=[sb instantiateViewControllerWithIdentifier:@"QuestionVC"];
         UserPractis *p=self.practisAr[indexPath.row];
         vc.fromDetail=YES;
-        vc.showAnswer=NO;
+        vc.showAnswer=YES;
         vc.outletid=p.outlineId;
         NSMutableArray *temp=@[].mutableCopy;
         for (UserPractisExt* upe in self.exerAr) {

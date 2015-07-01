@@ -707,12 +707,12 @@ singleton_implementation(SQLManager);
 }
 -(BOOL)hasDoneQuestion:(NSString*)itemid typeid:(NSString*)typeId{
     __block BOOL done=NO;
-    NSString *sql=[NSString stringWithFormat:@"select * from user_exercise_ext where type_id==%@ and item_id ==%@ and user_id==%@",typeId,itemid,[Global sharedSingle].userId];
+    NSString *sql=[NSString stringWithFormat:@"select max(id) from user_exercise_ext where type_id==%@ and item_id ==%@ and user_id==%@",typeId,itemid,[Global sharedSingle].userId];
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
         }else{
-            if (row.count>0) {
+            if (![row[0] isKindOfClass:[NSNull class]]) {
                 done=YES;
             }
         }

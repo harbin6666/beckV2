@@ -323,7 +323,7 @@
     
     [item4 setImage:[[UIImage imageNamed:@"favorate"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [item4 setSelectedImage:[[UIImage imageNamed:@"favorate"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    if (self.paperid) {
+    if (self.paperid&&self.fromDetail==NO) {
         [item4 setImage:[[UIImage imageNamed:@"submit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [item4 setSelectedImage:[[UIImage imageNamed:@"submit"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [item2 setImage:[[UIImage imageNamed:@"weizuo"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
@@ -553,12 +553,12 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     id p=[self.questionsAr objectAtIndex:self.currentQIndex];
     if ([p isKindOfClass:[ChoiceQuestion class]]) {
-        if (self.paperid) {
+        if (self.paperid&&self.fromDetail==NO) {
             return self.choiceArray.count;
         }
         return self.choiceArray.count+2;
     }else{
-        if (self.paperid) {
+        if (self.paperid&&self.fromDetail==NO) {
             return self.compatibilyArray.count;
         }
         return self.compatibilyArray.count+2;
@@ -857,6 +857,8 @@
     }else{
         if (!self.fromDetail) {
             [self progressPress:nil];
+        }else{
+            self.showAnswer=!self.showAnswer;
         }
     }
     [self.table reloadData];
