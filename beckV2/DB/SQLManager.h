@@ -48,7 +48,7 @@ singleton_interface(SQLManager);
 -(NSArray*)getCompatyQuestionsByinfoId:(NSString*)infoId;
 
 -(ExamPaper*)getExamPaperByPaperid:(NSString*)paperid;
-
+-(BOOL)hasDoneQuestion:(NSString*)itemid typeid:(NSString*)typeId;
 -(NSArray*)hadDonePractisOutlineid:(NSString*)outlineid itemid:(NSString*)itemid typeid:(NSString*)type_id;
 
 -(NSArray*)getCompatyItemByCompid:(NSString*)compatyid;

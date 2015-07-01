@@ -12,6 +12,8 @@
 #import "CourseVC.h"
 #import "OutlineCell.h"
 #import "CachedAnswer.h"
+#import "ChoiceQuestion.h"
+#import "CompatyQuestion.h"
 @interface PractisHomeVC ()<UITableViewDataSource,UITableViewDelegate,UITabBarDelegate>
 @property(nonatomic,strong)NSArray *subjectIdList;
 @property(nonatomic,strong)NSArray *subjectList;
@@ -119,7 +121,23 @@
     NSInteger total=0;
     for (Outline *subOt in ar) {
 //        done+=[[SQLManager sharedSingle] countDoneByOutlineid:subOt.outlineid];
-        done+=[[CachedAnswer new] getCacheByOutlineid:subOt.outlineid].count;
+//        done+=[[CachedAnswer new] getCacheByOutlineid:subOt.outlineid].count;
+        NSArray *doneAr=[[SQLManager sharedSingle] getQuestionByOutlineId:subOt.outlineid];
+        for (Question *q in doneAr) {
+            NSString *itemid=@"";
+            if ([q isKindOfClass:[ChoiceQuestion class]]) {
+                itemid=[(ChoiceQuestion*)q choice_id];
+            }else{
+                itemid=[(CompatyInfo*)q info_id];
+            }
+            if ([[SQLManager sharedSingle] hasDoneQuestion:itemid typeid:q.custom_id]) {
+                done++;
+            }
+//            NSArray *findAr=[[SQLManager sharedSingle] hadDonePractisOutlineid:subOt.outlineid itemid:itemid typeid:q.custom_id];
+//            if (findAr!=nil&&findAr.count>0) {
+//                done++;
+//            }
+        }
        total+=[[SQLManager sharedSingle] countDownByOutlineid:subOt.outlineid];
     }
     cell.detailLab.text=[NSString stringWithFormat:@"%zd/%zd",done,total];

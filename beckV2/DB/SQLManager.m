@@ -705,6 +705,22 @@ singleton_implementation(SQLManager);
     
     return donePractis;
 }
+-(BOOL)hasDoneQuestion:(NSString*)itemid typeid:(NSString*)typeId{
+    __block BOOL done=NO;
+    NSString *sql=[NSString stringWithFormat:@"select * from user_exercise_ext where type_id==%@ and item_id ==%@ and user_id==%@",typeId,itemid,[Global sharedSingle].userId];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            if (row.count>0) {
+                done=YES;
+            }
+        }
+    }];
+    
+    return done;
+
+}
 
 -(NSArray*)hadDonePractisOutlineid:(NSString*)outlineid itemid:(NSString*)itemid typeid:(NSString*)type_id{
     __block NSMutableArray *donePractis=@[].mutableCopy;
