@@ -13,7 +13,7 @@
 #import "SelectionPan.h"
 #import "ExamPaper.h"
 #import "PractisDetailVC.h"
-#import "ExamDetailVC.h"
+#import "ExamDetailTableVC.h"
 @interface SeeNoteVC ()
 @property(nonatomic,strong)NSArray *subjectIdList;
 @property(nonatomic,strong)NSArray *subjectList;
@@ -187,9 +187,7 @@
         if (recodes.count==0) {
             return;
         }
-        ExamDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"ExamDetailVC"];
-        vc.examPapers=arr;
-        vc.type=1;
+        ExamDetailTableVC *vc=[[UIStoryboard storyboardWithName:@"pan" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ExamDetailTableVC"];
         vc.examAr=recodes;
         [self.navigationController pushViewController:vc animated:YES];
 

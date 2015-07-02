@@ -118,6 +118,8 @@
 		39589B0B1B39C80D0056B9A5 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39589B091B39C80D0056B9A5 /* libssl.a */; };
 		396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3001B176CB5005F92B1 /* NSArray+fecth.m */; };
 		396AD3041B1772F6005F92B1 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD3031B1772F6005F92B1 /* Position.m */; };
+		397A51531B458B5B00E0CC87 /* ExamDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 397A51521B458B5B00E0CC87 /* ExamDetailCell.m */; };
+		397A51561B458E4B00E0CC87 /* ExamDetailTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397A51551B458E4B00E0CC87 /* ExamDetailTableVC.m */; };
 		397DDAD31B14B04100E8F73B /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD21B14B04100E8F73B /* RegisterVC.m */; };
 		397DDAD61B14B64C00E8F73B /* VerifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD51B14B64C00E8F73B /* VerifyVC.m */; };
 		397DDAD91B14C3D000E8F73B /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DDAD81B14C3D000E8F73B /* SetPasswordVC.m */; };
@@ -479,6 +481,10 @@
 		396AD3001B176CB5005F92B1 /* NSArray+fecth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+fecth.m"; sourceTree = "<group>"; };
 		396AD3021B1772F6005F92B1 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
 		396AD3031B1772F6005F92B1 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
+		397A51511B458B5B00E0CC87 /* ExamDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamDetailCell.h; sourceTree = "<group>"; };
+		397A51521B458B5B00E0CC87 /* ExamDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamDetailCell.m; sourceTree = "<group>"; };
+		397A51541B458E4B00E0CC87 /* ExamDetailTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamDetailTableVC.h; sourceTree = "<group>"; };
+		397A51551B458E4B00E0CC87 /* ExamDetailTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamDetailTableVC.m; sourceTree = "<group>"; };
 		397DDAD11B14B04100E8F73B /* RegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterVC.h; sourceTree = "<group>"; };
 		397DDAD21B14B04100E8F73B /* RegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterVC.m; sourceTree = "<group>"; };
 		397DDAD41B14B64C00E8F73B /* VerifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyVC.h; sourceTree = "<group>"; };
@@ -1252,6 +1258,10 @@
 				394C4A261B274F460002838B /* NoteDetailVC.m */,
 				397F89801B3B266500C2409D /* ExamDetailVC.h */,
 				397F89811B3B266500C2409D /* ExamDetailVC.m */,
+				397A51541B458E4B00E0CC87 /* ExamDetailTableVC.h */,
+				397A51551B458E4B00E0CC87 /* ExamDetailTableVC.m */,
+				397A51511B458B5B00E0CC87 /* ExamDetailCell.h */,
+				397A51521B458B5B00E0CC87 /* ExamDetailCell.m */,
 				394C4A281B274F8A0002838B /* PractisDetailVC.h */,
 				394C4A291B274F8A0002838B /* PractisDetailVC.m */,
 				394C4A221B274AA00002838B /* CollectVC.h */,
@@ -1653,6 +1663,7 @@
 				395899251B2BD7960056B9A5 /* PointShopVC.m in Sources */,
 				39CE4C611B196D8700DDAB01 /* NSString+NSdate.m in Sources */,
 				395899CE1B2DE2BE0056B9A5 /* UIWindow+Launch.m in Sources */,
+				397A51561B458E4B00E0CC87 /* ExamDetailTableVC.m in Sources */,
 				39589A031B333E3E0056B9A5 /* QuestionCollectionVC.m in Sources */,
 				39589B031B39C5470056B9A5 /* MD5DataSigner.m in Sources */,
 				39589B061B39C5470056B9A5 /* RSADataSigner.m in Sources */,
@@ -1681,6 +1692,7 @@
 				3915499D1B21F1F500BF5BBF /* UpdataDbVC.m in Sources */,
 				3958995D1B2DE2780056B9A5 /* NewFeatureModel.m in Sources */,
 				395899BB1B2DE2BE0056B9A5 /* CoreArchive.m in Sources */,
+				397A51531B458B5B00E0CC87 /* ExamDetailCell.m in Sources */,
 				39CE4C7A1B1A4C9B00DDAB01 /* ChoiceQuestion.m in Sources */,
 				3919ABE01B0647F200336E77 /* main.m in Sources */,
 				3958993F1B2D5DEC0056B9A5 /* Train2VC.m in Sources */,
