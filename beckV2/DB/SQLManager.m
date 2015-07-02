@@ -328,12 +328,12 @@ singleton_implementation(SQLManager);
 
 -(NSString *)getExchangePaperStatus:(NSString*)paperid{
     __block NSString*result=@"";
-    NSString *sql=[NSString stringWithFormat:@"select exchange_status from exchange_paper where paper_id==%@ and user_id==%@",paperid,[Global sharedSingle].userBean[@"userId"]];
+    NSString *sql=[NSString stringWithFormat:@"select * from exchange_paper where paper_id==%@ and user_id==%@",paperid,[Global sharedSingle].userBean[@"userId"]];
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
         }else{
-            result=row[0];
+            result=row[7];
         }
     }];
     return result;

@@ -70,6 +70,8 @@
                         if ([aResponseObject[@"errorcode"] intValue]==0) {
                             [Global sharedSingle].loginName=self.phoneNum;
                             [Global sharedSingle].passWord=self.pass.text;
+                            [Global sharedSingle].userBean=aResponseObject[@"userBean"];
+                            [Global sharedSingle].logined=YES;
                             [self performSegueWithIdentifier:@"tohome" sender:self];
                         }else{
                             [self.navigationController popToRootViewControllerAnimated:YES];

@@ -156,10 +156,14 @@
     for (int i=0; i<4; i++) {
         UILabel *la=[[UILabel alloc] initWithFrame:CGRectMake(i*w/4, 0, w/4, 30)];
         la.textColor=[UIColor blackColor];
+        la.numberOfLines=2;
         la.textAlignment=NSTextAlignmentCenter;
+        la.font=[UIFont systemFontOfSize:14];
+
         switch (i) {
             case 0:
-                la.text=[self transferTime:end];
+                la.text=end;
+                la.font=[UIFont systemFontOfSize:11];
                 break;
             case 1:
                 la.text=[NSString stringWithFormat:@"%zd",r];
@@ -175,7 +179,6 @@
             default:
                 break;
         }
-        la.font=[UIFont systemFontOfSize:14];
         [cell.contentView addSubview:la];
     }
     return cell;

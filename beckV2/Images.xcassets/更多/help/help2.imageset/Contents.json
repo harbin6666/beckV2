@@ -2,18 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "怎样做练习.jpg"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "怎样做练习-1-1.jpg"
+      "filename" : "怎样做练习-1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "怎样做练习-1.jpg"
+      "filename" : "怎样做练习.png"
     }
   ],
   "info" : {

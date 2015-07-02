@@ -79,13 +79,13 @@
     if (self.currentPaper.type.integerValue==2&&status.integerValue==0) {
         if (self.currentPaper.points.integerValue>[[Global sharedSingle].userBean[@"currentPoints"] integerValue]) {
             NSString *mess=[NSString stringWithFormat:@"购买试卷需要%@积分，您当前积分%@,不足购买此试卷是否前往购买",self.currentPaper.points,[Global sharedSingle].userBean[@"currentPoints"]];
-            [OTSAlertView alertWithTitle:@"提示" message:mess leftBtn:@"取消" rightBtn:@"购买" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+            [[OTSAlertView alertWithTitle:@"提示" message:mess leftBtn:@"取消" rightBtn:@"购买" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex==1) {
                     UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
                     PointShopVC*vc =[sb instantiateViewControllerWithIdentifier:@"PointShopVC"];
                     [self.navigationController pushViewController:vc animated:YES];
                 }
-            }];
+            }] show];
             return;
         }
         NSString *point=self.currentPaper.points;
@@ -99,16 +99,19 @@
                     [self hideLoading];
                     if (anError==nil) {
                         if ([aResponseObject[@"errorcode"] integerValue]==0) {
-                            [[OTSAlertView alertWithMessage:@"购买成功" andCompleteBlock:nil] show];
                             
                             NSNumber *nowpoint=@([[Global sharedSingle].userBean[@"currentPoints"] integerValue]-point.integerValue);
-                            [Global sharedSingle].userBean[@"currentPoints"]=nowpoint;
-                            NSArray *list=aResponseObject[@"list"];
+                            NSMutableDictionary *dic=[NSMutableDictionary dictionaryWithDictionary:[Global sharedSingle].userBean];
+                            [dic setObject:nowpoint.stringValue forKey:@"currentPoints"];
+                            [Global sharedSingle].userBean=dic;
+                            NSArray *list=aResponseObject[@"sqlList"];
                             for (int i=0; i<list.count; i++) {
                                 [[SQLManager sharedSingle] excuseSql:list[i]];
                             }
-                            [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDB" object:nil];
-                            [self.tableView reloadData];
+                            [[OTSAlertView alertWithMessage:@"购买成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex){
+                                [self.tableView reloadData];
+                            }] show];
+
                         }else{
                             [[OTSAlertView alertWithMessage:@"购买失败" andCompleteBlock:nil] show];
                         }

@@ -302,7 +302,7 @@
             else {
                 NSDictionary *user=aResponseObject[@"userBean"];
                 [Global sharedSingle].loginName=user[@"loginName"];
-                [Global sharedSingle].userBean=user;
+                [Global sharedSingle].userBean=(NSMutableDictionary*)user;
                 [Global sharedSingle].logined=YES;
                 if (self.remenber.selected) {
                     [[Global sharedSingle] setUserValue:@1 Key:@"logined"];

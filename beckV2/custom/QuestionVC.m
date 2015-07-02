@@ -779,8 +779,8 @@
                 ChoiceQuestion *p=(ChoiceQuestion*)q;
                 json[@"titleId"]=@([p choice_id].intValue);
             }else{
-                CompatyQuestion *c=(CompatyQuestion*)q;
-                json[@"titleId"]=@(c.compatibility_id.intValue);
+                CompatyInfo *c=(CompatyInfo*)q;
+                json[@"titleId"]=@(c.info_id.intValue);
             }
             json[@"typeId"]=@([q custom_id].intValue);
             json[@"loginName"] = [Global sharedSingle].loginName;
@@ -980,8 +980,8 @@
         ChoiceQuestion *p=(ChoiceQuestion*)q;
         param[@"titleId"]=[p choice_id];
     }else{
-        CompatyQuestion *c=(CompatyQuestion*)q;
-        param[@"titleId"]=c.compatibility_id;
+        CompatyInfo *c=(CompatyInfo*)q;
+        param[@"titleId"]=c.info_id;
     }
     param[@"outlineId"]=self.outletid;
     param[@"loginName"]=[Global sharedSingle].loginName;

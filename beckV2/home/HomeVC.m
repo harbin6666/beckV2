@@ -99,13 +99,13 @@
     
     NSDate* current=[NSDate date];
     
-    if ([current compare:d]==NSOrderedDescending) {
-        self.oldHome.hidden=NO;
-        self.trainbtn.hidden=YES;
-    }else{
+//    if ([current compare:d]==NSOrderedDescending) {
+//        self.oldHome.hidden=NO;
+//        self.trainbtn.hidden=YES;
+//    }else{
         self.oldHome.hidden=YES;
         self.trainbtn.hidden=NO;
-    }
+//    }
     [self configTabbar];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDB) name:@"updateDB" object:nil];
 
