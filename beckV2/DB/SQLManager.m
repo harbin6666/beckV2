@@ -724,7 +724,7 @@ singleton_implementation(SQLManager);
 
 -(NSArray*)hadDonePractisOutlineid:(NSString*)outlineid itemid:(NSString*)itemid typeid:(NSString*)type_id{
     __block NSMutableArray *donePractis=@[].mutableCopy;
-    NSString *sql=[NSString stringWithFormat:@"select * from user_exercise_ext where id in (select max(id) from user_exercise_ext where (outline_id==%@ and item_id==%@ and type_id==%@ and user_id==%@) group by user_id)",outlineid,itemid,type_id,[Global sharedSingle].userId];
+    NSString *sql=[NSString stringWithFormat:@"select * from user_exercise_ext where id in (select max(id) from user_exercise_ext where (outline_id==%@ and item_id==%@ and type_id==%@ and user_id==%@ and is_right==1) group by user_id)",outlineid,itemid,type_id,[Global sharedSingle].userId];
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             

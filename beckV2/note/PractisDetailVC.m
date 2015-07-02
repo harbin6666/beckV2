@@ -27,60 +27,62 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSInteger totalr=0;
-    NSInteger totalwrong=0;
-    NSInteger totaldone=0;
-    NSInteger sqlCount=0;
+//    NSInteger totalwrong=0;
+//    NSInteger totaldone=0;
+//    NSInteger sqlCount=0;
     NSMutableArray *totalAr=[NSMutableArray array];
+    NSMutableArray *totaldoneAr=[NSMutableArray array];
+
     self.ar=@[@"测试时间",@"答对题数",@"答错题数",@"详情"];
 
     self.title=@"练习详情";
         self.lab1.text=[NSString stringWithFormat:@"您总共进行了%zd次模拟练习",self.practisAr.count];
     
-//        for (UserPractis*p in self.practisAr) {
-//            
-//            NSInteger r=(NSInteger)p.amount.integerValue*p.accurate_rate.floatValue;
-//            NSInteger wrong=p.amount.integerValue-r;
-//            totalr+=r;
-//            totalwrong+=wrong;
-////            totaldone+=p.amount.integerValue;
-//        }
         //所有题目
         NSArray*tempTotal=[[SQLManager sharedSingle] getOutLineByParentId:self.outlineid];
         for (Outline *o in tempTotal) {
-            [totalAr addObjectsFromArray:[[SQLManager sharedSingle] getQuestionByOutlineId:o.outlineid] ];
+            NSArray *t=[[SQLManager sharedSingle] getQuestionByOutlineId:o.outlineid];
+            //总习题
+            for (UserPractis*pracits in self.practisAr) {
+                if (pracits.outlineId.integerValue==o.outlineid.integerValue) {
+                    [totaldoneAr addObjectsFromArray:t];
+                    
+                    break;
+                    break;
+                }
+            }
+            //题库数
+            [totalAr addObjectsFromArray:t];
         }
-        NSMutableArray*doneAr=@[].mutableCopy;
-        for (Question *q in totalAr) {
+    
+    //总习题中做对的数量
+        NSMutableArray*doneRightAr=@[].mutableCopy;
+        for (Question *q in totaldoneAr) {
             if (q.custom_id.integerValue==10||q.custom_id.integerValue==11) {
                 CompatyInfo *com=(CompatyInfo*)q;
-                NSArray *miniQuestion=[[SQLManager sharedSingle] getCompatyQuestionsByinfoId:com.info_id];
+                //去重了的做对了的练习数组
                 NSArray*temp=[[SQLManager sharedSingle] hadDonePractisOutlineid:com.outlet_id itemid:com.info_id typeid:q.custom_id];
-                [doneAr addObjectsFromArray:temp];
+                [doneRightAr addObjectsFromArray:temp];
                 
-                sqlCount+=miniQuestion.count;
+//                NSArray *miniQuestion=[[SQLManager sharedSingle] getCompatyQuestionsByinfoId:com.info_id];
+//                sqlCount+=miniQuestion.count;
             }else{
-                sqlCount++;
+//                sqlCount++;
                 ChoiceQuestion *choice=(ChoiceQuestion*)q;
                 NSArray* temp=[[SQLManager sharedSingle] hadDonePractisOutlineid:choice.outlet_id itemid:choice.choice_id typeid:q.custom_id];
-                [doneAr addObjectsFromArray:temp];
+                [doneRightAr addObjectsFromArray:temp];
             }
         }
-        totaldone=doneAr.count;
-    self.exerAr=doneAr;
-    for (UserPractisExt*upe in doneAr) {
-        if (upe.isright.integerValue==1) {
-            totalr++;
-        }else{
-            totalwrong++;
-        }
-    }
+        totalr=doneRightAr.count;
+//    self.exerAr=doneRightAr;
+ 
     self.table.tableFooterView=[[UIView alloc] init];
-    self.lab2.text=[NSString stringWithFormat:@"%zd",sqlCount];
-    self.lab3.text=[NSString stringWithFormat:@"%d％",(int)(100*totalr/totalAr.count)];
-    self.lab4.text=[NSString stringWithFormat:@"%zd",totaldone];
+    self.lab2.text=[NSString stringWithFormat:@"%zd",totalAr.count];
+    self.lab3.text=[NSString stringWithFormat:@"%d％",(int)(100*totalr/totaldoneAr.count)];
+    self.lab4.text=[NSString stringWithFormat:@"%zd",totaldoneAr.count];
     self.lab5.text=[NSString stringWithFormat:@"%zd",totalr];
-    self.lab6.text=[NSString stringWithFormat:@"%zd",totalwrong];
-    self.lab7.text=[NSString stringWithFormat:@"%d％",(int)(totaldone*100/sqlCount)];
+    self.lab6.text=[NSString stringWithFormat:@"%zd",totaldoneAr.count-totalr];
+    self.lab7.text=[NSString stringWithFormat:@"%d％",(int)(100*totaldoneAr.count/totalAr.count)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,18 +91,13 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.type==0) {
         return self.practisAr.count;
-    }else{
-        return self.examAr.count;
-
-    }
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     float w=self.view.frame.size.width;
     UIView *v=[[UIView alloc] initWithFrame:CGRectMake(0, 0, w, 30)];
-    
+    v.backgroundColor=[UIColor whiteColor];
     for (int i=0; i<4; i++) {
         UILabel *la=[[UILabel alloc] initWithFrame:CGRectMake(i*w/4, 0, w/4, 30)];
         la.textAlignment=NSTextAlignmentCenter;
@@ -130,7 +127,6 @@
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     float w=self.view.frame.size.width;
     NSInteger r=0;
-    NSInteger wrong=0;
     NSString *end=@"";
 //    if (self.type==1) {
 //        UserExam *p=self.examAr[indexPath.row];
@@ -146,10 +142,9 @@
         for (UserPractisExt *p in doneAr) {
             if (p.isright.integerValue==1) {
                 r++;
-            }else{
-                wrong++;
             }
         }
+    NSArray *total=[[SQLManager sharedSingle] getQuestionByOutlineId:p.outlineId];
 //    }
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
@@ -169,7 +164,7 @@
                 la.text=[NSString stringWithFormat:@"%zd",r];
                 break;
             case 2:
-                la.text=[NSString stringWithFormat:@"%zd",wrong];
+                la.text=[NSString stringWithFormat:@"%zd",total.count-r];
                 la.textColor=[UIColor greenColor];
                 break;
             case 3:
@@ -185,7 +180,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.type==0) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         UIStoryboard *sb=[UIStoryboard storyboardWithName:@"question" bundle:[NSBundle mainBundle]];
         QuestionVC *vc=[sb instantiateViewControllerWithIdentifier:@"QuestionVC"];
         UserPractis *p=self.practisAr[indexPath.row];
@@ -193,7 +188,9 @@
         vc.showAnswer=YES;
         vc.outletid=p.outlineId;
         NSMutableArray *temp=@[].mutableCopy;
-        for (UserPractisExt* upe in self.exerAr) {
+
+        NSArray *doneAr=[[SQLManager sharedSingle] hadDonePractisexerciseId:p.exerciseid];
+        for (UserPractisExt* upe in doneAr) {
             NSMutableArray *userAnswer=(NSMutableArray*)[NSJSONSerialization JSONObjectWithData:[upe.userAnswer dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
            
 
@@ -245,24 +242,6 @@
         
         vc.answerArray=temp;
         [self.navigationController pushViewController:vc animated:YES];
-    }else{
-        QuestionVC* vc=[[UIStoryboard storyboardWithName:@"question" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"QuestionVC"];
         
-        UserExam *p=self.examAr[indexPath.row];
-//        NSMutableArray *ar=[NSMutableArray array];
-//        NSArray *temp=[[SQLManager sharedSingle] getExamPaperContentByPaperid:p.paper_id];
-//        for (int i=0; i<temp.count; i++) {
-//            ExamPaper_Content *cont=temp[i];
-//            Question *q=[[SQLManager sharedSingle] getExamQuestionByItemId:cont.item_id customid:cont.custom_id];
-//            [ar addObject:q];
-//        }
-        vc.paperid=p.paper_id;
-        vc.showTimer=NO;
-        vc.showAnswer=YES;
-        vc.examComp=self.examPapers[indexPath.row];
-        [self.navigationController pushViewController:vc animated:YES];
-
-    }
-    
 }
 @end

@@ -213,7 +213,6 @@
             ar=(NSMutableArray*)[[SQLManager sharedSingle] getPractisWithOutlineidList:outlinelist];
             PractisDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"PractisDetailVC"];
             
-            vc.type=0;
             vc.outlineid=ot.outlineid;
             vc.practisAr=ar;
             [self.navigationController pushViewController:vc animated:YES];

@@ -154,12 +154,12 @@
                   moduleName = "beckV2"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yj/beckv2/beckV2/execise/PractiseVC.m"
-                  timestampString = "457539931.601211"
+                  timestampString = "457547493.146634"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "601"
                   endingLineNumber = "601"
-                  offsetFromSymbolStart = "3275">
+                  offsetFromSymbolStart = "3402">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -169,12 +169,12 @@
                   moduleName = "beckV2"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yj/beckv2/beckV2/execise/PractiseVC.m"
-                  timestampString = "457539931.601387"
+                  timestampString = "457547493.146769"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "601"
                   endingLineNumber = "601"
-                  offsetFromSymbolStart = "103">
+                  offsetFromSymbolStart = "109">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -217,22 +217,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "beckV2/custom/AnswerObj.m"
-            timestampString = "457454192.794938"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "-toPracitsJson"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "beckV2/custom/QuestionVC.m"
             timestampString = "457454459.572512"
             startingColumnNumber = "9223372036854775807"
@@ -240,22 +224,6 @@
             startingLineNumber = "817"
             endingLineNumber = "817"
             landmarkName = "-notePress"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "beckV2/note/PractisDetailVC.m"
-            timestampString = "457534639.655342"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
