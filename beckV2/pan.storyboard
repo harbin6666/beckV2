@@ -210,7 +210,7 @@
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="finish_bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Yl2-5v-9UC">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                     </imageView>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgj-Eq-daL">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgj-Eq-daL">
                                         <rect key="frame" x="48" y="18" width="63" height="63"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="63" id="KSD-kC-5qu"/>
