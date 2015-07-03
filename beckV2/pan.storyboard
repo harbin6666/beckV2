@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -47,7 +47,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DF5-12-33V">
-                                        <rect key="frame" x="290" y="59" width="19.5" height="20.5"/>
+                                        <rect key="frame" x="290" y="59" width="20" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -449,12 +449,13 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QQ1-Ez-xjS" id="kha-Xg-JGs">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKS-9U-3Ht">
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tKS-9U-3Ht">
                                             <rect key="frame" x="8" y="8" width="304" height="224"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3w-WW-Hu8">
                                                     <rect key="frame" x="36" y="15" width="34" height="21"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="34" id="Va2-TI-NTD"/>
                                                         <constraint firstAttribute="height" constant="21" id="c89-AH-fiy"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -463,6 +464,9 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-09-19 12:10:22" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9R5-kW-e3H">
                                                     <rect key="frame" x="78" y="15" width="162" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="162" id="W32-Fd-GJu"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.24313727020000001" green="0.81568634510000004" blue="0.16862745579999999" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -555,6 +559,7 @@
                                                 <constraint firstItem="r3w-WW-Hu8" firstAttribute="top" secondItem="tKS-9U-3Ht" secondAttribute="top" constant="15" id="TyI-BX-x27"/>
                                                 <constraint firstItem="AVw-TO-yAa" firstAttribute="top" secondItem="9R5-kW-e3H" secondAttribute="bottom" constant="8" symbolic="YES" id="UrS-PN-X63"/>
                                                 <constraint firstItem="bqb-uG-nYy" firstAttribute="top" secondItem="AVw-TO-yAa" secondAttribute="bottom" constant="14" id="Vvc-Vg-oNs"/>
+                                                <constraint firstItem="9R5-kW-e3H" firstAttribute="leading" secondItem="r3w-WW-Hu8" secondAttribute="trailing" constant="8" id="cO2-Ma-hYE"/>
                                                 <constraint firstItem="9R5-kW-e3H" firstAttribute="centerX" secondItem="2cm-HP-STh" secondAttribute="centerX" id="cxk-ym-vSW"/>
                                                 <constraint firstItem="fks-1K-dWS" firstAttribute="leading" secondItem="AVw-TO-yAa" secondAttribute="trailing" constant="8" symbolic="YES" id="fBV-nh-rcp"/>
                                                 <constraint firstItem="aTQ-Sj-S0n" firstAttribute="top" secondItem="bqb-uG-nYy" secondAttribute="bottom" constant="9" id="fqF-oT-tgL"/>
@@ -572,6 +577,12 @@
                                                 <constraint firstItem="bjz-Tu-arA" firstAttribute="firstBaseline" secondItem="fks-1K-dWS" secondAttribute="firstBaseline" id="zY7-a6-ASp"/>
                                                 <constraint firstItem="aTQ-Sj-S0n" firstAttribute="leading" secondItem="bqb-uG-nYy" secondAttribute="leading" id="zmf-aj-1oE"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Evk-ee-aD4"/>
+                                                    <exclude reference="yn6-Zd-qr4"/>
+                                                </mask>
+                                            </variation>
                                         </view>
                                     </subviews>
                                     <constraints>

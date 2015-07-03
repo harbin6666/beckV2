@@ -23,6 +23,12 @@
     
     return nil;
 }
+-(NSString*)AnswerState{
+    if (_AnswerState==nil) {
+        return @"2";
+    }
+    return _AnswerState;
+}
 @end
 @implementation QuestionAnswerA
 -(id)init{
@@ -70,6 +76,9 @@
     }
     NSData*data=[NSJSONSerialization dataWithJSONObject:ar options:0 error:nil];
     NSString *str=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if (str==nil) {
+        str=@"[]";
+    }
     NSMutableDictionary *dic=@{@"isRight":self.AnswerState,@"priority":self.priority,@"titleId":self.nid,@"userAnswer":str,@"titleTypeId":self.customId}.mutableCopy;
     if (self.AnswerState.integerValue==1) {
         [dic setValue:@"true" forKey:@"isRight"];

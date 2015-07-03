@@ -139,8 +139,9 @@
         vc.questionsAr=@[q];
     }else{
         NSMutableArray *ar=[[NSMutableArray alloc] init];
+        NSString *outlineid=self.outlineSet.allObjects[indexPath.row];
         for (UserNote *n in self.notes) {
-            if (n.outline_id.integerValue==note.outline_id.integerValue&&n.type_id.integerValue==note.type_id.integerValue) {
+            if (n.outline_id.integerValue==outlineid.integerValue) {
                 Question *q=[[SQLManager sharedSingle] getExamQuestionByItemId:n.item_id customid:n.type_id];
                 if (q!=nil) {
                     [ar addObject:q];

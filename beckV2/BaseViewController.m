@@ -151,8 +151,8 @@
 
 - (void)getValueWithBeckUrl:(NSString *)url params:(NSDictionary *)params CompleteBlock:(BeckCompletionBlock)block
 {
-        NSString *beckUrl = [@"http://www.zhongxinlan.com/beck" stringByAppendingString:url];
-//    NSString *beckUrl = [@"http://112.124.110.186:8080/beck" stringByAppendingString:url];
+//        NSString *beckUrl = [@"http://www.zhongxinlan.com/beck" stringByAppendingString:url];
+    NSString *beckUrl = [@"http://www.ybf100.net:8080/beck2" stringByAppendingString:url];
     [self getValueWithUrl:beckUrl params:params CompleteBlock:block];
 }
 

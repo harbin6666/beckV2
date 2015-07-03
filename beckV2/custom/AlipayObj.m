@@ -33,7 +33,7 @@ singleton_implementation(AlipayObj)
     order.productName = @"医百分"; //商品标题
     order.productDescription = orderName; //商品描述
     order.amount = [NSString stringWithFormat:@"%.2f",price.floatValue]; //商品价格
-    order.notifyURL =  @"http://www.zhongxinlan.com/beck/front/notifyUrlAct.htm"; //回调URL
+    order.notifyURL =  @"http://www.ybf100.net:8080/beck2/front/notifyUrlAct.htm"; //回调URL
     
     order.service = @"mobile.securitypay.pay";
     order.paymentType = @"1";

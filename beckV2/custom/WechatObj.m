@@ -133,7 +133,7 @@ singleton_implementation(Global)
     UIImage *img=[UIImage imageNamed:@"shareIcon"];
     req.message.thumbData=UIImagePNGRepresentation(img);
    WXWebpageObject*obj= [WXWebpageObject object];
-    obj.webpageUrl=@"http://www.zhongxinlan.com/beck/front/shareAct.htm?operate=share";
+    obj.webpageUrl=@"http://www.ybf100.net:8080/beck2/front/shareAct.htm?operate=share";
     req.message.mediaObject=obj;
     req.message.title=@"医百分";
     [req.message setThumbImage:[UIImage imageNamed:@"AppIcon"]];
