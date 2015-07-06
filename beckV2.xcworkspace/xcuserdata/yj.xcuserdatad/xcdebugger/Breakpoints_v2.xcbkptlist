@@ -154,7 +154,7 @@
                   moduleName = "beckV2"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yj/beckv2/beckV2/execise/PractiseVC.m"
-                  timestampString = "457883825.314443"
+                  timestampString = "457884877.997239"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "601"
@@ -169,7 +169,7 @@
                   moduleName = "beckV2"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yj/beckv2/beckV2/execise/PractiseVC.m"
-                  timestampString = "457883825.314563"
+                  timestampString = "457884877.997375"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "601"
@@ -218,28 +218,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "beckV2/custom/QuestionVC.m"
-            timestampString = "457883579.05167"
+            timestampString = "457884825.67484"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "880"
-            endingLineNumber = "880"
+            startingLineNumber = "886"
+            endingLineNumber = "886"
             landmarkName = "-notePress"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "beckV2/custom/QuestionVC.m"
-            timestampString = "457883704.095371"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "649"
-            endingLineNumber = "649"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

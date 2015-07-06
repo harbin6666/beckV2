@@ -644,6 +644,10 @@
             AnswerObj*a =(QuestionAnswerA*)[self findDoneAnswerWithid:[info info_id]];
             cell.lab.font=[UIFont systemFontOfSize:self.font];
             [cell updateCompatyCell:q customid:p.custom_id AnswerObj:a showAnswer:self.showAnswer selectedBlock:^(BOOL right, CompatyItem *answer) {
+                if (self.fromDetail) {
+                    return;
+                }
+
                 a.priority=@(self.currentQIndex+1).stringValue;
                 if (right) {
                     p.answerType=answeredRight;
@@ -720,6 +724,9 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.fromDetail) {
+        return;
+    }
     Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
     if ([p isKindOfClass:[ChoiceQuestion class]]&&indexPath.row<self.choiceArray.count) {
         ChoiceQuestion *q=(ChoiceQuestion*)p;
