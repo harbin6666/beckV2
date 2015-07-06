@@ -38,20 +38,37 @@
         [[OTSAlertView alertWithMessage:@"请输入手机号" andCompleteBlock:nil] show];
         return;
     }
-    
-    [self getValueWithBeckUrl:@"/front/sendTemplateSmsAct.htm" params:@{@"loginName":self.phoneNum.text} CompleteBlock:^(id aResponseObject, NSError *anError) {
+    WEAK_SELF;
+    [self getValueWithBeckUrl:@"/front/userAct.htm" params:@{@"token":@"OnlyPhone", @"loginName":self.phoneNum.text} CompleteBlock:^(id aResponseObject, NSError *anError) {
+        STRONG_SELF;
         if (!anError) {
-            NSNumber *errorcode = aResponseObject[@"code"];
-            if (errorcode.integerValue!=0) {
-                [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
+            NSNumber *errorcode = aResponseObject[@"errorcode"];
+            if (errorcode.integerValue==1) {
+                [self getValueWithBeckUrl:@"/front/sendTemplateSmsAct.htm" params:@{@"loginName":self.phoneNum.text} CompleteBlock:^(id aResponseObject, NSError *anError) {
+                    if (!anError) {
+                        NSNumber *errorcode = aResponseObject[@"code"];
+                        if (errorcode.integerValue!=0) {
+                            [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
+                        }
+                        else {
+                            self.smsCode = aResponseObject[@"value"];
+                            [self performSegueWithIdentifier:@"toverify" sender:self];
+                        }
+                    }
+                    [self hideLoading];
+                }];
+            }else if (errorcode.integerValue==0){
+                [[OTSAlertView alertWithMessage:@"手机号未注册" andCompleteBlock:nil] show];
             }
-            else {
-                self.smsCode = aResponseObject[@"value"];
-                [self performSegueWithIdentifier:@"toverify" sender:self];
+            else{
+                [[OTSAlertView alertWithMessage:aResponseObject[@"token"] andCompleteBlock:nil] show];
+                [self hideLoading];
             }
+        }else{
+            [self hideLoading];
         }
-        [self hideLoading];
     }];
+
 
 }
 /*
