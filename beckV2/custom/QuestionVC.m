@@ -764,30 +764,21 @@
             p.answerType=answeredRight;
             if (q.rightChoiceItems.count==1) {
                 [self performSelector:@selector(forwardPress:) withObject:nil];
+                return;
+            }
+            if (choiceAnswer.myAnswer.count==q.rightChoiceItems.count) {
+                int cout=0;
+                for (NSString *a in choiceAnswer.myAnswer) {
+                    if ([q.rightChoiceItems containsObject:a]) {
+                        cout++;
+                    }
+                }
+                if (cout==q.rightChoiceItems.count) {
+                    [self performSelector:@selector(forwardPress:) withObject:nil];
+                }
             }
         }
         
-//        int rightMount=0;
-//        int righttotal=0;
-//        
-//        for (ChoiceItem *item in q.choiceItems) {
-//            if (item.is_answer.integerValue) {
-//                righttotal++;
-//            }
-//            if (item.is_answer.integerValue&&[choiceAnswer.myAnswer containsObject:item.nid]&&choiceAnswer.myAnswer.count>0) {
-//                rightMount++;
-//            }
-//        }
-//        if (rightMount==righttotal) {
-//            p.answerType=answeredRight;
-//            choiceAnswer.AnswerState=@"1";
-//        }else{
-//            p.answerType=answeredwrong;
-//            choiceAnswer.AnswerState=@"0";
-////            if (self.showAnswer==NO&&self.practisMode) {
-////                [self showAnswer:self.tabbar.items[2]];
-////            }
-//        }
         
         
     }
