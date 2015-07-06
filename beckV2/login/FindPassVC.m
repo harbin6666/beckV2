@@ -41,7 +41,7 @@
     
     [self getValueWithBeckUrl:@"/front/sendTemplateSmsAct.htm" params:@{@"loginName":self.phoneNum.text} CompleteBlock:^(id aResponseObject, NSError *anError) {
         if (!anError) {
-            NSNumber *errorcode = aResponseObject[@"errorcode"];
+            NSNumber *errorcode = aResponseObject[@"code"];
             if (errorcode.integerValue!=0) {
                 [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
             }
