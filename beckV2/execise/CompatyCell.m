@@ -261,6 +261,11 @@
         itemB.myAnswer=item.answerid;
         itemB.questionId=[self.question question_id];
         itemB.questionAnswerId=[self.question answer_id];
+        if ([self.question.answer_id isEqualToString:item.answerid]) {
+            itemB.AnswerState=@"1";
+        }else{
+            itemB.AnswerState=@"0";
+        }
         [self additem:itemB];
         
     }else{
@@ -268,6 +273,12 @@
         itemB.myAnswer=item.answerid;
         itemB.questionId=[self.question question_id];
 //        itemB.questionAnswerId=[self.question answer_id];
+        if ([self.question.answer_id isEqualToString:item.answerid]) {
+            itemB.AnswerState=@"1";
+        }else{
+            itemB.AnswerState=@"0";
+        }
+
         [self additem:itemB];
     }
     

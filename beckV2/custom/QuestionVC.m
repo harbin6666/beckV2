@@ -246,6 +246,13 @@
             self.table.allowsMultipleSelection=NO;
         }
         q.choiceItems=[[SQLManager sharedSingle] getChoiceItemByChoiceId:q.choice_id];
+        NSMutableArray *rightItems=[NSMutableArray array];
+        for (ChoiceItem *item in q.choiceItems) {
+            if (item.is_answer.integerValue==1) {
+                [rightItems addObject:item.nid];
+            }
+        }
+        q.rightChoiceItems=rightItems;
         self.choiceArray=[[SQLManager sharedSingle] getChoiceItemByChoiceId:q.choice_id];
         if (![self findDoneAnswerWithid:q.choice_id]) {
             QuestionAnswerA *a=[QuestionAnswerA new];
@@ -320,6 +327,9 @@
     UITabBarItem*item3= [self.tabbar.items objectAtIndex:2];
     UITabBarItem*item4= [self.tabbar.items objectAtIndex:3];
     
+    if (self.showAnswer) {
+        [self showAnswer:item2];
+    }
     
     [item4 setImage:[[UIImage imageNamed:@"favorate"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [item4 setSelectedImage:[[UIImage imageNamed:@"favorate"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
@@ -640,11 +650,14 @@
                     if (p.custom_id.integerValue==10) {
                         QuestionAnswerB *anb=(QuestionAnswerB*)a;
                         anb.AnswerState=@"1";
+
                     }else{
                         QuestionAnswerC *anb=(QuestionAnswerC*)a;
                         anb.AnswerState=@"1";
+
                     }
-                }else{
+                }
+                else{
                     p.answerType=answeredwrong;
                     if (p.custom_id.integerValue==10) {
                         QuestionAnswerB *anb=(QuestionAnswerB*)a;
@@ -656,6 +669,38 @@
                 }
                 
                 [tableView reloadData];
+                int cout=0;
+                int r=0;
+                if (p.custom_id.integerValue==10) {
+                    QuestionAnswerB *anb=(QuestionAnswerB*)a;
+                    for (QuestionItemB* b in anb.questionItemBs) {
+                        if (b.AnswerState.integerValue==1) {
+                            r++;
+                        }
+                        if (b.myAnswer!=nil) {
+                            cout++;
+                        }
+                    }
+                }else{
+                    QuestionAnswerC *anb=(QuestionAnswerC*)a;
+                    for (QuestionItemC* b in anb.questionCItems) {
+                        if (b.AnswerState.integerValue==1) {
+                            r++;
+                        }
+                        if (b.myAnswer!=nil) {
+                            cout++;
+                        }
+                    }
+                }
+                if (cout==self.compatibilyArray.count) {
+                    if (r==self.compatibilyArray.count) {
+                        [self performSelector:@selector(forwardPress:) withObject:nil];
+                    }else{
+                        if (self.showAnswer==NO&&self.practisMode&&answer) {
+                            [self showAnswer:self.tabbar.items[2]];
+                        }
+                    }
+                }
 
             }];
             
@@ -701,25 +746,42 @@
             }
                 [choiceAnswer.myAnswer addObject:item.nid];
         }
-        int rightMount=0;
-        int righttotal=0;
-        for (ChoiceItem *item in q.choiceItems) {
-            if (item.is_answer.integerValue) {
-                righttotal++;
-            }
-            if (item.is_answer.integerValue&&[choiceAnswer.myAnswer containsObject:item.nid]&&choiceAnswer.myAnswer.count>0) {
-                rightMount++;
-            }
-        }
-        if (rightMount==righttotal) {
-            p.answerType=answeredRight;
-            choiceAnswer.AnswerState=@"1";
-        }else{
-            p.answerType=answeredwrong;
+        if (![q.rightChoiceItems containsObject:item.nid]) {
             choiceAnswer.AnswerState=@"0";
+            p.answerType=answeredwrong;
+            if (self.showAnswer==NO&&self.practisMode) {
+                [self showAnswer:self.tabbar.items[2]];
+            }
+        }else{
+            choiceAnswer.AnswerState=@"1";
+            p.answerType=answeredRight;
+            if (q.rightChoiceItems.count==1) {
+                [self performSelector:@selector(forwardPress:) withObject:nil];
+            }
         }
         
-
+//        int rightMount=0;
+//        int righttotal=0;
+//        
+//        for (ChoiceItem *item in q.choiceItems) {
+//            if (item.is_answer.integerValue) {
+//                righttotal++;
+//            }
+//            if (item.is_answer.integerValue&&[choiceAnswer.myAnswer containsObject:item.nid]&&choiceAnswer.myAnswer.count>0) {
+//                rightMount++;
+//            }
+//        }
+//        if (rightMount==righttotal) {
+//            p.answerType=answeredRight;
+//            choiceAnswer.AnswerState=@"1";
+//        }else{
+//            p.answerType=answeredwrong;
+//            choiceAnswer.AnswerState=@"0";
+////            if (self.showAnswer==NO&&self.practisMode) {
+////                [self showAnswer:self.tabbar.items[2]];
+////            }
+//        }
+        
         
     }
     [tableView reloadData];

@@ -27,4 +27,5 @@
 @property(nonatomic,strong)NSString *img_content;
 
 @property(nonatomic,strong)NSArray *choiceItems;
+@property(nonatomic,strong)NSArray *rightChoiceItems;
 @end

@@ -107,6 +107,9 @@
     return 60;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 44;
+}
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     OutlineCell* cell=[tableView dequeueReusableCellWithIdentifier:@"outlinecell" forIndexPath:indexPath];
     NSArray *temp=self.dataAr[indexPath.section];
