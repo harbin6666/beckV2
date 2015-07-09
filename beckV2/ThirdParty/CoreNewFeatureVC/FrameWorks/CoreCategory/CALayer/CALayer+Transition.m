@@ -36,10 +36,10 @@
     transition.duration=duration;
     
     //动画类型
-//    transition.type=[self animaTypeWithTransitionType:animType];
+    transition.type=[self animaTypeWithTransitionType:animType];
 //    
 //    //动画方向
-//    transition.subtype=[self animaSubtype:subType];
+    transition.subtype=[self animaSubtype:subType];
     
     //缓动函数
     transition.timingFunction=[CAMediaTimingFunction functionWithName:[self curve:curve]];

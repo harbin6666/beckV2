@@ -12,6 +12,9 @@
 @interface ExamHomeVC ()
 @property(nonatomic,strong)NSArray *papers;
 @property(nonatomic)NSInteger papertag;
+@property(nonatomic) UIButton*k1,*k2,*k3,*k4;
+@property(nonatomic,strong)UIView *bg;
+@property(nonatomic,weak)IBOutlet UILabel *zLab;
 @end
 
 @implementation ExamHomeVC
@@ -19,7 +22,48 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.bg=[[UIView alloc] initWithFrame:CGRectMake(0, self.zLab.frame.origin.y+self.zLab.frame.size.height, self.view.frame.size.width, self.view.frame.size.height-(self.zLab.frame.origin.y+self.zLab.frame.size.height)-49)];
+    self.bg.backgroundColor=[UIColor clearColor];
+    [self.view addSubview:self.bg];
     
+
+    CGFloat w=self.bg.frame.size.width;
+    self.k1=[UIButton buttonWithType:UIButtonTypeCustom];
+    [self.k1 setBackgroundImage:[UIImage imageNamed:@"zhenti0"] forState:UIControlStateNormal];
+    self.k1.tag=11;
+    self.k1.frame=CGRectMake(0, 0, w/4, w/4);
+    [self.k1 addTarget:self action:@selector(BtnPress:) forControlEvents:UIControlEventTouchUpInside];
+    self.k1.center=CGPointMake(self.bg.frame.size.width/4, self.bg.frame.size.height/4);
+    [self.bg addSubview:self.k1];
+    NSLog(@"%f",self.k1.center.x);
+    
+    self.k2=[UIButton buttonWithType:UIButtonTypeCustom];
+    [self.k2 setBackgroundImage:[UIImage imageNamed:@"zhenti1"] forState:UIControlStateNormal];
+    self.k2.tag=12;
+    self.k2.frame=CGRectMake(0, 0, w/4, w/4);
+    [self.k2 addTarget:self action:@selector(BtnPress:) forControlEvents:UIControlEventTouchUpInside];
+    self.k2.center=CGPointMake(self.bg.frame.size.width*3/4, self.bg.frame.size.height/4);
+    [self.bg addSubview:self.k2];
+    NSLog(@"%f",self.k2.center.x);
+
+    self.k3=[UIButton buttonWithType:UIButtonTypeCustom];
+    [self.k3 setBackgroundImage:[UIImage imageNamed:@"zhenti2"] forState:UIControlStateNormal];
+    self.k3.tag=13;
+    self.k3.frame=CGRectMake(0, 0, w/4, w/4);
+    [self.k3 addTarget:self action:@selector(BtnPress:) forControlEvents:UIControlEventTouchUpInside];
+    self.k3.center=CGPointMake(self.bg.frame.size.width/4, self.bg.frame.size.height*3/4);
+    [self.bg addSubview:self.k3];
+    NSLog(@"%f",self.k3.center.x);
+
+    self.k4=[UIButton buttonWithType:UIButtonTypeCustom];
+    [self.k4 setBackgroundImage:[UIImage imageNamed:@"zhenti3"] forState:UIControlStateNormal];
+    self.k4.tag=14;
+    self.k4.frame=CGRectMake(0, 0, w/4, w/4);
+    [self.k4 addTarget:self action:@selector(BtnPress:) forControlEvents:UIControlEventTouchUpInside];
+    self.k4.center=CGPointMake(self.bg.frame.size.width*3/4, self.bg.frame.size.height*3/4);
+    [self.bg addSubview:self.k4];
+    NSLog(@"%f",self.k4.center.x);
+
 }
 
 

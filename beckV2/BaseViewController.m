@@ -55,6 +55,7 @@
     [super viewDidLoad];
     
     [self configNavibar];
+    self.navigationController.interactivePopGestureRecognizer.enabled=NO;
 //    self.view.backgroundColor=[UIColor colorWithRed:234/255.0 green:234/255.0 blue:234/255.0 alpha:1];
 }
 //- (void)showPositionPan{

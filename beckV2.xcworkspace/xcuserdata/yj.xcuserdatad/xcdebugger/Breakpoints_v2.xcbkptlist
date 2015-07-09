@@ -154,12 +154,12 @@
                   moduleName = "beckV2"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yj/beckv2/beckV2/execise/PractiseVC.m"
-                  timestampString = "457885603.366937"
+                  timestampString = "458144924.562335"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "601"
                   endingLineNumber = "601"
-                  offsetFromSymbolStart = "3275">
+                  offsetFromSymbolStart = "3402">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -169,12 +169,12 @@
                   moduleName = "beckV2"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yj/beckv2/beckV2/execise/PractiseVC.m"
-                  timestampString = "457885603.367062"
+                  timestampString = "458144924.562531"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "601"
                   endingLineNumber = "601"
-                  offsetFromSymbolStart = "103">
+                  offsetFromSymbolStart = "109">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -218,28 +218,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "beckV2/custom/QuestionVC.m"
-            timestampString = "457885602.938457"
+            timestampString = "458143967.549472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "877"
-            endingLineNumber = "877"
+            startingLineNumber = "899"
+            endingLineNumber = "899"
             landmarkName = "-notePress"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "beckV2/custom/QuestionVC.m"
-            timestampString = "457885602.938457"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "777"
-            endingLineNumber = "777"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

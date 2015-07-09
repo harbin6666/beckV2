@@ -18,7 +18,8 @@
 #import "ExamPaper.h"
 #import "FinishExamVC.h"
 #import "AnswerObj.h"
-@interface QuestionVC ()<UITabBarDelegate,UITableViewDataSource,UITableViewDelegate,QCollectionVCDelegate>
+#import "CALayer+Transition.h"
+@interface QuestionVC ()<UITabBarDelegate,UITableViewDataSource,UITableViewDelegate,QCollectionVCDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic, strong) SettingPanVC *settingPanVC;
 @property(nonatomic,strong) UserNote*currentNote;
 @property(nonatomic,strong)NSString *questionDes;
@@ -111,12 +112,31 @@
     self.font=[[NSUserDefaults standardUserDefaults] integerForKey:@"fontValue"];
     [self.table reloadData];
 }
+
+-(void)swipe:(UISwipeGestureRecognizer*)gesture{
+    if ([gesture isKindOfClass:[UISwipeGestureRecognizer class]]) {
+        if (gesture.direction==UISwipeGestureRecognizerDirectionLeft) {
+            [self forwardPress:nil];
+        }else if(gesture.direction==UISwipeGestureRecognizerDirectionRight){
+            [self backwardPress:nil];
+        }
+    }
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFont) name:@"updatefont" object:nil];
     self.font=[[NSUserDefaults standardUserDefaults] integerForKey:@"fontValue"];
     
+    UISwipeGestureRecognizer *swipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+    [self.table addGestureRecognizer:swipe];
     
+    UISwipeGestureRecognizer *swipe1=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+    swipe1.direction=UISwipeGestureRecognizerDirectionLeft;
+    [self.table addGestureRecognizer:swipe1];
+
+    swipe.delegate=self;
     if (self.answerArray==nil) {
         self.answerArray=[[NSMutableArray alloc] init];
     }
@@ -388,6 +408,8 @@
         
     }
     [self.view bringSubviewToFront:self.questionBtn];
+
+
 }
 
 -(AnswerObj*)findDoneAnswerWithid:(NSString*)nid{
@@ -1099,6 +1121,8 @@
     }
     
     [self freshView];
+    [self.table.layer transitionWithAnimType:TransitionAnimTypeReveal subType:TransitionSubtypesFromLeft curve:TransitionCurveEaseInEaseOut duration:1.0f];
+
 }
 
 -(void)forwardPress:(UITabBarItem *)item{
@@ -1110,6 +1134,8 @@
         self.currentQIndex++;
     }
     [self freshView];
+    [self.table.layer transitionWithAnimType:TransitionAnimTypeReveal subType:TransitionSubtypesFromRight curve:TransitionCurveEaseInEaseOut duration:1.0f];
+
 }
 
 
