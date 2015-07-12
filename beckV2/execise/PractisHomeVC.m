@@ -14,7 +14,7 @@
 #import "CachedAnswer.h"
 #import "ChoiceQuestion.h"
 #import "CompatyQuestion.h"
-@interface PractisHomeVC ()<UITableViewDataSource,UITableViewDelegate,UITabBarDelegate>
+@interface PractisHomeVC ()<UITableViewDataSource,UITableViewDelegate,UITabBarDelegate,OutlineCellDelegate>
 @property(nonatomic,strong)NSArray *subjectIdList;
 @property(nonatomic,strong)NSArray *subjectList;
 @property(nonatomic,weak)IBOutlet UITableView *table;
@@ -62,23 +62,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-//    NSMutableString *str=[NSMutableString stringWithString:[[Global sharedSingle] getUserWithkey:@"titleName"]];
-//    [str appendString:@" ▼"];
-//    [self setNavigationBarButtonName:str width:80 isLeft:NO];
-
-
-//    self.dataAr=[NSMutableArray array];
-//    self.subjectIdList=[[SQLManager sharedSingle] getSubjectIdArrayByid:[[Global sharedSingle] getUserWithkey:@"titleid"]];
-//    self.subjectList=[[SQLManager sharedSingle] getSubjectByid:self.subjectIdList];
-//
-//    for (int i=0; i<self.subjectList.count; i++) {
-//        Subject*sb=self.subjectList[i];
-//        NSArray *sbAr=[[SQLManager sharedSingle] getoutLineByid:sb.subjectid];
-//        [self.dataAr addObject:sbAr];
-//    }
-//
-//    [self.table reloadData];
 }
 
 -(IBAction)homeClick:(UIButton *)sender{
@@ -115,38 +98,23 @@
     NSArray *temp=self.dataAr[indexPath.section];
     Outline *ot=temp[indexPath.row];
     cell.textlab.text=ot.courseName;
-//    NSInteger done=[[SQLManager sharedSingle] countDoneByOutlineid:ot.outlineid];
-//    NSInteger total=[[SQLManager sharedSingle] countDownByOutlineid:ot.outlineid];
-
-    
-    NSInteger done=0;
-    NSArray *ar=[[SQLManager sharedSingle] getOutLineByParentId:ot.outlineid];
-    NSInteger total=0;
-    for (Outline *subOt in ar) {
+    cell.delegate=self;
+    [cell updateWithoutlineid:ot.outlineid];
+//    NSInteger done=0;
+//    NSInteger total=0;
+//
+//    NSArray *ar=[[SQLManager sharedSingle] getOutLineByParentId:ot.outlineid];
+//    for (Outline *subOt in ar) {
 //        done+=[[SQLManager sharedSingle] countDoneByOutlineid:subOt.outlineid];
-//        done+=[[CachedAnswer new] getCacheByOutlineid:subOt.outlineid].count;
-        NSArray *doneAr=[[SQLManager sharedSingle] getQuestionByOutlineId:subOt.outlineid];
-        for (Question *q in doneAr) {
-            NSString *itemid=@"";
-            if ([q isKindOfClass:[ChoiceQuestion class]]) {
-                itemid=[(ChoiceQuestion*)q choice_id];
-            }else{
-                itemid=[(CompatyInfo*)q info_id];
-            }
-            if ([[SQLManager sharedSingle] hasDoneQuestion:itemid typeid:q.custom_id]) {
-                done++;
-            }
-//            NSArray *findAr=[[SQLManager sharedSingle] hadDonePractisOutlineid:subOt.outlineid itemid:itemid typeid:q.custom_id];
-//            if (findAr!=nil&&findAr.count>0) {
-//                done++;
-//            }
-        }
-       total+=[[SQLManager sharedSingle] countDownByOutlineid:subOt.outlineid];
-    }
-    cell.detailLab.text=[NSString stringWithFormat:@"%zd/%zd",done,total];
+//        total+=[[SQLManager sharedSingle] countDownByOutlineid:subOt.outlineid];
+//    }
+//    cell.detailLab.text=[NSString stringWithFormat:@"%zd/%zd",done,total];
     return cell;
 }
 
+-(void)countDownDelegate:(OutlineCell *)cell result:(NSString *)result{
+    cell.detailLab.text=result;
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *temp=self.dataAr[indexPath.section];
     Outline *ot=temp[indexPath.row];

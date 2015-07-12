@@ -718,14 +718,19 @@
                         }
                     }
                 }
-                if (cout==self.compatibilyArray.count) {
-                    if (r==self.compatibilyArray.count) {
-                        [self performSelector:@selector(forwardPress:) withObject:nil];
-                    }else{
-                        if (self.showAnswer==NO&&self.practisMode&&answer) {
-                            [self showAnswer:self.tabbar.items[2]];
+                if (self.practisMode&&!self.fromDetail) {
+                    if (cout==self.compatibilyArray.count) {
+                        if (r==self.compatibilyArray.count) {
+                            [self performSelector:@selector(forwardPress:) withObject:nil];
+                        }else{
+                            if (self.showAnswer==NO&&self.practisMode&&answer) {
+                                [self showAnswer:self.tabbar.items[2]];
+                            }
                         }
                     }
+                }
+                if (self.paperid!=nil&&cout==self.compatibilyArray.count) {
+                    [self performSelector:@selector(forwardPress:) withObject:nil];
                 }
 
             }];
@@ -775,27 +780,40 @@
             }
                 [choiceAnswer.myAnswer addObject:item.nid];
         }
-        if (![q.rightChoiceItems containsObject:item.nid]) {
-            choiceAnswer.AnswerState=@"0";
-            p.answerType=answeredwrong;
-            if (self.showAnswer==NO&&self.practisMode) {
-                [self showAnswer:self.tabbar.items[2]];
-            }
-        }else{
-            choiceAnswer.AnswerState=@"1";
-            p.answerType=answeredRight;
-            if (q.rightChoiceItems.count==1) {
-                [self performSelector:@selector(forwardPress:) withObject:nil];
-                return;
-            }
-            if (choiceAnswer.myAnswer.count==q.rightChoiceItems.count) {
-                int cout=0;
-                for (NSString *a in choiceAnswer.myAnswer) {
-                    if ([q.rightChoiceItems containsObject:a]) {
-                        cout++;
+        
+        
+        if (self.paperid==nil) {
+            if (![q.rightChoiceItems containsObject:item.nid]) {
+                choiceAnswer.AnswerState=@"0";
+                p.answerType=answeredwrong;
+                if (self.showAnswer==NO&&self.practisMode) {
+                    [self showAnswer:self.tabbar.items[2]];
+                }
+            }else{
+                choiceAnswer.AnswerState=@"1";
+                p.answerType=answeredRight;
+                if (q.rightChoiceItems.count==1) {
+                    [self performSelector:@selector(forwardPress:) withObject:nil];
+                    return;
+                }
+                if (choiceAnswer.myAnswer.count==q.rightChoiceItems.count) {
+                    int cout=0;
+                    for (NSString *a in choiceAnswer.myAnswer) {
+                        if ([q.rightChoiceItems containsObject:a]) {
+                            cout++;
+                        }
+                    }
+                    if (cout==q.rightChoiceItems.count) {
+                        [self performSelector:@selector(forwardPress:) withObject:nil];
                     }
                 }
-                if (cout==q.rightChoiceItems.count) {
+            }
+        }
+        else{
+            if ([p custom_id].intValue!=12) {
+                [self performSelector:@selector(forwardPress:) withObject:nil];
+            }else{
+                if (choiceAnswer.myAnswer.count==q.rightChoiceItems.count) {
                     [self performSelector:@selector(forwardPress:) withObject:nil];
                 }
             }

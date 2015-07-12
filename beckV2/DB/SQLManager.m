@@ -745,7 +745,7 @@ singleton_implementation(SQLManager);
 //已经做过的题目
 -(NSInteger)countDoneByOutlineid:(NSString*)outlineid{
     __block NSInteger total=0;
-    NSString *sql=[NSString stringWithFormat:@"select count(*) from (select * from user_exercise_ext where outline_id==%@)",outlineid];
+    NSString *sql=[NSString stringWithFormat:@"select count(*) from (select id from user_exercise_ext where outline_id==%@ group by item_id)",outlineid];
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
@@ -759,7 +759,7 @@ singleton_implementation(SQLManager);
 //计算章节下总数
 -(NSInteger)countDownByOutlineid:(NSString*)outlineid{
     __block NSInteger total=0;
-    NSString *sql=[NSString stringWithFormat:@"select count(*) from (select * from choice_questions where outlet_id==%@) union all select count(*) from (select * from compatibility_info where outlet_id==%@)",outlineid,outlineid];
+    NSString *sql=[NSString stringWithFormat:@"select count(*) from (select choice_id from choice_questions where outlet_id==%@) union all select count(*) from (select id from compatibility_info where outlet_id==%@)",outlineid,outlineid];
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             

@@ -7,8 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+@class OutlineCell;
+
+@protocol OutlineCellDelegate
+-(void)countDownDelegate:(OutlineCell*)cell result:(NSString*)result;
+@end
 
 @interface OutlineCell : UITableViewCell
+@property(nonatomic,assign)id <OutlineCellDelegate>delegate;
 @property(nonatomic,weak)IBOutlet UILabel *textlab;
 @property(nonatomic,weak)IBOutlet UILabel *detailLab;
+-(void)updateWithoutlineid:(NSString*)outlineid;
 @end
+

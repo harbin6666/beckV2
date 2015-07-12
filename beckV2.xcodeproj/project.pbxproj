@@ -1899,7 +1899,7 @@
 					"$(PROJECT_DIR)/beckV2/ThirdParty",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e8adef6d-5156-4f2f-ab5e-25f83137a17b";
+				PROVISIONING_PROFILE = "34c3efc2-e4a2-4d36-8318-1de18ebd60a1";
 			};
 			name = Release;
 		};
