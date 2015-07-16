@@ -31,6 +31,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
     self.dataAr=[NSMutableArray array];
     self.subjectIdList=[[SQLManager sharedSingle] getSubjectIdArrayByid:[[Global sharedSingle] getUserWithkey:@"titleid"]];
     self.subjectList=[[SQLManager sharedSingle] getSubjectByid:self.subjectIdList];
@@ -38,7 +40,21 @@
     for (int i=0; i<self.subjectList.count; i++) {
         Subject*sb=self.subjectList[i];
         NSArray *sbAr=[[SQLManager sharedSingle] getoutLineByid:sb.subjectid];
-        [self.dataAr addObject:sbAr];
+        if (self.type==0) {
+            NSMutableArray *tempSectionAr=[NSMutableArray array];
+            for (int i=0; i<sbAr.count; i++) {
+                Outline *ot=sbAr[i];
+                NSArray *temp=[[SQLManager sharedSingle] getUserNoteByOutlineId:ot.outlineid];
+                if (temp.count>0) {
+                    [tempSectionAr addObject:ot];
+                }
+            }
+            if (tempSectionAr.count>0) {
+                [self.dataAr addObject:tempSectionAr];
+            }
+        }else{
+            [self.dataAr addObject:sbAr];
+        }
     }
     if (self.type==0) {
         self.title=@"查看笔记";
@@ -62,38 +78,49 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBarButtonItem*bar= self.navigationItem.rightBarButtonItem;
-    [bar setTitle:[[Global sharedSingle] getUserWithkey:@"titleName"]];
-   
-
-    
-    self.dataAr=[NSMutableArray array];
-    self.subjectIdList=[[SQLManager sharedSingle] getSubjectIdArrayByid:[[Global sharedSingle] getUserWithkey:@"titleid"]];
-    self.subjectList=[[SQLManager sharedSingle] getSubjectByid:self.subjectIdList];
-    
-    for (int i=0; i<self.subjectList.count; i++) {
-        Subject*sb=self.subjectList[i];
-        NSArray *sbAr=[[SQLManager sharedSingle] getoutLineByid:sb.subjectid];
-        [self.dataAr addObject:sbAr];
-    }
-    if (self.type==0) {
-        self.title=@"查看笔记";
-    }else{
-        self.title=@"练习统计";
-//        NSArray *moni=[[SQLManager sharedSingle] getExamByType:@"1"];
-//        NSArray *zhenti=[[SQLManager sharedSingle] getExamByType:@"2"];
-        NSArray *moni=@[@"场次一",@"场次二",@"场次三",@"场次四"];
-        self.examArray=@[moni,moni];
-        self.pan=[[SelectionPan alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-        [self.pan updatePanWithTitles:@[@"练习统计",@"考试统计"] selectBlock:^(NSInteger buttonIndex) {
-            self.titleSelect=buttonIndex;
-            self.title=@[@"练习统计",@"考试统计"][buttonIndex];
-            [self.tableView reloadData];
-        }];
-        self.tableView.tableHeaderView=self.pan;
-    }
-    self.tableView.tableFooterView=[[UIView alloc] init];
-    [self.tableView reloadData];
+//    UIBarButtonItem*bar= self.navigationItem.rightBarButtonItem;
+//    [bar setTitle:[[Global sharedSingle] getUserWithkey:@"titleName"]];
+//   
+//
+//    
+//    self.dataAr=[NSMutableArray array];
+//    self.subjectIdList=[[SQLManager sharedSingle] getSubjectIdArrayByid:[[Global sharedSingle] getUserWithkey:@"titleid"]];
+//    self.subjectList=[[SQLManager sharedSingle] getSubjectByid:self.subjectIdList];
+//    
+//    for (int i=0; i<self.subjectList.count; i++) {
+//        Subject*sb=self.subjectList[i];
+//        NSArray *sbAr=[[SQLManager sharedSingle] getoutLineByid:sb.subjectid];
+//        if (self.type==0) {
+//            for (int i=0; i<sbAr.count; i++) {
+//                Outline *ot=sbAr[i];
+//                NSArray *temp=[[SQLManager sharedSingle] getUserNoteByOutlineId:ot.outlineid];
+//                if (temp.count>0) {
+//                    [self.dataAr addObject:sbAr];
+//                }
+//            }
+//        }else{
+//            [self.dataAr addObject:sbAr];
+//        }
+//    }
+//    if (self.type==0) {
+//
+//        self.title=@"查看笔记";
+//    }else{
+//        self.title=@"练习统计";
+////        NSArray *moni=[[SQLManager sharedSingle] getExamByType:@"1"];
+////        NSArray *zhenti=[[SQLManager sharedSingle] getExamByType:@"2"];
+//        NSArray *moni=@[@"场次一",@"场次二",@"场次三",@"场次四"];
+//        self.examArray=@[moni,moni];
+//        self.pan=[[SelectionPan alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+//        [self.pan updatePanWithTitles:@[@"练习统计",@"考试统计"] selectBlock:^(NSInteger buttonIndex) {
+//            self.titleSelect=buttonIndex;
+//            self.title=@[@"练习统计",@"考试统计"][buttonIndex];
+//            [self.tableView reloadData];
+//        }];
+//        self.tableView.tableHeaderView=self.pan;
+//    }
+//    self.tableView.tableFooterView=[[UIView alloc] init];
+//    [self.tableView reloadData];
 }
 
 
@@ -108,6 +135,9 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (self.titleSelect==1) {
         return self.examArray.count;
+    }
+    if (self.type==0) {
+       return  self.dataAr.count;
     }
     return self.subjectList.count;
 }

@@ -51,7 +51,8 @@
     // Do any additional setup after loading the view.
 //    self.tencentOAuth = [[TencentOAuth alloc] initWithAppId:kOpenQQAppKey andDelegate:self];
     
-    
+    self.usrName.returnKeyType=UIReturnKeyDone;
+    self.passw.returnKeyType=UIReturnKeyDone;
     [self setNavigationBarButtonName:@"" width:0 isLeft:YES];
 }
 

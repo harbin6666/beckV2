@@ -209,7 +209,7 @@
 
 -(void)updateDB{
     NSDictionary *addIn=[[SQLManager sharedSingle] getAddinParam];
-    [self showLoading];
+    [self showLoadingWithMessage:@"数据加载中..."];
     //查询配置
     [self getValueWithBeckUrl:@"/front/userAct.htm" params:addIn CompleteBlock:^(id aResponseObject, NSError *anError) {
         if (anError==nil) {

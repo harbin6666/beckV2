@@ -547,7 +547,7 @@
     if (p.custom_id.integerValue==11) {
         return 0;
     }
-    CGSize size =[self.questionDes sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(self.view.frame.size.width-20, 1000)];
+    CGSize size =[self.questionDes sizeWithFont:[UIFont systemFontOfSize:self.font] constrainedToSize:CGSizeMake(self.view.frame.size.width-100, 1000)];
     float h=0;
     if (size.height<50) {
         h=50;
@@ -560,16 +560,16 @@
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    CGSize size =[self.questionDes sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(self.view.frame.size.width-20, 1000)];
+    CGSize size =[self.questionDes sizeWithFont:[UIFont systemFontOfSize:self.font] constrainedToSize:CGSizeMake(self.view.frame.size.width-100, 1000) lineBreakMode:NSLineBreakByWordWrapping];
     float h=0;
-    if (size.height<50) {
-        h=50;
+    if (size.height<60) {
+        h=60;
     }else {
         h=size.height;
     }
-    UILabel *la=[[UILabel alloc] initWithFrame:CGRectMake(0, 5, self.view.frame.size.width, h)];
+    UILabel *la=[[UILabel alloc] initWithFrame:CGRectMake(10, 0, self.view.frame.size.width-10, h)];
     
-    la.textAlignment=NSTextAlignmentCenter;
+    la.textAlignment=NSTextAlignmentLeft;
     la.numberOfLines=0;
     la.font=[UIFont systemFontOfSize:self.font];
     la.text=self.questionDes;
@@ -608,8 +608,42 @@
             return 88;
         }
     }
+    id p=[self.questionsAr objectAtIndex:self.currentQIndex];
+    if ([p isKindOfClass:[ChoiceQuestion class]]) {
+        if (indexPath.row==self.choiceArray.count+1) {
+            ChoiceQuestion* c=(ChoiceQuestion*)p;
+            
+            NSString *text=[c choice_parse];
+            CGSize size =[text sizeWithFont:[UIFont systemFontOfSize:self.font] constrainedToSize:CGSizeMake(self.view.frame.size.width-100, 1000)];
+            float h=0;
+            if (size.height<60) {
+                h=60;
+            }else {
+                h=size.height;
+            }
+            return h;
+        }
+        
+    }else{
+        if (indexPath.row==self.compatibilyArray.count+1) {
+            NSMutableString *answer=@"".mutableCopy;
+            for (int i=0; i<self.compatibilyArray.count; i++) {
+                CompatyQuestion *q=self.compatibilyArray[i];
+                [answer appendFormat:@"%d.%@",i+1,q.choice_parse];
+            }
+            CGSize size =[answer sizeWithFont:[UIFont systemFontOfSize:self.font] constrainedToSize:CGSizeMake(self.view.frame.size.width-100, 1000)];
+            float h=0;
+            if (size.height<60) {
+                h=60;
+            }else {
+                h=size.height;
+            }
+            return h;
+        }
+    }
     return 44;
 }
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell=nil;
     Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
@@ -621,6 +655,7 @@
             cell.textLabel.text=[c choice_parse];
             cell.textLabel.font=[UIFont systemFontOfSize:self.font];
             cell.textLabel.hidden=YES;
+            cell.textLabel.numberOfLines=0;
             if (self.showAnswer) {
                 cell.textLabel.hidden=NO;
             }
@@ -651,7 +686,7 @@
             if (self.showAnswer) {
                 cell.textLabel.hidden=NO;
             }
-            
+            cell.textLabel.numberOfLines=0;
             cell.textLabel.backgroundColor=[UIColor orangeColor];
             
         }else if (indexPath.row==self.compatibilyArray.count) {
@@ -721,7 +756,8 @@
                 if (self.practisMode&&!self.fromDetail) {
                     if (cout==self.compatibilyArray.count) {
                         if (r==self.compatibilyArray.count) {
-                            [self performSelector:@selector(forwardPress:) withObject:nil];
+                            [self showAnswer:self.tabbar.items[2]];
+                            [self performSelector:@selector(forwardPress:) withObject:nil afterDelay:1];
                         }else{
                             if (self.showAnswer==NO&&self.practisMode&&answer) {
                                 [self showAnswer:self.tabbar.items[2]];
@@ -782,7 +818,7 @@
         }
         
         
-        if (self.paperid==nil) {
+        if (self.paperid==nil) {//练习模式
             if (![q.rightChoiceItems containsObject:item.nid]) {
                 choiceAnswer.AnswerState=@"0";
                 p.answerType=answeredwrong;
@@ -793,7 +829,8 @@
                 choiceAnswer.AnswerState=@"1";
                 p.answerType=answeredRight;
                 if (q.rightChoiceItems.count==1) {
-                    [self performSelector:@selector(forwardPress:) withObject:nil];
+                    [self showAnswer:self.tabbar.items[2]];
+                    [self performSelector:@selector(forwardPress:) withObject:nil afterDelay:1];
                     return;
                 }
                 if (choiceAnswer.myAnswer.count==q.rightChoiceItems.count) {
@@ -804,17 +841,19 @@
                         }
                     }
                     if (cout==q.rightChoiceItems.count) {
-                        [self performSelector:@selector(forwardPress:) withObject:nil];
+                        [self showAnswer:self.tabbar.items[2]];
+//                        [self performSelector:@selector(forwardPress:) withObject:nil afterDelay:1];
                     }
                 }
             }
         }
-        else{
+        else{//考试模式
             if ([p custom_id].intValue!=12) {
                 [self performSelector:@selector(forwardPress:) withObject:nil];
             }else{
                 if (choiceAnswer.myAnswer.count==q.rightChoiceItems.count) {
-                    [self performSelector:@selector(forwardPress:) withObject:nil];
+                    [self showAnswer:self.tabbar.items[2]];
+//                    [self performSelector:@selector(forwardPress:) withObject:nil];
                 }
             }
         }

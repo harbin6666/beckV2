@@ -592,10 +592,6 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rl7-aE-9fo" userLabel="loginView">
                                 <rect key="frame" x="26" y="74" width="268" height="88"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4DE-y4-P4Z" userLabel="line">
-                                        <rect key="frame" x="8" y="43" width="307" height="1"/>
-                                        <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFi-a5-9mX">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="44"/>
                                         <constraints>
@@ -612,7 +608,7 @@
                                             <constraint firstAttribute="height" constant="44" id="4vH-qv-NAh"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="4vH-qv-NAh"/>
@@ -631,30 +627,43 @@
                                         <color key="textColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kF7-MN-EBK" userLabel="username">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kF7-MN-EBK" userLabel="username">
                                         <rect key="frame" x="60" y="0.0" width="208" height="44"/>
                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="oSE-ah-dXk" id="rnY-DS-7ma"/>
                                         </connections>
                                     </textField>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4DE-y4-P4Z" userLabel="line">
+                                        <rect key="frame" x="10" y="42.5" width="258" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="8BW-GN-nce"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="TFi-a5-9mX" firstAttribute="width" secondItem="4DE-y4-P4Z" secondAttribute="width" id="6Xo-zO-Z4H"/>
                                     <constraint firstItem="4DE-y4-P4Z" firstAttribute="top" secondItem="Rl7-aE-9fo" secondAttribute="top" constant="43" id="7Zb-8F-adU"/>
                                     <constraint firstItem="TFi-a5-9mX" firstAttribute="leading" secondItem="Rl7-aE-9fo" secondAttribute="leading" id="7nY-OS-lv3"/>
                                     <constraint firstItem="kF7-MN-EBK" firstAttribute="bottom" secondItem="TFi-a5-9mX" secondAttribute="bottom" id="85u-VL-KLZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="4DE-y4-P4Z" secondAttribute="trailing" id="Anx-oW-uZY"/>
                                     <constraint firstItem="4DE-y4-P4Z" firstAttribute="leading" secondItem="Rl7-aE-9fo" secondAttribute="leadingMargin" id="CgY-Y2-W8A"/>
                                     <constraint firstItem="kF7-MN-EBK" firstAttribute="leading" secondItem="TFi-a5-9mX" secondAttribute="trailing" id="DdN-z2-hXk"/>
+                                    <constraint firstItem="TFi-a5-9mX" firstAttribute="leading" secondItem="4DE-y4-P4Z" secondAttribute="leading" constant="-8" id="GHl-9S-LFC"/>
                                     <constraint firstItem="ihk-0Y-qs1" firstAttribute="bottom" secondItem="6pH-jp-E97" secondAttribute="bottom" id="KNn-aB-9Gx"/>
+                                    <constraint firstItem="TFi-a5-9mX" firstAttribute="leading" secondItem="4DE-y4-P4Z" secondAttribute="leading" constant="-10" id="U91-Hw-hd8"/>
                                     <constraint firstItem="kF7-MN-EBK" firstAttribute="leading" secondItem="ihk-0Y-qs1" secondAttribute="leading" id="UMg-wq-QyW"/>
                                     <constraint firstItem="ihk-0Y-qs1" firstAttribute="leading" secondItem="kF7-MN-EBK" secondAttribute="leading" id="UXb-Sy-zqR"/>
                                     <constraint firstItem="ihk-0Y-qs1" firstAttribute="width" secondItem="kF7-MN-EBK" secondAttribute="width" id="ZIi-9c-1cw"/>
                                     <constraint firstItem="kF7-MN-EBK" firstAttribute="top" secondItem="Rl7-aE-9fo" secondAttribute="top" id="agQ-pr-i6k"/>
                                     <constraint firstItem="kF7-MN-EBK" firstAttribute="bottom" secondItem="4DE-y4-P4Z" secondAttribute="bottom" id="b26-RO-6ry"/>
+                                    <constraint firstItem="ihk-0Y-qs1" firstAttribute="width" secondItem="4DE-y4-P4Z" secondAttribute="width" id="dNv-OA-vWb"/>
                                     <constraint firstAttribute="trailing" secondItem="kF7-MN-EBK" secondAttribute="trailing" id="eRk-rP-hv5"/>
+                                    <constraint firstItem="ihk-0Y-qs1" firstAttribute="leading" secondItem="4DE-y4-P4Z" secondAttribute="leading" constant="52" id="f09-DE-1yn"/>
                                     <constraint firstItem="kF7-MN-EBK" firstAttribute="trailing" secondItem="ihk-0Y-qs1" secondAttribute="trailing" id="fZa-3c-G52"/>
                                     <constraint firstItem="4DE-y4-P4Z" firstAttribute="centerY" secondItem="Rl7-aE-9fo" secondAttribute="centerY" id="gzk-MD-axU"/>
                                     <constraint firstItem="kF7-MN-EBK" firstAttribute="top" secondItem="TFi-a5-9mX" secondAttribute="top" id="h3S-ss-raw"/>
@@ -664,17 +673,28 @@
                                     <constraint firstAttribute="height" constant="88" id="jlT-0U-TU8"/>
                                     <constraint firstItem="ihk-0Y-qs1" firstAttribute="top" secondItem="6pH-jp-E97" secondAttribute="top" id="k4e-In-ryC"/>
                                     <constraint firstItem="ihk-0Y-qs1" firstAttribute="trailing" secondItem="kF7-MN-EBK" secondAttribute="trailing" id="rbC-Yx-TY1"/>
+                                    <constraint firstItem="ihk-0Y-qs1" firstAttribute="width" secondItem="4DE-y4-P4Z" secondAttribute="width" id="t4v-P6-mSu"/>
                                     <constraint firstAttribute="bottom" secondItem="TFi-a5-9mX" secondAttribute="bottom" constant="44" id="uDp-Si-wbi"/>
+                                    <constraint firstAttribute="width" secondItem="4DE-y4-P4Z" secondAttribute="width" constant="-8" id="uc4-27-cNs"/>
                                     <constraint firstItem="6pH-jp-E97" firstAttribute="height" secondItem="TFi-a5-9mX" secondAttribute="height" id="wlN-wU-MeG"/>
                                     <constraint firstItem="TFi-a5-9mX" firstAttribute="top" secondItem="Rl7-aE-9fo" secondAttribute="top" id="xfE-KN-ze4"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="7Zb-8F-adU"/>
+                                        <exclude reference="6Xo-zO-Z4H"/>
+                                        <exclude reference="GHl-9S-LFC"/>
                                         <exclude reference="UMg-wq-QyW"/>
                                         <exclude reference="agQ-pr-i6k"/>
+                                        <exclude reference="b26-RO-6ry"/>
                                         <exclude reference="fZa-3c-G52"/>
+                                        <exclude reference="7Zb-8F-adU"/>
+                                        <exclude reference="CgY-Y2-W8A"/>
+                                        <exclude reference="jSC-Gs-mUy"/>
+                                        <exclude reference="uc4-27-cNs"/>
+                                        <exclude reference="dNv-OA-vWb"/>
+                                        <exclude reference="f09-DE-1yn"/>
                                         <exclude reference="rbC-Yx-TY1"/>
+                                        <exclude reference="t4v-P6-mSu"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -1432,7 +1452,7 @@
         <image name="xunzhang4_red" width="96" height="112"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="U3g-eM-tF2"/>
+        <segue reference="vAU-pr-r13"/>
         <segue reference="npZ-RJ-fqi"/>
         <segue reference="MWS-GT-JBi"/>
     </inferredMetricsTieBreakers>
