@@ -683,14 +683,14 @@
                                     <mask key="constraints">
                                         <exclude reference="6Xo-zO-Z4H"/>
                                         <exclude reference="GHl-9S-LFC"/>
-                                        <exclude reference="UMg-wq-QyW"/>
-                                        <exclude reference="agQ-pr-i6k"/>
-                                        <exclude reference="b26-RO-6ry"/>
-                                        <exclude reference="fZa-3c-G52"/>
                                         <exclude reference="7Zb-8F-adU"/>
                                         <exclude reference="CgY-Y2-W8A"/>
                                         <exclude reference="jSC-Gs-mUy"/>
                                         <exclude reference="uc4-27-cNs"/>
+                                        <exclude reference="UMg-wq-QyW"/>
+                                        <exclude reference="agQ-pr-i6k"/>
+                                        <exclude reference="b26-RO-6ry"/>
+                                        <exclude reference="fZa-3c-G52"/>
                                         <exclude reference="dNv-OA-vWb"/>
                                         <exclude reference="f09-DE-1yn"/>
                                         <exclude reference="rbC-Yx-TY1"/>
@@ -920,8 +920,11 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="passw" destination="ihk-0Y-qs1" id="rFx-e2-rxg"/>
+                        <outlet property="qqBtn" destination="ri2-Wn-O1b" id="v9H-B1-bcH"/>
                         <outlet property="remenber" destination="6OA-a8-pbY" id="x54-Nh-Enh"/>
+                        <outlet property="sinaBtn" destination="iK2-qd-8PI" id="5eP-cI-r8Q"/>
                         <outlet property="usrName" destination="kF7-MN-EBK" id="Cz6-Fz-XGe"/>
+                        <outlet property="wxBtn" destination="PpW-Iu-h4E" id="ZuA-ah-INJ"/>
                         <segue destination="j4b-K1-tpg" kind="show" identifier="tofindpass" id="Mbl-gZ-3B9"/>
                         <segue destination="euz-ue-xcZ" kind="custom" identifier="tohome" customClass="DismissSegue" id="vAU-pr-r13"/>
                     </connections>

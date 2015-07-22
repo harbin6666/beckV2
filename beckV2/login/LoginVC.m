@@ -20,6 +20,7 @@
 @property(nonatomic,strong)NSString*accessToken;
 @property(nonatomic,weak) IBOutlet UIButton* remenber;
 @property(nonatomic,strong)NSString *nickName;
+@property(nonatomic)IBOutlet UIButton *wxBtn,*sinaBtn,*qqBtn;
 
 @end
 
@@ -54,6 +55,12 @@
     self.usrName.returnKeyType=UIReturnKeyDone;
     self.passw.returnKeyType=UIReturnKeyDone;
     [self setNavigationBarButtonName:@"" width:0 isLeft:YES];
+    if (![WXApi isWXAppInstalled]) {
+        self.wxBtn.hidden=YES;
+    }
+    if (![TencentOAuth iphoneQQInstalled]) {
+        self.qqBtn.hidden=YES;
+    }
 }
 
 - (IBAction)onPressedQQ:(id)sender {
