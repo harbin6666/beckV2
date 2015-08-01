@@ -12,7 +12,7 @@
 #import "UserNote.h"
 @interface SQLManager : NSObject
 singleton_interface(SQLManager);
-
+-(int)queryParam;
 -(NSArray*)getPractisWithOutlineid:(NSString*)outlineid;
 -(NSString*)getMaxidWithTableName:(NSString*)tableName colName:(NSString*)col;
 -(NSArray*)getTitles;

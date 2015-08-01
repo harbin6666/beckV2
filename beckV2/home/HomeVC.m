@@ -21,6 +21,7 @@
 @property(nonatomic,weak)IBOutlet UIImageView *cIV;
 @property(nonatomic,weak)IBOutlet UIImageView *oldHome;
 @property(nonatomic,weak)IBOutlet UIButton *trainbtn;
+@property(nonatomic)BOOL showed;
 @end
 #define padding 10
 @implementation HomeVC
@@ -48,7 +49,10 @@
 //    [self showLoading];
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
         //            dispatch_async(dispatch_get_main_queue(), ^{
+    if (!self.showed) {
+        self.showed=YES;
         [self updateDB];
+    }
 //        dispatch_async(dispatch_get_main_queue(), ^{
 //            [self hideLoading];
 //        });

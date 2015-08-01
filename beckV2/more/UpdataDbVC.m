@@ -96,6 +96,47 @@
     }];
 }
 
+
+-(void)resetDB{
+    WEAK_SELF;
+    [self showLoading];
+    [self getValueWithBeckUrl:@"/front/versionUpdateAct.htm" params:@{@"token":@"versionupdate"} CompleteBlock:^(id aResponseObject, NSError *anError) {
+        STRONG_SELF;
+        if (anError==nil) {
+            if ([aResponseObject[@"errorcode"] integerValue]==0) {
+                NSNumber *count=aResponseObject[@"value"];
+                int value=[[SQLManager sharedSingle] queryParam]+1;
+                if (value-1==count.intValue) {
+                    [self hideLoading];
+                    return ;
+                }
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+                    for (int i=value; i<count.intValue+1; i++) {
+                        NSString *fileStr=[NSString stringWithFormat:@"http://192.168.100.222:8080/beck2/upload/txt/%d.txt",i];
+                        NSString *file=[NSString stringWithContentsOfURL:[NSURL URLWithString:fileStr] encoding:NSUTF8StringEncoding error:nil];
+                        NSArray *ar=[file componentsSeparatedByString:@"\r"];
+                        for (NSString *sql in ar) {
+                            [[SQLManager sharedSingle] excuseSql:sql];
+                        }
+                    }
+                    NSString *updateSql=[NSString stringWithFormat: @"UPDATE parameter SET param_value ==\'%@\' WHERE param_id ==1" ,count];
+                    [[SQLManager sharedSingle] excuseSql:updateSql];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self hideLoading];
+                        });
+                });
+            }else{
+                [self hideLoading];
+                [[OTSAlertView alertWithMessage:@"当前无更新数据" andCompleteBlock:nil] show];
+            }
+        }else{
+            [[OTSAlertView alertWithMessage:@"当前无更新数据" andCompleteBlock:nil] show];
+            [self hideLoading];
+        }
+    }];
+
+}
+
 -(IBAction)updateAllDB{
     WEAK_SELF;
     [self showLoading];
@@ -139,23 +180,31 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
-    return self.list.count;
+    return self.list.count+1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    NSDictionary *dic=self.list[indexPath.row];
-    cell.textLabel.text=dic[@"titleName"];
-    
+    if (indexPath.row==self.list.count) {
+        cell.textLabel.text=@"全量更新";
+    }else{
+        NSDictionary *dic=self.list[indexPath.row];
+        cell.textLabel.text=dic[@"titleName"];
+    }
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSDictionary *dic=self.list[indexPath.row];
-    [self updateSingleTable:dic[@"titleId"]];
+    if (indexPath.row==self.list.count) {
+        [self resetDB];
+    }else{
+        NSDictionary *dic=self.list[indexPath.row];
+        [self updateSingleTable:dic[@"titleId"]];
+
+    }
 }
 
 /*

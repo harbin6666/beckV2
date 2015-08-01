@@ -27,6 +27,20 @@
 @implementation SQLManager
 
 singleton_implementation(SQLManager);
+
+-(int)queryParam{
+    __block int value=0;
+    NSString *sql=@"select param_value from parameter where param_id ==1";
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            value=[row[0] intValue];
+        }
+    }];
+    return value;
+}
+
 -(NSArray*)findUserWrongByUserId:(NSString*)uid{
     __block NSMutableArray*result=@[].mutableCopy;
 //    NSString *sql=[NSString stringWithFormat: @"select * from user_wrong_item where user_id==%@",[[Global sharedSingle].userBean valueForKey:@"userId"]];

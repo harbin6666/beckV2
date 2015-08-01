@@ -499,6 +499,16 @@
                 
                 [[CachedAnswer new] deleteCacheOutlineid:self.outletid];//清缓存
                 
+                if ([aResponseObject[@"num"] integerValue]==0) {
+                    [[OTSAlertView alertWithMessage:@"提交成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }] show];
+                }else{
+                    NSString *pointmsg=[NSString stringWithFormat:@"恭喜您获取了%@积分",aResponseObject[@"num"]];
+                    [[OTSAlertView alertWithMessage:pointmsg andCompleteBlock:^(OTSAlertView *alert,NSInteger buttonindex){
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }] show];
+                }
                 NSArray *sqlAr=aResponseObject[@"list"];
                 if (sqlAr.count>0) {
                     for (int i=0; i<sqlAr.count; i++) {
@@ -529,10 +539,6 @@
                         }
                     }
                 }];
-
-                [[OTSAlertView alertWithMessage:@"提交成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
-                    [self.navigationController popViewControllerAnimated:YES];
-                }] show];
             }
         }
         else {
