@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39005B291B6E85EE0020EA84 /* CustomIOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39005B281B6E85EE0020EA84 /* CustomIOSAlertView.m */; };
+		39005B2C1B6E86E60020EA84 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39005B2B1B6E86E60020EA84 /* NoteCell.m */; };
 		3915499D1B21F1F500BF5BBF /* UpdataDbVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3915499C1B21F1F500BF5BBF /* UpdataDbVC.m */; };
 		3919ABE01B0647F200336E77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3919ABDF1B0647F200336E77 /* main.m */; };
 		3919ABE31B0647F200336E77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3919ABE21B0647F200336E77 /* AppDelegate.m */; };
@@ -185,6 +187,10 @@
 
 /* Begin PBXFileReference section */
 		08016BB26AE122BEB02EE394 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		39005B271B6E85E10020EA84 /* CustomIOSAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomIOSAlertView.h; sourceTree = "<group>"; };
+		39005B281B6E85EE0020EA84 /* CustomIOSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOSAlertView.m; sourceTree = "<group>"; };
+		39005B2A1B6E86E60020EA84 /* NoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCell.h; sourceTree = "<group>"; };
+		39005B2B1B6E86E60020EA84 /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
 		3915499B1B21F1F500BF5BBF /* UpdataDbVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdataDbVC.h; sourceTree = "<group>"; };
 		3915499C1B21F1F500BF5BBF /* UpdataDbVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdataDbVC.m; sourceTree = "<group>"; };
 		3919ABDA1B0647F200336E77 /* beckV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = beckV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1373,6 +1379,8 @@
 		39D780CA1B1386AF009F5C8E /* custom */ = {
 			isa = PBXGroup;
 			children = (
+				39005B271B6E85E10020EA84 /* CustomIOSAlertView.h */,
+				39005B281B6E85EE0020EA84 /* CustomIOSAlertView.m */,
 				39589A9C1B39C3EF0056B9A5 /* AlipayObj.h */,
 				39589A9D1B39C3EF0056B9A5 /* AlipayObj.m */,
 				39D780CB1B1386C9009F5C8E /* OTSAlertView.h */,
@@ -1387,6 +1395,8 @@
 				397F898A1B3FE5B000C2409D /* AnswerObj.m */,
 				397F898C1B3FED7C00C2409D /* QuestionVC.h */,
 				397F898D1B3FED7C00C2409D /* QuestionVC.m */,
+				39005B2A1B6E86E60020EA84 /* NoteCell.h */,
+				39005B2B1B6E86E60020EA84 /* NoteCell.m */,
 			);
 			path = custom;
 			sourceTree = "<group>";
@@ -1639,7 +1649,9 @@
 				39CE4C941B1F3CB300DDAB01 /* QCollectionVC.m in Sources */,
 				39589A2C1B36A7030056B9A5 /* WXUtil.mm in Sources */,
 				39589B011B39C5470056B9A5 /* DataSigner.m in Sources */,
+				39005B291B6E85EE0020EA84 /* CustomIOSAlertView.m in Sources */,
 				394C4A301B2752350002838B /* SelectionPan.m in Sources */,
+				39005B2C1B6E86E60020EA84 /* NoteCell.m in Sources */,
 				395899D11B2DE2BE0056B9A5 /* MASConstraint.m in Sources */,
 				39CD45FC1B209B19005320B5 /* ExamHomeVC.m in Sources */,
 				395899451B2D829C0056B9A5 /* TrainSelcetView.m in Sources */,

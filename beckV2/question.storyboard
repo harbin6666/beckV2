@@ -140,15 +140,18 @@
                                             <outlet property="lab" destination="Fye-cO-EFV" id="Erk-JY-cK5"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="notecell" id="EyX-0O-Mhu">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="notecell" rowHeight="59" id="EyX-0O-Mhu" customClass="NoteCell">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EyX-0O-Mhu" id="MYr-BI-uIU">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6of-ub-jNX">
-                                                    <rect key="frame" x="24" y="10" width="57" height="23"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6of-ub-jNX">
+                                                    <rect key="frame" x="24" y="1.5" width="56" height="30"/>
                                                     <color key="backgroundColor" red="0.15686274509803921" green="0.51372549019607838" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="NF7-pq-SHq"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="查看笔记">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -158,12 +161,25 @@
                                                         <action selector="notePress" destination="MO8-U0-v3a" eventType="touchUpInside" id="RlE-gQ-IW5"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Iu-Zx-bVs">
+                                                    <rect key="frame" x="8" y="34.5" width="359" height="16.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="3Iu-Zx-bVs" secondAttribute="bottom" id="2Na-io-wdE"/>
+                                                <constraint firstItem="3Iu-Zx-bVs" firstAttribute="top" secondItem="6of-ub-jNX" secondAttribute="bottom" constant="3" id="GH2-uk-AwX"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3Iu-Zx-bVs" secondAttribute="trailing" id="hW1-IO-EIX"/>
                                                 <constraint firstItem="6of-ub-jNX" firstAttribute="leading" secondItem="MYr-BI-uIU" secondAttribute="leadingMargin" constant="16" id="o1O-yo-cQU"/>
-                                                <constraint firstItem="6of-ub-jNX" firstAttribute="centerY" secondItem="MYr-BI-uIU" secondAttribute="centerY" id="sdr-9z-O0H"/>
+                                                <constraint firstItem="6of-ub-jNX" firstAttribute="centerY" secondItem="MYr-BI-uIU" secondAttribute="centerY" constant="-13" id="sdr-9z-O0H"/>
+                                                <constraint firstItem="3Iu-Zx-bVs" firstAttribute="leading" secondItem="MYr-BI-uIU" secondAttribute="leadingMargin" id="zqO-as-dvG"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="noteBtn" destination="6of-ub-jNX" id="xGJ-1T-g4F"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="answercell" rowHeight="80" id="27D-k9-NdY">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

@@ -18,6 +18,7 @@
 #import "ExamPaper.h"
 #import "FinishExamVC.h"
 #import "AnswerObj.h"
+#import "NoteCell.h"
 #import "CALayer+Transition.h"
 @interface QuestionVC ()<UITabBarDelegate,UITableViewDataSource,UITableViewDelegate,QCollectionVCDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic, strong) SettingPanVC *settingPanVC;
@@ -37,6 +38,7 @@
 @property(nonatomic,strong)NSTimer* timer;
 @property(nonatomic,assign)NSInteger seconds;
 @property(nonatomic)NSInteger font;
+@property(nonatomic,strong)NoteCell*notecell;
 @end
 
 @implementation QuestionVC
@@ -628,6 +630,10 @@
                 h=size.height;
             }
             return h;
+        }else if(indexPath.row==self.choiceArray.count){
+            CGSize size =[self.currentNote.note sizeWithFont:[UIFont systemFontOfSize:self.font] constrainedToSize:CGSizeMake(self.view.frame.size.width-100, 1000)];
+            
+            return 44 +size.height+10;
         }
         
     }else{
@@ -645,6 +651,10 @@
                 h=size.height;
             }
             return h;
+        }else if(indexPath.row==self.compatibilyArray.count){
+            CGSize size =[self.currentNote.note sizeWithFont:[UIFont systemFontOfSize:self.font] constrainedToSize:CGSizeMake(self.view.frame.size.width-100, 1000)];
+
+            return 44 +size.height+10;
         }
     }
     return 44;
@@ -667,7 +677,16 @@
             }
             cell.textLabel.backgroundColor=[UIColor orangeColor];
         }else if (indexPath.row==self.choiceArray.count) {
-            cell=[tableView dequeueReusableCellWithIdentifier:@"notecell" forIndexPath:indexPath];
+            self.notecell=[tableView dequeueReusableCellWithIdentifier:@"notecell" forIndexPath:indexPath];
+            if (self.fromDetail) {
+                [self.notecell.noteBtn setTitle:@"查看笔记" forState:UIControlStateNormal];
+            }else{
+                [self.notecell.noteBtn setTitle:@"添加笔记" forState:UIControlStateNormal];
+            }
+
+            self.notecell.noteLab.text=self.currentNote.note;
+            self.notecell.noteLab.hidden=YES;
+            return self.notecell;
         }else{
             ChoiceCell* cell=(ChoiceCell*)[tableView dequeueReusableCellWithIdentifier:@"choicecell" forIndexPath:indexPath];
             cell.mark.image=nil;
@@ -696,7 +715,16 @@
             cell.textLabel.backgroundColor=[UIColor orangeColor];
             
         }else if (indexPath.row==self.compatibilyArray.count) {
-            cell=[tableView dequeueReusableCellWithIdentifier:@"notecell" forIndexPath:indexPath];
+            self.notecell=[tableView dequeueReusableCellWithIdentifier:@"notecell" forIndexPath:indexPath];
+            if (self.fromDetail) {
+                [self.notecell.noteBtn setTitle:@"查看笔记" forState:UIControlStateNormal];
+            }else{
+                [self.notecell.noteBtn setTitle:@"添加笔记" forState:UIControlStateNormal];
+            }
+            self.notecell.noteLab.text=self.currentNote.note;
+
+            self.notecell.noteLab.hidden=YES;
+            return self.notecell;
         }else{
             CompatyCell* cell=(CompatyCell* )[tableView dequeueReusableCellWithIdentifier:@"compatycell" forIndexPath:indexPath];
             cell.row=indexPath.row;
@@ -910,6 +938,11 @@
     }else{
         titid=[(CompatyInfo*)q info_id];
     }
+    
+    if (!self.fromDetail) {
+        self.notecell.noteLab.hidden=NO;
+    }
+    
     OTSAlertView*alert=[OTSAlertView alertWithTitle:@"添加笔记" message:nil leftBtn:@"取消" rightBtn:@"添加" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex==1) {
             UITextField *tf=[alertView textFieldAtIndex:0];
