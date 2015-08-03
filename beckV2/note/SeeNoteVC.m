@@ -53,7 +53,24 @@
                 [self.dataAr addObject:tempSectionAr];
             }
         }else{
-            [self.dataAr addObject:sbAr];
+            NSMutableArray *tempSectionAr=[NSMutableArray array];
+
+            for (Outline *ot in sbAr) {
+                NSArray *outlinelist=[[SQLManager sharedSingle] getOutLineByParentId:ot.outlineid];
+                NSMutableArray *tempRow=[NSMutableArray array];
+                for (Outline *o in outlinelist) {
+                    NSArray *temp=[[SQLManager sharedSingle] getPractisWithOutlineid:o.outlineid];
+                    if (temp.count>0) {
+                        [tempRow addObject:o];
+                    }
+                }
+                if (tempRow.count>0) {
+                    [tempSectionAr addObject:ot];
+                }
+            }
+            if (tempSectionAr.count) {
+                [self.dataAr addObject:tempSectionAr];
+            }
         }
     }
     if (self.type==0) {
@@ -136,10 +153,10 @@
     if (self.titleSelect==1) {
         return self.examArray.count;
     }
-    if (self.type==0) {
+//    if (self.type==0) {
        return  self.dataAr.count;
-    }
-    return self.subjectList.count;
+//    }
+//    return self.subjectList.count;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -165,9 +182,6 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    NSArray *temp=self.dataAr[indexPath.section];
-    Outline *ot=temp[indexPath.row];
-    cell.textLabel.text=ot.courseName;
     if (self.titleSelect==1) {
         NSArray * ar=self.examArray[indexPath.section];
         NSString*p=ar[indexPath.row];
@@ -183,6 +197,10 @@
         }
         cell.detailTextLabel.text=[NSString stringWithFormat:@"%zd",recodes.count];
     }else{
+        NSArray *temp=self.dataAr[indexPath.section];
+        Outline *ot=temp[indexPath.row];
+        cell.textLabel.text=ot.courseName;
+
         if (self.type==0) {
             NSArray *temp=[[SQLManager sharedSingle] getUserNoteByOutlineId:ot.outlineid];
             cell.detailTextLabel.text=[NSString stringWithFormat:@"%zd",temp.count];
