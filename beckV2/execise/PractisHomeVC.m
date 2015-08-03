@@ -18,7 +18,8 @@
 @property(nonatomic,strong)NSArray *subjectIdList;
 @property(nonatomic,strong)NSArray *subjectList;
 @property(nonatomic,weak)IBOutlet UITableView *table;
-@property(nonatomic,strong)NSMutableArray *dataAr;;
+@property(nonatomic,strong)NSMutableArray *dataAr;
+@property(nonatomic,strong)NSMutableArray *hiddenAr;
 @end
 
 @implementation PractisHomeVC
@@ -62,12 +63,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.hiddenAr=[[NSMutableArray alloc] init];
+    self.table.tableFooterView=[[UIView alloc] init];
 }
 
 -(IBAction)homeClick:(UIButton *)sender{
     [self.tabBarController.navigationController popToRootViewControllerAnimated:NO];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    BOOL b=NO;
+    for (NSString *t in self.hiddenAr) {
+        if (t.integerValue==section) {
+            b=YES;
+            break;
+        }
+    }
+    if (b) {
+        return 0;
+    }
     NSArray *temp=self.dataAr[section];
     return temp.count;
 }
@@ -83,9 +96,32 @@
 //    NSArray *ar=[[SQLManager sharedSingle] getSubjectByid:self.subjectIdList];
     Subject *sb=self.subjectList[section];
     cell.textLabel.text=sb.subjectName;
-
+    cell.textLabel.backgroundColor=[UIColor clearColor];
+    UIButton *b=[UIButton buttonWithType:UIButtonTypeCustom];
+    b.frame=cell.bounds;
+    b.tag=section;
+    [b addTarget:self action:@selector(recordhidden:) forControlEvents:UIControlEventTouchUpInside];
+    [cell addSubview:b];
     return cell;
 }
+
+-(void)recordhidden:(UIButton*)b{
+    NSString *dest=nil;
+    for (NSString *t in self.hiddenAr) {
+        if (t.integerValue==b.tag) {
+            dest=t;
+            break;
+        }
+    }
+    if (dest!=nil) {
+        [self.hiddenAr removeObject:dest];
+    }else{
+        [self.hiddenAr addObject:[NSString stringWithFormat:@"%zd",b.tag]];
+    }
+//    [self.table reloadSections:[NSIndexSet indexSetWithIndex:dest.integerValue] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadData];
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 60;
 }

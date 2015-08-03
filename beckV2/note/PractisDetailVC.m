@@ -197,13 +197,29 @@
             if (upe.customid.integerValue==10) {
                 QuestionAnswerB*ab=[QuestionAnswerB new];
                 NSMutableArray *tt=[NSMutableArray array];
-                for (NSDictionary *dic in userAnswer) {
-                    NSString *quetionid=[dic allKeys][0];
-                    NSString *itemid=[dic allValues][0];
-                    QuestionItemB *qb=[QuestionItemB new];
-                    qb.questionId=quetionid;
-                    qb.myAnswer=itemid;
-                    [tt addObject:qb];
+                if ([userAnswer isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *dic=(NSDictionary*)userAnswer;
+                    for (NSString *qid in dic.allKeys) {
+                        NSString *quetionid=qid;
+                        NSString *itemid=[dic valueForKey:qid];
+                        QuestionItemB *qb=[QuestionItemB new];
+                        qb.questionId=quetionid;
+                        if (itemid.integerValue) {
+                            qb.myAnswer=[NSString stringWithFormat:@"%@",itemid];
+                        }
+                        [tt addObject:qb];
+                    }
+                }else{
+                    NSMutableArray *tt=[NSMutableArray array];
+                    for (NSDictionary *dic in userAnswer) {
+                        NSString *quetionid=[dic allKeys][0];
+                        NSString *itemid=[dic allValues][0];
+                        QuestionItemB *qb=[QuestionItemB new];
+                        qb.questionId=quetionid;
+                        qb.myAnswer=itemid;
+                        [tt addObject:qb];
+                    }
+
                 }
                 ab.questionItemBs=(NSArray*)tt;
                 ab.customId=upe.customid;

@@ -241,6 +241,9 @@
 //                [ar addObjectsFromArray:temp];
 //            }
             ar=(NSMutableArray*)[[SQLManager sharedSingle] getPractisWithOutlineidList:outlinelist];
+            if (ar.count==0) {
+                return;
+            }
             PractisDetailVC *vc=[sb instantiateViewControllerWithIdentifier:@"PractisDetailVC"];
             
             vc.outlineid=ot.outlineid;
