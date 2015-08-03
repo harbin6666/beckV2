@@ -449,7 +449,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QQ1-Ez-xjS" id="kha-Xg-JGs">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tKS-9U-3Ht">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKS-9U-3Ht">
                                             <rect key="frame" x="8" y="8" width="304" height="224"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日期" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3w-WW-Hu8">
@@ -734,34 +734,55 @@
                                             <outlet property="lab" destination="jQl-lP-QY2" id="b9t-SY-03C"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="notecell" id="QY3-hg-WAO">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QY3-hg-WAO" id="Ybi-nh-HEa">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJD-VY-Xgm">
-                                                    <rect key="frame" x="24" y="10" width="57" height="23"/>
-                                                    <state key="normal" backgroundImage="biji">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="notePress" destination="d2f-kE-I29" eventType="touchUpInside" id="OSq-nG-Ntj"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="NJD-VY-Xgm" firstAttribute="leading" secondItem="Ybi-nh-HEa" secondAttribute="leadingMargin" constant="16" id="IJz-1v-jxF"/>
-                                                <constraint firstItem="NJD-VY-Xgm" firstAttribute="centerY" secondItem="Ybi-nh-HEa" secondAttribute="centerY" id="tcZ-vc-qXD"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="answercell" rowHeight="80" id="eSW-R5-GL9">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eSW-R5-GL9" id="DTN-hU-KzE">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="notecell" rowHeight="59" id="pFq-7l-euu" customClass="NoteCell">
+                                        <rect key="frame" x="0.0" y="304" width="375" height="59"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pFq-7l-euu" id="XQh-aU-iqx">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFQ-EU-VEd">
+                                                    <rect key="frame" x="24" y="1" width="56" height="30"/>
+                                                    <color key="backgroundColor" red="0.15686274510000001" green="0.51372549020000002" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="cX1-TA-00l"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="查看笔记">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="notePress" destination="d2f-kE-I29" eventType="touchUpInside" id="I88-Jj-9HK"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNG-mg-fbc">
+                                                    <rect key="frame" x="18" y="34" width="339" height="16.5"/>
+                                                    <color key="backgroundColor" red="0.92549026010000002" green="0.69411766529999996" blue="0.16862745579999999" alpha="1" colorSpace="deviceRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="RNG-mg-fbc" secondAttribute="trailing" constant="10" id="9K6-7f-FH1"/>
+                                                <constraint firstItem="RNG-mg-fbc" firstAttribute="top" secondItem="KFQ-EU-VEd" secondAttribute="bottom" constant="3" id="9Pz-yB-nKq"/>
+                                                <constraint firstItem="KFQ-EU-VEd" firstAttribute="leading" secondItem="XQh-aU-iqx" secondAttribute="leadingMargin" constant="16" id="JxE-d4-v2I"/>
+                                                <constraint firstItem="KFQ-EU-VEd" firstAttribute="centerY" secondItem="XQh-aU-iqx" secondAttribute="centerY" constant="-13" id="cyD-tp-UYB"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="RNG-mg-fbc" secondAttribute="bottom" id="lcu-yP-SCv"/>
+                                                <constraint firstItem="RNG-mg-fbc" firstAttribute="leading" secondItem="XQh-aU-iqx" secondAttribute="leadingMargin" constant="10" id="o7j-pJ-RCc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="noteBtn" destination="KFQ-EU-VEd" id="Psk-n1-ai0"/>
+                                            <outlet property="noteLab" destination="RNG-mg-fbc" id="pML-2T-nLN"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -822,7 +843,6 @@
     </scenes>
     <resources>
         <image name="answer" width="24" height="21"/>
-        <image name="biji" width="57" height="23"/>
         <image name="favorate" width="24" height="21"/>
         <image name="finish_Btn" width="174" height="42"/>
         <image name="finish_bottom" width="320" height="50"/>

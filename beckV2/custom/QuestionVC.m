@@ -19,8 +19,9 @@
 #import "FinishExamVC.h"
 #import "AnswerObj.h"
 #import "NoteCell.h"
+#import "CXAlertView.h"
 #import "CALayer+Transition.h"
-@interface QuestionVC ()<UITabBarDelegate,UITableViewDataSource,UITableViewDelegate,QCollectionVCDelegate,UIGestureRecognizerDelegate>
+@interface QuestionVC ()<UITabBarDelegate,UITableViewDataSource,UITableViewDelegate,QCollectionVCDelegate,UIGestureRecognizerDelegate,UITextViewDelegate>
 @property (nonatomic, strong) SettingPanVC *settingPanVC;
 @property(nonatomic,strong) UserNote*currentNote;
 @property(nonatomic,strong)NSString *questionDes;
@@ -636,7 +637,7 @@
             return 44 +size.height+10;
         }
         
-    }else{
+    }else if ([p isKindOfClass:[CompatyInfo class]]){
         if (indexPath.row==self.compatibilyArray.count+1) {
             NSMutableString *answer=@"".mutableCopy;
             for (int i=0; i<self.compatibilyArray.count; i++) {
@@ -677,7 +678,7 @@
             }
             cell.textLabel.backgroundColor=[UIColor orangeColor];
         }else if (indexPath.row==self.choiceArray.count) {
-            self.notecell=[tableView dequeueReusableCellWithIdentifier:@"notecell" forIndexPath:indexPath];
+            self.notecell=(NoteCell*)[tableView dequeueReusableCellWithIdentifier:@"notecell" forIndexPath:indexPath];
             if (self.fromDetail) {
                 [self.notecell.noteBtn setTitle:@"查看笔记" forState:UIControlStateNormal];
             }else{
@@ -930,6 +931,19 @@
     }
 }
 
+
+-(BOOL)textViewShouldEndEditing:(UITextView *)textView{
+    [textView resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+    }
+    
+    return YES;
+}
 -(IBAction)notePress{
    __block NSString *titid=nil;
    __block Question *q=[self.questionsAr objectAtIndex:self.currentQIndex];
@@ -939,10 +953,89 @@
         titid=[(CompatyInfo*)q info_id];
     }
     
-    if (!self.fromDetail) {
-        self.notecell.noteLab.hidden=NO;
-    }
+    CXAlertView *av=[[CXAlertView alloc] initWithTitle:@"添加笔记" message:@"" cancelButtonTitle:@"取消"];
+    UITextView*textView_onAlertView = [[UITextView alloc]initWithFrame:CGRectMake(12, 0, 260, 100)];
     
+    textView_onAlertView.delegate = self ;
+    textView_onAlertView.layer.borderWidth = 1.0f;
+    textView_onAlertView.layer.borderColor = [[UIColor darkGrayColor] CGColor];
+    textView_onAlertView.layer.cornerRadius = 2;
+    textView_onAlertView.clipsToBounds = YES ;
+    textView_onAlertView.returnKeyType=UIReturnKeyDone;
+    textView_onAlertView.autocorrectionType = UITextAutocorrectionTypeNo ;
+    textView_onAlertView.autocapitalizationType = UITextAutocapitalizationTypeSentences ;
+    textView_onAlertView.font = [UIFont systemFontOfSize:14];
+    av.contentView=textView_onAlertView;
+    self.currentNote=[[SQLManager sharedSingle] findNoteByItemId:titid customId:q.custom_id];
+    if (self.currentNote!=nil&&self.currentNote.note.length>0) {
+        textView_onAlertView.text=self.currentNote.note;
+    }
+    [av show];
+    [av addButtonWithTitle:@"添加" type:CXAlertViewButtonTypeDefault handler:^(CXAlertView *alertView, CXAlertButtonItem *button) {
+        if (textView_onAlertView.text==nil||textView_onAlertView.text.length==0) {
+            return ;
+        }
+        
+        [alertView dismiss];
+        NSMutableDictionary *json = @{}.mutableCopy;
+        
+        //尼玛的又成了题目id，晕菜
+        
+        if ([q isKindOfClass:[ChoiceQuestion class]]) {
+            ChoiceQuestion *p=(ChoiceQuestion*)q;
+            json[@"titleId"]=@([p choice_id].intValue);
+        }else{
+            CompatyInfo *c=(CompatyInfo*)q;
+            json[@"titleId"]=@(c.info_id.intValue);
+        }
+        json[@"typeId"]=@([q custom_id].intValue);
+        json[@"loginName"] = [Global sharedSingle].loginName;
+        json[@"subjectId"] = @([[self.questionsAr objectAtIndex:self.currentQIndex] subject_id].intValue);
+        json[@"outlineId"] =@( self.outletid.intValue);
+        json[@"note"]=textView_onAlertView.text;
+        
+        
+        self.currentNote=[[SQLManager sharedSingle] findNoteByItemId:titid customId:q.custom_id];
+        
+        if (self.currentNote!=nil&&self.currentNote.note.length) {
+            json[@"type"]=@1;//0：添加 1：更新
+        }else{
+            json[@"type"]=@0;//0：添加 1：更新
+        }
+        
+        NSData*d=[NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
+        NSString *s=[[NSString alloc] initWithData:d encoding:NSUTF8StringEncoding];
+        WEAK_SELF;
+        [self showLoading];
+        [self getValueWithBeckUrl:@"/front/userNoteAct.htm" params:@{@"token":@"addUpdate",@"json":s} CompleteBlock:^(id aResponseObject, NSError *anError) {
+            STRONG_SELF;
+            [self hideLoading];
+            if (anError==nil) {
+                if ([aResponseObject[@"errorcode"] integerValue]==0) {
+                    for (NSString *sql in aResponseObject[@"list"]) {
+                        [[SQLManager sharedSingle] excuseSql:sql];
+                    }
+                    [self showLoadingWithMessage:@"添加成功" hideAfter:2];
+                    if ([json[@"type"] integerValue]==0) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDB" object:nil];
+                    }else{
+                        NSString *sql=[NSString stringWithFormat:@"UPDATE user_note SET note ==\'%@\' WHERE item_id ==%@ and user_id==%@",textView_onAlertView.text,self.currentNote.item_id,[Global sharedSingle].userBean[@"userId"]];
+                        [[SQLManager sharedSingle] excuseSql:sql];
+                    }
+                    self.currentNote=[[SQLManager sharedSingle] findNoteByItemId:titid customId:q.custom_id];
+                    
+                }else{
+                    [self showLoadingWithMessage:@"添加失败" hideAfter:2];
+                    
+                }
+            }else{
+                [self showLoadingWithMessage:@"添加失败" hideAfter:2];
+                
+            }
+        }];
+    }
+    ];
+    /*
     OTSAlertView*alert=[OTSAlertView alertWithTitle:@"添加笔记" message:nil leftBtn:@"取消" rightBtn:@"添加" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex==1) {
             UITextField *tf=[alertView textFieldAtIndex:0];
@@ -1014,7 +1107,7 @@
     if (self.currentNote!=nil&&self.currentNote.note.length>0) {
         UITextField *tf=[alert textFieldAtIndex:0];
         tf.text=self.currentNote.note;
-    }
+    }*/
 }
 
 -(void)showAnswer:(UITabBarItem *)item{

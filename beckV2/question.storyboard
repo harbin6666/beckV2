@@ -161,8 +161,9 @@
                                                         <action selector="notePress" destination="MO8-U0-v3a" eventType="touchUpInside" id="RlE-gQ-IW5"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Iu-Zx-bVs">
-                                                    <rect key="frame" x="8" y="34.5" width="359" height="16.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Iu-Zx-bVs">
+                                                    <rect key="frame" x="18" y="34.5" width="339" height="16.5"/>
+                                                    <color key="backgroundColor" red="0.92549026010000002" green="0.69411766529999996" blue="0.16862745579999999" alpha="1" colorSpace="deviceRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -171,14 +172,15 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="3Iu-Zx-bVs" secondAttribute="bottom" id="2Na-io-wdE"/>
                                                 <constraint firstItem="3Iu-Zx-bVs" firstAttribute="top" secondItem="6of-ub-jNX" secondAttribute="bottom" constant="3" id="GH2-uk-AwX"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="3Iu-Zx-bVs" secondAttribute="trailing" id="hW1-IO-EIX"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3Iu-Zx-bVs" secondAttribute="trailing" constant="10" id="hW1-IO-EIX"/>
                                                 <constraint firstItem="6of-ub-jNX" firstAttribute="leading" secondItem="MYr-BI-uIU" secondAttribute="leadingMargin" constant="16" id="o1O-yo-cQU"/>
                                                 <constraint firstItem="6of-ub-jNX" firstAttribute="centerY" secondItem="MYr-BI-uIU" secondAttribute="centerY" constant="-13" id="sdr-9z-O0H"/>
-                                                <constraint firstItem="3Iu-Zx-bVs" firstAttribute="leading" secondItem="MYr-BI-uIU" secondAttribute="leadingMargin" id="zqO-as-dvG"/>
+                                                <constraint firstItem="3Iu-Zx-bVs" firstAttribute="leading" secondItem="MYr-BI-uIU" secondAttribute="leadingMargin" constant="10" id="zqO-as-dvG"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="noteBtn" destination="6of-ub-jNX" id="xGJ-1T-g4F"/>
+                                            <outlet property="noteLab" destination="3Iu-Zx-bVs" id="Cjm-G6-kJ1"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="answercell" rowHeight="80" id="27D-k9-NdY">

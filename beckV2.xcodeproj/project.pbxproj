@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		39005B291B6E85EE0020EA84 /* CustomIOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39005B281B6E85EE0020EA84 /* CustomIOSAlertView.m */; };
 		39005B2C1B6E86E60020EA84 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39005B2B1B6E86E60020EA84 /* NoteCell.m */; };
+		39005B3D1B6FA7C30020EA84 /* CXAlertBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 39005B2F1B6FA7C30020EA84 /* CXAlertBackgroundWindow.m */; };
+		39005B3E1B6FA7C30020EA84 /* CXAlertButtonContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39005B311B6FA7C30020EA84 /* CXAlertButtonContainerView.m */; };
+		39005B3F1B6FA7C30020EA84 /* CXAlertButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 39005B331B6FA7C30020EA84 /* CXAlertButtonItem.m */; };
+		39005B401B6FA7C30020EA84 /* CXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39005B351B6FA7C30020EA84 /* CXAlertView.m */; };
+		39005B411B6FA7C30020EA84 /* CXAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39005B371B6FA7C30020EA84 /* CXAlertViewController.m */; };
+		39005B421B6FA7C30020EA84 /* LFDisplayBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 39005B391B6FA7C30020EA84 /* LFDisplayBridge.m */; };
+		39005B431B6FA7C30020EA84 /* LFGlassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39005B3B1B6FA7C30020EA84 /* LFGlassView.m */; };
 		3915499D1B21F1F500BF5BBF /* UpdataDbVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3915499C1B21F1F500BF5BBF /* UpdataDbVC.m */; };
 		3919ABE01B0647F200336E77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3919ABDF1B0647F200336E77 /* main.m */; };
 		3919ABE31B0647F200336E77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3919ABE21B0647F200336E77 /* AppDelegate.m */; };
@@ -187,10 +193,23 @@
 
 /* Begin PBXFileReference section */
 		08016BB26AE122BEB02EE394 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		39005B271B6E85E10020EA84 /* CustomIOSAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomIOSAlertView.h; sourceTree = "<group>"; };
-		39005B281B6E85EE0020EA84 /* CustomIOSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOSAlertView.m; sourceTree = "<group>"; };
 		39005B2A1B6E86E60020EA84 /* NoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCell.h; sourceTree = "<group>"; };
 		39005B2B1B6E86E60020EA84 /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
+		39005B2E1B6FA7C30020EA84 /* CXAlertBackgroundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAlertBackgroundWindow.h; sourceTree = "<group>"; };
+		39005B2F1B6FA7C30020EA84 /* CXAlertBackgroundWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAlertBackgroundWindow.m; sourceTree = "<group>"; };
+		39005B301B6FA7C30020EA84 /* CXAlertButtonContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAlertButtonContainerView.h; sourceTree = "<group>"; };
+		39005B311B6FA7C30020EA84 /* CXAlertButtonContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAlertButtonContainerView.m; sourceTree = "<group>"; };
+		39005B321B6FA7C30020EA84 /* CXAlertButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAlertButtonItem.h; sourceTree = "<group>"; };
+		39005B331B6FA7C30020EA84 /* CXAlertButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAlertButtonItem.m; sourceTree = "<group>"; };
+		39005B341B6FA7C30020EA84 /* CXAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAlertView.h; sourceTree = "<group>"; };
+		39005B351B6FA7C30020EA84 /* CXAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAlertView.m; sourceTree = "<group>"; };
+		39005B361B6FA7C30020EA84 /* CXAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAlertViewController.h; sourceTree = "<group>"; };
+		39005B371B6FA7C30020EA84 /* CXAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAlertViewController.m; sourceTree = "<group>"; };
+		39005B381B6FA7C30020EA84 /* LFDisplayBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFDisplayBridge.h; sourceTree = "<group>"; };
+		39005B391B6FA7C30020EA84 /* LFDisplayBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFDisplayBridge.m; sourceTree = "<group>"; };
+		39005B3A1B6FA7C30020EA84 /* LFGlassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFGlassView.h; sourceTree = "<group>"; };
+		39005B3B1B6FA7C30020EA84 /* LFGlassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFGlassView.m; sourceTree = "<group>"; };
+		39005B3C1B6FA7C30020EA84 /* LiveFrost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveFrost.h; sourceTree = "<group>"; };
 		3915499B1B21F1F500BF5BBF /* UpdataDbVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdataDbVC.h; sourceTree = "<group>"; };
 		3915499C1B21F1F500BF5BBF /* UpdataDbVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdataDbVC.m; sourceTree = "<group>"; };
 		3919ABDA1B0647F200336E77 /* beckV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = beckV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -617,6 +636,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39005B2D1B6FA7C30020EA84 /* CXAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				39005B2E1B6FA7C30020EA84 /* CXAlertBackgroundWindow.h */,
+				39005B2F1B6FA7C30020EA84 /* CXAlertBackgroundWindow.m */,
+				39005B301B6FA7C30020EA84 /* CXAlertButtonContainerView.h */,
+				39005B311B6FA7C30020EA84 /* CXAlertButtonContainerView.m */,
+				39005B321B6FA7C30020EA84 /* CXAlertButtonItem.h */,
+				39005B331B6FA7C30020EA84 /* CXAlertButtonItem.m */,
+				39005B341B6FA7C30020EA84 /* CXAlertView.h */,
+				39005B351B6FA7C30020EA84 /* CXAlertView.m */,
+				39005B361B6FA7C30020EA84 /* CXAlertViewController.h */,
+				39005B371B6FA7C30020EA84 /* CXAlertViewController.m */,
+				39005B381B6FA7C30020EA84 /* LFDisplayBridge.h */,
+				39005B391B6FA7C30020EA84 /* LFDisplayBridge.m */,
+				39005B3A1B6FA7C30020EA84 /* LFGlassView.h */,
+				39005B3B1B6FA7C30020EA84 /* LFGlassView.m */,
+				39005B3C1B6FA7C30020EA84 /* LiveFrost.h */,
+			);
+			path = CXAlertView;
+			sourceTree = "<group>";
+		};
 		3919ABD11B0647F200336E77 = {
 			isa = PBXGroup;
 			children = (
@@ -1379,8 +1420,7 @@
 		39D780CA1B1386AF009F5C8E /* custom */ = {
 			isa = PBXGroup;
 			children = (
-				39005B271B6E85E10020EA84 /* CustomIOSAlertView.h */,
-				39005B281B6E85EE0020EA84 /* CustomIOSAlertView.m */,
+				39005B2D1B6FA7C30020EA84 /* CXAlertView */,
 				39589A9C1B39C3EF0056B9A5 /* AlipayObj.h */,
 				39589A9D1B39C3EF0056B9A5 /* AlipayObj.m */,
 				39D780CB1B1386C9009F5C8E /* OTSAlertView.h */,
@@ -1573,6 +1613,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				397F897F1B39FA2700C2409D /* QQObj.m in Sources */,
+				39005B421B6FA7C30020EA84 /* LFDisplayBridge.m in Sources */,
 				39589B001B39C5470056B9A5 /* base64.m in Sources */,
 				395899D61B2DE2BE0056B9A5 /* NSArray+MASAdditions.m in Sources */,
 				39CE4C3E1B19574800DDAB01 /* UIView+create.m in Sources */,
@@ -1617,6 +1658,7 @@
 				395899E51B31C9A60056B9A5 /* CourseCell.m in Sources */,
 				395899CA1B2DE2BE0056B9A5 /* UIImage+FixOrientation.m in Sources */,
 				394C4A331B275B6B0002838B /* UserNote.m in Sources */,
+				39005B411B6FA7C30020EA84 /* CXAlertViewController.m in Sources */,
 				395899D41B2DE2BE0056B9A5 /* MASViewAttribute.m in Sources */,
 				396AD3011B176CB5005F92B1 /* NSArray+fecth.m in Sources */,
 				393316FD1B41BFDA005F817F /* UserPractisExt.m in Sources */,
@@ -1632,11 +1674,13 @@
 				395899D51B2DE2BE0056B9A5 /* MASViewConstraint.m in Sources */,
 				3958994B1B2DDC690056B9A5 /* DXPopover.m in Sources */,
 				39CE4C5E1B195A2800DDAB01 /* SQLManager.m in Sources */,
+				39005B3D1B6FA7C30020EA84 /* CXAlertBackgroundWindow.m in Sources */,
 				395899CC1B2DE2BE0056B9A5 /* UITableViewCell+Extend.m in Sources */,
 				39D780CD1B1386C9009F5C8E /* OTSAlertView.m in Sources */,
 				39CE4C821B1CBAF400DDAB01 /* CourseVC.m in Sources */,
 				397F89851B3B3B9000C2409D /* BuyExamVC.m in Sources */,
 				395899421B2D5DFC0056B9A5 /* Train3VC.m in Sources */,
+				39005B401B6FA7C30020EA84 /* CXAlertView.m in Sources */,
 				3958991C1B2BD6800056B9A5 /* MessageVC.m in Sources */,
 				39CD45F91B209A8D005320B5 /* NoteVC.m in Sources */,
 				395899BF1B2DE2BE0056B9A5 /* NSDate+Extend.m in Sources */,
@@ -1649,8 +1693,8 @@
 				39CE4C941B1F3CB300DDAB01 /* QCollectionVC.m in Sources */,
 				39589A2C1B36A7030056B9A5 /* WXUtil.mm in Sources */,
 				39589B011B39C5470056B9A5 /* DataSigner.m in Sources */,
-				39005B291B6E85EE0020EA84 /* CustomIOSAlertView.m in Sources */,
 				394C4A301B2752350002838B /* SelectionPan.m in Sources */,
+				39005B3E1B6FA7C30020EA84 /* CXAlertButtonContainerView.m in Sources */,
 				39005B2C1B6E86E60020EA84 /* NoteCell.m in Sources */,
 				395899D11B2DE2BE0056B9A5 /* MASConstraint.m in Sources */,
 				39CD45FC1B209B19005320B5 /* ExamHomeVC.m in Sources */,
@@ -1700,6 +1744,7 @@
 				395899E21B3072B90056B9A5 /* InviteVC.m in Sources */,
 				39589B041B39C5470056B9A5 /* NSDataEx.m in Sources */,
 				39CE4C971B1F431300DDAB01 /* Question.m in Sources */,
+				39005B3F1B6FA7C30020EA84 /* CXAlertButtonItem.m in Sources */,
 				394C4A2D1B2750C80002838B /* NoteListVC.m in Sources */,
 				3915499D1B21F1F500BF5BBF /* UpdataDbVC.m in Sources */,
 				3958995D1B2DE2780056B9A5 /* NewFeatureModel.m in Sources */,
@@ -1708,6 +1753,7 @@
 				39CE4C7A1B1A4C9B00DDAB01 /* ChoiceQuestion.m in Sources */,
 				3919ABE01B0647F200336E77 /* main.m in Sources */,
 				3958993F1B2D5DEC0056B9A5 /* Train2VC.m in Sources */,
+				39005B431B6FA7C30020EA84 /* LFGlassView.m in Sources */,
 				39EEA1C01B29F651009BE945 /* HighFrequencyListVC.m in Sources */,
 				395899F41B31E0240056B9A5 /* SettingPanVC.m in Sources */,
 			);

@@ -14,6 +14,7 @@
 #import "QCollectionVC.h"
 #import "PractisAnswer.h"
 #import "SettingPanVC.h"
+#import "NoteCell.h"
 #import "UserNote.h"
 @interface NoteDetailVC ()
 @property(nonatomic,weak) IBOutlet UILabel *testLab;
@@ -29,6 +30,8 @@
 @property(nonatomic,strong)UserNote *currentNote;
 @property (nonatomic, strong) SettingPanVC *settingPanVC;
 @property(nonatomic,strong)NSString *questionDes;
+@property(nonatomic,strong)NoteCell*notecell;
+@property(nonatomic)NSInteger font;
 
 @end
 
@@ -45,7 +48,8 @@
     [super viewDidLoad];
     
     self.showAnswer=NO;
-    
+    self.font=[[NSUserDefaults standardUserDefaults] integerForKey:@"fontValue"];
+
     self.currentQIndex=0;
     
     if (self.answerArray==nil) {
@@ -288,6 +292,22 @@
             return 88;
         }
     }
+    id p=[self.questionsAr objectAtIndex:self.currentQIndex];
+    if ([p isKindOfClass:[ChoiceQuestion class]]) {
+        if(indexPath.row==self.choiceArray.count){
+            CGSize size =[self.currentNote.note sizeWithFont:[UIFont systemFontOfSize:self.font] constrainedToSize:CGSizeMake(self.view.frame.size.width-100, 1000)];
+            
+            return 44 +size.height+10;
+        }
+    }else{
+        if(indexPath.row==self.compatibilyArray.count){
+            CGSize size =[self.currentNote.note sizeWithFont:[UIFont systemFontOfSize:self.font] constrainedToSize:CGSizeMake(self.view.frame.size.width-100, 1000)];
+            
+            return 44 +size.height+10;
+        }
+    }
+    
+    
     return 44;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -305,7 +325,12 @@
             }
             cell.textLabel.backgroundColor=[UIColor orangeColor];
         }else if (indexPath.row==self.choiceArray.count) {
-            cell=[tableView dequeueReusableCellWithIdentifier:@"notecell" forIndexPath:indexPath];
+            self.notecell=(NoteCell*)[tableView dequeueReusableCellWithIdentifier:@"notecell" forIndexPath:indexPath];
+                [self.notecell.noteBtn setTitle:@"查看笔记" forState:UIControlStateNormal];
+            self.notecell.noteLab.text=self.currentNote.note;
+            self.notecell.noteLab.font=[UIFont systemFontOfSize:self.font];
+            self.notecell.noteLab.hidden=YES;
+            return self.notecell;
         }else{
             ChoiceCell* cell=(ChoiceCell*)[tableView dequeueReusableCellWithIdentifier:@"choicecell" forIndexPath:indexPath];
             cell.mark.image=nil;
@@ -332,7 +357,12 @@
             cell.textLabel.backgroundColor=[UIColor orangeColor];
             
         }else if (indexPath.row==self.compatibilyArray.count) {
-            cell=[tableView dequeueReusableCellWithIdentifier:@"notecell" forIndexPath:indexPath];
+            self.notecell=(NoteCell*)[tableView dequeueReusableCellWithIdentifier:@"notecell" forIndexPath:indexPath];
+            [self.notecell.noteBtn setTitle:@"查看笔记" forState:UIControlStateNormal];
+            self.notecell.noteLab.text=self.currentNote.note;
+            self.notecell.noteLab.hidden=YES;
+            self.notecell.noteLab.font=[UIFont systemFontOfSize:self.font];
+            return self.notecell;
         }else{
             CompatyCell* cell=(CompatyCell* )[tableView dequeueReusableCellWithIdentifier:@"compatycell" forIndexPath:indexPath];
             cell.row=indexPath.row;
@@ -415,6 +445,10 @@
 }
 
 -(IBAction)notePress{
+    
+    self.notecell.noteLab.hidden=!self.notecell.noteLab.hidden;
+
+    return;
     __block NSString *titid=nil;
     __block Question *q=[self.questionsAr objectAtIndex:self.currentQIndex];
     if ([q isKindOfClass:[ChoiceQuestion class]]) {
@@ -422,6 +456,11 @@
     }else{
         titid=[(CompatyInfo*)q info_id];
     }
+    
+    self.notecell.noteLab.hidden=NO;
+
+    
+    
     OTSAlertView*alert=[OTSAlertView alertWithTitle:@"添加笔记" message:nil leftBtn:@"取消" rightBtn:@"添加" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex==1) {
             UITextField *tf=[alertView textFieldAtIndex:0];
