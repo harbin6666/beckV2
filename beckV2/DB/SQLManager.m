@@ -258,6 +258,23 @@ singleton_implementation(SQLManager);
 }
 
 
+-(NSInteger)getCountWithSbjid:(NSString*)sbjid table:(NSString *)table{
+    NSString *sql1 = [NSString stringWithFormat:@"select count(*) from(%@) where subject_id==%@",table,sbjid];
+    __block NSString *s=@"";
+    [[AFSQLManager sharedManager] performQuery:sql1 withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }
+        else {
+            s = row[0];
+        }
+    }];
+    if (s==nil||[s isKindOfClass:[NSNull class]]||s.length==0) {
+        s=@"0";
+    }
+    return s.integerValue;
+
+}
 
 -(NSString*)getMaxidWithTableName:(NSString*)tableName colName:(NSString*)col{
     NSString *sql1 = [NSString stringWithFormat:@"select max(%@) from %@",col,tableName];
@@ -926,6 +943,20 @@ singleton_implementation(SQLManager);
     return array;
 }
 
+-(NSString*)getSbjName:(NSString*)sbjId{
+    __block NSString *subjectid=nil;
+    NSString *sql=[NSString stringWithFormat:@"select subject_name from exam_subject where id==%@",sbjId];
+    [[AFSQLManager sharedManager]performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }
+        else {
+            subjectid=[row firstObject];
+        }
+    }];
+    return subjectid;
+
+}
 -(NSString*)getSubjectidByTitleId:(NSArray*)titleid{
     __block NSString *subjectid=nil;
     NSString *sql=[NSString stringWithFormat:@"select subject_id from subject_position_relation where title_id==%@",titleid];

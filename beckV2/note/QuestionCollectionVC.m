@@ -60,7 +60,7 @@
     NSMutableArray * outlineids=[NSMutableArray array];
 
     for (Collection*un in self.dataAr) {
-        [outlineids addObject:un.outline_id];
+        [outlineids addObject:un.subject_id];
         if (self.type==0) {
             un.add_time=[self transferTime:un.add_time];
         }
@@ -132,8 +132,13 @@
         
     }else{
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-        
-        cell.textLabel.text=[[SQLManager sharedSingle] getcourseNameByOutlineId:self.outlineSet.allObjects[indexPath.row] ];
+        cell.textLabel.text=[[SQLManager sharedSingle] getSbjName:self.outlineSet.allObjects[indexPath.row] ];
+        NSString *table=@"user_collection";
+        if (self.type==1) {
+            table=@"user_wrong_item";
+        }
+        NSInteger c=[[SQLManager sharedSingle] getCountWithSbjid:self.outlineSet.allObjects[indexPath.row]  table:table];
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"%zd",c];
         return cell;
     }
 }
@@ -148,10 +153,10 @@
         Question *q=[[SQLManager sharedSingle] getExamQuestionByItemId:note.item_id customid:note.type_id];
         vc.questionsAr=@[q];
     }else{
-        NSString *oulineid=self.outlineSet.allObjects[indexPath.row];
+        NSString *sbjid=self.outlineSet.allObjects[indexPath.row];
         NSMutableArray *ar=[[NSMutableArray alloc] init];
         for (Collection *n in self.dataAr) {
-            if (n.outline_id.integerValue==oulineid.integerValue) {
+            if (n.subject_id.integerValue==sbjid.integerValue) {
                 Question *q=[[SQLManager sharedSingle] getExamQuestionByItemId:n.item_id customid:n.type_id];
                 if (q!=nil) {
                     [ar addObject:q];

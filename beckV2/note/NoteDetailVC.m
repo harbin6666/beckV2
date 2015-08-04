@@ -263,7 +263,7 @@
     }
     UILabel *la=[[UILabel alloc] initWithFrame:CGRectMake(0, 5, self.view.frame.size.width, h)];
 
-    la.textAlignment=NSTextAlignmentCenter;
+    la.textAlignment=NSTextAlignmentLeft;
     la.numberOfLines=0;
     la.font=[UIFont systemFontOfSize:14];
     la.text=self.questionDes;

@@ -16,9 +16,9 @@ singleton_interface(SQLManager);
 -(NSArray*)getPractisWithOutlineid:(NSString*)outlineid;
 -(NSString*)getMaxidWithTableName:(NSString*)tableName colName:(NSString*)col;
 -(NSArray*)getTitles;
-
+-(NSString*)getSbjName:(NSString*)sbjId;
 -(NSDictionary*)getAddinParam;
-
+-(NSInteger)getCountWithSbjid:(NSString*)sbjid table:(NSString *)table;
 
 -(NSInteger)getExamDate:(NSString*)titleid;
 
