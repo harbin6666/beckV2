@@ -25,6 +25,11 @@
 @implementation PractisHomeVC
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self showLoading];
+    [self performSelector:@selector(delayLoad) withObject:nil afterDelay:0.3];
+}
+
+-(void)delayLoad{
     self.dataAr=[NSMutableArray array];
     self.subjectIdList=[[SQLManager sharedSingle] getSubjectIdArrayByid:[[Global sharedSingle] getUserWithkey:@"titleid"]];
     self.subjectList=[[SQLManager sharedSingle] getSubjectByid:self.subjectIdList];
@@ -35,6 +40,7 @@
         [self.dataAr addObject:sbAr];
     }
     [self.table reloadData];
+    [self hideLoading];
 }
 
 //-(void)rightBtnClick:(UIButton *)sender{
