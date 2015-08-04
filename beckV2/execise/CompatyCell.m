@@ -43,6 +43,7 @@
     }
     
     self.lab.text=[NSString stringWithFormat:@"%zd.%@",self.row+1,compatyQ.choice_content];
+    self.lab.numberOfLines=0;
     self.lab.tag=10086;
     CGFloat width=self.contentView.frame.size.width/compatyQ.items.count;
     if (qCustomid.intValue==11) {
@@ -51,11 +52,12 @@
     if (block) {
         self.block=block;
     }
+    
     for (int i=0; i<compatyQ.items.count; i++) {
         CompatyItem *item=compatyQ.items[i];
-        UIView *v=[[UIView alloc] initWithFrame:CGRectMake(width*i, 44, width, 40)];
+        UIView *v=[[UIView alloc] initWithFrame:CGRectMake(width*i, self.lab.frame.size.height, width, 40)];
         if (qCustomid.intValue==11) {
-            v.frame=CGRectMake(0, 44+40*i, width, 40);
+            v.frame=CGRectMake(0, self.lab.frame.size.height+40*i, width, 40);
         }
         v.tag=i+100;
         [self.contentView addSubview:v];
@@ -72,7 +74,8 @@
 //                    sel.image=[UIImage imageNamed:@"radio"];
 //                }
             }
-        }else{
+        }
+        else{
             for (QuestionItemC*b in answerItems) {
                 if (b.myAnswer.integerValue==item.answerid.integerValue&&self.question.question_id.integerValue==b.questionId.integerValue) {
                     sel.image=[UIImage imageNamed:@"radio_sel"];

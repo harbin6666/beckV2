@@ -215,6 +215,8 @@
         [item1 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
         
     }
+    [self.table performSelector:@selector(reloadData) withObject:nil afterDelay:0.2];
+
 }
 
 

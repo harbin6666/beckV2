@@ -411,7 +411,7 @@
         
     }
     [self.view bringSubviewToFront:self.questionBtn];
-
+    [self.table performSelector:@selector(reloadData) withObject:nil afterDelay:0.2];
 
 }
 

@@ -121,19 +121,24 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fye-cO-EFV">
-                                                    <rect key="frame" x="8" y="8" width="367" height="39"/>
+                                                    <rect key="frame" x="10" y="8" width="357" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="39" id="0wX-zH-lqL"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="0wX-zH-lqL"/>
+                                                        </mask>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Fye-cO-EFV" secondAttribute="trailing" constant="-8" id="21p-sb-oEg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Fye-cO-EFV" secondAttribute="trailing" id="21p-sb-oEg"/>
                                                 <constraint firstItem="Fye-cO-EFV" firstAttribute="top" secondItem="W7Y-J1-HxS" secondAttribute="topMargin" id="Atp-JU-RuL"/>
-                                                <constraint firstItem="Fye-cO-EFV" firstAttribute="leading" secondItem="W7Y-J1-HxS" secondAttribute="leadingMargin" id="TEV-aU-yZK"/>
+                                                <constraint firstItem="Fye-cO-EFV" firstAttribute="leading" secondItem="W7Y-J1-HxS" secondAttribute="leadingMargin" constant="2" id="TEV-aU-yZK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

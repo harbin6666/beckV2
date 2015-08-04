@@ -715,19 +715,24 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQl-lP-QY2">
-                                                    <rect key="frame" x="8" y="8" width="367" height="39"/>
+                                                    <rect key="frame" x="10" y="8" width="357" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="39" id="x5h-2U-neX"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="x5h-2U-neX"/>
+                                                        </mask>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="jQl-lP-QY2" firstAttribute="top" secondItem="Djb-F9-Q0H" secondAttribute="topMargin" id="1Aj-Mf-8TB"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="jQl-lP-QY2" secondAttribute="trailing" constant="-8" id="9KG-jj-Q4B"/>
-                                                <constraint firstItem="jQl-lP-QY2" firstAttribute="leading" secondItem="Djb-F9-Q0H" secondAttribute="leadingMargin" id="XWE-bp-twS"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="jQl-lP-QY2" secondAttribute="trailing" id="9KG-jj-Q4B"/>
+                                                <constraint firstItem="jQl-lP-QY2" firstAttribute="leading" secondItem="Djb-F9-Q0H" secondAttribute="leadingMargin" constant="2" id="XWE-bp-twS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
