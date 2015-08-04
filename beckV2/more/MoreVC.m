@@ -62,7 +62,7 @@
     int p=0;
     switch (section) {
         case 0:
-            p=3;
+            p=4;
             break;
         case 1:
             p=3;
@@ -96,6 +96,10 @@
             text=@"高频考点";
         }else if(indexPath.row==1){
             text=@"题库更新";
+        }else if(indexPath.row==2){
+            imgstr=@"more1";
+
+            text=@"全量更新";
         }else{
             text=@"积分商城";
         }
@@ -189,6 +193,48 @@
     
 
 }
+
+-(void)resetDB{
+    WEAK_SELF;
+    [self showLoading];
+    [self getValueWithBeckUrl:@"/front/versionUpdateAct.htm" params:@{@"token":@"versionupdate"} CompleteBlock:^(id aResponseObject, NSError *anError) {
+        STRONG_SELF;
+        if (anError==nil) {
+            if ([aResponseObject[@"errorcode"] integerValue]==0) {
+                NSNumber *count=aResponseObject[@"value"];
+                int value=[[SQLManager sharedSingle] queryParam]+1;
+                if (value-1==count.intValue) {
+                    [self hideLoading];
+                    return ;
+                }
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
+                    for (int i=value; i<count.intValue+1; i++) {
+                        NSString *fileStr=[NSString stringWithFormat:@"http://www.ybf100.net:8080/beck2/beck2/upload/txt/%d.txt",i];
+                        NSString *file=[NSString stringWithContentsOfURL:[NSURL URLWithString:fileStr] encoding:NSUTF8StringEncoding error:nil];
+                        NSArray *ar=[file componentsSeparatedByString:@"\r"];
+                        for (NSString *sql in ar) {
+                            [[SQLManager sharedSingle] excuseSql:sql];
+                        }
+                    }
+                    NSString *updateSql=[NSString stringWithFormat: @"UPDATE parameter SET param_value ==\'%@\' WHERE param_id ==1" ,count];
+                    [[SQLManager sharedSingle] excuseSql:updateSql];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self hideLoading];
+                    });
+                });
+            }else{
+                [self hideLoading];
+                [[OTSAlertView alertWithMessage:@"当前无更新数据" andCompleteBlock:nil] show];
+            }
+        }else{
+            [[OTSAlertView alertWithMessage:@"当前无更新数据" andCompleteBlock:nil] show];
+            [self hideLoading];
+        }
+    }];
+    
+}
+
+
 -(void)dismssShare{
     [self.bb removeFromSuperview];
 }
@@ -200,6 +246,8 @@
         }else if (indexPath.row==1){
             [self performSegueWithIdentifier:@"updatedb" sender:self];
         }else if (indexPath.row==2){
+            [self resetDB];
+        }else if (indexPath.row==3){
             [self performSegueWithIdentifier:@"topointshop" sender:self];
         }
     }else if (indexPath.section==1){

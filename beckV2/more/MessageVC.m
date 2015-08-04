@@ -9,6 +9,7 @@
 #import "MessageVC.h"
 #import "MessageVO.h"
 #import "MessageCell.h"
+#import "BaseViewController.h"
 @interface MessageVC ()
 @property(nonatomic,strong)NSArray *msgs;
 @end
@@ -17,8 +18,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.msgs=[[SQLManager sharedSingle] getMessage];
-    
+//    self.msgs=[[SQLManager sharedSingle] getMessage];
+    [self showLoading];
+    WEAK_SELF;
+    [self getValueWithBeckUrl:@"/front/bulletinAct.htm" params:@{@"loginName":[Global sharedSingle].loginName, @"token":@"message"} CompleteBlock:^(id aResponseObject, NSError *anError) {
+        STRONG_SELF;
+        [self hideLoading];
+        if (!anError) {
+            NSNumber *errorcode = aResponseObject[@"errorcode"];
+            if (errorcode.boolValue) {
+                [[OTSAlertView alertWithMessage:aResponseObject[@"msg"] andCompleteBlock:nil] show];
+            }
+            else {
+                self.msgs = aResponseObject[@"list"];
+                [self.tableView reloadData];
+            }
+        }
+        else {
+            [[OTSAlertView alertWithMessage:@"获取消息失败" andCompleteBlock:nil] show];
+        }
+    }];
+
 
 }
 
@@ -40,10 +60,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"msgcell" forIndexPath:indexPath];
-    MessageVO*msg=  self.msgs[indexPath.row];
-    cell.titleLab.text=msg.title;
-    cell.timeLab.text=msg.issue_time;
-    cell.content.text=msg.content;
+    NSDictionary*msg=  self.msgs[indexPath.row];
+    cell.titleLab.text=msg[@"title"];
+    cell.timeLab.text=msg[@"issueTime"];
+    cell.content.text=msg[@"content"];
     
     return cell;
 }

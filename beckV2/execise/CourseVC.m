@@ -19,7 +19,16 @@
 @implementation CourseVC
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.dataAr=[[SQLManager sharedSingle] getOutLineByParentId:self.parentid];
+    NSArray *temp=[[SQLManager sharedSingle] getOutLineByParentId:self.parentid];
+    NSMutableArray *ar=[NSMutableArray array];
+    for (int i=0; i<temp.count; i++) {
+        Outline *ol=temp[i];
+        NSInteger total=[[SQLManager sharedSingle] countDownByOutlineid:ol.outlineid];
+        if (total>0) {
+            [ar addObject:ol];
+        }
+    }
+    self.dataAr=ar;
     [self.tableView reloadData];
 }
 
