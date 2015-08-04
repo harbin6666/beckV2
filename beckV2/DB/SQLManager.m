@@ -65,7 +65,7 @@ singleton_implementation(SQLManager);
 
 -(NSArray*)findUserCollectByUserid:(NSString *)uid{
     __block NSMutableArray*result=@[].mutableCopy;
-    NSString *sql=[NSString stringWithFormat: @"select * from user_collection where user_id==%@",[[Global sharedSingle].userBean valueForKey:@"userId"]];
+    NSString *sql=[NSString stringWithFormat: @"select * from user_collection where user_id==%@ and is_valid==1",[[Global sharedSingle].userBean valueForKey:@"userId"]];
 //    NSString *sql=@"select * from user_collection";
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
@@ -194,7 +194,7 @@ singleton_implementation(SQLManager);
 
 -(NSString *)getcourseNameByOutlineId:(NSString*)outlineid{
     __block NSString *st=@"";
-    NSString *sql=[NSString stringWithFormat:@"select course_name from exam_outline where outline_id==%@",outlineid];
+    NSString *sql=[NSString stringWithFormat:@"select course_name from exam_outline where outline_id==%@ and is_valid==1",outlineid];
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
@@ -282,7 +282,7 @@ singleton_implementation(SQLManager);
 
     //到配伍题表找
     if (customid.integerValue==10||customid.integerValue==11) {
-        NSString *compatibility=[NSString stringWithFormat:@"select * from compatibility_info where id==%@",qid];
+        NSString *compatibility=[NSString stringWithFormat:@"select * from compatibility_info where id==%@ and is_valid==1",qid];
         [[AFSQLManager sharedManager] performQuery:compatibility withBlock:^(NSArray *row, NSError *error, BOOL finished) {
             if (finished) {
                 
@@ -306,7 +306,7 @@ singleton_implementation(SQLManager);
         }];
 
     }else{
-        NSString *choice=[NSString stringWithFormat:@"select * from choice_questions where choice_id==%@",qid];
+        NSString *choice=[NSString stringWithFormat:@"select * from choice_questions where choice_id==%@ and is_valid==1",qid];
         [[AFSQLManager sharedManager] performQuery:choice withBlock:^(NSArray *row, NSError *error, BOOL finished) {
             if (finished) {
                 
@@ -651,7 +651,7 @@ singleton_implementation(SQLManager);
 
 -(NSString *)getQuestionTypeWithCustomId:(NSString*)customid{
     __block NSString *str=@"";
-    NSString *sql=[NSString stringWithFormat:@"select custom_name from custom_question_type where custom_id==%@",customid];
+    NSString *sql=[NSString stringWithFormat:@"select custom_name from custom_question_type where custom_id==%@ and is_valid==1",customid];
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
@@ -773,7 +773,7 @@ singleton_implementation(SQLManager);
 //计算章节下总数
 -(NSInteger)countDownByOutlineid:(NSString*)outlineid{
     __block NSInteger total=0;
-    NSString *sql=[NSString stringWithFormat:@"select count(*) from (select choice_id from choice_questions where outlet_id==%@) union all select count(*) from (select id from compatibility_info where outlet_id==%@)",outlineid,outlineid];
+    NSString *sql=[NSString stringWithFormat:@"select count(*) from (select choice_id from choice_questions where outlet_id==%@ and is_valid==1) union all select count(*) from (select id from compatibility_info where outlet_id==%@ and is_valid==1)",outlineid,outlineid];
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
@@ -786,7 +786,7 @@ singleton_implementation(SQLManager);
 //获取章节下选择题和配伍题
 -(NSArray*)getQuestionByOutlineId:(NSString*)outlineId{
     __block NSMutableArray *ar=[NSMutableArray array];
-    NSString *choice=[NSString stringWithFormat:@"select * from choice_questions where outlet_id==%@ ORDER BY custom_id asc",outlineId];
+    NSString *choice=[NSString stringWithFormat:@"select * from choice_questions where outlet_id==%@ and is_valid==1 ORDER BY custom_id asc",outlineId];
     [[AFSQLManager sharedManager] performQuery:choice withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
@@ -812,7 +812,7 @@ singleton_implementation(SQLManager);
             [ar addObject:q];
         }
     }];
-    NSString *compatibility=[NSString stringWithFormat:@"select * from compatibility_info where outlet_id==%@ ORDER BY custom_id asc",outlineId];
+    NSString *compatibility=[NSString stringWithFormat:@"select * from compatibility_info where outlet_id==%@ and is_valid==1 ORDER BY custom_id asc",outlineId];
     [[AFSQLManager sharedManager] performQuery:compatibility withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
@@ -839,7 +839,7 @@ singleton_implementation(SQLManager);
 
 -(NSArray *)getOutLineByParentId:(NSString*)parentid{
     __block NSMutableArray* outlineList=@[].mutableCopy;
-    NSString *sql=[NSString stringWithFormat:@"select * from exam_outline where parent_id==%@",parentid];
+    NSString *sql=[NSString stringWithFormat:@"select * from exam_outline where parent_id==%@ and is_valid==1",parentid];
     NSLog(@"%@",sql);
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
@@ -857,7 +857,7 @@ singleton_implementation(SQLManager);
 }
 -(NSArray*)getoutLineByid:(NSString *)subjectid{
     __block NSMutableArray* outlineList=@[].mutableCopy;
-    NSString *sql=[NSString stringWithFormat:@"select * from exam_outline where subject_id ==%@ and parent_id==0",subjectid];
+    NSString *sql=[NSString stringWithFormat:@"select * from exam_outline where subject_id ==%@ and parent_id==0 and is_valid==1",subjectid];
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
@@ -877,7 +877,7 @@ singleton_implementation(SQLManager);
     __block NSMutableArray* subjectAr=@[].mutableCopy;
     for (int i=0; i<subjectIdList.count; i++) {
         NSString *subjectid=subjectIdList[i];
-        NSString *sql=[NSString stringWithFormat:@"select * from exam_subject where id ==%@",subjectid];
+        NSString *sql=[NSString stringWithFormat:@"select * from exam_subject where id ==%@ and is_valid==1",subjectid];
         [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
             if (finished) {
                 
