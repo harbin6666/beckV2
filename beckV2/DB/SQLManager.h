@@ -13,6 +13,7 @@
 @interface SQLManager : NSObject
 singleton_interface(SQLManager);
 -(int)queryParam;
+-(NSArray*)getPapers:(NSString *)type screen:(NSString*)screenid;
 -(NSArray*)getPractisWithOutlineid:(NSString*)outlineid;
 -(NSString*)getMaxidWithTableName:(NSString*)tableName colName:(NSString*)col;
 -(NSArray*)getTitles;

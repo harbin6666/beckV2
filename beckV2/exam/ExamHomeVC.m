@@ -106,7 +106,7 @@
             break;
     }
     
-    self.papers=[[SQLManager sharedSingle] getExamPaperType:type screen:screen];
+    self.papers=[[SQLManager sharedSingle] getPapers:type screen:screen];
     
     if (self.papers.count==0) {
         [[OTSAlertView alertWithMessage:@"暂时没有内容" andCompleteBlock:nil] show];

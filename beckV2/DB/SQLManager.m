@@ -488,6 +488,29 @@ singleton_implementation(SQLManager);
     }];
     return result;
 }
+
+
+-(NSArray*)getPapers:(NSString *)type screen:(NSString*)screenid{
+    __block NSString *s=@"";
+    NSString *sql=[NSString stringWithFormat: @"select paperlist from subject_position_paper where title_id==%@ and type==%@ and screening==%@",[[Global sharedSingle] getUserWithkey:@"titleid"],type,screenid ];
+    [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        if (finished) {
+            
+        }else{
+            s=row[0];
+        }
+    }];
+    NSMutableArray*result=@[].mutableCopy;
+    NSArray *list=[s componentsSeparatedByString:@","];
+    for (int i=0; i<list.count; i++) {
+        ExamPaper*ep=[self getExamPaperByPaperid:list[i]];
+        if (ep) {
+            [result addObject:ep];
+        }
+    }
+
+    return result;
+}
 -(NSArray*)getExamPaperType:(NSString*)type screen:(NSString *)screenid{
     __block NSMutableArray*result=@[].mutableCopy;
 //    NSString *subjectid=[self getSubjectidByTitleId:[[Global sharedSingle] getUserWithkey:@"titleid"]];

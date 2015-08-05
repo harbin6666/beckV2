@@ -553,9 +553,17 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
-    if (p.custom_id.integerValue==11) {
-        return 0;
+    CompatyInfo *info;
+    if (p.custom_id.integerValue==10||p.custom_id.integerValue==11) {
+        info=(CompatyInfo*)p;
+        if (info.memo!=nil&&info.memo.length>0) {
+            return 30;
+        }
+        if (p.custom_id.integerValue==11) {
+            return 0;
+        }
     }
+    
     CGSize size =[self.questionDes sizeWithFont:[UIFont systemFontOfSize:self.font] constrainedToSize:CGSizeMake(self.view.frame.size.width-100, 1000)];
     float h=0;
     if (size.height<50) {
@@ -563,7 +571,9 @@
     }else {
         h=size.height;
     }
-    
+    if (info.memo!=nil&&info.memo.length>0) {
+        return h+45;
+    }
     return h+15;
     
 }
@@ -585,6 +595,16 @@
     UIView* v=[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, h+15)];
     v.backgroundColor=[UIColor lightGrayColor];
     [v addSubview:la];
+    
+    Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
+    if (p.custom_id.integerValue==10||p.custom_id.integerValue==11) {
+        CompatyInfo *info=(CompatyInfo*)p;
+        if (info.memo!=nil&&info.memo.length>0) {
+            UILabel *melb=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+            melb.text=info.memo;
+            [v addSubview:melb];
+        }
+    }
     return v;
 }
 
@@ -735,6 +755,7 @@
             CompatyQuestion *q=self.compatibilyArray[indexPath.row];
             AnswerObj*a =(QuestionAnswerA*)[self findDoneAnswerWithid:[info info_id]];
             cell.lab.font=[UIFont systemFontOfSize:self.font];
+            cell.lab.text=[NSString stringWithFormat:@"%zd.%@",indexPath.row+1,q.choice_content];
             [cell updateCompatyCell:q customid:p.custom_id AnswerObj:a showAnswer:self.showAnswer selectedBlock:^(BOOL right, CompatyItem *answer) {
                 if (self.fromDetail) {
                     return;
@@ -801,7 +822,7 @@
                     }
                 }
                 if (self.paperid!=nil&&cout==self.compatibilyArray.count) {
-                    [self performSelector:@selector(forwardPress:) withObject:nil];
+//                    [self performSelector:@selector(forwardPress:) withObject:nil];
                 }
 
             }];
@@ -848,8 +869,9 @@
             }
             if (dest) {
                 [choiceAnswer.myAnswer removeObject:dest];
-            }
+            }else{
                 [choiceAnswer.myAnswer addObject:item.nid];
+            }
         }
         
         
@@ -896,7 +918,7 @@
         
         
     }
-    [tableView reloadData];
+    [self.table reloadData];
 }
 
 

@@ -94,8 +94,9 @@
         
         UILabel *la=[[UILabel alloc] initWithFrame:CGRectMake(20, 5, 20, 30)];
         la.text=item.item_number;
+        la.numberOfLines=0;
         la.textAlignment=NSTextAlignmentCenter;
-        
+        la.font=[UIFont systemFontOfSize:[[NSUserDefaults standardUserDefaults] integerForKey:@"fontValue"]];
         if (qCustomid.intValue==11) {
             la.frame=CGRectMake(20, 5, width-42, 30);
             la.text=[NSString stringWithFormat:@"%@ %@",item.item_number,item.item_content];
@@ -129,8 +130,29 @@
         [v addSubview:b];
         [self.viewAr addObject:v];
     }
-
+    [self setNeedsLayout];
+    NSArray *arQ=@[qCustomid,compatyQ];
+    [self performSelector:@selector(replaceViews:) withObject:arQ afterDelay:0.1];
     
+}
+
+
+-(void)replaceViews:(NSArray *)arQ{
+    NSString *qCustomid=arQ[0];
+    CompatyQuestion *compatyQ=arQ[1];
+    CGFloat width=self.contentView.frame.size.width/compatyQ.items.count;
+    if (qCustomid.intValue==11) {
+        width=self.contentView.frame.size.width;
+    }
+    for (UIView *v in self.viewAr) {
+        NSInteger i=v.tag-100;
+        if (qCustomid.intValue==11) {
+            v.frame=CGRectMake(0, self.lab.frame.size.height+40*i, width, 40);
+        }else{
+            v.frame=CGRectMake(width*i, self.lab.frame.size.height, width, 40);
+        }
+    }
+    [self setNeedsLayout];
 }
 -(void)updateCompatyCell:(CompatyQuestion*)compatyQ customid:(NSString *)qCustomid answer:(PractisAnswer*)answer showAnswer:(BOOL)show selectedBlock:(ItemSelectBlock)block{
     self.answ=answer;
@@ -181,7 +203,8 @@
         UILabel *la=[[UILabel alloc] initWithFrame:CGRectMake(20, 5, 20, 30)];
         la.text=item.item_number;
         la.textAlignment=NSTextAlignmentCenter;
-
+        la.numberOfLines=0;
+        la.font=[UIFont systemFontOfSize:[[NSUserDefaults standardUserDefaults] integerForKey:@"fontValue"]];
         if (qCustomid.intValue==11) {
             la.frame=CGRectMake(20, 5, width-42, 30);
             la.text=[NSString stringWithFormat:@"%@ %@",item.item_number,item.item_content];
