@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface QuestionCollectionVC : UITableViewController
+#import "BaseViewController.h"
+@interface QuestionCollectionVC : BaseViewController
 @property(nonatomic)NSInteger type;//0收藏 1错题
 
 @end

@@ -41,10 +41,16 @@ singleton_implementation(SQLManager);
     return value;
 }
 
--(NSArray*)findUserWrongByUserId:(NSString*)uid{
+-(NSArray*)findUserWrongByOutlineid:(NSString*)Outlineid{
     __block NSMutableArray*result=@[].mutableCopy;
 //    NSString *sql=[NSString stringWithFormat: @"select * from user_wrong_item where user_id==%@",[[Global sharedSingle].userBean valueForKey:@"userId"]];
-    NSString *sql=@"select * from user_wrong_item";
+//    NSString *sql=[NSString stringWithFormat: @"select * from user_wrong_item where outline_id==%@ and user_id==%@" ,Outlineid,[[Global sharedSingle].userBean valueForKey:@"userId"]];
+    
+    NSMutableString *sql=[NSMutableString stringWithFormat: @"select * from user_wrong_item where user_id==%@",[Global sharedSingle].userId];
+    if (Outlineid!=nil) {
+       NSString* subSql=[NSString stringWithFormat:@" and outline_id==%@",Outlineid];
+        [sql appendString:subSql];
+    }
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
@@ -63,9 +69,14 @@ singleton_implementation(SQLManager);
 
 }
 
--(NSArray*)findUserCollectByUserid:(NSString *)uid{
+-(NSArray*)findUserCollectByOutlineid:(NSString*)Outlineid{
     __block NSMutableArray*result=@[].mutableCopy;
-    NSString *sql=[NSString stringWithFormat: @"select * from user_collection where user_id==%@ and is_valid==1",[[Global sharedSingle].userBean valueForKey:@"userId"]];
+    
+    NSMutableString *sql=[NSMutableString stringWithFormat: @"select * from user_collection where user_id==%@",[Global sharedSingle].userId];
+    if (Outlineid!=nil) {
+        NSString*subSql=[NSString stringWithFormat:@" and outline_id==%@",Outlineid];
+        [sql appendString:subSql];
+    }
 //    NSString *sql=@"select * from user_collection";
     [[AFSQLManager sharedManager] performQuery:sql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {

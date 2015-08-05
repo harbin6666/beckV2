@@ -80,8 +80,8 @@ singleton_interface(SQLManager);
 -(NSArray*)getExamByType:(NSString *)type;
 -(NSString *)getExchangePaperStatus:(NSString*)paperid;
 -(UserNote *)findNoteByItemId:(NSString*)itemid customId:(NSString*)customId;
--(NSArray*)findUserWrongByUserId:(NSString*)uid;
--(NSArray*)findUserCollectByUserid:(NSString*)uid;
+-(NSArray*)findUserWrongByOutlineid:(NSString*)Outlineid;
+-(NSArray*)findUserCollectByOutlineid:(NSString*)Outlineid;
 
 -(NSArray*)getUserExamByPaperId:(NSString *)pId;
 -(NSString *)getQuestionTypeWithCustomId:(NSString*)customid;
