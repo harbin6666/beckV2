@@ -92,13 +92,13 @@
         [v addSubview:sel];
         
         
-        UILabel *la=[[UILabel alloc] initWithFrame:CGRectMake(20, 5, 20, 30)];
+        UILabel *la=[[UILabel alloc] initWithFrame:CGRectMake(20, 0, 20, 40)];
         la.text=item.item_number;
         la.numberOfLines=0;
         la.textAlignment=NSTextAlignmentCenter;
         la.font=[UIFont systemFontOfSize:[[NSUserDefaults standardUserDefaults] integerForKey:@"fontValue"]];
         if (qCustomid.intValue==11) {
-            la.frame=CGRectMake(20, 5, width-42, 30);
+            la.frame=CGRectMake(20, 0, width-42, 40);
             la.text=[NSString stringWithFormat:@"%@ %@",item.item_number,item.item_content];
             la.textAlignment=NSTextAlignmentLeft;
         }
@@ -156,7 +156,7 @@
 }
 -(void)updateCompatyCell:(CompatyQuestion*)compatyQ customid:(NSString *)qCustomid answer:(PractisAnswer*)answer showAnswer:(BOOL)show selectedBlock:(ItemSelectBlock)block{
     self.answ=answer;
-    self.customid=qCustomid;
+    self.customid=qCustomid.integerValue;
     for (UIView *v in self.viewAr) {
         [v removeFromSuperview];
     }
