@@ -554,16 +554,6 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
     CompatyInfo *info;
-    if (p.custom_id.integerValue==10||p.custom_id.integerValue==11) {
-        info=(CompatyInfo*)p;
-        if (info.memo!=nil&&info.memo.length>0) {
-            return 30;
-        }
-        if (p.custom_id.integerValue==11) {
-            return 0;
-        }
-    }
-    
     CGSize size =[self.questionDes sizeWithFont:[UIFont systemFontOfSize:self.font] constrainedToSize:CGSizeMake(self.view.frame.size.width-100, 1000)];
     float h=0;
     if (size.height<50) {
@@ -571,11 +561,21 @@
     }else {
         h=size.height;
     }
-    if (info.memo!=nil&&info.memo.length>0) {
-        return h+45;
+
+    if (p.custom_id.integerValue==10||p.custom_id.integerValue==11) {
+        info=(CompatyInfo*)p;
+        if (info.memo!=nil&&info.memo.length>0) {
+            if (p.custom_id.integerValue==11) {
+                return 30;
+            }
+            return h+45;
+        }
+        if (p.custom_id.integerValue==11) {
+            return 0;
+        }
     }
-    return h+15;
     
+    return h+15;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -585,6 +585,9 @@
         h=60;
     }else {
         h=size.height;
+    }
+    if (self.questionDes==nil||self.questionDes.length==0) {
+        h=0;
     }
     UILabel *la=[[UILabel alloc] initWithFrame:CGRectMake(10, 0, self.view.frame.size.width-10, h)];
     
@@ -600,8 +603,10 @@
     if (p.custom_id.integerValue==10||p.custom_id.integerValue==11) {
         CompatyInfo *info=(CompatyInfo*)p;
         if (info.memo!=nil&&info.memo.length>0) {
-            UILabel *melb=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+            UILabel *melb=[[UILabel alloc] initWithFrame:CGRectMake(0, h+15, self.view.frame.size.width, 30)];
             melb.text=info.memo;
+            melb.font=[UIFont systemFontOfSize:self.font];
+            melb.backgroundColor=[UIColor whiteColor];
             [v addSubview:melb];
         }
     }
