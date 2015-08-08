@@ -906,7 +906,7 @@
         }
         else{//考试模式
             if ([p custom_id].intValue!=12) {
-                [self performSelector:@selector(forwardPress:) withObject:nil];
+//                [self performSelector:@selector(forwardPress:) withObject:nil];
             }else{
                 if (choiceAnswer.myAnswer.count==q.rightChoiceItems.count) {
                     [self showAnswer:self.tabbar.items[2]];
