@@ -297,7 +297,7 @@
         for (int i=0; i<self.compatibilyArray.count; i++) {
             CompatyQuestion* q=self.compatibilyArray[i];
             //选项
-            if (comp.custom_id.intValue==11) {
+            if (comp.custom_id.intValue==11||comp.custom_id.intValue==8||comp.custom_id.intValue==9) {
                 NSArray *comItem=[[SQLManager sharedSingle] getCompatyItemByCompid:q.compatibility_id memo:@(i+1).stringValue];
                 q.items=comItem;
             }else{
@@ -307,8 +307,7 @@
         }
         CompatyQuestion* q=self.compatibilyArray[0];
         NSMutableString *str=comp.title.mutableCopy;
-        if (comp.custom_id.integerValue==11) {
-            str=@"".mutableCopy;
+        if (comp.custom_id.integerValue==11||comp.custom_id.intValue==8||comp.custom_id.intValue==9) {
             if (![self findDoneAnswerWithid:comp.info_id]) {
                 QuestionAnswerC *a=[QuestionAnswerC new];
                 a.customId=p.custom_id;
@@ -562,16 +561,13 @@
         h=size.height;
     }
 
-    if (p.custom_id.integerValue==10||p.custom_id.integerValue==11) {
+    if (p.custom_id.integerValue==10||p.custom_id.integerValue==11||p.custom_id.intValue==8||p.custom_id.intValue==9) {
         info=(CompatyInfo*)p;
-        if (info.memo!=nil&&info.memo.length>0) {
-            if (p.custom_id.integerValue==11) {
+        if (info.memo!=nil&&info.memo.length>0&&![info.memo isEqualToString:@"null"]) {
+            if (p.custom_id.integerValue==11||p.custom_id.integerValue==11||p.custom_id.intValue==8||p.custom_id.intValue==9) {
                 return 30;
             }
             return h+45;
-        }
-        if (p.custom_id.integerValue==11) {
-            return 0;
         }
     }
     
@@ -600,9 +596,9 @@
     [v addSubview:la];
     
     Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
-    if (p.custom_id.integerValue==10||p.custom_id.integerValue==11) {
+    if (p.custom_id.integerValue==10||p.custom_id.integerValue==11||p.custom_id.integerValue==8||p.custom_id.integerValue==9) {
         CompatyInfo *info=(CompatyInfo*)p;
-        if (info.memo!=nil&&info.memo.length>0) {
+        if (info.memo!=nil&&info.memo.length>0&&![info.memo isEqualToString:@"null"]) {
             UILabel *melb=[[UILabel alloc] initWithFrame:CGRectMake(0, h+15, self.view.frame.size.width, 30)];
             melb.text=info.memo;
             melb.font=[UIFont systemFontOfSize:self.font];
@@ -635,7 +631,7 @@
     Question *q=[self.questionsAr objectAtIndex:self.currentQIndex];
     if ([[self.questionsAr objectAtIndex:self.currentQIndex] isKindOfClass:[CompatyInfo class]]) {
         if (indexPath.row<self.compatibilyArray.count) {
-            if (q.custom_id.intValue==11) {
+            if (q.custom_id.intValue==11||q.custom_id.intValue==9||q.custom_id.intValue==8) {
                 CompatyQuestion* comp=[self.compatibilyArray objectAtIndex:indexPath.row];
                 return  48+40*comp.items.count;
             }

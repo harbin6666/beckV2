@@ -136,7 +136,7 @@
         for (int i=0; i<self.compatibilyArray.count; i++) {
             CompatyQuestion* q=self.compatibilyArray[i];
             //选项
-            if (comp.custom_id.intValue==11) {
+            if (comp.custom_id.intValue==11||comp.custom_id.intValue==8||comp.custom_id.intValue==9) {
                 NSArray *comItem=[[SQLManager sharedSingle] getCompatyItemByCompid:q.compatibility_id memo:@(i+1).stringValue];
                 q.items=comItem;
             }else{
@@ -146,7 +146,7 @@
         }
         CompatyQuestion* q=self.compatibilyArray[0];
         NSMutableString *str=comp.title.mutableCopy;
-        if (comp.custom_id.integerValue==11) {
+        if (comp.custom_id.integerValue==11||comp.custom_id.integerValue==8||comp.custom_id.integerValue==9) {
             str=@"".mutableCopy;
         }
         if (comp.custom_id.intValue!=11) {
@@ -238,7 +238,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     Question* p=[self.questionsAr objectAtIndex:self.currentQIndex];
-    if (p.custom_id.integerValue==11) {
+    if (p.custom_id.integerValue==11||p.custom_id.integerValue==9||p.custom_id.integerValue==8) {
         return 0;
     }
     CGSize size =[self.questionDes sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(self.view.frame.size.width-20, 1000)];
@@ -287,7 +287,7 @@
     Question *q=[self.questionsAr objectAtIndex:self.currentQIndex];
     if ([[self.questionsAr objectAtIndex:self.currentQIndex] isKindOfClass:[CompatyInfo class]]) {
         if (indexPath.row<self.compatibilyArray.count) {
-            if (q.custom_id.intValue==11) {
+            if (q.custom_id.intValue==11||q.custom_id.intValue==8||q.custom_id.intValue==9) {
                 CompatyQuestion* comp=[self.compatibilyArray objectAtIndex:indexPath.row];
                 return  48+40*comp.items.count;
             }

@@ -29,7 +29,7 @@
 -(void)updateCompatyCell:(CompatyQuestion*)compatyQ customid:(NSString *)qCustomid AnswerObj:(AnswerObj*)answer showAnswer:(BOOL)show selectedBlock:(ItemSelectBlock)block{
     self.answerObj=answer;
     NSArray *answerItems=[NSMutableArray array];
-    if (self.customid==11) {
+    if (self.customid==11||self.customid==8||self.customid==9) {
         QuestionAnswerC*c=(QuestionAnswerC*)answer;
         answerItems=c.questionCItems;
     }else{
@@ -46,7 +46,7 @@
     self.lab.numberOfLines=0;
     self.lab.tag=10086;
     CGFloat width=self.contentView.frame.size.width/compatyQ.items.count;
-    if (qCustomid.intValue==11) {
+    if (qCustomid.intValue==11||qCustomid.intValue==8||qCustomid.intValue==9) {
         width=self.contentView.frame.size.width;
     }
     if (block) {
@@ -56,7 +56,7 @@
     for (int i=0; i<compatyQ.items.count; i++) {
         CompatyItem *item=compatyQ.items[i];
         UIView *v=[[UIView alloc] initWithFrame:CGRectMake(width*i, self.lab.frame.size.height, width, 40)];
-        if (qCustomid.intValue==11) {
+        if (qCustomid.intValue==11||qCustomid.intValue==8||qCustomid.intValue==9) {
             v.frame=CGRectMake(0, self.lab.frame.size.height+40*i, width, 40);
         }
         v.tag=i+100;
@@ -97,7 +97,7 @@
         la.numberOfLines=0;
         la.textAlignment=NSTextAlignmentCenter;
         la.font=[UIFont systemFontOfSize:[[NSUserDefaults standardUserDefaults] integerForKey:@"fontValue"]];
-        if (qCustomid.intValue==11) {
+        if (qCustomid.intValue==11||qCustomid.intValue==8||qCustomid.intValue==9) {
             la.frame=CGRectMake(20, 0, width-42, 40);
             la.text=[NSString stringWithFormat:@"%@ %@",item.item_number,item.item_content];
             la.textAlignment=NSTextAlignmentLeft;
@@ -106,7 +106,7 @@
         [v addSubview:la];
         
         UIImageView *signal=[[UIImageView alloc] initWithFrame:CGRectMake(width-20-2, 12, 20, 20)];
-        if (qCustomid.intValue==11) {
+        if (qCustomid.intValue==11||qCustomid.intValue==8||qCustomid.intValue==9) {
             signal.frame=CGRectMake(width-20-2, 12, 20, 20);
         }
         if (show) {
@@ -141,12 +141,12 @@
     NSString *qCustomid=arQ[0];
     CompatyQuestion *compatyQ=arQ[1];
     CGFloat width=self.contentView.frame.size.width/compatyQ.items.count;
-    if (qCustomid.intValue==11) {
+    if (qCustomid.intValue==11||qCustomid.intValue==8||qCustomid.intValue==9) {
         width=self.contentView.frame.size.width;
     }
     for (UIView *v in self.viewAr) {
         NSInteger i=v.tag-100;
-        if (qCustomid.intValue==11) {
+        if (qCustomid.intValue==11||qCustomid.intValue==8||qCustomid.intValue==9) {
             v.frame=CGRectMake(0, self.lab.frame.size.height+40*i, width, 40);
         }else{
             v.frame=CGRectMake(width*i, self.lab.frame.size.height, width, 40);
@@ -165,7 +165,7 @@
     self.lab.text=[NSString stringWithFormat:@"%zd.%@",self.row+1,compatyQ.choice_content];
     self.lab.tag=10086;
     CGFloat width=self.contentView.frame.size.width/compatyQ.items.count;
-    if (qCustomid.intValue==11) {
+    if (qCustomid.intValue==11||qCustomid.intValue==8||qCustomid.intValue==9) {
         width=self.contentView.frame.size.width;
     }
     if (block) {
@@ -178,7 +178,7 @@
     for (int i=0; i<compatyQ.items.count; i++) {
         CompatyItem *item=compatyQ.items[i];
         UIView *v=[[UIView alloc] initWithFrame:CGRectMake(width*i, 44, width, 40)];
-        if (qCustomid.intValue==11) {
+        if (qCustomid.intValue==11||qCustomid.intValue==8||qCustomid.intValue==9) {
             v.frame=CGRectMake(0, 44+40*i, width, 40);
         }
         v.tag=i+100;
@@ -205,7 +205,7 @@
         la.textAlignment=NSTextAlignmentCenter;
         la.numberOfLines=0;
         la.font=[UIFont systemFontOfSize:[[NSUserDefaults standardUserDefaults] integerForKey:@"fontValue"]];
-        if (qCustomid.intValue==11) {
+        if (qCustomid.intValue==11||qCustomid.intValue==8||qCustomid.intValue==9) {
             la.frame=CGRectMake(20, 5, width-42, 30);
             la.text=[NSString stringWithFormat:@"%@ %@",item.item_number,item.item_content];
             la.textAlignment=NSTextAlignmentLeft;
@@ -214,7 +214,7 @@
         [v addSubview:la];
 
         UIImageView *signal=[[UIImageView alloc] initWithFrame:CGRectMake(width-20-2, 12, 20, 20)];
-        if (qCustomid.intValue==11) {
+        if (qCustomid.intValue==11||qCustomid.intValue==8||qCustomid.intValue==9) {
             signal.frame=CGRectMake(width-20-2, 12, 20, 20);
         }
         if (show) {

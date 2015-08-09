@@ -298,7 +298,7 @@ singleton_implementation(SQLManager);
     __block NSMutableArray *ar=[NSMutableArray array];
 
     //到配伍题表找
-    if (customid.integerValue==10||customid.integerValue==11) {
+    if (customid.integerValue==10||customid.integerValue==11||customid.integerValue==8||customid.integerValue==9) {
         NSString *compatibility=[NSString stringWithFormat:@"select * from compatibility_info where id==%@ and is_valid==1",qid];
         [[AFSQLManager sharedManager] performQuery:compatibility withBlock:^(NSArray *row, NSError *error, BOOL finished) {
             if (finished) {

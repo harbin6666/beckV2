@@ -58,7 +58,7 @@
     //总习题中做对的数量
         NSMutableArray*doneRightAr=@[].mutableCopy;
         for (Question *q in totaldoneAr) {
-            if (q.custom_id.integerValue==10||q.custom_id.integerValue==11) {
+            if (q.custom_id.integerValue==10||q.custom_id.integerValue==11||q.custom_id.integerValue==8||q.custom_id.integerValue==9) {
                 CompatyInfo *com=(CompatyInfo*)q;
                 //去重了的做对了的练习数组
                 NSArray*temp=[[SQLManager sharedSingle] hadDonePractisOutlineid:com.outlet_id itemid:com.info_id typeid:q.custom_id];
@@ -227,7 +227,7 @@
                 ab.outletId=upe.outlineid;
                 ab.priority=upe.priority;
                 [temp addObject:ab];
-            }else if (upe.customid.integerValue==11){
+            }else if (upe.customid.integerValue==11||upe.customid.integerValue==8||upe.customid.integerValue==9){
                 QuestionAnswerC*ac=[QuestionAnswerC new];
                 NSMutableArray *tt=[NSMutableArray array];
                 for (NSDictionary *dic in userAnswer) {

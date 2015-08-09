@@ -110,7 +110,7 @@
         NoteListCell*cell=[tableView dequeueReusableCellWithIdentifier:@"timecell" forIndexPath:indexPath];
         cell.timeLab.text=note.update_time;
         Question* q=[[SQLManager sharedSingle]getExamQuestionByItemId:note.item_id customid:note.type_id];
-        if (note.type_id.integerValue==10||note.type_id.integerValue==11) {
+        if (note.type_id.integerValue==10||note.type_id.integerValue==11||note.type_id.integerValue==8||note.type_id.integerValue==9) {
             cell.titLab.text=[(CompatyInfo*)q title];
         }else{
             cell.titLab.text=[(ChoiceQuestion*)q choice_content];
