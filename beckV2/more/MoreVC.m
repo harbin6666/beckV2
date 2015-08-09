@@ -209,9 +209,10 @@
                 }
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
                     for (int i=value; i<count.intValue+1; i++) {
-                        NSString *fileStr=[NSString stringWithFormat:@"http://www.ybf100.net:8080/beck2/beck2/upload/txt/%d.txt",i];
+                        NSString *fileStr=[NSString stringWithFormat:@"http://www.ybf100.net:8080/beck2/upload/txt/%d.txt",i];
                         NSString *file=[NSString stringWithContentsOfURL:[NSURL URLWithString:fileStr] encoding:NSUTF8StringEncoding error:nil];
-                        NSArray *ar=[file componentsSeparatedByString:@"\r"];
+                        NSLog(@"%dtext=====%@",i,file);
+                        NSArray *ar=[file componentsSeparatedByString:@"\n"];
                         for (NSString *sql in ar) {
                             [[SQLManager sharedSingle] excuseSql:sql];
                         }
