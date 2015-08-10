@@ -174,8 +174,8 @@ static NSString *privatekey=@"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL
 
 -(void)payWithAlipay{
     [self showLoading];
-    NSString *courseid=self.selectDic[@"training_course_id"];
-    [self getValueWithBeckUrl:@"/front/orderTrainingAct.htm" params:@{@"token":@"add",@"loginName":[Global sharedSingle].loginName,@"id":courseid,@"userName":self.tf1.text,@"userPhone":self.tf2.text,@"cityId":self.selectCity[@"id"]} CompleteBlock:^(id aResponseObject, NSError *anError) {
+    NSNumber *courseid=self.selectDic[@"id"];
+    [self getValueWithBeckUrl:@"/front/orderTrainingAct.htm" params:@{@"token":@"add",@"loginName":[Global sharedSingle].loginName,@"trainingCourseId":courseid,@"userName":self.tf1.text,@"userPhone":self.tf2.text,@"cityId":self.selectCity[@"id"]} CompleteBlock:^(id aResponseObject, NSError *anError) {
         [self hideLoading];
         if (anError==nil) {
             NSString *code=aResponseObject[@"orderSn"];//orderSn值传给支付宝 out_trade_no这个字段  支付宝异步url：/front/notifyUrlAct.htm
@@ -198,8 +198,8 @@ static NSString *privatekey=@"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL
     }];
 }
 -(void)payWx{
-    NSString *courseid=self.selectDic[@"training_course_id"];
-    [self getValueWithBeckUrl:@"/front/orderTrainingAct.htm" params:@{@"token":@"add",@"loginName":[Global sharedSingle].loginName,@"id":courseid,@"userName":self.tf1.text,@"userPhone":self.tf2.text,@"cityId":self.selectCity[@"id"]} CompleteBlock:^(id aResponseObject, NSError *anError) {
+    NSNumber *courseid=self.selectDic[@"id"];
+    [self getValueWithBeckUrl:@"/front/orderTrainingAct.htm" params:@{@"token":@"add",@"loginName":[Global sharedSingle].loginName,@"trainingCourseId":courseid,@"userName":self.tf1.text,@"userPhone":self.tf2.text,@"cityId":self.selectCity[@"id"]} CompleteBlock:^(id aResponseObject, NSError *anError) {
         if (anError==nil&&[aResponseObject[@"errorcode"] integerValue]==0) {
             NSString *price=[NSString stringWithFormat:@"%zd",[self.selectDic[@"money"] integerValue]*100];
             [[WechatObj sharedSingle] sendPayProduct:self.selectDic[@"course"] price:price orderNum:aResponseObject[@"orderSn"] Block:^(BaseResp* aResponseObject) {
