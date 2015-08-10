@@ -656,6 +656,16 @@
             CGSize size =[self.currentNote.note sizeWithFont:[UIFont systemFontOfSize:self.font] constrainedToSize:CGSizeMake(self.view.frame.size.width-100, 1000)];
             
             return 44 +size.height+10;
+        }else{
+            ChoiceItem *itm=self.choiceArray[indexPath.row];
+            NSString *tet=[NSString stringWithFormat:@"%@ %@",itm.item_number,itm.item_content];
+            CGSize size=[tet sizeWithFont:[UIFont systemFontOfSize:self.font] constrainedToSize:CGSizeMake(self.view.frame.size.width-100, 1000)];
+            float h=44;
+            if (size.height<h) {
+                return h;
+            }else{
+                return h+10;
+            }
         }
         
     }else if ([p isKindOfClass:[CompatyInfo class]]){

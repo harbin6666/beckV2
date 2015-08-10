@@ -121,7 +121,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fye-cO-EFV">
-                                                    <rect key="frame" x="10" y="8" width="357" height="20.5"/>
+                                                    <rect key="frame" x="10" y="8" width="357" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="39" id="0wX-zH-lqL"/>
                                                     </constraints>
@@ -152,7 +152,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6of-ub-jNX">
-                                                    <rect key="frame" x="24" y="1.5" width="56" height="30"/>
+                                                    <rect key="frame" x="24" y="2" width="56" height="30"/>
                                                     <color key="backgroundColor" red="0.15686274509803921" green="0.51372549019607838" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="NF7-pq-SHq"/>
@@ -166,8 +166,8 @@
                                                         <action selector="notePress" destination="MO8-U0-v3a" eventType="touchUpInside" id="RlE-gQ-IW5"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Iu-Zx-bVs">
-                                                    <rect key="frame" x="18" y="34.5" width="339" height="16.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Iu-Zx-bVs">
+                                                    <rect key="frame" x="18" y="35" width="339" height="17"/>
                                                     <color key="backgroundColor" red="0.92549026010000002" green="0.69411766529999996" blue="0.16862745579999999" alpha="1" colorSpace="deviceRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

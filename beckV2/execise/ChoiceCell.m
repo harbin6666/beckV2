@@ -51,7 +51,7 @@
     
     self.item=item;
     self.lab.text=[NSString stringWithFormat:@"%@ %@",item.item_number,item.item_content];
-    self.lab.numberOfLines=2;
+    self.lab.numberOfLines=0;
     
     self.selectedBackgroundView=[[UIView alloc] init];
 
@@ -81,7 +81,7 @@
     
     self.item=item;
     self.lab.text=[NSString stringWithFormat:@"%@ %@",item.item_number,item.item_content];
-    self.lab.numberOfLines=2;
+    self.lab.numberOfLines=0;
 
     self.selectedBackgroundView=[[UIView alloc] init];
 }
