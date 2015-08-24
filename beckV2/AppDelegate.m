@@ -16,7 +16,7 @@
 #import "WechatObj.h"
 #import "MobClick.h"
 #import <CoreLocation/CoreLocation.h>
-
+#import <AddressBook/AddressBook.h>
 @interface AppDelegate ()<WXApiDelegate,CLLocationManagerDelegate>
 @property(nonatomic,strong)CLLocationManager *clmanager;
 @end
@@ -47,10 +47,44 @@
     [code reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
         CLPlacemark*mark=placemarks[0];
         NSLog(@"%@%@%@",mark.country,mark.subLocality,mark.thoroughfare);
+        [self getAB];
     }];
 
 }
 
+
+-(void)getAB{
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL , nil);
+    ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
+        
+    });
+//    __block BOOL accessGranted = NO;
+//    if (ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
+//        
+//    }) != NULL) {
+//        
+//        // we're on iOS 6
+//        NSLog(@"on iOS 6 or later, trying to grant access permission");
+//        
+//        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+//        ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
+//            accessGranted = granted;
+//            dispatch_semaphore_signal(sema);
+//        });
+//        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+//        dispatch_release(sema);
+//    }
+//    else { // we're on iOS 5 or older
+//        
+//        NSLog(@"on iOS 5 or older, it is OK");
+//        accessGranted = YES;
+//    }
+//    
+//    if (accessGranted) {
+//        
+//        NSLog(@"we got the access right");
+//    }
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[SQLManager sharedSingle] openDB];
