@@ -30,6 +30,7 @@
 		39372E801B0A2F1E00891F52 /* beck.db in Resources */ = {isa = PBXBuildFile; fileRef = 39372E7F1B0A2F1E00891F52 /* beck.db */; };
 		39372E871B0A559400891F52 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39372E861B0A559400891F52 /* HomeVC.m */; };
 		39372E8D1B0A5EF600891F52 /* ConditionContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 39372E8C1B0A5EF600891F52 /* ConditionContainerVC.m */; };
+		39431D711B8B6E950080B9D9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39431D701B8B6E950080B9D9 /* CoreLocation.framework */; };
 		394C4A0F1B233C390002838B /* PractisAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A0E1B233C390002838B /* PractisAnswer.m */; };
 		394C4A121B24539F0002838B /* ExamPaper.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A111B24539F0002838B /* ExamPaper.m */; };
 		394C4A1B1B24B4D60002838B /* ExamScreenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 394C4A1A1B24B4D60002838B /* ExamScreenVC.m */; };
@@ -238,6 +239,7 @@
 		39372E861B0A559400891F52 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		39372E8B1B0A5EF600891F52 /* ConditionContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionContainerVC.h; sourceTree = "<group>"; };
 		39372E8C1B0A5EF600891F52 /* ConditionContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionContainerVC.m; sourceTree = "<group>"; };
+		39431D701B8B6E950080B9D9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		394C4A0D1B233C390002838B /* PractisAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PractisAnswer.h; sourceTree = "<group>"; };
 		394C4A0E1B233C390002838B /* PractisAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PractisAnswer.m; sourceTree = "<group>"; };
 		394C4A101B24539F0002838B /* ExamPaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamPaper.h; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39431D711B8B6E950080B9D9 /* CoreLocation.framework in Frameworks */,
 				39CE4C5B1B1958B900DDAB01 /* libz.dylib in Frameworks */,
 				39CE4C591B1958B300DDAB01 /* libstdc++.dylib in Frameworks */,
 				39589B0B1B39C80D0056B9A5 /* libssl.a in Frameworks */,
@@ -1444,6 +1447,7 @@
 		70958AE9CD511F39D8940797 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39431D701B8B6E950080B9D9 /* CoreLocation.framework */,
 				39589B081B39C80D0056B9A5 /* libcrypto.a */,
 				39589B091B39C80D0056B9A5 /* libssl.a */,
 				39CE4C5A1B1958B900DDAB01 /* libz.dylib */,

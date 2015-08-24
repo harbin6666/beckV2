@@ -15,14 +15,41 @@
 #import "CALayer+Transition.h"
 #import "WechatObj.h"
 #import "MobClick.h"
+#import <CoreLocation/CoreLocation.h>
 
-
-@interface AppDelegate ()<WXApiDelegate>
-
+@interface AppDelegate ()<WXApiDelegate,CLLocationManagerDelegate>
+@property(nonatomic,strong)CLLocationManager *clmanager;
 @end
 
 @implementation AppDelegate
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    if ([error code] == kCLErrorDenied)
+    {
+        //访问被拒绝
+    }
+    if ([error code] == kCLErrorLocationUnknown) {
+        //无法获取位置信息
+    }
+}
 
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+//    NSLog(@"hello");
+    //打印出精度和纬度
+    CLLocationCoordinate2D coordinate = newLocation.coordinate;
+//    NSLog(@"输出当前的精度和纬度");
+    NSLog(@"精度：%f 纬度：%f",coordinate.latitude,coordinate.longitude);
+    CLGeocoder *code=[[CLGeocoder alloc] init];
+    [code reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        CLPlacemark*mark=placemarks[0];
+        NSLog(@"%@%@%@",mark.country,mark.subLocality,mark.thoroughfare);
+    }];
+
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -31,7 +58,8 @@
     [WeiboSDK enableDebugMode:YES];
     [MobClick startWithAppkey:@"559159f867e58e93a2004063" reportPolicy:BATCH   channelId:nil];
     [WXApi registerApp:kWXAPP_ID withDescription:@"beck"];
-
+    
+    
     NSString * titleid=[[Global sharedSingle] getUserWithkey:@"titleid"];
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"fontValue"]==0) {
         [[NSUserDefaults standardUserDefaults] setInteger:15 forKey:@"fontValue"];
@@ -67,6 +95,17 @@
         UIViewController *vc=[sb instantiateInitialViewController];
         self.window.rootViewController = vc;
     }
+    
+    self.clmanager= [[CLLocationManager alloc] init];
+    self.clmanager.delegate=self;
+    
+    if ([self.clmanager respondsToSelector:@selector(requestWhenInUseAuthorization)])
+    {
+        [self.clmanager requestWhenInUseAuthorization];
+    }
+    [self.clmanager setDesiredAccuracy:kCLLocationAccuracyBest];
+    self.clmanager.distanceFilter = 10;
+    [self.clmanager startUpdatingLocation];
     return YES;
 }
 
