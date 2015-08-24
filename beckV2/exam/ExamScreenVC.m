@@ -54,14 +54,14 @@
     
     ExamPaper*p=[self.papers objectAtIndex:indexPath.row];
 
-    if (p.type.integerValue==2) {
+   /* if (p.type.integerValue==2) {
         NSString *status=[[SQLManager sharedSingle] getExchangePaperStatus:p.paper_id];
         if (status.integerValue==0) {
             cell.accessoryView=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pointbuy"]];
         }else{
             cell.accessoryView=nil;
         }
-    }
+    }*/
     cell.textLabel.text=p.paper_name;
     
     return cell;
@@ -73,7 +73,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    self.currentPaper=self.papers[indexPath.row];
     
-    
+  /*
     NSString *status=[[SQLManager sharedSingle] getExchangePaperStatus:self.currentPaper.paper_id];
 
     if (self.currentPaper.type.integerValue==2&&status.integerValue==0) {
@@ -124,8 +124,9 @@
             }
         }] show];
     }else{
+        */
         [self goExamVC];
-    }
+//    }
 
 }
 

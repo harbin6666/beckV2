@@ -62,7 +62,7 @@
     int p=0;
     switch (section) {
         case 0:
-            p=4;
+            p=3;
             break;
         case 1:
             p=3;
