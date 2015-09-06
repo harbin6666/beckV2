@@ -48,9 +48,19 @@
 @end
 
 #import <AFNetworking/AFNetworking.h>
-
+#import "LoginVC.h"
 @implementation BaseViewController
+-(void)showlogin{
+    if ([[Global sharedSingle] loginName]==nil&&![[[Global sharedSingle] getUserWithkey:@"logined"] boolValue]) {
+        UIStoryboard*sb=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        UINavigationController *vc=[sb instantiateViewControllerWithIdentifier:@"loginNav"];
 
+        [self presentViewController:vc animated:YES completion:^{
+            
+        }];
+//        [self performSegueWithIdentifier:@"nologin" sender:self];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     

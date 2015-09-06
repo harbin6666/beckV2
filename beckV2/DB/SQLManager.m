@@ -1036,8 +1036,17 @@ singleton_implementation(SQLManager);
      * @param titlePaperId string表subject_position_paper最大ID
      */
     
-    NSMutableDictionary*addIn=@{@"token":@"addIn",@"loginName":[Global sharedSingle].loginName}.mutableCopy;
-    NSString *sql1 =[NSString stringWithFormat:@"select max(id) from point_transaction where user_id==%@",[Global sharedSingle].userBean[@"userId"]];
+    NSMutableDictionary*addIn=@{@"token":@"addIn"}.mutableCopy;
+    if ([Global sharedSingle].loginName!=nil) {
+        [addIn setObject:[Global sharedSingle].loginName forKeyedSubscript:@"loginName"];
+    }
+    NSString*pbsql;
+    if ([Global sharedSingle].userId!=nil) {
+        pbsql=[NSString stringWithFormat:@" where user_id==%@",[Global sharedSingle].userId];
+    }else{
+        pbsql=@"";
+    }
+    NSString *sql1 =[NSString stringWithFormat:@"select max(id) from point_transaction%@",pbsql];
     [[AFSQLManager sharedManager] performQuery:sql1 withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
@@ -1046,7 +1055,7 @@ singleton_implementation(SQLManager);
             addIn[@"pointId"] = row.firstSqlObj;
         }
     }];
-    NSString *sql2 = [NSString stringWithFormat:@"select max(id) from exchange_paper where user_id==%@",[Global sharedSingle].userBean[@"userId"]];
+    NSString *sql2 = [NSString stringWithFormat:@"select max(id) from exchange_paper%@",pbsql];
     [[AFSQLManager sharedManager] performQuery:sql2 withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
@@ -1056,7 +1065,7 @@ singleton_implementation(SQLManager);
         }
     }];
     
-    NSString *sql3 = [NSString stringWithFormat:@"select max(id) from user_note where user_id==%@",[Global sharedSingle].userBean[@"userId"]];
+    NSString *sql3 = [NSString stringWithFormat:@"select max(id) from user_note%@",pbsql];
     [[AFSQLManager sharedManager] performQuery:sql3 withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
@@ -1066,7 +1075,7 @@ singleton_implementation(SQLManager);
         }
     }];
     
-    NSString *userCollectionId =[NSString stringWithFormat: @"select max(id) from user_collection where user_id==%@",[Global sharedSingle].userBean[@"userId"]];
+    NSString *userCollectionId =[NSString stringWithFormat: @"select max(id) from user_collection%@",pbsql];
     [[AFSQLManager sharedManager] performQuery:userCollectionId withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
@@ -1076,7 +1085,7 @@ singleton_implementation(SQLManager);
         }
     }];
     
-    NSString *userExamId =[NSString stringWithFormat: @"select max(id) from user_exam where user_id==%@",[Global sharedSingle].userBean[@"userId"]];
+    NSString *userExamId =[NSString stringWithFormat: @"select max(id) from user_exam%@",pbsql];
     [[AFSQLManager sharedManager] performQuery:userExamId withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             
@@ -1086,7 +1095,7 @@ singleton_implementation(SQLManager);
         }
     }];
     
-    NSString *userExerciseId =[NSString stringWithFormat: @"select max(id) from user_exercise where user_id==%@",[Global sharedSingle].userBean[@"userId"]];
+    NSString *userExerciseId =[NSString stringWithFormat: @"select max(id) from user_exercise%@",pbsql];
     [[AFSQLManager sharedManager] performQuery:userExerciseId withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         if (finished) {
             

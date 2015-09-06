@@ -471,6 +471,10 @@
 }
 
 -(void)rightBtnClick:(UIButton *)sender{
+    if ([[Global sharedSingle] loginName]==nil) {
+        [self showlogin];
+        return;
+    }
     
     [self showLoading];
     NSMutableDictionary *params = @{}.mutableCopy;

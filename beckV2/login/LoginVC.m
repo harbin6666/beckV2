@@ -54,7 +54,7 @@
     
     self.usrName.returnKeyType=UIReturnKeyDone;
     self.passw.returnKeyType=UIReturnKeyDone;
-    [self setNavigationBarButtonName:@"" width:0 isLeft:YES];
+//    [self setNavigationBarButtonName:@"" width:0 isLeft:YES];
     if (![WXApi isWXAppInstalled]) {
         self.wxBtn.hidden=YES;
     }
@@ -128,6 +128,7 @@
                 }
                 [Global sharedSingle].logined=YES;
                 [self performSegueWithIdentifier:@"tohome" sender:self];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDB" object:nil];
             }
         }
         else {
@@ -318,7 +319,7 @@
                     [[Global sharedSingle] setUserValue:user Key:@"userBean"];
                 }
                 [self performSegueWithIdentifier:@"tohome" sender:self];
-                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"updateDB" object:nil];
             }
         }
         else {

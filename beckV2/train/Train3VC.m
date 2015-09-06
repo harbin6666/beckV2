@@ -245,6 +245,10 @@ static NSString *privatekey=@"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL
             [[OTSAlertView alertWithMessage:@"请输入姓名及电话" andCompleteBlock:nil] show];
             return;
         }
+        if ([[Global sharedSingle] loginName]==nil) {
+            [self showlogin];
+            return;
+        }
         UIActionSheet *sheet=[[UIActionSheet alloc] initWithTitle:@"请选择支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝支付",@"微信支付", nil];
         [sheet showInView:self.view];
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="a5U-C2-ef4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="a5U-C2-ef4">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -230,7 +230,7 @@
         <!--个人成就-->
         <scene sceneID="dE9-lM-9gt">
             <objects>
-                <viewController title="个人成就" id="NE3-9Y-Vj3" customClass="ChengjiuVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chengjiu" title="个人成就" id="NE3-9Y-Vj3" customClass="ChengjiuVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B5b-aV-aKT"/>
                         <viewControllerLayoutGuide type="bottom" id="jTo-Ja-upL"/>
@@ -395,10 +395,10 @@
                         <viewControllerLayoutGuide type="bottom" id="The-5S-ngv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="P2E-4g-VpU">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tabBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lgo-qa-EdA">
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgo-qa-EdA">
                                 <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -414,7 +414,7 @@
                                     <outlet property="delegate" destination="euz-ue-xcZ" id="n81-7y-aPM"/>
                                 </connections>
                             </tabBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="homejiang" translatesAutoresizingMaskIntoConstraints="NO" id="3RB-1P-MpP">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homejiang" translatesAutoresizingMaskIntoConstraints="NO" id="3RB-1P-MpP">
                                 <rect key="frame" x="39.5" y="244" width="241" height="180"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -422,7 +422,7 @@
                                     <constraint firstAttribute="width" constant="241" id="Y6b-Wg-Aeu"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="距考试还有" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faw-J1-DrC">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="距考试还有" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faw-J1-DrC">
                                 <rect key="frame" x="116" y="74" width="89" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="89" id="P7Z-wo-9QJ"/>
@@ -432,28 +432,28 @@
                                 <color key="textColor" red="0.90196078430000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="num0" translatesAutoresizingMaskIntoConstraints="NO" id="rvH-eE-AHC">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="num0" translatesAutoresizingMaskIntoConstraints="NO" id="rvH-eE-AHC">
                                 <rect key="frame" x="57" y="100" width="62" height="89"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="89" id="L9Y-XK-Brh"/>
                                     <constraint firstAttribute="width" constant="62" id="NQO-Fo-uV0"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="num0" translatesAutoresizingMaskIntoConstraints="NO" id="rZq-lV-5Y3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="num0" translatesAutoresizingMaskIntoConstraints="NO" id="rZq-lV-5Y3">
                                 <rect key="frame" x="129" y="100" width="62" height="89"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="62" id="10O-av-RsS"/>
                                     <constraint firstAttribute="height" constant="89" id="Bac-hJ-z6t"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="num0" translatesAutoresizingMaskIntoConstraints="NO" id="mCK-iA-KNs">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="num0" translatesAutoresizingMaskIntoConstraints="NO" id="mCK-iA-KNs">
                                 <rect key="frame" x="201" y="100" width="62" height="89"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="89" id="UeN-5J-bfT"/>
                                     <constraint firstAttribute="width" constant="62" id="gKd-Zy-bcX"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zOA-kX-evV" userLabel="chengjiu">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zOA-kX-evV" userLabel="chengjiu">
                                 <rect key="frame" x="82" y="424" width="156" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="156" id="ef3-V1-0r3"/>
@@ -463,17 +463,17 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="NE3-9Y-Vj3" kind="show" id="w56-Jx-mz2"/>
+                                    <action selector="toHonor:" destination="euz-ue-xcZ" eventType="touchUpInside" id="jiK-a8-d3M"/>
                                 </connections>
                             </button>
-                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J5M-E4-ILO">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J5M-E4-ILO">
                                 <rect key="frame" x="0.0" y="64" width="320" height="148"/>
                                 <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="148" id="QPn-0e-eIo"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tW-9I-pWQ" userLabel="加油">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tW-9I-pWQ" userLabel="加油">
                                 <rect key="frame" x="52" y="220" width="217" height="194"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="194" id="fPB-6H-LzA"/>
@@ -589,7 +589,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rl7-aE-9fo" userLabel="loginView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rl7-aE-9fo" userLabel="loginView">
                                 <rect key="frame" x="26" y="74" width="268" height="88"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFi-a5-9mX">
@@ -698,7 +698,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6OA-a8-pbY" userLabel="checkbox">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6OA-a8-pbY" userLabel="checkbox">
                                 <rect key="frame" x="38" y="172" width="24" height="24"/>
                                 <state key="normal" backgroundImage="uncheckbox">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -708,7 +708,7 @@
                                     <action selector="remenberclick:" destination="oSE-ah-dXk" eventType="touchUpInside" id="oa5-a3-ldo"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="记住我" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hI-ac-E5S">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="记住我" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hI-ac-E5S">
                                 <rect key="frame" x="90" y="175" width="72" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Ajv-QS-rFl"/>
@@ -724,7 +724,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rQ-uh-06t">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rQ-uh-06t">
                                 <rect key="frame" x="26" y="206" width="268" height="36"/>
                                 <color key="backgroundColor" red="0.90196078430000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -739,7 +739,7 @@
                                     <action selector="loginPress:" destination="oSE-ah-dXk" eventType="touchUpInside" id="PIS-fb-lLo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAt-Kc-o3V">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAt-Kc-o3V">
                                 <rect key="frame" x="227" y="252" width="60" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="uck-I8-8xq"/>
@@ -910,6 +910,12 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="nS5-kM-eUe">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="jTV-3M-e1z">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="oSE-ah-dXk" kind="custom" customClass="DismissSegue" id="qnm-YJ-NJ8"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="注册" id="IJy-C9-xRm">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -1370,7 +1376,7 @@
         <!--loginNav-->
         <scene sceneID="IyR-6p-3ip">
             <objects>
-                <navigationController title="loginNav" id="98s-8J-Dgh" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="loginNav" title="loginNav" id="98s-8J-Dgh" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="m5p-95-4ti">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1456,6 +1462,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vAU-pr-r13"/>
+        <segue reference="lQN-GP-n5m"/>
         <segue reference="npZ-RJ-fqi"/>
         <segue reference="MWS-GT-JBi"/>
     </inferredMetricsTieBreakers>

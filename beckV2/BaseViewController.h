@@ -11,6 +11,7 @@
 typedef void(^BeckCompletionBlock)(id aResponseObject, NSError* anError);
 
 @interface BaseViewController : UIViewController
+-(void)showlogin;
 
 @end
 @interface UIViewController (Beck)

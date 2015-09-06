@@ -30,14 +30,14 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     
-    if (![[Global sharedSingle] logined]&&![[[Global sharedSingle] getUserWithkey:@"logined"] boolValue]) {
-        [self performSegueWithIdentifier:@"nologin" sender:self];
-        return;
+//    if (![[Global sharedSingle] logined]&&![[[Global sharedSingle] getUserWithkey:@"logined"] boolValue]) {
+//        [self performSegueWithIdentifier:@"nologin" sender:self];
+//        return;
+//    }
+    if ([[[Global sharedSingle] getUserWithkey:@"logined"] boolValue]) {
+        [Global sharedSingle].loginName=[[Global sharedSingle] getUserWithkey:@"loginName"];
+        [Global sharedSingle].userBean=[[Global sharedSingle] getUserWithkey:@"userBean"];
     }
-        if ([[[Global sharedSingle] getUserWithkey:@"logined"] boolValue]) {
-            [Global sharedSingle].loginName=[[Global sharedSingle] getUserWithkey:@"loginName"];
-            [Global sharedSingle].userBean=[[Global sharedSingle] getUserWithkey:@"userBean"];
-        }
     
     
 
@@ -247,11 +247,30 @@
     }
     TabbarVC *vc = [sb instantiateInitialViewController];
     vc.navigationController.navigationBarHidden=YES;
-    
+    if ([[Global sharedSingle] loginName]==nil&&tag!=0) {
+        [self showlogin];
+        return;
+    }
     vc.selectedIndex=tag;
     [self.navigationController pushViewController:vc animated:NO];
 }
+
+-(IBAction)toHonor:(id)sender{
+    if ([[Global sharedSingle] loginName]==nil) {
+        [self showlogin];
+        return;
+    }
+    
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    UIViewController* vc=[sb instantiateViewControllerWithIdentifier:@"chengjiu"];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
 -(IBAction)signInPress:(id)sender{
+    if ([[Global sharedSingle] loginName]==nil) {
+        [self showlogin];
+        return;
+    }
     WEAK_SELF;
     [self showLoading];
 
