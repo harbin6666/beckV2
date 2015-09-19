@@ -12,7 +12,9 @@
 #import "AppDelegate.h"
 #import "QuestionVC.h"
 @interface FinishExamVC ()
-@property(nonatomic,weak)IBOutlet UIButton *wechat,*wechatF,*qqF;
+@property(nonatomic,weak)IBOutlet UIButton *wechat;
+@property(nonatomic,weak)IBOutlet UIButton *wechatF;
+@property(nonatomic,weak)IBOutlet UIButton *qqF;
 @property(nonatomic,weak)IBOutlet UILabel *nameL,*pointlb,*examTimelb,*coslb,*rightlb,*wronglb,*ratelb,*bigLab;
 @property(nonatomic,weak)IBOutlet UIImageView *head;
 @end
@@ -27,13 +29,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (![WXApi isWXAppInstalled]) {
-        self.wechat.hidden=YES;
-        self.wechatF.hidden=YES;
-    }
-    if (![TencentOAuth iphoneQQInstalled]) {
-        self.qqF.hidden=YES;
-    }
     [self.wechat addTarget:self action:@selector(sharing:) forControlEvents:UIControlEventTouchUpInside];
     [self.wechatF addTarget:self action:@selector(sharing:) forControlEvents:UIControlEventTouchUpInside];
     [self.qqF addTarget:self action:@selector(sharing:) forControlEvents:UIControlEventTouchUpInside];
@@ -46,6 +41,14 @@
     self.ratelb.text=[NSString stringWithFormat:@"   正确率    ：%.2f％",100*self.right.floatValue/(self.paper.total_amount.floatValue)];
     self.bigLab.text=[NSString stringWithFormat:@"%@",self.right];
     self.bigLab.font=[UIFont boldSystemFontOfSize:25];
+    if (![WXApi isWXAppInstalled]) {
+        self.wechat.hidden=YES;
+        self.wechatF.hidden=YES;
+    }
+    if (![TencentOAuth iphoneQQInstalled]) {
+        self.qqF.hidden=YES;
+    }
+
 }
 -(IBAction)dissmiss:(id)sender{
     [self dismissViewControllerAnimated:YES completion:^{

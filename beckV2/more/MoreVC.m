@@ -65,7 +65,7 @@
             p=3;
             break;
         case 1:
-            if (![WXApi isWXAppInstalled]||![TencentOAuth iphoneQQInstalled]) {
+            if (![WXApi isWXAppInstalled]&&![TencentOAuth iphoneQQInstalled]) {
                 p=2;
             }else{
                 p=3;
