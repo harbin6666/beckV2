@@ -11,8 +11,8 @@
 #import "Position.h"
 #import "TabbarVC.h"
 #import <QuartzCore/QuartzCore.h>
-
-@interface HomeVC ()<UITabBarDelegate>
+#import "PractisHomeVC.h"
+@interface HomeVC ()<UITabBarDelegate,UITabBarControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITabBar *tabbar;
 @property(nonatomic)IBOutlet UIButton* titleBtn ;
 @property(nonatomic,weak) IBOutlet UIView *positionView;
@@ -246,6 +246,7 @@
         return;
     }
     TabbarVC *vc = [sb instantiateInitialViewController];
+    vc.delegate=self;
     vc.navigationController.navigationBarHidden=YES;
     if ([[Global sharedSingle] loginName]==nil&&tag!=0) {
         [self showlogin];
@@ -255,6 +256,15 @@
     [self.navigationController pushViewController:vc animated:NO];
 }
 
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    
+    if ([[Global sharedSingle] loginName]==nil&&![viewController isKindOfClass:[PractisHomeVC class]]) {
+        [self showlogin];
+        tabBarController.selectedIndex=0;
+        return;
+    }
+
+}
 -(IBAction)toHonor:(id)sender{
     if ([[Global sharedSingle] loginName]==nil) {
         [self showlogin];

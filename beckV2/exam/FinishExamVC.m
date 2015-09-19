@@ -27,6 +27,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (![WXApi isWXAppInstalled]) {
+        self.wechat.hidden=YES;
+        self.wechatF.hidden=YES;
+    }
+    if (![TencentOAuth iphoneQQInstalled]) {
+        self.qqF.hidden=YES;
+    }
     [self.wechat addTarget:self action:@selector(sharing:) forControlEvents:UIControlEventTouchUpInside];
     [self.wechatF addTarget:self action:@selector(sharing:) forControlEvents:UIControlEventTouchUpInside];
     [self.qqF addTarget:self action:@selector(sharing:) forControlEvents:UIControlEventTouchUpInside];

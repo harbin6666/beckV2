@@ -11,6 +11,7 @@
 typedef void(^QQCompletionBlock)(id aResponseObject);
 @interface QQObj : NSObject<TencentLoginDelegate,TencentSessionDelegate>
 singleton_interface(QQObj)
+@property (nonatomic, strong) TencentOAuth *tencentOAuth;
 -(void)loginWithBlock:(QQCompletionBlock)block;
 -(void)sharedQQWithBlock:(QQCompletionBlock)block;
 @end

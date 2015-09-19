@@ -15,7 +15,7 @@
 #import "CALayer+Transition.h"
 #import "WechatObj.h"
 #import "MobClick.h"
-
+#import "QQObj.h"
 
 @interface AppDelegate ()<WXApiDelegate>
 
@@ -31,6 +31,7 @@
     [WeiboSDK enableDebugMode:YES];
     [MobClick startWithAppkey:@"559159f867e58e93a2004063" reportPolicy:BATCH   channelId:nil];
     [WXApi registerApp:kWXAPP_ID withDescription:@"beck"];
+    [QQObj sharedSingle].tencentOAuth = [[TencentOAuth alloc] initWithAppId:kOpenQQAppKey andDelegate:[QQObj sharedSingle]];
 
     NSString * titleid=[[Global sharedSingle] getUserWithkey:@"titleid"];
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"fontValue"]==0) {

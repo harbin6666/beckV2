@@ -10,7 +10,6 @@
 #import <TencentOpenAPI/QQApi.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 @interface QQObj()
-@property (nonatomic, strong) TencentOAuth *tencentOAuth;
 @property(nonatomic,copy)QQCompletionBlock block;
 @property(nonatomic,strong)NSString *accessToken;
 
@@ -19,7 +18,6 @@
 singleton_implementation(QQObj)
 
 -(void)loginWithBlock:(QQCompletionBlock)block{
-    self.tencentOAuth = [[TencentOAuth alloc] initWithAppId:kOpenQQAppKey andDelegate:self];
     self.block=block;
     if ([TencentOAuth iphoneQQSupportSSOLogin]) {
         NSArray *permissions = @[kOPEN_PERMISSION_GET_USER_INFO,
