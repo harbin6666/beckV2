@@ -12,6 +12,7 @@
 #import "TabbarVC.h"
 #import <QuartzCore/QuartzCore.h>
 #import "PractisHomeVC.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 @interface HomeVC ()<UITabBarDelegate,UITabBarControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITabBar *tabbar;
 @property(nonatomic)IBOutlet UIButton* titleBtn ;
@@ -22,6 +23,8 @@
 @property(nonatomic,weak)IBOutlet UIImageView *oldHome;
 @property(nonatomic,weak)IBOutlet UIButton *trainbtn;
 @property(nonatomic)BOOL showed;
+@property(nonatomic)float p;
+@property(nonatomic,strong)MBProgressHUD*hud;
 @end
 #define padding 10
 @implementation HomeVC
@@ -181,6 +184,10 @@
 
 -(void)positonClick:(UIButton*)sender
 {
+    if (self.hud.isHidden==NO) {
+    return;
+    }
+
     NSArray *array=[SQLManager sharedSingle].getTitles;
     Position*p=array[sender.tag-10];
     [[Global sharedSingle] setUserValue:p.titleId Key:@"titleid"];
@@ -217,22 +224,42 @@
     //查询配置
     [self getValueWithBeckUrl:@"/front/userAct.htm" params:addIn CompleteBlock:^(id aResponseObject, NSError *anError) {
         if (anError==nil) {
+            [self hideLoading];
             if ([aResponseObject[@"errorcode"] intValue]==0) {
                 NSArray *sqlAr=aResponseObject[@"list"];
                 if (sqlAr.count>0) {
-                    for (int i=0; i<sqlAr.count; i++) {
-                        [[SQLManager sharedSingle] excuseSql:sqlAr[i]];
-                    }
+                    self.hud=[[MBProgressHUD alloc] initWithView:self.view];
+                    self.hud.mode=MBProgressHUDModeDeterminateHorizontalBar;
+                    self.hud.progress=0;
+                    self.hud.labelText=@"安装中..";
+                    [self.view addSubview:self.hud];
+                    [self.hud show:YES];
+                    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateing:) userInfo:nil repeats:YES];
+                    [NSThread detachNewThreadSelector:@selector(executa:) toTarget:self withObject:sqlAr];
                 }
+            }else{
             }
        }else{
+           [self hideLoading];
            [[OTSAlertView alertWithMessage:@"获取更新失败" andCompleteBlock:nil] show];
         }
-        [self hideLoading];
     }];
 
 }
-
+-(void)executa:(NSArray*)sqlAr{
+    int i;
+    for (i=0; i<sqlAr.count; i++) {
+        [[SQLManager sharedSingle] excuseSql:sqlAr[i]];
+        self.p=(float)i/sqlAr.count;
+    }
+}
+-(void)updateing:(NSTimer*)timer{
+    self.hud.progress=self.p;
+    if (self.p>0.99) {
+        self.hud.hidden=YES;
+        [timer invalidate];
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -279,6 +306,9 @@
 -(IBAction)signInPress:(id)sender{
     if ([[Global sharedSingle] loginName]==nil) {
         [self showlogin];
+        return;
+    }
+    if (self.hud.isHidden==NO) {
         return;
     }
     WEAK_SELF;
