@@ -50,7 +50,7 @@
         self.remenber.selected=YES;
     }
     // Do any additional setup after loading the view.
-//    self.tencentOAuth = [[TencentOAuth alloc] initWithAppId:kOpenQQAppKey andDelegate:self];
+    self.tencentOAuth = [[TencentOAuth alloc] initWithAppId:kOpenQQAppKey andDelegate:self];
     
     self.usrName.returnKeyType=UIReturnKeyDone;
     self.passw.returnKeyType=UIReturnKeyDone;

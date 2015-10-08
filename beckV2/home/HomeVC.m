@@ -184,7 +184,7 @@
 
 -(void)positonClick:(UIButton*)sender
 {
-    if (self.hud.isHidden==NO) {
+    if (self.hud.isHidden==NO&&self.hud!=nil) {
     return;
     }
 
@@ -251,6 +251,9 @@
     for (i=0; i<sqlAr.count; i++) {
         [[SQLManager sharedSingle] excuseSql:sqlAr[i]];
         self.p=(float)i/sqlAr.count;
+    }
+    if (i==sqlAr.count) {
+        self.p=1;
     }
 }
 -(void)updateing:(NSTimer*)timer{

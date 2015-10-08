@@ -72,7 +72,7 @@
             }
             break;
         case 2:
-            p=2;
+            p=1;
             break;
             
         default:
@@ -159,7 +159,14 @@
     [self.bb addSubview:b2];
     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismssShare)];
     [self.bb addGestureRecognizer:tap];
-    
+    if (![TencentOAuth iphoneQQInstalled]) {
+        b2.hidden=YES;
+    }
+    if ([WXApi  isWXAppInstalled]==NO) {
+        b.hidden=YES;
+        b1.hidden=YES;
+    }
+
     [app.window addSubview:self.bb];
 
 }
