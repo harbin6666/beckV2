@@ -120,8 +120,11 @@
         ExamScreenVC *vc=segue.destinationViewController;
         if (self.papertag>10) {
             vc.title=@"真题考试";
+            vc.exam=YES;
+            vc.screenNo=[NSString stringWithFormat:@"%zd",self.papertag-10];
         }else{
             vc.title=@"模拟考试";
+            vc.exam=NO;
         }
         vc.papers=self.papers;
         vc.hidesBottomBarWhenPushed=YES;

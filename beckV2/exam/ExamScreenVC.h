@@ -10,4 +10,6 @@
 
 @interface ExamScreenVC : UITableViewController
 @property(nonatomic,strong)NSArray *papers;
+@property(nonatomic,strong)NSString *screenNo;
+@property(nonatomic)BOOL exam;
 @end

@@ -12,27 +12,43 @@
 #import "ExamVC.h"
 #import "PointShopVC.h"
 #import "QuestionVC.h"
-@interface ExamScreenVC ()
+#import "AlipayObj.h"
+#import "WechatObj.h"
+@interface ExamScreenVC ()<UIActionSheetDelegate>
 @property(nonatomic,strong)NSMutableArray *qAr;
 @property(nonatomic,strong)ExamPaper*currentPaper;
+@property(nonatomic,strong)NSArray *netPaper;
+@property(nonatomic,strong)NSString *orderSN;
+@property(nonatomic,strong)NSDictionary *tarDic;
 @end
 
 @implementation ExamScreenVC
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    if (self.exam) {
+        [self freshData];
+    }
 }
+-(void)freshData{
+    NSString * titleid=[[Global sharedSingle] getUserWithkey:@"titleid"];
+    [self showLoading];
+    [self getValueWithBeckUrl:@"/front/exchangePaperAct.htm" params:@{@"token":@"list",@"loginName":[Global sharedSingle].loginName,@"titleId":titleid,@"screening":self.screenNo} CompleteBlock:^(id aResponseObject, NSError *anError) {
+        [self hideLoading];
+        if (anError==nil) {
+            self.netPaper=aResponseObject[@"list"];
+            [self.tableView reloadData];
+        }else{
+            
+        }
+        
+    }];
 
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -53,7 +69,12 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     ExamPaper*p=[self.papers objectAtIndex:indexPath.row];
-
+    for (NSDictionary *dic in self.netPaper) {
+        if (p.paper_id.integerValue==[dic[@"paperId"] integerValue]&&[dic[@"pay"] integerValue]==0) {
+            cell.accessoryView=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pointbuy"]];
+            break;
+        }
+    }
    /* if (p.type.integerValue==2) {
         NSString *status=[[SQLManager sharedSingle] getExchangePaperStatus:p.paper_id];
         if (status.integerValue==0) {
@@ -72,45 +93,35 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    self.currentPaper=self.papers[indexPath.row];
-    
-  /*
-    NSString *status=[[SQLManager sharedSingle] getExchangePaperStatus:self.currentPaper.paper_id];
+    NSString *status=@"0";
+    for (NSDictionary *dic in self.netPaper) {
+        if (self.currentPaper.paper_id.integerValue==[dic[@"paperId"] integerValue]&&[dic[@"pay"] integerValue]==1) {
+            status=@"1";
+            self.tarDic=dic;
+            break;
+        }
+    }
+
+//    NSString *status=[[SQLManager sharedSingle] getExchangePaperStatus:self.currentPaper.paper_id];
 
     if (self.currentPaper.type.integerValue==2&&status.integerValue==0) {
-        if (self.currentPaper.points.integerValue>[[Global sharedSingle].userBean[@"currentPoints"] integerValue]) {
-            NSString *mess=[NSString stringWithFormat:@"购买试卷需要%@积分，您当前积分%@,不足购买此试卷是否前往购买",self.currentPaper.points,[Global sharedSingle].userBean[@"currentPoints"]];
-            [[OTSAlertView alertWithTitle:@"提示" message:mess leftBtn:@"取消" rightBtn:@"购买" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex==1) {
-                    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Practis" bundle:[NSBundle mainBundle]];
-                    PointShopVC*vc =[sb instantiateViewControllerWithIdentifier:@"PointShopVC"];
-                    [self.navigationController pushViewController:vc animated:YES];
-                }
-            }] show];
+        NSNumber *point=self.tarDic[@"price"];
+        if (point==nil) {
             return;
         }
-        NSString *point=self.currentPaper.points;
-        [[OTSAlertView alertWithTitle:@"解锁提示" message:[NSString stringWithFormat:@"%@积分解锁该题目",point] leftBtn:@"取消" rightBtn:@"解锁" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+        [[OTSAlertView alertWithTitle:@"购买提示" message:[NSString stringWithFormat:@"%@元购买该试卷",point] leftBtn:@"取消" rightBtn:@"购买" extraData:nil andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex==1) {
-                NSDictionary *param=@{@"token":@"add",@"loginName":[Global sharedSingle].loginName,@"examPaperId":self.currentPaper.paper_id};
+                NSDictionary *param=@{@"token":@"addpaper",@"loginName":[Global sharedSingle].loginName,@"paperId":self.currentPaper.paper_id};
                 [self showLoading];
                 WEAK_SELF;
-                [self getValueWithBeckUrl:@"/front/exchangePaperAct.htm" params:param CompleteBlock:^(id aResponseObject, NSError *anError) {
+                [self getValueWithBeckUrl:@"/front/orderAct.htm" params:param CompleteBlock:^(id aResponseObject, NSError *anError) {
                     STRONG_SELF;
                     [self hideLoading];
                     if (anError==nil) {
                         if ([aResponseObject[@"errorcode"] integerValue]==0) {
-                            
-                            NSNumber *nowpoint=@([[Global sharedSingle].userBean[@"currentPoints"] integerValue]-point.integerValue);
-                            NSMutableDictionary *dic=[NSMutableDictionary dictionaryWithDictionary:[Global sharedSingle].userBean];
-                            [dic setObject:nowpoint.stringValue forKey:@"currentPoints"];
-                            [Global sharedSingle].userBean=dic;
-                            NSArray *list=aResponseObject[@"sqlList"];
-                            for (int i=0; i<list.count; i++) {
-                                [[SQLManager sharedSingle] excuseSql:list[i]];
-                            }
-                            [[OTSAlertView alertWithMessage:@"购买成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex){
-                                [self.tableView reloadData];
-                            }] show];
+                            self.orderSN=aResponseObject[@"orderSn"];
+                            UIActionSheet *sheet=[[UIActionSheet alloc] initWithTitle:@"请选择支付方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"支付宝支付",@"微信支付", nil];
+                            [sheet showInView:self.view];
 
                         }else{
                             [[OTSAlertView alertWithMessage:@"购买失败" andCompleteBlock:nil] show];
@@ -124,10 +135,54 @@
             }
         }] show];
     }else{
-        */
         [self goExamVC];
-//    }
+    }
 
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==0) {
+        [self payWithAlipay];
+    }else{
+        [self payWx];
+    }
+}
+-(void)payWithAlipay{
+    [[AlipayObj sharedSingle] sendPayProduct:self.currentPaper.paper_name price:[NSString stringWithFormat:@"%@",self.tarDic[@"price"]] orderNum:self.orderSN Block:^(NSDictionary *aResponseDic) {
+        NSNumber *paystatus=aResponseDic[@"resultStatus"];
+        if (paystatus.integerValue==9000) {
+            [[OTSAlertView alertWithMessage:@"支付成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+                [self freshData];
+            }] show];
+        }else if (paystatus.integerValue==6001){
+            
+        }else{
+            [[OTSAlertView alertWithMessage:@"支付失败" andCompleteBlock:nil] show];
+        }
+    }];
+
+}
+-(void)payWx{
+    NSString *price=[NSString stringWithFormat:@"%zd",[self.tarDic[@"price"] integerValue]*100];
+    [[WechatObj sharedSingle] sendPayProduct:self.currentPaper.paper_name price:price orderNum:self.orderSN Block:^(BaseResp* aResponseObject) {
+        if ([aResponseObject isKindOfClass:[PayResp class]]) {
+            PayResp *re=(PayResp*)aResponseObject;
+            if (re.errCode==0) {
+                [[OTSAlertView alertWithMessage:@"支付成功" andCompleteBlock:^(OTSAlertView *alertView, NSInteger buttonIndex) {
+                    [self freshData];
+                }] show];
+            }else{
+                [[OTSAlertView alertWithMessage:@"支付失败" andCompleteBlock:nil] show];
+            }
+        }
+    }];
+
+    
+//    [self getValueWithBeckUrl:@"/front/orderTrainingAct.htm" params:@{@"token":@"add",@"loginName":[Global sharedSingle].loginName,@"trainingCourseId":courseid,@"userName":self.tf1.text,@"userPhone":self.tf2.text,@"cityId":self.selectCity[@"id"]} CompleteBlock:^(id aResponseObject, NSError *anError) {
+//        if (anError==nil&&[aResponseObject[@"errorcode"] integerValue]==0) {
+//            NSString *price=[NSString stringWithFormat:@"%zd",[self.selectDic[@"money"] integerValue]*100];
+//        }
+//    }];
+    
 }
 
 -(void)goExamVC{
