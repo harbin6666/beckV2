@@ -26,6 +26,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    if ([CoreNewFeatureVC canShowNewFeature]) {        
+        NSString *dest=[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/local"] stringByAppendingPathExtension:@"db"];
+        if ([[NSFileManager defaultManager]fileExistsAtPath:dest]) {
+            [[NSFileManager defaultManager] removeItemAtPath:dest error:nil];
+        }
+    }
     [[SQLManager sharedSingle] openDB];
     [WeiboSDK registerApp:kSinaAppKey];
     [WeiboSDK enableDebugMode:YES];

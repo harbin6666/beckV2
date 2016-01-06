@@ -95,8 +95,12 @@
    self.currentPaper=self.papers[indexPath.row];
     NSString *status=@"0";
     for (NSDictionary *dic in self.netPaper) {
-        if (self.currentPaper.paper_id.integerValue==[dic[@"paperId"] integerValue]&&[dic[@"pay"] integerValue]==1) {
-            status=@"1";
+        if (self.currentPaper.paper_id.integerValue==[dic[@"paperId"] integerValue]) {
+            if ([dic[@"pay"] integerValue]==1) {
+                status=@"1";
+            }else{
+                status=@"0";
+            }
             self.tarDic=dic;
             break;
         }

@@ -7,7 +7,6 @@
 //
 
 #import "AFSQLManager.h"
-
 @interface AFSQLManager ()
 
 @property (nonatomic, strong) NSDictionary *currentDbInfo;
