@@ -61,7 +61,7 @@
         }
     }
     NSError*error=nil;
-    BOOL success = [[NSURL URLWithString:dest] setResourceValue: [NSNumber numberWithBool: YES]
+    BOOL success = [[NSURL fileURLWithPath:dest] setResourceValue: [NSNumber numberWithBool: YES]
                                                          forKey: NSURLIsExcludedFromBackupKey error: &error];
 
         if (sqlite3_open([dest UTF8String], &_database) != SQLITE_OK) {
