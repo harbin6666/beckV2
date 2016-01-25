@@ -52,6 +52,7 @@
     NSString *path = [[NSBundle mainBundle]pathForResource:[[name lastPathComponent]stringByDeletingPathExtension] ofType:[name pathExtension]];
     
     NSString *dest=[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/local"] stringByAppendingPathExtension:@"db"];
+
     NSLog(@"%@",dest);
     if (![[NSFileManager defaultManager]fileExistsAtPath:dest]) {
         NSError *error=nil;
@@ -59,6 +60,10 @@
             
         }
     }
+    NSError*error=nil;
+    BOOL success = [[NSURL URLWithString:dest] setResourceValue: [NSNumber numberWithBool: YES]
+                                                         forKey: NSURLIsExcludedFromBackupKey error: &error];
+
         if (sqlite3_open([dest UTF8String], &_database) != SQLITE_OK) {
             NSLog(@"Failed to open database!");
             status(NO, nil);
