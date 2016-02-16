@@ -166,7 +166,8 @@
 
 }
 -(void)payWx{
-    NSString *price=[NSString stringWithFormat:@"%zd",[self.tarDic[@"price"] integerValue]*100];
+    int p=(int)([self.tarDic[@"price"] floatValue]*100);
+    NSString *price=[NSString stringWithFormat:@"%zd",p];
     [[WechatObj sharedSingle] sendPayProduct:self.currentPaper.paper_name price:price orderNum:self.orderSN Block:^(BaseResp* aResponseObject) {
         if ([aResponseObject isKindOfClass:[PayResp class]]) {
             PayResp *re=(PayResp*)aResponseObject;

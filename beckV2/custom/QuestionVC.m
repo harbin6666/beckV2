@@ -86,6 +86,8 @@
                         [self.answerArray addObject:ab];
                     }
                         break;
+                    case 8:
+                    case 9:
                     case 11:{
                         QuestionAnswerC* ab=[[QuestionAnswerC alloc] initWithDictionary:anDic error:nil];
                         [self.answerArray addObject:ab];
@@ -1207,7 +1209,7 @@
             wrongCount++;
         }
         AnswerObj*an=nil;
-        if (q.custom_id.integerValue==10||q.custom_id.integerValue==11) {
+        if (q.custom_id.integerValue==10||q.custom_id.integerValue==11||q.custom_id.integerValue==8||q.custom_id.integerValue==9) {
             CompatyInfo *c=(CompatyInfo*)q;
             an=[self findDoneAnswerWithid:c.info_id];
         }else{
